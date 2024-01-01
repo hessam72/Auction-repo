@@ -4,21 +4,20 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Models\User;
-use Illuminate\Support\Str;
+use App\Models\Admin;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<\App\Models\User>
+ * @extends Factory<\App\Models\Admin>
  */
-final class UserFactory extends Factory
+final class AdminFactory extends Factory
 {
     /**
     * The name of the factory's corresponding model.
     *
     * @var string
     */
-    protected $model = User::class;
+    protected $model = Admin::class;
 
     /**
     * Define the model's default state.
@@ -29,14 +28,8 @@ final class UserFactory extends Factory
     {
         return [
             'username' => fake()->userName,
-            'bio' => fake()->optional()->text,
             'email' => fake()->safeEmail,
-            'status' => fake()->randomNumber(),
             'profile_pic' => fake()->optional()->text,
-            'password' => bcrypt(fake()->password),
-            'email_verified_at' => fake()->optional()->dateTime(),
-            'bid_amount' => fake()->randomNumber(),
-            'remember_token' => Str::random(10),
         ];
     }
 }
