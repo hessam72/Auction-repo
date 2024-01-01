@@ -27,9 +27,7 @@ final class AdminFactory extends Factory
     public function definition(): array
     {
         return [
-            'username' => fake()->userName,
-            'email' => fake()->safeEmail,
-            'profile_pic' => fake()->optional()->text,
+            'user_id' => \App\Models\User::factory(),
         ];
     }
 }

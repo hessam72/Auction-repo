@@ -31,13 +31,16 @@ class Admin extends Model
 	protected $table = 'admins';
 
 	protected $fillable = [
-		'username',
-		'email',
-		'profile_pic'
+	
 	];
 
 	public function tickets()
 	{
 		return $this->hasMany(Ticket::class);
 	}
+	public function user()
+	{
+		return $this->belongsTo(User::class);
+	}
+
 }

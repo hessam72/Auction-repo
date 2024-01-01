@@ -15,9 +15,8 @@ return new class extends Migration
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
-            $table->string('email');
-            $table->text('profile_pic')->nullable();
+            $table->foreignId('user_id')->constrained();
+            $table->integer('role')->default(1)->comment('admin access level');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });
