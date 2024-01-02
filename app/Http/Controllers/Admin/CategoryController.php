@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class CategoryController extends Controller
 {
@@ -13,8 +14,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::latest()->get();
+        return view('admin.categories.index', compact('categories'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -29,7 +32,16 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'description' => 'nullable'
+        ]);
+        Category::create([
+            'title' => $request->title,
+            'description' => $request->description
+        ]);
+        return redirect()->back()->with('success','ثبت با موفقیت ثبت شد');
+        
     }
 
     /**
@@ -45,7 +57,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        
     }
 
     /**
@@ -53,7 +65,16 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'description' => 'nullable'
+        ]);
+        Category::create([
+            'title' => $request->title,
+            'description' => $request->description
+        ]);
+        return redirect()->back()->with('success','ویرایش با موفقیت ثبت شد');
+        
     }
 
     /**
@@ -61,6 +82,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+       $category->delete();
+       return redirect()->back()->with('success','حذف با موفقیت ثبت شد');
     }
 }

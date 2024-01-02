@@ -24,30 +24,74 @@
 
         <!-- Apps & Pages -->
         <li class="menu-header small text-uppercase"><span class="menu-header-text">لیست منوها</span></li>
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
+
+        <li class="menu-item add-margin-btn">
+            <a href="javascript:void(0);" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Dashboards">داشبوردها</div>
+                <div data-i18n="Dashboards">داشبورد</div>
             </a>
         </li>
-        <li class="menu-item">
-            <a href="app-chat.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-chat"></i>
-                <div data-i18n="Chat">گفتگو</div>
+
+
+
+        <li class="menu-item add-margin-btn">
+            <a href="{{route('admin.categories.index')}}" class="menu-link ">
+                <ion-icon class="menu-icon tf-icons" name="server-outline"></ion-icon>
+                <div >دسته بندی ها</div>
             </a>
+          
         </li>
-        <li class="menu-item">
-            <a href="app-calendar.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-calendar"></i>
-                <div data-i18n="Calendar">تقویم</div>
+
+
+        <li class="menu-item add-margin-btn">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <ion-icon class="menu-icon tf-icons" name="diamond-outline"></ion-icon>
+                <div >چلنج ها</div>
             </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="app-user-list.html" class="menu-link">
+                        <div >ایجاد</div>
+                    </a>
+                </li>
+                
+                <li class="menu-item">
+                    <a href="app-user-list.html" class="menu-link">
+                        <div >مدیریت</div>
+                    </a>
+                </li>
+               
+            </ul>
         </li>
-        <li class="menu-item">
-            <a href="app-kanban.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-grid"></i>
-                <div data-i18n="Kanban">تخته وظایف</div>
+
+
+
+        <li class="menu-item add-margin-btn">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <ion-icon class="menu-icon tf-icons" name="gift-outline"></ion-icon>
+                <div >جوایز</div>
             </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="app-user-list.html" class="menu-link">
+                        <div >ایجاد</div>
+                    </a>
+                </li>
+                
+                <li class="menu-item">
+                    <a href="app-user-list.html" class="menu-link">
+                        <div >مدیریت</div>
+                    </a>
+                </li>
+               
+            </ul>
         </li>
+
+        
+
+
+
+
       
 
       

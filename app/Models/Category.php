@@ -34,6 +34,13 @@ class Category extends Model
 		'title',
 		'description'
 	];
+	protected static function booted () {
+        static::deleting(function(Category $category) { // before delete() method call this
+             $category->challenges()->delete();
+             $category->products()->delete();
+             
+        });
+    }
 
 	public function challenges()
 	{

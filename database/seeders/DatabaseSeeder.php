@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
 
 
         // \App\Models\User::factory(100)->create();
-        // \App\Models\Category::factory(10)->create();
+        \App\Models\Category::factory(15)->create();
         // \App\Models\Admin::factory()->create();
         // \App\Models\State::factory(10)->create();
         // \App\Models\City::factory(50)->create();
@@ -27,9 +27,9 @@ class DatabaseSeeder extends Seeder
 
 
 
-        \App\Models\BidBuddy::factory(50)->create();
-        \App\Models\BiddingHistory::factory(50)->create();
-        \App\Models\BiddingQueue::factory(200)->create();
+        // \App\Models\BidBuddy::factory(50)->create();
+        // \App\Models\BiddingHistory::factory(50)->create();
+        // \App\Models\BiddingQueue::factory(200)->create();
 
         
         // \App\Models\UserShipedProduct::factory(8)->create();
