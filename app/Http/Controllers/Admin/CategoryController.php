@@ -40,8 +40,7 @@ class CategoryController extends Controller
             'title' => $request->title,
             'description' => $request->description
         ]);
-        return redirect()->back()->with('success','ثبت با موفقیت ثبت شد');
-        
+        return redirect()->back()->with('success', 'ثبت با موفقیت ثبت شد');
     }
 
     /**
@@ -57,7 +56,6 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        
     }
 
     /**
@@ -69,12 +67,10 @@ class CategoryController extends Controller
             'title' => 'required',
             'description' => 'nullable'
         ]);
-        Category::create([
-            'title' => $request->title,
-            'description' => $request->description
-        ]);
-        return redirect()->back()->with('success','ویرایش با موفقیت ثبت شد');
-        
+        $category->title = $request->title;
+        $category->description = $request->description;
+        $category->save();
+        return redirect()->back()->with('success', 'ویرایش با موفقیت ثبت شد');
     }
 
     /**
@@ -82,7 +78,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-       $category->delete();
-       return redirect()->back()->with('success','حذف با موفقیت ثبت شد');
+        $category->delete();
+        return redirect()->back()->with('success', 'حذف با موفقیت ثبت شد');
     }
 }

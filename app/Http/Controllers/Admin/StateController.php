@@ -13,7 +13,9 @@ class StateController extends Controller
      */
     public function index()
     {
-        //
+        $states = State::latest()->get();
+        
+        return view('admin.states.index', compact('states'));
     }
 
     /**
@@ -29,31 +31,35 @@ class StateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required'
+            
+        ]);
+        State::create([
+            'name' => $request->name
+            
+        ]);
+        return redirect()->back()->with('success','ثبت با موفقیت ثبت شد');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(State $state)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(State $state)
-    {
-        //
-    }
+   
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, State $state)
     {
-        //
+        $request->validate([
+            'name' => 'required'
+            
+        ]);
+        $state->name=$request->name;
+        $state->save();
+       
+        return redirect()->back()->with('success','ویرایش با موفقیت ثبت شد');
     }
 
     /**
@@ -61,6 +67,7 @@ class StateController extends Controller
      */
     public function destroy(State $state)
     {
-        //
+        $state->delete();
+       return redirect()->back()->with('success','حذف با موفقیت ثبت شد');
     }
 }

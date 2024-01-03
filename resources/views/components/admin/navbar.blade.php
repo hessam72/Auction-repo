@@ -1,3 +1,4 @@
+<?php $user=Auth::user();  ?>
 <nav class="layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme" id="layout-navbar">
     <div class="container-fluid">
         <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
@@ -64,21 +65,21 @@
                     <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
                         data-bs-toggle="dropdown">
                         <div class="avatar avatar-online">
-                            <img src="../../assets/img/avatars/1.png" alt class="rounded-circle">
+                            <img src="{{ asset('storage/' . $user->profile_pic) }}" alt class="rounded-circle">
                         </div>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li>
-                            <a class="dropdown-item" href="pages-account-settings-account.html">
+                            <a class="dropdown-item" href="{{route('admin.info')}}">
                                 <div class="d-flex align-items-center">
                                     <div class="flex-shrink-0 me-3">
                                         <div class="avatar avatar-online">
-                                            <img src="../../assets/img/avatars/1.png" alt class="rounded-circle">
+                                            <img src="{{ asset('storage/' . $user->profile_pic) }}" alt class="rounded-circle">
                                         </div>
                                     </div>
                                     <div class="flex-grow-1">
-                                        <span class="fw-semibold d-block">جان اسنو</span>
-                                        <small>مدیر</small>
+                                        <span class="fw-semibold d-block">{{$user->username}}</span>
+                                        <small>مدیر سیستم</small>
                                     </div>
                                 </div>
                             </a>
@@ -87,51 +88,23 @@
                             <div class="dropdown-divider"></div>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="pages-profile-user.html">
+                            <a class="dropdown-item" href="{{route('admin.info')}}">
                                 <i class="bx bx-user me-2"></i>
                                 <span class="align-middle">پروفایل من</span>
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="pages-account-settings-account.html">
+                            <a class="dropdown-item" href="{{route('admin.edit-password')}}">
                                 <i class="bx bx-cog me-2"></i>
-                                <span class="align-middle">تنظیمات</span>
+                                <span class="align-middle">امنیت</span>
                             </a>
                         </li>
-                        <li>
-                            <a class="dropdown-item" href="pages-account-settings-billing.html">
-                                <span class="d-flex align-items-center align-middle">
-                                    <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-                                    <span class="flex-grow-1 align-middle">صورتحساب</span>
-                                    <span
-                                        class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-                                </span>
-                            </a>
-                        </li>
+                       
                         <li>
                             <div class="dropdown-divider"></div>
                         </li>
-                        <li>
-                            <a class="dropdown-item" href="pages-help-center-landing.html">
-                                <i class="bx bx-support me-2"></i>
-                                <span class="align-middle">راهنمایی</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="pages-faq.html">
-                                <i class="bx bx-help-circle me-2"></i>
-                                <span class="align-middle">سوالات متداول</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="pages-pricing.html">
-                                <i class="bx bx-dollar me-2"></i>
-                                <span class="align-middle">قیمت گذاری</span>
-                            </a>
-                        </li>
-                        <li>
-                            <div class="dropdown-divider"></div>
-                        </li>
+                        
+                        
                         <li>
                             <form style="display: flex;
                             align-items: center;"

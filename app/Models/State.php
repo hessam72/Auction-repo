@@ -33,6 +33,14 @@ class State extends Model
 		'name'
 	];
 
+	protected static function booted () {
+        static::deleting(function(State $state) { // before delete() method call this
+			$state->cities()->delete();
+             
+        });
+    }
+
+
 	public function cities()
 	{
 		return $this->hasMany(City::class);

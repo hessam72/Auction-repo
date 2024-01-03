@@ -9,13 +9,13 @@
             <div class="col-md-12">
                 <ul class="nav nav-pills flex-column flex-md-row mb-3">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('admin.profile')}}"><i class="bx bx-user me-1"></i> حساب</a>
+                        <a class="nav-link" href="{{ route('admin.profile.index') }}"><i class="bx bx-user me-1"></i> حساب</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active my-1 my-md-0" href="javascript:void(0);"><i
                                 class="bx bx-lock-alt me-1"></i> امنیت</a>
                     </li>
-                   
+
                 </ul>
                 <!-- Change Password -->
                 <div class="card mb-4">
@@ -23,13 +23,15 @@
                         <h5 class="mb-0">تغییر رمز عبور</h5>
                     </div>
                     <div class="card-body">
-                        <form id="formAccountSettings" method="POST" onsubmit="return false">
+                        <form id="formAccountSettings" method="POST"
+                            action="{{ route('admin.update-password', ['user' => $user->id]) }}">
+                            @csrf
                             <div class="row">
                                 <div class="mb-3 col-md-6 form-password-toggle">
                                     <label class="form-label" for="currentPassword">رمز عبور کنونی</label>
                                     <div class="input-group input-group-merge">
                                         <input class="form-control text-start" type="password" dir="ltr"
-                                            name="currentPassword" id="currentPassword" placeholder="············">
+                                            name="currentPassword" id="currentPassword" placeholder="············" required>
                                         <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                                     </div>
                                 </div>
@@ -39,7 +41,7 @@
                                     <label class="form-label" for="newPassword">رمز عبور جدید</label>
                                     <div class="input-group input-group-merge">
                                         <input class="form-control text-start" type="password" dir="ltr"
-                                            id="newPassword" name="newPassword" placeholder="············">
+                                            id="newPassword" name="password" placeholder="············" required>
                                         <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                                     </div>
                                 </div>
@@ -48,10 +50,28 @@
                                     <label class="form-label" for="confirmPassword">تایید رمز عبور جدید</label>
                                     <div class="input-group input-group-merge">
                                         <input class="form-control text-start" type="password" dir="ltr"
-                                            name="confirmPassword" id="confirmPassword" placeholder="············">
+                                            name="password_confirmation" id="confirmPassword" placeholder="············"
+                                            required>
                                         <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                                     </div>
                                 </div>
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                                @if (\Session::has('success'))
+                                    <div 
+                                        class="alert alert-success">
+                                        <ul>
+                                            <li>{!! \Session::get('success') !!}</li>
+                                        </ul>
+                                    </div>
+                                @endif
                                 <div class="col-12 mb-4">
                                     <p class="fw-semibold mt-2">الزامات رمز عبور:</p>
                                     <ul class="ps-3 mb-0 lh-1-85">
@@ -70,8 +90,8 @@
                 </div>
                 <!--/ Change Password -->
 
-             
-             
+
+
                 <!-- Recent Devices -->
                 <div class="card">
                     <div class="card-header">
