@@ -149,9 +149,9 @@
                                             </div>
                                             <div class="offcanvas-body mx-0 flex-grow-0">
                                                 <form method="POST" class="add-new-user pt-0" id="addNewUserForm-old"
-                                                    action="{{ route('admin.cities.update', ['city' => $city->id]) }}">
-                                                    @method('patch')
-                                                    @csrf
+                                                action="{{ route('admin.cities.update', ['city' => $city->id]) }}">
+                                                @method('patch')
+                                                @csrf
                                                     <div class="mb-3">
                                                         <label class="form-label" for="add-user-fullname">نام </label>
                                                         <input type="text" class="form-control" id="add-user-fullname"

@@ -30,3 +30,31 @@
  {{-- ion icons --}}
  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+
+
+
+
+{{-- text editor links --}}
+
+
+
+ 
+
+    <!-- Vendors CSS -->
+ 
+    <link rel="stylesheet" href="../../assets/vendor/libs/quill/typography.css">
+    <link rel="stylesheet" href="../../assets/vendor/libs/quill/katex.css">
+    <link rel="stylesheet" href="../../assets/vendor/libs/quill/editor-fa.css">
+
+    <!-- Page CSS -->
+
+    <!-- Helpers -->
+    {{-- <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet"> --}}
+
+
+
+
+
+
+ 

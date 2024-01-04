@@ -37,7 +37,14 @@
         <li class="menu-item add-margin-btn">
             <a href="{{route('admin.categories.index')}}" class="menu-link ">
                 <ion-icon class="menu-icon tf-icons" name="server-outline"></ion-icon>
-                <div >دسته بندی ها</div>
+                <div data-i18n="Categories" >دسته بندی ها</div>
+            </a>
+          
+        </li>
+        <li class="menu-item add-margin-btn">
+            <a href="{{route('admin.products.index')}}" class="menu-link ">
+                <ion-icon class="menu-icon tf-icons" name="server-outline"></ion-icon>
+                <div >محصولات</div>
             </a>
           
         </li>

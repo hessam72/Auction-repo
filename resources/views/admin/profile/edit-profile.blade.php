@@ -20,30 +20,32 @@
                 </ul>
                 <div class="card mb-4">
                     <h5 class="card-header heading-color">جزئیات پروفایل</h5>
+                    {{-- {!! $user->bio !!} --}}
+                    
+                    
                     <!-- Account -->
                     <div class="card-body">
                         <div class="d-flex align-items-start align-items-sm-center gap-4">
-                            <img src="{{ asset('storage/' . $user->profile_pic) }}" alt="user-avatar" class="d-block rounded"
-                                height="100" width="100" id="uploadedAvatar">
+                            <img src="{{ asset('storage/' . $user->profile_pic) }}" alt="user-avatar"
+                                class="d-block rounded" height="100" width="100" id="uploadedAvatar">
 
                         </div>
                         @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                    @if (\Session::has('success'))
-                        <div 
-                            class="alert alert-success">
-                            <ul>
-                                <li>{!! \Session::get('success') !!}</li>
-                            </ul>
-                        </div>
-                    @endif
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        @if (\Session::has('success'))
+                            <div class="alert alert-success">
+                                <ul>
+                                    <li>{!! \Session::get('success') !!}</li>
+                                </ul>
+                            </div>
+                        @endif
                     </div>
                     <hr class="my-0">
                     <div class="card-body">

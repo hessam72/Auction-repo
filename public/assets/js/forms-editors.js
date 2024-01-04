@@ -4,97 +4,101 @@
 
 'use strict';
 
-(function () {
-  // Snow Theme
-  // --------------------------------------------------------------------
-  const snowEditor = new Quill('#snow-editor', {
-    bounds: '#snow-editor',
-    modules: {
-      formula: true,
-      toolbar: '#snow-toolbar'
-    },
-    theme: 'snow'
-  });
+(function() {
+    // Snow Theme
+    // --------------------------------------------------------------------
+    const snowEditor = new Quill('#snow-editor', {
+        bounds: '#snow-editor',
+        modules: {
+            formula: true,
+            toolbar: '#snow-toolbar'
+        },
+        theme: 'snow'
+    });
 
-  // Bubble Theme
-  // --------------------------------------------------------------------
-  const bubbleEditor = new Quill('#bubble-editor', {
-    modules: {
-      toolbar: '#bubble-toolbar'
-    },
-    theme: 'bubble'
-  });
+    // Bubble Theme
+    // --------------------------------------------------------------------
+    const bubbleEditor = new Quill('#bubble-editor', {
+        modules: {
+            toolbar: '#bubble-toolbar'
+        },
+        theme: 'bubble'
+    });
 
-  // Full Toolbar
-  // --------------------------------------------------------------------
-  const fullToolbar = [
-    [
-      {
-        font: []
-      },
-      {
-        size: []
-      }
-    ],
-    ['bold', 'italic', 'underline', 'strike'],
-    [
-      {
-        color: []
-      },
-      {
-        background: []
-      }
-    ],
-    [
-      {
-        script: 'super'
-      },
-      {
-        script: 'sub'
-      }
-    ],
-    [
-      {
-        header: '1'
-      },
-      {
-        header: '2'
-      },
-      'blockquote',
-      'code-block'
-    ],
-    [
-      {
-        list: 'ordered'
-      },
-      {
-        list: 'bullet'
-      },
-      {
-        indent: '-1'
-      },
-      {
-        indent: '+1'
-      }
-    ],
-    [
-      {
-        direction: 'rtl'
-      },
-      {
-        align: []
-      }
-    ],
-    ['link', 'image', 'video', 'formula'],
-    ['clean']
-  ];
-  const fullEditor = new Quill('#full-editor', {
-    bounds: '#full-editor',
-    placeholder: 'چیزی بنویسید ...',
-    modules: {
-      formula: true,
-      toolbar: fullToolbar
-    },
-    theme: 'snow'
-  });
+    // Full Toolbar
+    // --------------------------------------------------------------------
+    const fullToolbar = [
+        [{
+                font: []
+            },
+            {
+                size: []
+            }
+        ],
+        ['bold', 'italic', 'underline', 'strike'],
+        [{
+                color: []
+            },
+            {
+                background: []
+            }
+        ],
+        [{
+                script: 'super'
+            },
+            {
+                script: 'sub'
+            }
+        ],
+        [{
+                header: '1'
+            },
+            {
+                header: '2'
+            },
+            'blockquote',
+            'code-block'
+        ],
+        [{
+                list: 'ordered'
+            },
+            {
+                list: 'bullet'
+            },
+            {
+                indent: '-1'
+            },
+            {
+                indent: '+1'
+            }
+        ],
+        [{
+                direction: 'rtl'
+            },
+            {
+                align: []
+            }
+        ],
+        ['link', 'image', 'video', 'formula'],
+        ['clean']
+    ];
+    const fullEditor = new Quill('#full-editor', {
+        bounds: '#full-editor',
+        placeholder: 'چیزی بنویسید ...',
+        modules: {
+            formula: true,
+            toolbar: fullToolbar
+        },
+        theme: 'snow'
+    });
+
+    // const fullEditor1 = new Quill('#full-editor1', {
+    //     bounds: '#full-editor1',
+    //     placeholder: 'چیزی بنویسید ...',
+    //     modules: {
+    //         formula: true,
+    //         toolbar: fullToolbar
+    //     },
+    //     theme: 'snow'
+    // });
 })();

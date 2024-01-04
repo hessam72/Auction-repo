@@ -3,8 +3,10 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CityController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\StateController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,6 +52,15 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::resource('categories', CategoryController::class)->except(['create', 'show', 'edit']);
     Route::resource('states', StateController::class)->except(['create', 'show', 'edit']);
     Route::resource('cities', CityController::class)->except(['create', 'show', 'edit']);
+    Route::resource('products', ProductController::class);
+});
+
+
+Route::controller(ProductController::class)->group(function () {
+
+    Route::post('/save-rich-text', 'saveRichText');
+    Route::post('/get-rich-text', 'getRichText');
+    Route::get('/edit-products/{product}', 'edit')->name('edit-products');
 });
 
 require __DIR__ . '/auth.php';
