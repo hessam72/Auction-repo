@@ -82,15 +82,15 @@
         ['link', 'image', 'video', 'formula'],
         ['clean']
     ];
-    const fullEditor = new Quill('#full-editor', {
-        bounds: '#full-editor',
-        placeholder: 'چیزی بنویسید ...',
-        modules: {
-            formula: true,
-            toolbar: fullToolbar
-        },
-        theme: 'snow'
-    });
+    // const fullEditor = new Quill('#full-editor', {
+    //     bounds: '#full-editor',
+    //     placeholder: 'چیزی بنویسید ...',
+    //     modules: {
+    //         formula: true,
+    //         toolbar: fullToolbar
+    //     },
+    //     theme: 'snow'
+    // });
 
     // const fullEditor1 = new Quill('#full-editor1', {
     //     bounds: '#full-editor1',

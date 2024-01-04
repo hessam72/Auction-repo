@@ -120,7 +120,7 @@
                             <h5 class="card-header heading-color">ویرایشگر کامل
                             </h5>
                             <div class="card-body">
-                                <div id="full-editor1">
+                                <div id="update-product-form">
 
 
                                     {{-- {!! $product->description !!} --}}
@@ -139,11 +139,17 @@
 
                         <div class="col-12 text-center mt-4">
                             
-                            <button type="submit" id="send-ajax"
-                                class="btn btn-primary me-sm-3 me-1">ثبت</button>
+                           
+
                             <button type="reset" class="btn btn-label-secondary"
                                 data-bs-dismiss="modal" aria-label="Close">
                                 انصراف
+                            </button>
+                            &nbsp;
+                            &nbsp;
+                             <button id="update-product" type="button" class="btn btn-primary">
+                               <span id="loading_label" class="hide"> <i class="fa fa-spinner fa-spin"></i> &nbsp;  در حال پردازش </span>
+                              <span id="main_label" class="">  ثبت </span>
                             </button>
                         </div>
                 </form>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Temprary;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -32,7 +33,41 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        //  "_token" => "tS5q2uNjyNYJXA45ZbMoaUUt4PuPcAfmdnnsFIqo"
+        //   "title" => "ds;ldj"
+        //   "category_id" => "24"
+        //   "short_desc" => "dsd'"
+        //   "discount" => "15"
+        //   "price" => "452"
+        //   "inventory" => "55"
+        //   "temp_id" => "6"
+        $request->validate([
+            "title" => "required",
+            "price" => "required",
+
+            "category_id" => "required",
+            "short_desc" => "required",
+            "discount" => "required",
+            "inventory" => "required",
+            "temp_id" => "required",
+        ]);
+        $temp_desc=Temprary::find($request->temp_id);
+        Product::create([
+            "title" =>$request->title,
+            "price" =>$request->price,
+
+            "category_id" =>$request->category_id,
+            "short_desc" =>$request->short_desc,
+            "discount" =>$request->discount,
+            "inventory" =>$request->product_inventory,
+            "description"=>$temp_desc->val
+        ]);
+        return redirect()->back()->with('success', 'ثبت با موفقیت ثبت شد');
+
+
+
+
     }
 
     /**
@@ -54,13 +89,23 @@ class ProductController extends Controller
 
     public function saveRichText(Request $request)
     {
-        // return 'fff?ff';
 
+        if (!empty($request->id)) {
+            //update query
+            $product = Product::find($request->product_id);
+            $product->description = $request->data;
+            $product->save();
+            return $product;
+        } else {
+            //create query
+            // return ($request->data);
+            //    save rich text to temprary
+            $temp = Temprary::create([]);
+            $temp->val = $request->data;
+            $temp->save();
 
-        $product = Product::find($request->product_id);
-        $product->description = $request->data;
-        $product->save();
-        return $product;
+            return $temp->id;
+        }
     }
 
     public function getRichText(Request $request)
@@ -82,20 +127,22 @@ class ProductController extends Controller
     {
         $request->validate([
             "title" => "required",
+            "price" => "required",
 
             "category_id" => "required",
             "short_desc" => "required",
             "discount" => "required",
             "inventory" => "required",
         ]);
-        $product->title=$request->title;
-        $product->category_id=$request->category_id;
-        $product->short_desc=$request->short_desc;
-        $product->discount=$request->discount;
-        $product->title=$request->title;
+        $product->title = $request->title;
+        $product->price = $request->price;
+        $product->category_id = $request->category_id;
+        $product->short_desc = $request->short_desc;
+        $product->discount = $request->discount;
+        $product->title = $request->title;
         $product->product_inventory = $request->inventory;
         $product->save();
-        return redirect()->back()->with('success', 'ویرایش با موفقیت ثبت شد');
+        return redirect()->to('admin/products')->with('success', 'ویرایش با موفقیت ثبت شد');
     }
 
     /**
@@ -103,6 +150,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect()->back()->with('success','حذف با موفقیت ثبت شد');
     }
 }

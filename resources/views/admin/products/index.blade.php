@@ -91,7 +91,9 @@
                             <h3 class="secondary-font">افزودن محصول جدید</h3>
 
                         </div>
-                        <form id="editUserForm" class="row g-3" onsubmit="return false">
+                        <form id="createProductForm" class="row g-3" method="POST"
+                        action="{{ route('admin.products.store') }}">
+                        @csrf
                             <div class="col-12 col-md-6">
                                 <label class="form-label" for="modalEditUserFirstName">نام
                                     محصول</label>
@@ -155,27 +157,25 @@
                                 <div class="card">
                                     <h5 class="card-header heading-color">ویرایشگر کامل</h5>
                                     <div class="card-body">
-                                        <div id="full-editor">
+                                        <div id="create-product-form">
                                             <h6>ویرایشگر متن پرقدرت Quill</h6>
                                             <p>
-                                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
-                                                طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که
-                                                لازم است و
+                                               
                                             </p>
                                         </div>
                                     </div>
                                 </div>
-
-
-
-
-
-
                             </div>
-
+                            {{-- temprary saving place for rich text --}}
+                            <input type="text" id="temp_id"
+                            name="temp_id" value="" hidden>
 
                             <div class="col-12 text-center mt-4">
-                                <button type="submit" class="btn btn-primary me-sm-3 me-1">ثبت</button>
+                               
+                                 <button id="create-product" type="button" class="btn btn-primary">
+                                   <span id="loading_label" class="hide"> <i class="fa fa-spinner fa-spin"></i> &nbsp;  در حال پردازش </span>
+                                  <span id="main_label" class="">  ثبت </span>
+                                </button>
                                 <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal"
                                     aria-label="Close">
                                     انصراف
@@ -260,145 +260,9 @@
                                                 class="bx bx-trash"></i></button>
 
 
-                                        <button class="btn btn-sm btn-icon delete-record"><i data-bs-toggle="modal"
-                                                data-bs-target="#editmodal{{ $product->id }}"
-                                                class="bx bx-edit"></i></button>
-
-                                            <a  href="{{route('edit-products' , ['product' => $product->id])}}">
-
-                                                ورود به ویرایش
-                                            </a>
-
-
-
-
-
-                                        {{-- edit modal --}}
-                                        <div class="modal fade" id="editmodal{{ $product->id }}" tabindex="-1"
-                                            aria-hidden="true">
-                                            <div class="modal-dialog modal-xl modal-simple modal-edit-user">
-                                                <div class="modal-content p-3 p-md-5">
-                                                    <div class="modal-body">
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                        <div class="text-center mb-4 mt-0 mt-md-n2">
-                                                            <h3 class="secondary-font">ویرایش محصول</h3>
-
-                                                        </div>
-                                                        <form id="editUserForm" class="row g-3" method="POST"
-                                                            action="{{ route('admin.products.update', ['product' => $product->id]) }}">
-                                                            @method('patch')
-                                                            @csrf
-                                                            <div class="col-12 col-md-6">
-                                                                <label class="form-label" for="modalEditUserFirstName">نام
-                                                                    محصول</label>
-                                                                <input type="text" id="modalEditUserFirstName"
-                                                                    name="title" value="{{ $product->title }}"
-                                                                    class="form-control" placeholder="جان">
-
-
-                                                                    <input type="text" id="product_id"
-                                                                    name="product_id" value="{{ $product->id }}" hidden>
-                                                            </div>
-
-                                                            <div class="col-12 col-md-6">
-                                                                <label class="form-label" for="modalEditUserStatus">دسته
-                                                                    بندی</label>
-                                                                <select id="modalEditUserStatus" name="category_id"
-                                                                    class="form-select"
-                                                                    aria-label="Default select example">
-                                                                    <option value="{{ $product->category->id }}" selected>
-                                                                        {{ $product->category->title }}</option>
-                                                                    @foreach ($categories as $category)
-                                                                        <option value="{{ $category->id }}">
-                                                                            {{ $category->title }}</option>
-                                                                    @endforeach
-
-
-                                                                </select>
-                                                            </div>
-                                                            <div class="col-12">
-                                                                <label class="form-label" for="modalEditUserName">
-                                                                    توضیحات اجمالی</label>
-                                                                <input type="text" id="modalEditUserName"
-                                                                    name="short_desc" class="form-control text-start"
-                                                                    placeholder="توضیحات کوتاه"
-                                                                    value="{{ $product->short_desc }}" dir="ltr">
-                                                            </div>
-                                                            <div class="col-12 col-md-6">
-                                                                <label class="form-label" for="modalEditUserStatus">
-                                                                    تخفیف محصول (%)</label>
-                                                                <select id="modalEditUserStatus" name="discount"
-                                                                    class="form-select"
-                                                                    aria-label="Default select example">
-                                                                    <option value="{{ $product->discount }}" selected>
-                                                                        {{ $product->discount }}%</option>
-
-
-                                                                    <option value="0">0%</option>
-                                                                    <option value="5">5%</option>
-                                                                    <option value="10">10%</option>
-                                                                    <option value="15">15%</option>
-                                                                    <option value="20">20%</option>
-                                                                </select>
-                                                            </div>
-
-                                                            <div class="col-12 col-md-6">
-                                                                <label class="form-label" for="modalEditTaxID">
-                                                                    قیمت محصول</label>
-                                                                <input type="number" id="modalEditTaxID" name="price"
-                                                                    value="{{ $product->price }}"
-                                                                    class="form-control modal-edit-tax-id"
-                                                                    placeholder="$$">
-                                                            </div>
-
-                                                            <div class="col-12 col-md-6">
-                                                                <label class="form-label" for="modalEditTaxID">
-                                                                    موجودی محصول</label>
-                                                                <input type="number" id="modalEditTaxID"
-                                                                    name="inventory" value="{{ $product->inventory }}"
-                                                                    class="form-control modal-edit-tax-id"
-                                                                    placeholder="...">
-                                                            </div>
-                                                            <div class="col-12">
-
-                                                                <div class="card">
-                                                                    <h5 class="card-header heading-color">ویرایشگر کامل
-                                                                    </h5>
-                                                                    <div class="card-body">
-                                                                        <div id="full-editor1">
-
-
-                                                                            {!! $product->description !!}
-                                                                            {{ $product->description }}
-                                                                            {{-- <p>helllo</p> --}}
-                                                                            <b>سلاااام</b>
-
-                                                                        </div>
-                                                                    </div>
-
-                                                                </div>
-                                                                {{-- *** --}}
-
-                                                             {{-- <input type="text" id="desc_content" name="desc_content" /> --}}
-
-                                                                {{-- *** --}}
-
-
-                                                                <div class="col-12 text-center mt-4">
-                                                                    <button type="button" id="send-ajax">seeeend</button>
-                                                                    <button type="submit"
-                                                                        class="btn btn-primary me-sm-3 me-1">ثبت</button>
-                                                                    <button type="reset" class="btn btn-label-secondary"
-                                                                        data-bs-dismiss="modal" aria-label="Close">
-                                                                        انصراف
-                                                                    </button>
-                                                                </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <button class="btn btn-sm btn-icon delete-record">
+                                            <a href="{{ route('edit-products', ['product' => $product->id]) }}">
+                                                <i class="bx bx-edit"></i></a></button>
 
 
 
@@ -411,9 +275,9 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                         <div class="text-center mb-4 mt-0 mt-md-n2">
-                                                            <h3 class="secondary-font">حذف دسته بندی</h3>
+                                                            <h3 class="secondary-font">حذف محصول</h3>
 
-                                                            <p>با حذف دسته بندی، محصولات و چالش های مرتبط نیز حذف خواهند شد.
+                                                            <p>با حذف محصول، حراجی های مرتبط نیز حذف خواهند شد.
                                                             </p>
                                                             <p>آیا از حذف این آیتم اطمینان دارید؟</p>
                                                         </div>

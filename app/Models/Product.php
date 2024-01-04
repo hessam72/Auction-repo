@@ -42,7 +42,7 @@ class Product extends Model
 	use HasFactory;
 
 	protected $casts = [
-		'category_id' => 'int',
+		// 'category_id' => 'int',
 		'discount' => 'int',
 		'sales_count' => 'int',
 		'price' => 'int',
@@ -59,6 +59,19 @@ class Product extends Model
 		'price',
 		'product_inventory'
 	];
+
+	protected static function booted () {
+        static::deleting(function(Product $product) { // before delete() method call this
+			// delete relared auctions - buy it offers - comments - product gallery
+			$product->auctions()->delete();
+			$product->buy_it_now_offers()->delete();
+			$product->comments()->delete();
+			$product->product_galleries()->delete();
+             
+        });
+    }
+
+
 
 	public function category()
 	{

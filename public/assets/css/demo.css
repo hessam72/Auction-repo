@@ -95,7 +95,7 @@
     direction: ltr !important;
 }
 
-[dir='rtl'] .rtl-only {
+[dir="rtl"] .rtl-only {
     display: block !important;
 }
 
@@ -128,7 +128,7 @@
 }
 
 .add-margin-btn {
-    margin-bottom: .7rem !important;
+    margin-bottom: 0.7rem !important;
 }
 
 .limit-chars-30 {
@@ -136,4 +136,8 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+}
+
+.hide {
+    display: none;
 }

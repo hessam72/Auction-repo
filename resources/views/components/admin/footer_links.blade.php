@@ -118,8 +118,18 @@
     ];
     $(document).ready(function() {
         // $('#example').DataTable();
-        const fullEditor1 = new Quill('#full-editor1', {
-            bounds: '#full-editor1',
+        const editProductDesc = new Quill('#update-product-form', {
+            bounds: '#update-product-form',
+
+            modules: {
+                formula: true,
+                toolbar: fullToolbar
+            },
+            theme: 'snow'
+        });  
+        
+        const createProductDesc = new Quill('#create-product-form', {
+            bounds: '#create-product-form',
 
             modules: {
                 formula: true,
@@ -127,6 +137,7 @@
             },
             theme: 'snow'
         });
+
         // readOnly: true,
         //     theme: 'bubble',
 
@@ -192,17 +203,22 @@
 
                 }
                 console.log(contents);
-                fullEditor1.setContents(contents);
+                editProductDesc.setContents(contents);
 
             });
         }
 
+       
 
 
+        // saving rich text  --- edit
+        $('#update-product').click(function() {
 
-        // saving rich text 
-        $('#send-ajax').click(function() {
-            var delta = fullEditor1.getContents();
+            $('#main_label').addClass('hide');
+            $('#loading_label').removeClass('hide');
+
+
+            var delta = editProductDesc.getContents();
             var id = $('#product_id').val();
             var send_data = {
                 'product_id': id,
@@ -232,7 +248,84 @@
                 //Handle event send done;
             })
         });
+        
+
+
+
+        // save rich text to temprry --- reate product
+        $('#create-product').click(function() {
+            
+            $('#main_label').addClass('hide');
+            $('#loading_label').removeClass('hide');
+
+            var delta = createProductDesc.getContents();
+         
+            var send_data = {
+            
+                data: delta
+            }
+            // console.dir(delta);
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('input[name="_token"]').val()
+                },
+                type: "POST",
+                cache: false,
+                async: true,
+                global: false,
+                url: "/save-rich-text",
+                data: JSON.stringify(send_data),
+                contentType: "application/json; charset=utf-8",
+                traditional: true,
+
+            }).done(function(data) {
+                console.log(data);
+                $('#temp_id').val(data)
+
+                $('#createProductForm').submit();
+                //Handle event send done;
+            })
+        }); 
+        
+        
+        
+        
+        // saving rich text  --- create
+        // $('#send-ajax').click(function() {
+
+        //     $('#main_label').addClass('hide');
+        //     $('#loading_label').removeClass('hide');
+
+        //     var delta = editProductDesc.getContents();
+           
+        //     var send_data = {
+        //         'product_id': id,
+        //         data: delta
+        //     }
+        //     // console.dir(delta);
+
+        //     $.ajax({
+        //         headers: {
+        //             'X-CSRF-TOKEN': $('input[name="_token"]').val()
+        //         },
+        //         type: "POST",
+        //         cache: false,
+        //         async: true,
+        //         global: false,
+        //         url: "/save-rich-text",
+        //         data: JSON.stringify(send_data),
+        //         // data: {
+        //         //     content: send_data
+        //         // },
+        //         contentType: "application/json; charset=utf-8",
+        //         traditional: true,
+
+        //     }).done(function(data) {
+        //         console.dir(data);
+        //         $('#editProductForm').submit();
+        //         //Handle event send done;
+        //     })
+        // });
     });
 </script>
-{{-- <script src="https://cdn.quilljs.com/1.3.6/quill.js" defer></script> --}}
-{{-- <script src="https://unpkg.com/quill-paste-smart@latest/dist/quill-paste-smart.js" defer></script> --}}

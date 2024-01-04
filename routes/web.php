@@ -6,7 +6,9 @@ use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\StateController;
 use App\Http\Controllers\ProfileController;
+use App\Models\City;
 use App\Models\Product;
+use App\Models\Temprary;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,9 +22,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 // Route::get('/dashboard', function () {
 //     return view('admin.pages.dashboard');
@@ -64,3 +63,21 @@ Route::controller(ProductController::class)->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+
+
+
+Route::get('/test', function () {
+    $temp = Product::create([
+        'category_id' => 25,
+            'title' => 'sddsdssd',
+            'discount' => 0,
+            'sales_count' => 44,
+            'short_desc' => 'dddddddddddeeeeeeeeeeee',
+            'description' => 'dsdsdsds',
+            'price' => 4445,
+            'product_inventory' => 54,
+        
+        
+    ]);
+    return $temp;
+});
