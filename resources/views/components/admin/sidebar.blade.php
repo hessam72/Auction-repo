@@ -40,6 +40,21 @@
                 <div data-i18n="Categories" >دسته بندی ها</div>
             </a>
           
+        </li> 
+        
+        <li class="menu-item add-margin-btn">
+            <a href="{{route('admin.rewards.index')}}" class="menu-link ">
+                <ion-icon class="menu-icon tf-icons" name="server-outline"></ion-icon>
+                <div  >جایزه ها</div>
+            </a>
+          
+        </li>
+        <li class="menu-item add-margin-btn">
+            <a href="{{route('admin.challenges.index')}}" class="menu-link ">
+                <ion-icon class="menu-icon tf-icons" name="server-outline"></ion-icon>
+                <div  >چالش ها</div>
+            </a>
+          
         </li>
         <li class="menu-item add-margin-btn">
             <a href="{{route('admin.products.index')}}" class="menu-link ">
@@ -82,26 +97,7 @@
 
 
 
-        <li class="menu-item add-margin-btn">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <ion-icon class="menu-icon tf-icons" name="gift-outline"></ion-icon>
-                <div >جوایز</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="app-user-list.html" class="menu-link">
-                        <div >ایجاد</div>
-                    </a>
-                </li>
-                
-                <li class="menu-item">
-                    <a href="app-user-list.html" class="menu-link">
-                        <div >مدیریت</div>
-                    </a>
-                </li>
-               
-            </ul>
-        </li>
+      
 
         
 

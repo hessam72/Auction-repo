@@ -13,7 +13,8 @@ class RewardController extends Controller
      */
     public function index()
     {
-        //
+        $rewards = Reward::latest()->get();
+        return view('admin.rewards.index', compact('rewards'));
     }
 
     /**
@@ -29,7 +30,17 @@ class RewardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'type' => 'required',
+            'amount' => 'required',
+        ]);
+        Reward::create([
+            'name' => $request->name,
+            'type' => $request->type,
+            'amount' => $request->amount,
+        ]);
+        return redirect()->back()->with('success', 'ثبت با موفقیت ثبت شد');
     }
 
     /**
@@ -53,7 +64,16 @@ class RewardController extends Controller
      */
     public function update(Request $request, Reward $reward)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'type' => 'required',
+            'amount' => 'required',
+        ]);
+        $reward->name = $request->name;
+        $reward->type = $request->type;
+        $reward->amount = $request->amount;
+        $reward->save();
+        return redirect()->back()->with('success', 'ویرایش با موفقیت ثبت شد');
     }
 
     /**
@@ -61,6 +81,7 @@ class RewardController extends Controller
      */
     public function destroy(Reward $reward)
     {
-        //
+        $reward->delete();
+        return redirect()->back()->with('success', 'حذف با موفقیت ثبت شد');
     }
 }

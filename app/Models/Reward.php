@@ -40,6 +40,13 @@ class Reward extends Model
 		'type',
 		'amount'
 	];
+	protected static function booted () {
+        static::deleting(function(Reward $reward) { // before delete() method call this
+			$reward->challenges()->delete();
+             
+        });
+    }
+
 
 	public function challenges()
 	{

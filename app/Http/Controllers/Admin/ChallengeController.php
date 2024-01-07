@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Challenge;
+use App\Models\Reward;
 use Illuminate\Http\Request;
 
 class ChallengeController extends Controller
@@ -13,7 +15,10 @@ class ChallengeController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::orderBy('title')->get();
+        $rewards = Reward::latest()->get();
+        $challenges = Challenge::latest()->get();
+        return view('admin.challenges.index', compact(['categories', 'rewards', 'challenges']));
     }
 
     /**
@@ -29,7 +34,26 @@ class ChallengeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $request->validate([
+            'description' => 'required',
+            'category_id' => 'required',
+            'reward_id' => 'required',
+            'number_to_win' => 'required',
+            'type' => 'required',
+            'day_type' => 'required',
+        ]);
+        Challenge::create([
+
+            'description' => $request->description,
+            'category_id' => $request->category_id,
+            'reward_id' => $request->reward_id,
+            'number_to_win' => $request->number_to_win,
+            'type' => $request->type,
+            'time_type' => $request->day_type,
+
+        ]);
+        return redirect()->back()->with('success', 'ثبت با موفقیت ثبت شد');
     }
 
     /**
@@ -53,7 +77,32 @@ class ChallengeController extends Controller
      */
     public function update(Request $request, Challenge $challenge)
     {
-        //
+        // dd($request->all());
+        $request->validate([
+            'description' => 'required',
+            'category_id' => 'required',
+            'reward_id' => 'required',
+            'number_to_win' => 'required',
+            'type' => 'required',
+            'day_type' => 'required',
+        ]);
+
+
+        $challenge->description = $request->description;
+        $challenge->category_id = $request->category_id;
+        $challenge->reward_id = $request->reward_id;
+        $challenge->number_to_win = $request->number_to_win;
+        $challenge->type = $request->type;
+        $challenge->time_type = $request->day_type;
+
+        if ($request->has('status')) {
+            $challenge->status = 1;
+        } else {
+            $challenge->status = 0;
+        }
+        $challenge->save();
+
+        return redirect()->back()->with('success', 'ثبت با موفقیت ثبت شد');
     }
 
     /**
