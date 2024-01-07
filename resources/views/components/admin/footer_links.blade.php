@@ -30,6 +30,9 @@
 
 <!-- Vendors JS -->
 <script src="../../assets/vendor/libs/apex-charts/apexcharts.js"></script>
+{{-- <script src="../../assets/vendor/libs/dropzone/dropzone.js"></script> --}}
+<script src="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone-min.js"></script>
+<script src="../../assets/vendor/libs/swiper/swiper.js"></script>
 
 <!-- Main JS -->
 <script src="../../assets/js/main.js"></script>
@@ -54,11 +57,23 @@
 <script src="../../assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js"></script>
 <script src="../../assets/vendor/libs/cleavejs/cleave.js"></script>
 <script src="../../assets/vendor/libs/cleavejs/cleave-phone.js"></script>
-{{-- <script src="../../assets/js/forms-editors.js"></script> --}}
 <!-- Main JS -->
 
 <!-- Page JS -->
+<script src="../../assets/vendor/libs/bootstrap-maxlength/bootstrap-maxlength.js"></script>
+
+<script src="../../assets/vendor/libs/jquery-repeater/jquery-repeater.js"></script>
+
+<script src="../../assets/js/forms-extras.js"></script>
+
 <script src="../../assets/js/app-user-list.js"></script>
+<script src="../../assets/js/forms-file-upload.js"></script>
+
+
+
+{{-- edit product gallery --}}
+<script src="../../assets/js/ui-carousel.js"></script>
+
 
 <script>
     const fullToolbar = [
@@ -117,7 +132,7 @@
         ['clean']
     ];
     $(document).ready(function() {
-        // $('#example').DataTable();
+        $('#example').DataTable();
         const editProductDesc = new Quill('#update-product-form', {
             bounds: '#update-product-form',
 
@@ -257,14 +272,12 @@
             
             $('#main_label').addClass('hide');
             $('#loading_label').removeClass('hide');
-
             var delta = createProductDesc.getContents();
          
             var send_data = {
             
                 data: delta
             }
-            // console.dir(delta);
 
             $.ajax({
                 headers: {
@@ -283,49 +296,13 @@
                 console.log(data);
                 $('#temp_id').val(data)
 
-                $('#createProductForm').submit();
+               
+                $('#createMyProductForm').submit();
                 //Handle event send done;
             })
         }); 
         
         
         
-        
-        // saving rich text  --- create
-        // $('#send-ajax').click(function() {
-
-        //     $('#main_label').addClass('hide');
-        //     $('#loading_label').removeClass('hide');
-
-        //     var delta = editProductDesc.getContents();
-           
-        //     var send_data = {
-        //         'product_id': id,
-        //         data: delta
-        //     }
-        //     // console.dir(delta);
-
-        //     $.ajax({
-        //         headers: {
-        //             'X-CSRF-TOKEN': $('input[name="_token"]').val()
-        //         },
-        //         type: "POST",
-        //         cache: false,
-        //         async: true,
-        //         global: false,
-        //         url: "/save-rich-text",
-        //         data: JSON.stringify(send_data),
-        //         // data: {
-        //         //     content: send_data
-        //         // },
-        //         contentType: "application/json; charset=utf-8",
-        //         traditional: true,
-
-        //     }).done(function(data) {
-        //         console.dir(data);
-        //         $('#editProductForm').submit();
-        //         //Handle event send done;
-        //     })
-        // });
     });
 </script>

@@ -82,6 +82,12 @@
         </div>
         <!-- Users List Table -->
 
+
+
+
+
+
+
         <div class="modal fade" id="createmodal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-simple modal-edit-user">
                 <div class="modal-content p-3 p-md-5">
@@ -91,9 +97,12 @@
                             <h3 class="secondary-font">افزودن محصول جدید</h3>
 
                         </div>
-                        <form id="createProductForm" class="row g-3" method="POST"
-                        action="{{ route('admin.products.store') }}">
-                        @csrf
+
+                        <form id="createMyProductForm" class="row g-3 form-repeater" method="POST"
+                            action="{{ route('admin.products.store') }}" enctype="multipart/form-data">
+                            @csrf
+
+                           
                             <div class="col-12 col-md-6">
                                 <label class="form-label" for="modalEditUserFirstName">نام
                                     محصول</label>
@@ -143,8 +152,10 @@
                                 <label class="form-label" for="modalEditTaxID">
                                     قیمت محصول</label>
                                 <input type="number" id="modalEditTaxID" name="price"
-                                    class="form-control modal-edit-tax-id" placeholder="قیمت را وارد کنید">
+                                    class="form-control modal-edit-tax-id" placeholder="قیمت به دلار">
                             </div>
+                          
+                           
 
                             <div class="col-12 col-md-6">
                                 <label class="form-label" for="modalEditTaxID">
@@ -152,6 +163,38 @@
                                 <input type="number" id="modalEditTaxID" name="inventory"
                                     class="form-control modal-edit-tax-id" placeholder="موجودی را وارد کنید">
                             </div>
+
+
+                             {{-- multi image uploader --}}
+                             <div class="col-12 ">
+                                <div data-repeater-list="product_imgs">
+                                    <div data-repeater-item>
+                                        <div class="input-group">
+                                            <label class="input-group-text" for="form-repeater-1-1">تصویر محصول</label>
+                                            <input name="file" type="file" class="form-control" id="form-repeater-1-1">
+                                        </div>
+
+
+                                        <div class="mb-3 col-lg-12 col-xl-2 col-12 d-flex align-items-center mb-0">
+                                            <button type="button" class="btn btn-label-danger mt-4" data-repeater-delete>
+                                                <i class="bx bx-x me-1"></i>
+                                                <span class="align-middle">حذف</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <hr>
+
+                                </div>
+                                <div class="mb-0">
+                                    <button type="button" class="btn btn-primary" data-repeater-create>
+                                        <i class="bx bx-plus me-1"></i>
+                                        <span class="align-middle">افزودن</span>
+                                    </button>
+                                </div>
+
+                            </div>
+
+{{-- full editor --}}
                             <div class="col-12">
 
                                 <div class="card">
@@ -160,21 +203,23 @@
                                         <div id="create-product-form">
                                             <h6>ویرایشگر متن پرقدرت Quill</h6>
                                             <p>
-                                               
+
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                           
+
                             {{-- temprary saving place for rich text --}}
-                            <input type="text" id="temp_id"
-                            name="temp_id" value="" hidden>
+                            <input type="text" id="temp_id" name="temp_id" value="" hidden>
 
                             <div class="col-12 text-center mt-4">
-                               
-                                 <button id="create-product" type="button" class="btn btn-primary">
-                                   <span id="loading_label" class="hide"> <i class="fa fa-spinner fa-spin"></i> &nbsp;  در حال پردازش </span>
-                                  <span id="main_label" class="">  ثبت </span>
+
+                                <button id="create-product" type="button" class="btn btn-primary">
+                                    <span id="loading_label" class="hide"> <i class="fa fa-spinner fa-spin"></i> &nbsp;
+                                        در حال پردازش </span>
+                                    <span id="main_label" class=""> ثبت </span>
                                 </button>
                                 <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal"
                                     aria-label="Close">
@@ -192,6 +237,11 @@
             <div style="display: flex;
             justify-content: space-between;" class="card-header border-bottom">
                 <h5 class="card-title">محصولات </h5>
+                <div class="d-flex justify-content-between align-items-center row py-3 gap-3 gap-md-0 primary-font">
+                    <div class="col-md-4 user_role"></div>
+                    <div class="col-md-4 user_plan"></div>
+                    <div class="col-md-4 user_status"></div>
+                </div>
                 @if (\Session::has('success'))
                     <div style="position: absolute;
                     right: 10rem;

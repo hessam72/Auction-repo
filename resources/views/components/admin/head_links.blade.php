@@ -15,6 +15,13 @@
  <link rel="stylesheet" href="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css">
  <link rel="stylesheet" href="../../assets/vendor/libs/typeahead-js/typeahead.css">
  <link rel="stylesheet" href="../../assets/vendor/libs/apex-charts/apex-charts.css">
+ {{-- <link rel="stylesheet" href="../../assets/vendor/libs/dropzone/dropzone.css"> --}}
+{{-- <link href="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone.css" rel="stylesheet" type="text/css" /> --}}
+ <link rel="stylesheet" href="../../assets/vendor/libs/quill/typography.css">
+ <link rel="stylesheet" href="../../assets/vendor/libs/quill/katex.css">
+ <link rel="stylesheet" href="../../assets/vendor/libs/quill/editor-fa.css">
+ <link rel="stylesheet" href="../../assets/vendor/libs/swiper/swiper.css">
+ <link rel="stylesheet" href="../../assets/vendor/css/pages/ui-carousel.css">
 
  <!-- Page CSS -->
 
@@ -27,6 +34,10 @@
  <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
  <script src="../../assets/js/config.js"></script>
 
+
+ {{-- edit product resource --}}
+
+
  {{-- ion icons --}}
  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -34,27 +45,3 @@
 
 
 
-
-{{-- text editor links --}}
-
-
-
- 
-
-    <!-- Vendors CSS -->
- 
-    <link rel="stylesheet" href="../../assets/vendor/libs/quill/typography.css">
-    <link rel="stylesheet" href="../../assets/vendor/libs/quill/katex.css">
-    <link rel="stylesheet" href="../../assets/vendor/libs/quill/editor-fa.css">
-
-    <!-- Page CSS -->
-
-    <!-- Helpers -->
-    {{-- <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet"> --}}
-
-
-
-
-
-
- 

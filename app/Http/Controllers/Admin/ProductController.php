@@ -5,20 +5,27 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductGallery;
 use App\Models\Temprary;
 use Illuminate\Http\Request;
+use App\Traits\Upload;
+
 
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    use Upload;
+
     public function index()
     {
+        // return view('test');
         $categories = Category::orderBy('title')->get();
         $products = Product::latest()->get();
         return view('admin.products.index', compact(['categories', 'products']));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -34,14 +41,10 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        //  "_token" => "tS5q2uNjyNYJXA45ZbMoaUUt4PuPcAfmdnnsFIqo"
-        //   "title" => "ds;ldj"
-        //   "category_id" => "24"
-        //   "short_desc" => "dsd'"
-        //   "discount" => "15"
-        //   "price" => "452"
-        //   "inventory" => "55"
-        //   "temp_id" => "6"
+        // dd($request->has('product_imgs'));
+
+
+
         $request->validate([
             "title" => "required",
             "price" => "required",
@@ -52,22 +55,31 @@ class ProductController extends Controller
             "inventory" => "required",
             "temp_id" => "required",
         ]);
-        $temp_desc=Temprary::find($request->temp_id);
-        Product::create([
-            "title" =>$request->title,
-            "price" =>$request->price,
 
-            "category_id" =>$request->category_id,
-            "short_desc" =>$request->short_desc,
-            "discount" =>$request->discount,
-            "inventory" =>$request->product_inventory,
-            "description"=>$temp_desc->val
+        $temp_desc = Temprary::find($request->temp_id);
+
+        $product = Product::create([
+            "title" => $request->title,
+            "price" => $request->price,
+            "category_id" => $request->category_id,
+            "short_desc" => $request->short_desc,
+            "discount" => $request->discount,
+            "inventory" => $request->product_inventory,
+            "description" => $temp_desc->val
         ]);
+        if ($request->has('product_imgs')) {
+            if ($request->product_imgs[0]['file']) {
+                foreach ($request->product_imgs as $image) {
+                    $path = $this->UploadFile($image['file'], 'images/product_images'); //use the method in the trait
+                    ProductGallery::create([
+                        'image' => $path,
+                        'product_id' => $product->id
+                    ]);
+                }
+            }
+        }
+
         return redirect()->back()->with('success', 'ثبت با موفقیت ثبت شد');
-
-
-
-
     }
 
     /**
@@ -89,17 +101,15 @@ class ProductController extends Controller
 
     public function saveRichText(Request $request)
     {
-
-        if (!empty($request->id)) {
+        if (!empty($request->product_id)) {
             //update query
             $product = Product::find($request->product_id);
+
             $product->description = $request->data;
             $product->save();
             return $product;
         } else {
-            //create query
-            // return ($request->data);
-            //    save rich text to temprary
+
             $temp = Temprary::create([]);
             $temp->val = $request->data;
             $temp->save();
@@ -142,6 +152,28 @@ class ProductController extends Controller
         $product->title = $request->title;
         $product->product_inventory = $request->inventory;
         $product->save();
+
+
+        //managing images
+        if ($request->has('product_imgs')) {
+            if ($request->product_imgs[0]['file']) {
+                //delete old images
+               
+                $product->product_galleries()->each(function($pg) {
+                    $pg->delete(); 
+                });
+                // store new images
+                foreach ($request->product_imgs as $image) {
+                    $path = $this->UploadFile($image['file'], 'images/product_images'); //use the method in the trait
+                    ProductGallery::create([
+                        'image' => $path,
+                        'product_id' => $product->id
+                    ]);
+                }
+            }
+        }
+
+
         return redirect()->to('admin/products')->with('success', 'ویرایش با موفقیت ثبت شد');
     }
 
@@ -151,6 +183,6 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        return redirect()->back()->with('success','حذف با موفقیت ثبت شد');
+        return redirect()->back()->with('success', 'حذف با موفقیت ثبت شد');
     }
 }

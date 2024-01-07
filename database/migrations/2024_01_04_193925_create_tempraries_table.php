@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('tempraries', function (Blueprint $table) {
             $table->id();
             $table->string('val')->nullable();
+            $table->integer('type')->nullable()->comment('can be image=>2 or text=>1');
+            $table->integer('key')->nullable()->comment('for multi item ');
             $table->timestamps();
         });
     }
