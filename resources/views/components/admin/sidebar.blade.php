@@ -2,7 +2,7 @@
     <div class="app-brand demo">
         <a href="index.html" class="app-brand-link">
            
-            <span class="app-brand-text demo menu-text fw-bold ms-2">پنل مدیریت</span>
+            <span data-i18n="AdminPanel" class="app-brand-text demo menu-text fw-bold ms-2">پنل مدیریت</span>
         </a>
 
         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
@@ -45,21 +45,36 @@
         <li class="menu-item add-margin-btn">
             <a href="{{route('admin.rewards.index')}}" class="menu-link ">
                 <ion-icon class="menu-icon tf-icons" name="server-outline"></ion-icon>
-                <div  >جایزه ها</div>
+                <div data-i18n="Rewards" >جایزه ها</div>
             </a>
           
         </li>
         <li class="menu-item add-margin-btn">
             <a href="{{route('admin.challenges.index')}}" class="menu-link ">
                 <ion-icon class="menu-icon tf-icons" name="server-outline"></ion-icon>
-                <div  >چالش ها</div>
+                <div  data-i18n="Challenges" >چالش ها</div>
             </a>
           
         </li>
         <li class="menu-item add-margin-btn">
             <a href="{{route('admin.products.index')}}" class="menu-link ">
                 <ion-icon class="menu-icon tf-icons" name="server-outline"></ion-icon>
-                <div >محصولات</div>
+                <div  data-i18n="Products">محصولات</div>
+            </a>
+          
+        </li>  
+        
+        <li class="menu-item add-margin-btn">
+            <a href="{{route('admin.bidPackages.index')}}" class="menu-link ">
+                <ion-icon class="menu-icon tf-icons" name="server-outline"></ion-icon>
+                <div  data-i18n="BidPackages">پکیج های بید</div>
+            </a>
+          
+        </li> 
+         <li class="menu-item add-margin-btn">
+            <a href="{{route('admin.specialOffers.index')}}" class="menu-link ">
+                <ion-icon class="menu-icon tf-icons" name="server-outline"></ion-icon>
+                <div  >پیشنهاد شگفت انگیز</div>
             </a>
           
         </li>
@@ -77,18 +92,18 @@
         <li class="menu-item add-margin-btn">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <ion-icon class="menu-icon tf-icons" name="compass-outline"></ion-icon>
-                <div >شهر و استان</div>
+                <div data-i18n="States&Cities" >شهر و استان</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
                     <a href="{{route('admin.states.index')}}" class="menu-link">
-                        <div >مدیریت استان</div>
+                        <div data-i18n="ManageStates" >مدیریت استان</div>
                     </a>
                 </li>
                 
                 <li class="menu-item">
                     <a href="{{route('admin.cities.index')}}" class="menu-link">
-                        <div >مدیریت شهر</div>
+                        <div data-i18n="ManageCities" >مدیریت شهر</div>
                     </a>
                 </li>
                

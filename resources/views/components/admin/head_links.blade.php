@@ -22,8 +22,12 @@
  <link rel="stylesheet" href="../../assets/vendor/libs/quill/editor-fa.css">
  <link rel="stylesheet" href="../../assets/vendor/libs/swiper/swiper.css">
  <link rel="stylesheet" href="../../assets/vendor/css/pages/ui-carousel.css">
+ <link rel="stylesheet" href="../../assets/vendor/libs/select2/select2.css">
 
  <!-- Page CSS -->
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+ <link rel="stylesheet" href="../../assets/vendor/libs/bs-stepper/bs-stepper.css">
+ <link rel="stylesheet" href="../../assets/vendor/libs/formvalidation/dist/css/formValidation.min.css">
 
  <!-- Helpers -->
  <script src="../../assets/vendor/js/helpers.js"></script>
@@ -42,9 +46,6 @@
  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
-
-
- {{-- sweet alert --}}
 
  <link rel="stylesheet" href="../../assets/vendor/libs/animate-css/animate.css">
 

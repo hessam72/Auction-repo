@@ -14,6 +14,9 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $id
  * @property int $type
+ * @property string $description
+ * @property string $type_desc
+
  * @property int $discount_amount
  * @property int $item_id
  * @property Carbon $expiration_date
@@ -37,9 +40,13 @@ class SpecialOffer extends Model
 
 	protected $fillable = [
 		'type',
+		'description',
+		'banner',
+		'type_desc',
 		'discount_amount',
 		'item_id',
 		'expiration_date',
 		'status'
 	];
+	
 }

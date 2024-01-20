@@ -16,7 +16,7 @@
 
 {{-- text editor  --}}
 
-
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 <!-- endbuild -->
 
@@ -35,12 +35,12 @@
 <script src="../../assets/vendor/libs/swiper/swiper.js"></script>
 
 <!-- Vendors JS -->
-    <script src="../../assets/vendor/libs/sweetalert2/sweetalert2.js"></script>
+<script src="../../assets/vendor/libs/sweetalert2/sweetalert2.js"></script>
 <!-- Main JS -->
 <script src="../../assets/js/main.js"></script>
 <script src="../../assets/js/forms-editors.js"></script>
-  <!-- Page JS -->
-    <script src="../../assets/js/extended-ui-sweetalert2.js"></script>
+<!-- Page JS -->
+<script src="../../assets/js/extended-ui-sweetalert2.js"></script>
 
 <!-- Page JS -->
 <script src="../../assets/js/dashboards-analytics.js"></script>
@@ -69,15 +69,17 @@
 
 <script src="../../assets/js/forms-extras.js"></script>
 
-<script src="../../assets/js/app-user-list.js"></script>
+{{-- <script src="../../assets/js/app-user-list.js"></script> --}}
 <script src="../../assets/js/forms-file-upload.js"></script>
 
 
 
 {{-- edit product gallery --}}
 <script src="../../assets/js/ui-carousel.js"></script>
+<script src="../../assets/vendor/libs/bs-stepper/bs-stepper.js"></script>
 
 
+<script src="../../assets/js/wizard-ex-create-deal.js"></script>
 
 
 
@@ -140,7 +142,30 @@
         ['link', 'image', 'video', 'formula'],
         ['clean']
     ];
+    const optional_config = {
+        enableTime: true,
+        dateFormat: "Y-m-d H:i",
+        enableTime: false,
+        minDate: "today",
+
+    }
+    $("#datePicker").flatpickr(optional_config);
+    //     flatpickr('#calendar-tomorrow', {
+    //     "minDate": new Date().fp_incr(1)
+    // });
+
+
+
     $(document).ready(function() {
+
+        // flatpicker
+
+
+
+
+
+
+
         $('#example').DataTable();
         const editProductDesc = new Quill('#update-product-form', {
             bounds: '#update-product-form',
@@ -150,8 +175,8 @@
                 toolbar: fullToolbar
             },
             theme: 'snow'
-        });  
-        
+        });
+
         const createProductDesc = new Quill('#create-product-form', {
             bounds: '#create-product-form',
 
@@ -232,7 +257,7 @@
             });
         }
 
-       
+
 
 
         // saving rich text  --- edit
@@ -272,19 +297,19 @@
                 //Handle event send done;
             })
         });
-        
+
 
 
 
         // save rich text to temprry --- reate product
         $('#create-product').click(function() {
-            
+
             $('#main_label').addClass('hide');
             $('#loading_label').removeClass('hide');
             var delta = createProductDesc.getContents();
-         
+
             var send_data = {
-            
+
                 data: delta
             }
 
@@ -305,13 +330,33 @@
                 console.log(data);
                 $('#temp_id').val(data)
 
-               
+
                 $('#createMyProductForm').submit();
                 //Handle event send done;
             })
-        }); 
-        
-        
-        
+        });
+
+
+
+    });
+
+    // create specialoffer form wizard
+    //showing currect item to select in form wizard
+    $('#form_wizard_select_item_btn').click(function() {
+        if ($('#bid_package_select').prop('checked')) {
+            //hide product selection
+            $('.product_selection_drop').hide();
+            $('.bidPackage_selection_drop').show();
+        }
+        else if($('#product_select').prop('checked')) {
+            //hide bid package selection
+            $('.bidPackage_selection_drop').hide();
+            $('.product_selection_drop').show();
+        }
+
+    });
+    $('#submit_sp_wizard_form').click(function(){
+        // alert('dsdsdssds')
+        // $('#wizard-create-deal-form').submit();
     });
 </script>

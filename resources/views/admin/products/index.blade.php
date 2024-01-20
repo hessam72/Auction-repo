@@ -298,7 +298,7 @@
 
 
                                         <button class="btn btn-sm btn-icon delete-record">
-                                            <a href="{{ route('edit-products', ['product' => $product->id]) }}">
+                                            <a href="{{ route('admin.edit-products', ['product' => $product->id]) }}">
                                                 <i class="bx bx-edit"></i></a></button>
 
 

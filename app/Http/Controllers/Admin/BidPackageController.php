@@ -13,7 +13,8 @@ class BidPackageController extends Controller
      */
     public function index()
     {
-        //
+        $bidPackages = BidPackage::latest()->get();
+        return view('admin.bidPackages.index', compact('bidPackages'));
     }
 
     /**
@@ -27,9 +28,19 @@ class BidPackageController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'bid_amount' => 'numeric|required',
+            'price' => 'numeric|required',
+            'discount' => 'numeric|required',
+        ]);
+        BidPackage::create([
+            'bid_amount' => $request->bid_amount,
+            'price' => $request->price,
+            'discount' => $request->discount
+        ]);
+        return redirect()->back()->with('success', 'ثبت با موفقیت ثبت شد');
     }
 
     /**
@@ -53,14 +64,24 @@ class BidPackageController extends Controller
      */
     public function update(Request $request, BidPackage $bidPackage)
     {
-        //
+        $request->validate([
+            'bid_amount' => 'numeric|required',
+            'price' => 'numeric|required',
+            'discount' => 'numeric|required',
+        ]);
+        $bidPackage->bid_amount = $request->bid_amount;
+        $bidPackage->price = $request->price;
+        $bidPackage->discount = $request->discount;
+        $bidPackage->save();
+        return redirect()->back()->with('success', 'ویرایش با موفقیت ثبت شد');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(BidPackage $bidPackage)
+     public function destroy(BidPackage $bidPackage)
     {
-        //
+        $bidPackage->delete();
+        return redirect()->back()->with('success', 'حذف با موفقیت ثبت شد');
     }
 }

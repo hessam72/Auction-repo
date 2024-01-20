@@ -193,9 +193,9 @@
                                 <td>{{ $challenge->number_to_win }}</td>
                                 <td>
                                     @if ($challenge->status === 1)
-                                        فعال
+                                       <p style="color:green"> فعال </p>
                                     @elseif($challenge->status === 0)
-                                        غیرفعال
+                                       <p style="color:red"> غیرفعال </p>
                                     @endif
                                 </td>
                                 <td>
