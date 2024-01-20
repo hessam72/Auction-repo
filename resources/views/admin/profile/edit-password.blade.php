@@ -55,23 +55,8 @@
                                         <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                                     </div>
                                 </div>
-                                @if ($errors->any())
-                                    <div class="alert alert-danger">
-                                        <ul>
-                                            @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
-                                @if (\Session::has('success'))
-                                    <div 
-                                        class="alert alert-success">
-                                        <ul>
-                                            <li>{!! \Session::get('success') !!}</li>
-                                        </ul>
-                                    </div>
-                                @endif
+                                @include('components.admin.flash_messages')
+
                                 <div class="col-12 mb-4">
                                     <p class="fw-semibold mt-2">الزامات رمز عبور:</p>
                                     <ul class="ps-3 mb-0 lh-1-85">

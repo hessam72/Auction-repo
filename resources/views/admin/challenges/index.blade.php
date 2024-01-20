@@ -124,31 +124,17 @@
         <div class="card">
             <div style="display: flex;
             justify-content: space-between;" class="card-header border-bottom">
-                <h5 class="card-title">چالشات </h5>
+                <h5 class="card-title">چالش ها </h5>
                 <div class="d-flex justify-content-between align-items-center row py-3 gap-3 gap-md-0 primary-font">
                     <div class="col-md-4 user_role"></div>
                     <div class="col-md-4 user_plan"></div>
                     <div class="col-md-4 user_status"></div>
                 </div>
-                @if (\Session::has('success'))
-                    <div style="position: absolute;
-                    right: 10rem;
-                    height: 4rem;"
-                        class="alert alert-success">
-                        <ul>
-                            <li>{!! \Session::get('success') !!}</li>
-                        </ul>
-                    </div>
-                @endif
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+
+                @include('components.admin.flash_messages')
+
+                
+
                 <button class="btn btn-secondary add-new btn-primary ms-2" tabindex="0" aria-controls="cat-table"
                     type="button" data-bs-toggle="modal" data-bs-target="#createmodal"><span><i
                             class="bx bx-plus me-0 me-lg-2"></i><span class="d-none d-lg-inline-block">افزودن چالش
@@ -347,11 +333,11 @@
                                                                 <label class="form-label" for="modalEditUserStatus">
                                                                     فعال / غیرفعال کردن چالش</label>
                                                                 <label class="switch">
-                                                                   
+
                                                                     @if ($challenge->status === 1)
                                                                         {{-- currently active --}}
                                                                         <input type="checkbox" name="status"
-                                                                        class="switch-input" checked>
+                                                                            class="switch-input" checked>
                                                                         <span class="switch-toggle-slider">
                                                                             <span class="switch-on">
                                                                                 <i class="bx bx-check"></i>
@@ -363,7 +349,7 @@
                                                                     @else
                                                                         {{-- currently deactive  --}}
                                                                         <input type="checkbox" name="status"
-                                                                        class="switch-input">
+                                                                            class="switch-input">
                                                                         <span class="switch-toggle-slider">
                                                                             <span class="switch-off">
                                                                                 <i class="bx bx-x "></i>
@@ -374,7 +360,7 @@
                                                                         </span>
                                                                     @endif
 
-                                                                  
+
 
 
                                                                     <span class="switch-label"></span>
@@ -413,7 +399,7 @@
                                                         <div class="text-center mb-4 mt-0 mt-md-n2">
                                                             <h3 class="secondary-font">حذف چالش</h3>
 
-                                                            <p>با حذف چالش، حراجی های مرتبط نیز حذف خواهند شد.
+                                                            {{-- <p>با حذف چالش، حراجی های مرتبط نیز حذف خواهند شد. --}}
                                                             </p>
                                                             <p>آیا از حذف این آیتم اطمینان دارید؟</p>
                                                         </div>

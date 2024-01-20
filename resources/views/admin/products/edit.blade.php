@@ -57,25 +57,9 @@
                     <div class="card-header d-flex align-items-center justify-content-between">
                         <h5 class="mb-0">پایه با آیکن</h5>
                         <small class="text-muted float-end primary-font">گروه ورودی ادغام شده</small>
-                        @if (\Session::has('success'))
-                            <div style="position: absolute;
-                    right: 10rem;
-                    height: 4rem;"
-                                class="alert alert-success">
-                                <ul>
-                                    <li>{!! \Session::get('success') !!}</li>
-                                </ul>
-                            </div>
-                        @endif
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
+                        
+                        @include('components.admin.flash_messages')
+
                     </div>
 
                     <div class="card-body">

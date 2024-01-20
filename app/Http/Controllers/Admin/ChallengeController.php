@@ -110,6 +110,8 @@ class ChallengeController extends Controller
      */
     public function destroy(Challenge $challenge)
     {
-        //
+        $challenge->delete();
+        return redirect()->back()->with('success', 'حذف با موفقیت ثبت شد');
+
     }
 }

@@ -30,22 +30,8 @@
                                 class="d-block rounded" height="100" width="100" id="uploadedAvatar">
 
                         </div>
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                        @if (\Session::has('success'))
-                            <div class="alert alert-success">
-                                <ul>
-                                    <li>{!! \Session::get('success') !!}</li>
-                                </ul>
-                            </div>
-                        @endif
+                        @include('components.admin.flash_messages')
+
                     </div>
                     <hr class="my-0">
                     <div class="card-body">

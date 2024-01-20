@@ -242,25 +242,12 @@
                     <div class="col-md-4 user_plan"></div>
                     <div class="col-md-4 user_status"></div>
                 </div>
-                @if (\Session::has('success'))
-                    <div style="position: absolute;
-                    right: 10rem;
-                    height: 4rem;"
-                        class="alert alert-success">
-                        <ul>
-                            <li>{!! \Session::get('success') !!}</li>
-                        </ul>
-                    </div>
-                @endif
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+
+                @include('components.admin.flash_messages')
+
+
+
+
                 <button class="btn btn-secondary add-new btn-primary ms-2" tabindex="0" aria-controls="cat-table"
                     type="button" data-bs-toggle="modal" data-bs-target="#createmodal"><span><i
                             class="bx bx-plus me-0 me-lg-2"></i><span class="d-none d-lg-inline-block">افزودن محصول

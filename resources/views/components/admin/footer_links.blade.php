@@ -34,10 +34,13 @@
 <script src="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone-min.js"></script>
 <script src="../../assets/vendor/libs/swiper/swiper.js"></script>
 
+<!-- Vendors JS -->
+    <script src="../../assets/vendor/libs/sweetalert2/sweetalert2.js"></script>
 <!-- Main JS -->
 <script src="../../assets/js/main.js"></script>
 <script src="../../assets/js/forms-editors.js"></script>
-
+  <!-- Page JS -->
+    <script src="../../assets/js/extended-ui-sweetalert2.js"></script>
 
 <!-- Page JS -->
 <script src="../../assets/js/dashboards-analytics.js"></script>
@@ -73,6 +76,12 @@
 
 {{-- edit product gallery --}}
 <script src="../../assets/js/ui-carousel.js"></script>
+
+
+
+
+
+
 
 
 <script>
