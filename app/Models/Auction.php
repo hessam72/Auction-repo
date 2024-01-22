@@ -17,12 +17,13 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $id
  * @property int $current_price
- * @property int $current_winner_id
+ * @property int|null $current_winner_id
  * @property int|null $no_jumper_limit
- * @property Carbon $timer
+ * @property Carbon $start_time
+ * @property int $timer
  * @property int $min_price
  * @property int $status
- * @property int $final_winner_id
+ * @property int|null $final_winner_id
  * @property int $product_id
  * @property Carbon $created_at
  * @property Carbon $updated_at
@@ -45,12 +46,12 @@ class Auction extends Model
 
 	protected $casts = [
 		'current_price' => 'int',
-		'current_winner_id' => 'int',
+		// 'current_winner_id' => 'int',
 		'no_jumper_limit' => 'int',
 		'timer' => 'datetime',
 		'min_price' => 'int',
 		'status' => 'int',
-		'final_winner_id' => 'int',
+		// 'final_winner_id' => 'int',
 		'product_id' => 'int'
 	];
 
@@ -62,8 +63,38 @@ class Auction extends Model
 		'min_price',
 		'status',
 		'final_winner_id',
-		'product_id'
+		'product_id',
+		'start_time'
 	];
+
+	protected static function booted()
+	{
+		//  submit discount to the item 
+		static::created(function (Auction $auction) {
+		});
+		static::updating(function (Auction $auction) {
+			//check to see if the aauction is running auction or not
+			// $auction->isRunning();
+		});
+		static::deleting(function (Auction $auction) {
+			//check to see if the aauction is running auction or not
+			// check if auction has winner with unshipedd product or not
+			// $auction->isRunning();
+			// $auction->hasUnshipedProduct();
+
+
+		});
+	}
+
+	public function isRunning($auction){
+		if($auction->start_time <= Carbon::now()){
+			// the item is live
+			return false;
+		}else{
+			// request can proceed
+		}
+
+	}
 
 	public function user()
 	{
@@ -98,8 +129,8 @@ class Auction extends Model
 	public function users()
 	{
 		return $this->belongsToMany(User::class, 'user_auction_wins')
-					->withPivot('id', 'is_paid', 'final_price')
-					->withTimestamps();
+			->withPivot('id', 'is_paid', 'final_price')
+			->withTimestamps();
 	}
 
 	public function winners()

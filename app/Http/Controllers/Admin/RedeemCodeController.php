@@ -13,7 +13,9 @@ class RedeemCodeController extends Controller
      */
     public function index()
     {
-        //
+
+        $redeemCodes = RedeemCode::latest()->get();
+        return view('admin.redeemCodes.index', compact('redeemCodes'));
     }
 
     /**
@@ -29,7 +31,24 @@ class RedeemCodeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
+        $request->validate([
+            "description" => "required",
+            "code" => "required",
+            "value" => "required",
+            "use_limit_count" => "required",
+
+        ]);
+        RedeemCode::create([
+
+            'description' => $request->description,
+            'code' => $request->code,
+            'value' => $request->value,
+            'use_limit_count' => $request->use_limit_count,
+            
+
+        ]);
+        return redirect()->back()->with('success', 'ثبت با موفقیت ثبت شد');
     }
 
     /**
@@ -53,7 +72,29 @@ class RedeemCodeController extends Controller
      */
     public function update(Request $request, RedeemCode $redeemCode)
     {
-        //
+        $request->validate([
+            "description" => "required",
+            "code" => "required",
+            "value" => "required",
+            "use_limit_count" => "required",
+
+        ]);
+
+
+        $redeemCode->description = $request->description;
+        $redeemCode->code = $request->code;
+        $redeemCode->value = $request->value;
+        $redeemCode->use_limit_count = $request->use_limit_count;
+       
+
+        if ($request->has('status')) {
+            $redeemCode->status = 1;
+        } else {
+            $redeemCode->status = 0;
+        }
+        $redeemCode->save();
+
+        return redirect()->back()->with('success', 'ویرایش با موفقیت ثبت شد');
     }
 
     /**
@@ -61,6 +102,7 @@ class RedeemCodeController extends Controller
      */
     public function destroy(RedeemCode $redeemCode)
     {
-        //
+        $redeemCode->delete();
+        return redirect()->back()->with('success', 'حذف با موفقیت ثبت شد');
     }
 }

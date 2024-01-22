@@ -31,6 +31,12 @@
                 <div data-i18n="Dashboards">داشبورد</div>
             </a>
         </li>
+ <li class="menu-item add-margin-btn">
+            <a href="{{route('admin.auctions.index')}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div >حراجی ها</div>
+            </a>
+        </li>
 
 
 
@@ -75,6 +81,13 @@
             <a href="{{route('admin.specialOffers.index')}}" class="menu-link ">
                 <ion-icon class="menu-icon tf-icons" name="server-outline"></ion-icon>
                 <div  >پیشنهاد شگفت انگیز</div>
+            </a>
+          
+        </li> 
+         <li class="menu-item add-margin-btn">
+            <a href="{{route('admin.redeemCodes.index')}}" class="menu-link ">
+                <ion-icon class="menu-icon tf-icons" name="server-outline"></ion-icon>
+                <div  >Redeem Codes</div>
             </a>
           
         </li>

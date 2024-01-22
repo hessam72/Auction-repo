@@ -125,8 +125,6 @@ class SpecialOfferController extends Controller
     {
         // dd($request->all());
         $request->validate([
-
-
             "description" => "required",
             "discount" => "required",
             "expiration_date" => "required|date|after:today",

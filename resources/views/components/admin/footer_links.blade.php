@@ -81,7 +81,9 @@
 
 <script src="../../assets/js/wizard-ex-create-deal.js"></script>
 
+<script src="../../assets/js/form-wizard-numbered.js"></script>
 
+<script src="../../assets/js/form-wizard-validation.js"></script>
 
 
 
@@ -142,19 +144,21 @@
         ['link', 'image', 'video', 'formula'],
         ['clean']
     ];
-    const optional_config = {
-        enableTime: true,
+    const default_config = {
         dateFormat: "Y-m-d H:i",
         enableTime: false,
         minDate: "today",
 
+    }  
+    const with_time_config = {
+        enableTime: true,
+        dateFormat: "Y-m-d H:i",
+        minDate: "today",
+
     }
-    $("#datePicker").flatpickr(optional_config);
-    //     flatpickr('#calendar-tomorrow', {
-    //     "minDate": new Date().fp_incr(1)
-    // });
-
-
+    $("#datePickerTime").flatpickr(with_time_config);
+    $("#datePicker").flatpickr(default_config);
+  
 
     $(document).ready(function() {
 

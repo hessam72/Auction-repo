@@ -16,10 +16,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * Class RedeemCode
  * 
  * @property int $id
- * @property int $code
+ * @property string $code
  * @property int $value
- * @property int $count_of_use
+ * @property int $use_limit_count
+ * @property int $used_count
  * @property int $status
+ * @property string $description
  * @property Carbon $created_at
  * 
  * @property Collection|User[] $users
@@ -33,22 +35,23 @@ class RedeemCode extends Model
 	public $timestamps = false;
 
 	protected $casts = [
-		'code' => 'int',
+		'code' => 'string',
 		'value' => 'int',
-		'count_of_use' => 'int',
 		'status' => 'int'
 	];
 
 	protected $fillable = [
 		'code',
 		'value',
-		'count_of_use',
-		'status'
+		'status',
+		'use_limit_count',
+		'used_count',
+		'description',
 	];
 
 	public function users()
 	{
 		return $this->belongsToMany(User::class, 'user_redeem_codes')
-					->withPivot('id');
+			->withPivot('id');
 	}
 }
