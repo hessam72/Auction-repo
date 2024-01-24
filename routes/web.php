@@ -97,3 +97,16 @@ Route::controller(ProductController::class)->group(function () {
 
 
 
+
+
+//vue development Routes
+
+Route::get('/vue/v1/{any?}', function () {
+    return view('app');
+})->where('any', '.*');
+
+
+
+
+
+
