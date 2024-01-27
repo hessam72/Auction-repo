@@ -1,20 +1,26 @@
 <template>
-  <h1>hello world</h1>
-  <navbar-section></navbar-section>
-  <grid-container></grid-container>
+  <nav-bar-section></nav-bar-section>
+  <router-view v-slot="{ Component }">
+    <keep-alive>
+      <component :is="Component" />
+    </keep-alive>
+  </router-view>
+  <!-- <footer-section></footer-section> -->
 </template>
 
 <script>
-import navbarSection from './components/navbar.vue'
-import gridContainer from './components/gridContainer.vue'
+
+import navBarSection from "./components/utilities/navbar.vue";
+import footerSection from "./components/utilities/footer.vue";
 export default {
 components:{
-  navbarSection,
-  gridContainer
+  navBarSection,
+footerSection
 }
 }
 </script>
 
 <style>
+@import url('../../css/scss/main.scss');
 
 </style>

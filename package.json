@@ -17,10 +17,14 @@
         "vite": "^5.0.0"
     },
     "dependencies": {
+        "@chenfengyuan/vue-countdown": "^2.1.2",
         "@headlessui/vue": "^1.7.17",
         "@heroicons/vue": "^2.1.1",
         "@vitejs/plugin-vue": "^5.0.3",
         "vue": "^3.4.15",
-        "vue-loader": "^17.4.2"
+        "vue-loader": "^17.4.2",
+        "vue-router": "^4.2.5",
+        "vuex": "^4.1.0",
+        "vuex-persistedstate": "^4.1.0"
     }
 }

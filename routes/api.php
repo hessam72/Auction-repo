@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Public\Api\AuctionController;
+use App\Http\Controllers\User\Api\BiddingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,4 +22,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/categories-list' , 'App\Http\Controllers\Admin\CategoryController@sendJsonResponse');
+Route::get('/categories-list', 'App\Http\Controllers\Admin\CategoryController@sendJsonResponse');
+Route::get('/test' , function(){
+    return 'test';
+});
+
+Route::resource('/auctions', AuctionController::class)->except(['create', 'delete', 'edit', 'destroy']);
+
+Route::controller(BiddingController::class)->prefix('/auction')->group(function () {
+
+        
+    Route::post('/bidding/create', 'createBid');
+});

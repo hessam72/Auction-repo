@@ -37,11 +37,14 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
 
-    Route::get('/', function () {
-        return view('admin.dashboard');
-    })->name('dashboard');
+    // Route::get('/', function () {
+    //     return view('admin.dashboard');
+    // })->name('dashboard');
 
     Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+    }); 
+    Route::get('/', function () {
         return view('admin.dashboard');
     });
 
@@ -106,6 +109,9 @@ Route::get('/vue/v1/{any?}', function () {
 })->where('any', '.*');
 
 
+Route::get('/test' , function(){
+    
+});
 
 
 

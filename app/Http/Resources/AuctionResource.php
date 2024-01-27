@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Http\Resources;
+
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class AuctionResource extends JsonResource
+{
+    /**
+     * Transform the resource into an array.
+     *
+     * @return array<string, mixed>
+     */
+    public function toArray(Request $request): array
+    {
+        return [
+            "id" => $this->id,
+            "current_price" => $this->current_price,
+            "current_winner_id" => $this->current_winner_id,
+            "no_jumper_limit" => $this->no_jumper_limit,
+            "start_time" => $this->start_time,
+            "timer" => $this->timer,
+            "min_price" => $this->min_price,
+            "status" => $this->status,
+            "final_winner_id" => $this->final_winner_id,
+           
+            "created_at" => $this->created_at,
+            "product" => new ProductResource($this->whenLoaded('product')),
+            
+        ];
+    }
+}

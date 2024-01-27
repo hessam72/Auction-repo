@@ -81,8 +81,6 @@ class Auction extends Model
 			// check if auction has winner with unshipedd product or not
 			// $auction->isRunning();
 			// $auction->hasUnshipedProduct();
-
-
 		});
 	}
 
