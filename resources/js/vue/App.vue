@@ -9,18 +9,16 @@
 </template>
 
 <script>
-
 import navBarSection from "./components/utilities/navbar.vue";
 import footerSection from "./components/utilities/footer.vue";
 export default {
-components:{
-  navBarSection,
-footerSection
-}
-}
+  components: {
+    navBarSection,
+    footerSection,
+  },
+};
 </script>
 
 <style>
-@import url('../../css/scss/main.scss');
-
+@import url("../../css/scss/main.scss");
 </style>

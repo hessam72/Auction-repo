@@ -1,20 +1,24 @@
 import { createStore } from "vuex";
 import createPersistedState from "vuex-persistedstate";
 
+
 import authentication from "./modules/auth/index.js";
 import user from "./modules/user/index.js";
-
+import auctions from "./modules/auctions/index.js";
 
 const store = createStore({
     modules: {
         authentication,
         user,
+        auctions,
     },
     plugins: [
         createPersistedState({
-            paths: ['authentication', 'user'],
+            paths: ["authentication", "user"],
             storage: window.sessionStorage,
         }),
+        // createMutationsSharer({ predicate: ["setSingleAuction"] }),
+        // createMultiTabState(),
     ],
     state() {
         return {

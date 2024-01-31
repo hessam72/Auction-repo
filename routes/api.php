@@ -17,6 +17,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Route::controller(AuctionController::class)->group(function () {
+
+        
+    Route::get('/pusher', 'test_pusher');
+});
+
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -29,8 +37,16 @@ Route::get('/test' , function(){
 
 Route::resource('/auctions', AuctionController::class)->except(['create', 'delete', 'edit', 'destroy']);
 
+
 Route::controller(BiddingController::class)->prefix('/auction')->group(function () {
 
         
     Route::post('/bidding/create', 'createBid');
 });
+
+Route::controller(AuctionController::class)->prefix('/auctions')->group(function () {
+
+        
+    Route::post('/test-image', 'test');
+});
+

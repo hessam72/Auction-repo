@@ -1,5 +1,5 @@
 <template>
-  <div v-if="auction!=null" class="mx-6">
+  <div v-if="auction != null && storedAuctions[0].id != null" class="mx-6">
     <!-- header -->
     <div class="flex justify-between">
       <p>{{ auction.product.title }}</p>
@@ -26,7 +26,7 @@
       <div class="flex flex-col">
         <div class="flex justify-between">
           <p>current bid:</p>
-          <p>{{ auction.current_price }}$</p>
+          <p>{{ findAuctionInStore(auction.id).current_price }}$</p>
         </div>
         <div class="">
           <h4>current winner</h4>
@@ -63,7 +63,7 @@
         <div class="">
           <!-- show if user auth and has bids and timer is not 0 -->
           <button
-          v-if="!disable_bidding"
+            v-if="!disable_bidding"
             @click="submitBid()"
             class="bg-cyan-500 hover:bg-cyan-600 rounded-md px-5 py-3"
           >
@@ -73,24 +73,42 @@
       </div>
     </div>
   </div>
+
+  {{ storedAuctions }}
+
+  <hr />
+  <button @click="testPusher()">test pusher</button>
+
+  Pusher Data: {{}}
 </template>
-  
+
   <script>
-import { sendGet, sendPost } from "@/modules/utilities.js";
-import { mapGetters } from "vuex";
+import { sendGet, sendPost } from "@/modules/api.js";
+import { mapActions, mapGetters } from "vuex";
+import { useWebSocket } from "@vueuse/core";
+
 export default {
   data() {
     return {
+      message: "",
       auction: null,
-      disable_bidding:false,
+      disable_bidding: false,
       localUrl: "auctions/",
       bidUrl: "auction/bidding/create",
     };
   },
   computed: {
-    ...mapGetters(["baseUrl"]),
+    ...mapGetters(["baseUrl", "storedAuctions", "findAuction"]),
   },
+
   methods: {
+    ...mapActions(["setSingleAuction", "addAuction" , "setAuctions"]),
+    findAuctionInStore(id) {
+      return this.findAuction(id);
+    },
+    findAuctionInStore(id) {
+      return this.findAuction(id);
+    },
     fetchAuction() {
       console.log("start sending");
 
@@ -100,8 +118,18 @@ export default {
         { Accept: "application/json" } //headers
       )
         .then((data) => {
-          console.log(data);
           this.auction = data.data;
+          console.log(this.auction);
+          if (this.storedAuctions[0].id === null) {
+            var x = {
+              id: this.auction.id,
+              current_winner_id: this.auction.current_winner_id,
+              current_price: this.auction.current_price,
+              timer: this.auction.timer,
+              status: this.auction.status,
+            };
+          }
+          this.addAuction(x);
         })
         .catch((err) => {
           console.log(err);
@@ -113,20 +141,40 @@ export default {
     },
     submitBid() {
       // sending user bid
+      const storedAuction = this.findAuction(this.auction.id);
+
       const body = {
         auction_id: this.auction.id,
-        bid_price: this.auction.current_price
       };
-      console.log(body)
-    
+
       sendPost(
         this.baseUrl + this.bidUrl, //url
         body, //body
         { Accept: "application/json" } //headers
       )
         .then((data) => {
+          console.log("inside auction index");
           console.log(data);
-         alert('bid submitted')
+          // console.log(data);
+          //data must contain new time and winner id
+          // updating stored auction data
+
+          // this.setSingleAuction(value);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+
+    testPusher() {
+      console.log("sending request...");
+      sendGet(
+        this.baseUrl + "pusher", //url
+        {}, //body
+        { Accept: "application/json" } //headers
+      )
+        .then((data) => {
+          console.log(data);
         })
         .catch((err) => {
           console.log(err);

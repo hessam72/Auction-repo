@@ -46,7 +46,12 @@
           <p class="text-gray-500 text-sm">
             {{ item.product.short_desc }}
           </p>
-          <p class="text-gray-500 text-sm">bidder name - last price</p>
+         
+            <p  class="text-gray-500 text-sm mycolor"  :key="findAuctionInStore(item.id).current_price">
+              winner id:{{ findAuctionInStore(item.id).current_winner_id }} -
+              {{ findAuctionInStore(item.id).current_price }}$
+            </p>
+        
         </div>
         <div
           class="px-6 py-3 flex flex-row items-center justify-between bg-gray-100"
@@ -76,10 +81,12 @@
                 </g>
               </g>
             </svg>
-            <span class="ml-1"
+            <span class="ml-1 mycolor" :key="findAuctionInStore(item.id).timer"
               >start in:
               <vue-countdown
-                :time="convertDateToMilliSeconds(item.start_time)"
+                :time="
+                  convertDateToMilliSeconds(findAuctionInStore(item.id).timer)
+                "
                 v-slot="{ days, hours, minutes, seconds }"
               >
                 {{ days }} days, {{ hours }}: {{ minutes }}: {{ seconds }}
@@ -110,10 +117,14 @@
         </div>
       </div>
     </div>
+    <button class="text-gray-500 text-sm" @click="checkChanges()">check</button>
   </div>
+  {{ storedAuctions }}
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
+
 import {
   translateAuctionStatus,
   convertDateToMilliSeconds,
@@ -122,13 +133,57 @@ export default {
   props: {
     auctions: Array,
   },
+  computed: {
+    ...mapGetters(["baseUrl", "storedAuctions", "findAuction"]),
+  },
+  created() {
+    this.$store.watch(
+      (auctions) => {
+        return this.$store.state.auctions; // could also put a Getter here
+      },
+      (newValue, oldValue) => {
+        console.log("changed");
+      },
+      //Optional Deep if you need it
+      {
+        deep: true,
+      }
+    );
+    // this.unsubscribe = this.$store.subscribe((mutation, state) => {
+    //   if (mutation.type === 'setSingleAuction') {
+    //     console.log(`subscribe... ` );
+    //     // console.log(state);
+    //   }
+    // });
+  },
+  beforeDestroy() {
+    this.disconnect();
+  },
   methods: {
     translateAuctionStatus,
     convertDateToMilliSeconds,
+
+    checkChanges() {
+      console.log(this.storedAuctions);
+    },
+    findAuctionInStore(id) {
+      return this.findAuction(id);
+    },
   },
   components: {},
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+.mycolor {
+  animation: mymove 1s;
+}
+@keyframes mymove {
+  from {
+    background-color: rgba(238, 255, 0, 0.952);
+  }
+  to {
+    background-color: rgba(255, 255, 0, 0);
+  }
+}
 </style>
