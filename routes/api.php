@@ -17,10 +17,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::controller(AuctionController::class)->prefix('/auctions')->group(function () {
 
+    Route::post('/search', 'search');
+    
+    Route::post('/filter', 'filter');
+    Route::post('/test-image', 'test');
+});
 Route::controller(AuctionController::class)->group(function () {
 
-        
+
     Route::get('/pusher', 'test_pusher');
 });
 
@@ -31,7 +37,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::get('/categories-list', 'App\Http\Controllers\Admin\CategoryController@sendJsonResponse');
-Route::get('/test' , function(){
+Route::get('/test', function () {
     return 'test';
 });
 
@@ -40,13 +46,8 @@ Route::resource('/auctions', AuctionController::class)->except(['create', 'delet
 
 Route::controller(BiddingController::class)->prefix('/auction')->group(function () {
 
-        
+
     Route::post('/bidding/create', 'createBid');
 });
 
-Route::controller(AuctionController::class)->prefix('/auctions')->group(function () {
-
-        
-    Route::post('/test-image', 'test');
-});
 

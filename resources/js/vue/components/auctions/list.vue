@@ -119,7 +119,7 @@
     </div>
     <button class="text-gray-500 text-sm" @click="checkChanges()">check</button>
   </div>
-  {{ storedAuctions }}
+  <!-- {{ storedAuctions }} -->
 </template>
 
 <script>

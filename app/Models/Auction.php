@@ -84,14 +84,14 @@ class Auction extends Model
 		});
 	}
 
-	public function isRunning($auction){
-		if($auction->start_time <= Carbon::now()){
+	public function isRunning($auction)
+	{
+		if ($auction->start_time <= Carbon::now()) {
 			// the item is live
 			return false;
-		}else{
+		} else {
 			// request can proceed
 		}
-
 	}
 
 	public function user()
@@ -135,4 +135,13 @@ class Auction extends Model
 	{
 		return $this->hasMany(Winner::class);
 	}
+	public static function scopeSearch($query, $searchString)
+	{
+		return $query
+			->join('products', 'auctions.product_id', '=', 'products.id')
+			->where('products.title', 'like', '%' . $searchString . '%')
+			->orWhere('products.short_desc', 'like', '%' . $searchString . '%')
+			->orWhere('products.description', 'like', '%' . $searchString . '%');
+	}
+
 }

@@ -8,7 +8,9 @@ use App\Events\UpdateAuctionState;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\AuctionResource;
 use App\Models\Auction;
+use App\Models\Product;
 use App\Traits\Upload;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class AuctionController extends Controller
@@ -19,8 +21,51 @@ class AuctionController extends Controller
     use Upload;
     public function index()
     {
-        return AuctionResource::collection(Auction::paginate()->load('product'));
+
+        return AuctionResource::collection(Auction::paginate(2)->load('product'));
+        // $data = SampleModel::paginate(10);
+        // return ['key' => SampleModelResource::collection($data)->response()->getData(true)];
     }
+
+    public function search(Request $request)
+    {
+        // return $request->search;
+        // $request->validate([
+        //     'search' =>  'required',
+        // ]);
+        $data = json_decode($request->getContent());
+        $searchString = $data->search;
+
+        $result = Auction::search($searchString)->paginate();
+        return AuctionResource::collection($result->load('product'));
+    }
+
+
+    public function filter(Request $request)
+    {
+        $data = json_decode($request->getContent());
+        // category_id
+        $category_id = $data->filter_id;
+
+        $products = Product::filterByCategory($category_id)->get();
+        $auction_ids = [];
+        foreach ($products as $product) {
+            foreach ($product->auctions as $auction) {
+                // retrive id
+                $auction_ids[] = $auction->id;
+            }
+        }
+
+        $result = Auction::whereIn('id', $auction_ids)->get();
+
+        return AuctionResource::collection($result->load('product'));
+    }
+
+
+
+
+
+
     public function test_pusher()
     {
 

@@ -10,6 +10,7 @@ const router = createRouter({
     history: createWebHistory(),
     routes: [
         // public routes
+
         {
             path: "/vue/v1/",
             name: "home",

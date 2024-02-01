@@ -15,8 +15,8 @@ export async function sendPost(
         });
         if (response.ok) {
 
-            // return response.json(); // parses JSON response into native JavaScript objects
-            return response // parses JSON response into native JavaScript objects
+            return response.json(); // parses JSON response into native JavaScript objects
+            // return response // parses JSON response into native JavaScript objects
         } else {
             console.log(response)
             const error = {

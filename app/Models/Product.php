@@ -60,16 +60,16 @@ class Product extends Model
 		'product_inventory'
 	];
 
-	protected static function booted () {
-        static::deleting(function(Product $product) { // before delete() method call this
+	protected static function booted()
+	{
+		static::deleting(function (Product $product) { // before delete() method call this
 			// delete relared auctions - buy it offers - comments - product gallery
 			$product->auctions()->delete();
 			$product->buy_it_now_offers()->delete();
 			$product->comments()->delete();
 			$product->product_galleries()->delete();
-             
-        });
-    }
+		});
+	}
 
 
 
@@ -101,7 +101,15 @@ class Product extends Model
 	public function users()
 	{
 		return $this->belongsToMany(User::class, 'user_shiped_products')
-					->withPivot('id', 'status', 'address', 'postal_code', 'state_id', 'city_id')
-					->withTimestamps();
+			->withPivot('id', 'status', 'address', 'postal_code', 'state_id', 'city_id')
+			->withTimestamps();
+	}
+
+	public static function scopeFilterByCategory($query, $category_id)
+	{
+		return $query
+			->where('category_id', '=', $category_id)->with(['auctions'=>function($query){
+				$query->select('id','product_id');
+			}]);
 	}
 }
