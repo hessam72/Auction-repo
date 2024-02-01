@@ -46,12 +46,14 @@
           <p class="text-gray-500 text-sm">
             {{ item.product.short_desc }}
           </p>
-         
-            <p  class="text-gray-500 text-sm mycolor"  :key="findAuctionInStore(item.id).current_price">
-              winner id:{{ findAuctionInStore(item.id).current_winner_id }} -
-              {{ findAuctionInStore(item.id).current_price }}$
-            </p>
-        
+
+          <p
+            class="text-gray-500 text-sm mycolor"
+            :key="findAuctionInStore(item.id).current_price"
+          >
+            winner id:{{ findAuctionInStore(item.id).current_winner_id }} -
+            {{ findAuctionInStore(item.id).current_price }}$
+          </p>
         </div>
         <div
           class="px-6 py-3 flex flex-row items-center justify-between bg-gray-100"
@@ -81,7 +83,12 @@
                 </g>
               </g>
             </svg>
-            <span class="ml-1 mycolor" :key="findAuctionInStore(item.id).timer"
+            <span
+              v-if="
+                convertDateToMilliSeconds(findAuctionInStore(item.id).timer) > 0
+              "
+              class="ml-1 mycolor"
+              :key="findAuctionInStore(item.id).timer"
               >start in:
               <vue-countdown
                 :time="
@@ -91,6 +98,9 @@
               >
                 {{ days }} days, {{ hours }}: {{ minutes }}: {{ seconds }}
               </vue-countdown>
+            </span>
+            <span v-else>
+              Started
             </span>
           </span>
 
@@ -131,7 +141,7 @@ import {
 } from "@/modules/utilities.js";
 export default {
   props: {
-    auctions: Array,
+    auctions: {},
   },
   computed: {
     ...mapGetters(["baseUrl", "storedAuctions", "findAuction"]),

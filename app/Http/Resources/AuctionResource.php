@@ -26,7 +26,8 @@ class AuctionResource extends JsonResource
             "final_winner_id" => $this->final_winner_id,
            
             "created_at" => $this->created_at,
-            "product" => new ProductResource($this->whenLoaded('product')),
+            // "product" => new ProductResource($this->whenLoaded('product')),
+            "product" => new ProductResource($this->product),
             
         ];
     }

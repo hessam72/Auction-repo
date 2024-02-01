@@ -1,7 +1,8 @@
 <template>
   <tool-bar @search="search" @filter="filter"></tool-bar>
   <auction-list :auctions="auctions"></auction-list>
-  <pagination @next="next" @prev="prev"></pagination>
+  <pagination :links="links"  :meta="meta"></pagination>
+
 </template>
   
   <script>
@@ -20,6 +21,8 @@ export default {
       searchUrl: "auctions/search",
       filterUrl: "auctions/filter",
       pusher_data: "no data yet...",
+      links:null,
+      meta:null,
     };
   },
   computed: {
@@ -47,6 +50,8 @@ export default {
       
         url = url + "?page=" + this.$route.query.page
       }
+
+      // url = url + "?per_page=1"
       
       console.log(url)
       
@@ -59,6 +64,8 @@ export default {
               console.log(data);
               this.auctions = data.data;
               this.saveAuctions();
+              this.links=data.links;
+              this.meta=data.meta;
 
             })
             .catch((err) => {
@@ -122,11 +129,7 @@ export default {
           console.log(err);
         });
     },
-    next() {
-      // alert('next');
-      // this.fetchAuctions(2);
-    },
-    prev() {},
+  
   },
   created() {
     this.fetchAuctions();

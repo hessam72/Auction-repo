@@ -19,12 +19,19 @@ class AuctionController extends Controller
      * Display a listing of the resource.
      */
     use Upload;
-    public function index()
+    public function index(Request $request)
     {
+        $count = 1;
+         if($request->has('per_page')){
+           $count = $request->per_page;
+         }
 
-        return AuctionResource::collection(Auction::paginate(2)->load('product'));
-        // $data = SampleModel::paginate(10);
-        // return ['key' => SampleModelResource::collection($data)->response()->getData(true)];
+
+        return AuctionResource::collection(Auction::paginate($count));
+        // return AuctionResource::collection(Auction::paginate($count)->load('product'));
+        // $data = Auction::paginate($count)->load('product');
+        // return ['all' => AuctionResource::collection($data)->response()->getData(true) ,
+        //  'paginate'=>Auction::paginate($count)];
     }
 
     public function search(Request $request)
