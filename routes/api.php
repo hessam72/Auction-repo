@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Auth\ApiController;
 use App\Http\Controllers\Public\Api\AuctionController;
 use App\Http\Controllers\User\Api\BiddingController;
 use Illuminate\Http\Request;
@@ -17,10 +18,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::controller(AuctionController::class)->prefix('/auctions')->group(function () {
+Route::controller(ApiController::class)->prefix('/auth')->group(function () {
+    Route::post('/login', 'login');
+    Route::post('/logout', 'logout');
+});
+
+
+Route::middleware('auth:sanctum')->controller(AuctionController::class)->prefix('/auctions')->group(function () {
 
     Route::post('/search', 'search');
-    
+
     Route::post('/filter', 'filter');
     Route::post('/test-image', 'test');
 });
@@ -49,5 +56,3 @@ Route::controller(BiddingController::class)->prefix('/auction')->group(function 
 
     Route::post('/bidding/create', 'createBid');
 });
-
-
