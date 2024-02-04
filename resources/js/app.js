@@ -1,6 +1,8 @@
 import './bootstrap';
 import { createApp } from "vue";
+
 import App from "./vue/App.vue";
+import axios from 'axios';
 import router from "./vue/router/router.js";
 import store from "./vue/store/index.js";
 import VueCountdown from '@chenfengyuan/vue-countdown';

@@ -1,6 +1,7 @@
 <?php
 namespace App\Events;
 
+use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
@@ -21,7 +22,7 @@ class MyEvent implements ShouldBroadcast
   public function broadcastOn()
   {
     //   return ['my-channel'];
-      return new PrivateChannel('my-channel');
+      return new Channel('my-channel');
   }
 
   public function broadcastAs()

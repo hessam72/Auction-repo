@@ -5,6 +5,8 @@ import AuctionList from "../pages/public/auction/all.vue"
 import AuctionIndex from "../pages/public/auction/index.vue"
 import UserIndex from "../pages/public/guarded/user/index.vue"
 
+import loginPage from "../pages/auth/login.vue"
+
 
 const router = createRouter({
     history: createWebHistory(),
@@ -29,6 +31,16 @@ const router = createRouter({
             component: UserIndex,
             // meta: { isGuest: true },
         },
+
+
+        //auth routes
+        {
+            path: "/vue/v1/login",
+            name: "login",
+            component: loginPage,
+            // meta: { isGuest: true },
+        },
+
     ]
 });
 // sessionStorage.clear();

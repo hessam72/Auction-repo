@@ -21,7 +21,7 @@ class AuctionController extends Controller
     use Upload;
     public function index(Request $request)
     {
-        $count = 1;
+        $count = 10;
          if($request->has('per_page')){
            $count = $request->per_page;
          }

@@ -151,6 +151,7 @@ export async function sendGet(
             // body: JSON.stringify(data), // body data type must match "Content-Type" header
         });
         if (response.ok) {
+            console.log(response)
             return response.json(); // parses JSON response into native JavaScript objects
         } else {
             console.log("inside try error");

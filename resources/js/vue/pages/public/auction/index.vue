@@ -51,16 +51,23 @@
           </table>
         </div>
         <!-- timer -->
-        <div class="">
+        <div
+          v-if="
+            convertDateToMilliSeconds(findAuctionInStore(auction.id).timer) > 0
+          "
+          class=""
+        >
           <vue-countdown
             @end="endAuction()"
-            :time="60 * 1000"
+            :time="
+              convertDateToMilliSeconds(findAuctionInStore(auction.id).timer)
+            "
             v-slot="{ seconds }"
           >
-            Timer: {{ seconds }}
+            Timer: {{ seconds + 1 }}
           </vue-countdown>
         </div>
-        <div class="">
+        <div>
           <!-- show if user auth and has bids and timer is not 0 -->
           <button
             v-if="!disable_bidding"
@@ -69,46 +76,74 @@
           >
             Bid
           </button>
+          <div class="flex">
+            <button
+              @click="submitBiBuddy()"
+              class="bg-yellow-500 hover:bg-cyan-600 rounded-md px-5 py-3"
+            >
+              submit Buddy
+            </button>
+            <input type="number" v-model="bidBodyCount" />
+          </div>
         </div>
       </div>
     </div>
   </div>
+  <button
+    @click="this.runBidBudies()"
+    class="bg-cyan-500 hover:bg-cyan-600 rounded-md px-5 py-3"
+  >
+    activate bid buddy
+  </button>
 
   {{ storedAuctions }}
-
-  <hr />
-  <button @click="testPusher()">test pusher</button>
-
-  Pusher Data: {{}}
 </template>
 
   <script>
 import { sendGet, sendPost } from "@/modules/api.js";
 import { mapActions, mapGetters } from "vuex";
-import { useWebSocket } from "@vueuse/core";
-
+import { convertDateToMilliSeconds } from "@/modules/utilities.js";
 export default {
   data() {
     return {
       message: "",
+      seconds: 0,
+      bidBodyCount: 0,
       auction: null,
       disable_bidding: false,
       localUrl: "auctions/",
       bidUrl: "auction/bidding/create",
+      CreateBuddyUrl: "auction/bidding/storeBidBuddy",
+      submitbBidFromBuddyUrl: "auction/bidding/storeBidBuddyBid",
     };
   },
   computed: {
-    ...mapGetters(["baseUrl", "storedAuctions", "findAuction"]),
+    ...mapGetters([
+      "baseUrl",
+      "findBiddingQueue",
+      "storedAuctions",
+      "findAuction",
+    ]),
+  },
+  watch: {
+    seconds(val) {
+      console.log("new seccound: " + val);
+    },
   },
 
   methods: {
-    ...mapActions(["setSingleAuction", "addAuction" , "setAuctions"]),
+    convertDateToMilliSeconds,
+    ...mapActions([
+      "setSingleAuction",
+      "setSingleBiddingQueue",
+      "addAuction",
+      "addBiddingQueue",
+    ]),
+
     findAuctionInStore(id) {
       return this.findAuction(id);
     },
-    findAuctionInStore(id) {
-      return this.findAuction(id);
-    },
+
     fetchAuction() {
       console.log("start sending");
 
@@ -118,7 +153,9 @@ export default {
         { Accept: "application/json" } //headers
       )
         .then((data) => {
+          console.log(data);
           this.auction = data.data;
+
           console.log(this.auction);
           if (this.storedAuctions[0].id === null) {
             var x = {
@@ -128,8 +165,9 @@ export default {
               timer: this.auction.timer,
               status: this.auction.status,
             };
+            this.addBiddingQueue(x.bidding_queues);
+            this.addAuction(x);
           }
-          this.addAuction(x);
         })
         .catch((err) => {
           console.log(err);
@@ -137,12 +175,43 @@ export default {
     },
     endAuction() {
       console.log("Aution is over");
-      // this.disable_bidding=true;
+      let bidding_queue = this.findBiddingQueue(this.auction.id);
+      console.log(bidding_queue);
+
+      // check to see if there is bid buddy
+
+      if (bidding_queue != null) {
+        console.log("running bid");
+        this.runBidBudies(bidding_queue);
+      }
+    },
+    runBidBudies(bidding_queue) {
+      if (!bidding_queue)
+        bidding_queue = this.findBiddingQueue(this.auction.id);
+      if (bidding_queue.is_empthy) {
+        alert("your bot is done");
+        return;
+      }
+
+      axios
+        .post(this.baseUrl + this.submitbBidFromBuddyUrl, {
+          bid_buddy_id: bidding_queue.bid_buddy_id,
+          auction_id: bidding_queue.auction_id,
+          bidding_queue_id: bidding_queue.id,
+        })
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+        .finally(function () {
+          // always executed
+        });
     },
     submitBid() {
       // sending user bid
-      const storedAuction = this.findAuction(this.auction.id);
-
+      // const storedAuction = this.findAuction(this.auction.id);
       const body = {
         auction_id: this.auction.id,
       };
@@ -155,35 +224,33 @@ export default {
         .then((data) => {
           console.log("inside auction index");
           console.log(data);
-          // console.log(data);
-          //data must contain new time and winner id
-          // updating stored auction data
-
-          // this.setSingleAuction(value);
         })
         .catch((err) => {
           console.log(err);
         });
     },
-
-    testPusher() {
-      console.log("sending request...");
-      sendGet(
-        this.baseUrl + "pusher", //url
-        {}, //body
-        { Accept: "application/json" } //headers
-      )
-        .then((data) => {
-          console.log(data);
+    submitBiBuddy() {
+      axios
+        .post(this.baseUrl + this.CreateBuddyUrl, {
+          count: this.bidBodyCount,
+          user_id: 2,
+          auction_id: this.auction.id,
         })
-        .catch((err) => {
-          console.log(err);
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+        .finally(function () {
+          // always executed
         });
     },
   },
   created() {
     this.fetchAuction();
   },
+  mounted() {},
   components: {},
 };
 </script>

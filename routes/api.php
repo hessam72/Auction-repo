@@ -4,6 +4,8 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Auth\ApiController;
 use App\Http\Controllers\Public\Api\AuctionController;
 use App\Http\Controllers\User\Api\BiddingController;
+use App\Models\BidBuddy;
+use App\Models\BiddingQueue;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,8 +34,6 @@ Route::middleware('auth:sanctum')->controller(AuctionController::class)->prefix(
     Route::post('/test-image', 'test');
 });
 Route::controller(AuctionController::class)->group(function () {
-
-
     Route::get('/pusher', 'test_pusher');
 });
 
@@ -45,7 +45,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/categories-list', 'App\Http\Controllers\Admin\CategoryController@sendJsonResponse');
 Route::get('/test', function () {
-    return 'test';
+    // return $nex_buddy=BiddingQueue::where('status' , 1)->where('auction_id' , $request->auction_id)->oldest()->first();;
 });
 
 Route::resource('/auctions', AuctionController::class)->except(['create', 'delete', 'edit', 'destroy']);
@@ -55,4 +55,6 @@ Route::controller(BiddingController::class)->prefix('/auction')->group(function 
 
 
     Route::post('/bidding/create', 'createBid');
+    Route::post('/bidding/storeBidBuddy', 'storeBidBuddy');
+    Route::post('/bidding/storeBidBuddyBid', 'storeBidBuddyBid');
 });

@@ -7,6 +7,7 @@ export default {
                 current_price: null,
                 timer: null,
                 status: null,
+
             }, ],
         };
     },
@@ -14,6 +15,8 @@ export default {
     mutations: {
         setAuctions(state, data) {
             state.auctions = data;
+            console.log('set all auction store')
+            console.log(data)
         },
         addAuction(state, data) {
             if (state.auctions[0].id === null) {
@@ -35,7 +38,10 @@ export default {
                 current_winner_id: data.data.current_winner_id,
                 current_price: data.data.bid_price,
                 timer: data.data.timer, // +10 sec
+
             };
+            console.log('set single auction store')
+            console.log(new_item)
 
             state.auctions[index] = new_item;
         },

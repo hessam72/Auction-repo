@@ -22,7 +22,7 @@ return new class extends Migration
             $table->text('profile_pic')->nullable();
             $table->string('password');
             $table->timestamp('email_verified_at')->nullable();
-            $table->integer('bid_amount')->default(0)->comment('user bid amounts');
+            $table->integer('bid_amount')->default(0)->unsigned()->comment('user bid amounts');
             $table->rememberToken();
 
             $table->timestamp('created_at')->useCurrent();

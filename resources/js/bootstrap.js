@@ -19,7 +19,7 @@ import Echo from 'laravel-echo';
 
 import Pusher from 'pusher-js';
 window.Pusher = Pusher;
-// Pusher.logToConsole = true;
+Pusher.logToConsole = true;
 window.Echo = new Echo({
     broadcaster: 'pusher',
     key: import.meta.env.VITE_PUSHER_APP_KEY,
@@ -28,10 +28,10 @@ window.Echo = new Echo({
         import.meta.env.VITE_PUSHER_HOST : `ws-${import.meta.env.VITE_PUSHER_APP_CLUSTER}.pusher.com`,
     wsPort: import.meta.env.VITE_PUSHER_PORT,
     wssPort: import.meta.env.VITE_PUSHER_PORT,
-    // forceTLS: (
-    //     import.meta.env.VITE_PUSHER_SCHEME) === 'https',
+    forceTLS: (
+        import.meta.env.VITE_PUSHER_SCHEME) === 'https',
     enabledTransports: ['ws', 'wss'],
-    forceTLS: false,
+    // forceTLS: false,
 });
 
 // window.Echo = new Echo({

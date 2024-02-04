@@ -118,6 +118,11 @@ class Auction extends Model
 	{
 		return $this->hasMany(BiddingQueue::class);
 	}
+	public function next_bidding_queue()
+	{
+		return $this->hasOne(BiddingQueue::class)->ofMany('status', 'max');
+	}
+	
 
 	public function bookmarks()
 	{
@@ -143,5 +148,4 @@ class Auction extends Model
 			->orWhere('products.short_desc', 'like', '%' . $searchString . '%')
 			->orWhere('products.description', 'like', '%' . $searchString . '%');
 	}
-
 }
