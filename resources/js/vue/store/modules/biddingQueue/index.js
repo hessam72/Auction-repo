@@ -22,6 +22,8 @@ export default {
             var index = state.BiddingQueues.findIndex(
                 (obj) => obj.auction_id === data.auction_id
             );
+            console.log('*******indexqueueu************')
+            console.log(index)
 
             state.BiddingQueues[index] = data;
         },

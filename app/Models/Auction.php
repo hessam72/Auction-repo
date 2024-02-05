@@ -120,7 +120,8 @@ class Auction extends Model
 	}
 	public function next_bidding_queue()
 	{
-		return $this->hasOne(BiddingQueue::class)->ofMany('status', 'max');
+		// return $this->hasOne(BiddingQueue::class)->ofMany('status', 'min');
+		return $this->hasOne(BiddingQueue::class)->where('status',1)->orderBy('created_at' , 'ASC');
 	}
 	
 

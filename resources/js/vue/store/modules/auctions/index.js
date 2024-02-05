@@ -29,6 +29,9 @@ export default {
         },
 
         setSingleAuction(state, data) {
+
+
+
             var index = state.auctions.findIndex(
                 (obj) => obj.id === data.data.id
             );
@@ -40,8 +43,7 @@ export default {
                 timer: data.data.timer, // +10 sec
 
             };
-            console.log('set single auction store')
-            console.log(new_item)
+
 
             state.auctions[index] = new_item;
         },

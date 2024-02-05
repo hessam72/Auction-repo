@@ -1,12 +1,20 @@
 <?php
 
+
+use App\Events\AutoBiddingEvent;
+use App\Events\MyEvent;
+use App\Events\TestEvent;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Auth\ApiController;
 use App\Http\Controllers\Public\Api\AuctionController;
 use App\Http\Controllers\User\Api\BiddingController;
+use App\Models\Auction;
 use App\Models\BidBuddy;
+use App\Models\BiddingHistory;
 use App\Models\BiddingQueue;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,8 +53,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/categories-list', 'App\Http\Controllers\Admin\CategoryController@sendJsonResponse');
 Route::get('/test', function () {
-    // return $nex_buddy=BiddingQueue::where('status' , 1)->where('auction_id' , $request->auction_id)->oldest()->first();;
+
+
+
+    dd(Carbon::now() );
+
+
+
 });
+
+
 
 Route::resource('/auctions', AuctionController::class)->except(['create', 'delete', 'edit', 'destroy']);
 

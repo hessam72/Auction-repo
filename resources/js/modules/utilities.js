@@ -25,13 +25,14 @@ export function convertDateToMilliSeconds(time) {
 }
 
 export function dayOfWeek(number) {
-    if (number === 0) return "شنبه";
-    if (number === 1) return "یکشنبه";
-    if (number === 2) return "دوشنبه";
-    if (number === 3) return "سه شنبه";
-    if (number === 4) return "چهارشنبه";
-    if (number === 5) return "پنج شنبه";
-    if (number === 6) return "جمعه";
+
+    if (number === 0) return "یکشنبه";
+    if (number === 1) return "دوشنبه";
+    if (number === 2) return "سه شنبه";
+    if (number === 3) return "چهارشنبه";
+    if (number === 4) return "پنج شنبه";
+    if (number === 5) return "جمعه";
+    if (number === 6) return "شنبه";
 }
 
 export function splitPrice(number) {

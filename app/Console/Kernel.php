@@ -2,8 +2,10 @@
 
 namespace App\Console;
 
+use App\Models\BidBuddy;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\DB;
 
 class Kernel extends ConsoleKernel
 {
@@ -12,7 +14,15 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->everyMinute();
+        // $schedule->command('inspire')->everyMinute()->appendOutputTo("scheduler-output.log");
+        $schedule->command('app:my-test-command')
+        ->runInBackground()
+        ->everyTwoSeconds()
+        ->withoutOverlapping()
+        ->appendOutputTo("scheduler-output.log");
+
+        // $schedule->call('App\Http\Controllers\firstController@index')
+        //      ->everyMinute()->name('firstController_cronjob')->withoutOverlapping();
     }
 
     /**
@@ -20,7 +30,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands(): void
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }

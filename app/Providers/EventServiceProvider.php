@@ -20,6 +20,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         'App\Events\MyEvent'=>[
             'App\Listeners\SendMsg'
+        ] ,
+        'App\Events\AutoBiddingEvent'=>[
+            'App\Listeners\ListenToAutoBidding'
         ]
     ];
 

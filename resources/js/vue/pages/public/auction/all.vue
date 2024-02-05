@@ -33,10 +33,18 @@ export default {
     // pusher management
     connect() {
       let vm = this;
-      window.Echo.channel("my-channel").listen(".my-event", (e) => {
-        console.log("*******old timer***********");
+      window.Echo.channel("my-channel")
+      .listen(".my-event", (e) => {
+        console.log("*******pusher recieved from my event.....***********");
         console.log(e);
+        return;
         vm.upadteAnAuctionState(e);
+      })
+      .listen(".test-event", (e) => {
+        console.log("******schedule task response***********");
+        console.log(e);
+        return;
+        
       });
     },
     disconnect() {
@@ -82,6 +90,8 @@ export default {
       this.setBiddingQueues(queues)
     },
     upadteAnAuctionState(item) {
+    console.log('*****item*******')
+    console.log(item)
       // add 10 seccound to now
       var t = new Date();
       t = t.setSeconds(t.getSeconds() + 5);
