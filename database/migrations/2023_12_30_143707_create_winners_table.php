@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
 
-            $table->foreignId('auction_id')->constrained();
+            $table->foreignId('product_id')->constrained();
 
             $table->integer('win_price');
             $table->timestamp('created_at')->useCurrent();

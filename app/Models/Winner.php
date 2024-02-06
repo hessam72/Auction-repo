@@ -14,11 +14,11 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $id
  * @property int $user_id
- * @property int $auction_id
+ * @property int $product_id
  * @property int $win_price
  * @property Carbon $created_at
  * 
- * @property Auction $auction
+ * @property Product $product
  * @property User $user
  *
  * @package App\Models
@@ -30,19 +30,19 @@ class Winner extends Model
 
 	protected $casts = [
 		'user_id' => 'int',
-		'auction_id' => 'int',
+		'product_id' => 'int',
 		'win_price' => 'int'
 	];
 
 	protected $fillable = [
 		'user_id',
-		'auction_id',
+		'product_id',
 		'win_price'
 	];
 
-	public function auction()
+	public function product()
 	{
-		return $this->belongsTo(Auction::class);
+		return $this->belongsTo(Product::class);
 	}
 
 	public function user()

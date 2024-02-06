@@ -28,7 +28,6 @@ class AuctionResource extends JsonResource
             "created_at" => $this->created_at,
             // "product" => new ProductResource($this->whenLoaded('product')),
             "product" => new ProductResource($this->product),
-            
             "bidding_queues" => new BiddingQueueResource($this->next_bidding_queue),
 
             

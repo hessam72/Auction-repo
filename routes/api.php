@@ -5,6 +5,11 @@ use App\Events\AutoBiddingEvent;
 use App\Events\MyEvent;
 use App\Events\TestEvent;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Api\BiddersController;
+use App\Http\Controllers\Api\BookmarkController;
+use App\Http\Controllers\Api\CommentController;
+use App\Http\Controllers\Api\SpecialOfferController;
+use App\Http\Controllers\Api\WinnerController;
 use App\Http\Controllers\Auth\ApiController;
 use App\Http\Controllers\Public\Api\AuctionController;
 use App\Http\Controllers\User\Api\BiddingController;
@@ -56,10 +61,7 @@ Route::get('/test', function () {
 
 
 
-    dd(Carbon::now() );
-
-
-
+    dd(Carbon::now());
 });
 
 
@@ -73,4 +75,35 @@ Route::controller(BiddingController::class)->prefix('/auction')->group(function 
     Route::post('/bidding/create', 'createBid');
     Route::post('/bidding/storeBidBuddy', 'storeBidBuddy');
     Route::post('/bidding/storeBidBuddyBid', 'storeBidBuddyBid');
+});
+
+Route::controller(BookmarkController::class)->prefix('/bookmark')->group(function () {
+
+
+    Route::post('/store', 'storeBookmark');
+    Route::post('/user_bookmark', 'userBookmark');
+    Route::delete('/delete', 'destroyBookmark');
+});
+Route::controller(SpecialOfferController::class)->prefix('/special_offer')->group(function () {
+
+
+    Route::get('/', 'index');
+});
+Route::controller(WinnerController::class)->prefix('/winners')->group(function () {
+
+
+    Route::post('/auction', 'index');
+    Route::post('/store', 'storeWinner');
+});
+Route::controller(CommentController::class)->prefix('/comments')->group(function () {
+
+
+    Route::post('/auction', 'auctionComments');
+    Route::post('/store', 'storeComment');
+});
+Route::controller(BiddersController::class)->prefix('/bidders')->group(function () {
+
+
+    Route::post('/auction', 'biddersInAuction');
+    
 });
