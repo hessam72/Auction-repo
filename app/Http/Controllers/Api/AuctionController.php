@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Public\Api;
+namespace App\Http\Controllers\Api;
 
 use App\Events\MyEvent;
 use App\Events\TestEvent;
