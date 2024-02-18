@@ -7,7 +7,6 @@ export default {
                 current_price: null,
                 timer: null,
                 status: null,
-
             }, ],
         };
     },
@@ -15,36 +14,44 @@ export default {
     mutations: {
         setAuctions(state, data) {
             state.auctions = data;
-            console.log('set all auction store')
-            console.log(data)
+
+            console.log("state.auction all________final");
+            console.log(state.auctions);
         },
         addAuction(state, data) {
+            console.log("add ****************");
+            console.log(data);
+            console.log(state.auctions);
+
             if (state.auctions[0].id === null) {
-                var x = [data]
+                var x = [data];
                 state.auctions = x;
             } else {
-                state.auctions.push(data);
+                var index = state.auctions.findIndex(
+                    (obj) => obj.id === data.id
+                );
+                if (state.auctions[index]) {
+                    state.auctions[index] = data;
+                } else {
+                    state.auctions.push(data);
+                }
             }
 
+            console.log("state.auction sing;e________final");
+            console.log(state.auctions);
         },
 
         setSingleAuction(state, data) {
-
-
-
             var index = state.auctions.findIndex(
                 (obj) => obj.id === data.data.id
             );
-
+            console.log(state.auctions[index]);
             const new_item = {
                 id: data.data.id,
                 current_winner_id: data.data.current_winner_id,
                 current_price: data.data.bid_price,
                 timer: data.data.timer, // +10 sec
-
             };
-
-
             state.auctions[index] = new_item;
         },
     },

@@ -117,31 +117,12 @@ export default {
         .finally(function () {
           // always executed
         });
-      return;
-      sendPost(
-        this.baseUrl + this.loginUrl, //url
-        {
-          email: "admin@email.com",
-          password: "password",
-        }, //body
-        {
-          Accept: "application/json",
-
-          "X-XSRF-TOKEN":
-            "eyJpdiI6Im5JU3RvZXpBQ2ljUmJnNnA5U2Nmb0E9PSIsInZhbHVlIjoiQklLVTFHV3FPajFqVXUxcEQrN1JLaHRGMmpuQmJwZG1uRE9Fa3NwMnNzQklJMXBaSHFKOFNReHdEOFM5NHd3NzVsc1VwL1FvN3BPM2VoNXN1bzBReHkzcFN5MkFxVzFsYXdYems2S2llRk9IcDZZTlBFNnByNDBaanMvRW9ZVFUiLCJtYWMiOiI1ODllYTE0Njk4YjE5YTUwYmRkZjJjNjZlYjJlZTQ2NzA0YTkwZGE5NzQ3MmY4MGFiYjU3Y2EyN2QxZTE0NWIwIiwidGFnIjoiIn0%3D",
-        } //headers
-      )
-        .then((data) => {
-          console.log("*********login res******************");
-          console.log(data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+     
     },
 
     //fetch sanctum token
     getToken() {
+      
       console.log("getting tokens");
       axios
         .get("http://localhost:8000/sanctum/csrf-cookie")

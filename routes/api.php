@@ -70,16 +70,12 @@ Route::resource('/auctions', AuctionController::class)->except(['create', 'delet
 
 
 Route::controller(BiddingController::class)->prefix('/auction')->group(function () {
-
-
     Route::post('/bidding/create', 'createBid');
     Route::post('/bidding/storeBidBuddy', 'storeBidBuddy');
     Route::post('/bidding/storeBidBuddyBid', 'storeBidBuddyBid');
 });
 
 Route::controller(BookmarkController::class)->prefix('/bookmark')->group(function () {
-
-
     Route::post('/store', 'storeBookmark');
     Route::post('/user_bookmark', 'userBookmark');
     Route::delete('/delete', 'destroyBookmark');

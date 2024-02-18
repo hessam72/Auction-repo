@@ -15,11 +15,20 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->everyMinute()->appendOutputTo("scheduler-output.log");
-        $schedule->command('app:my-test-command')
+        //auction main thread
+        // $schedule->command('app:my-test-command')
+        // ->runInBackground()
+        // ->everyTwoSeconds()
+        // ->withoutOverlapping()
+        // ->appendOutputTo("scheduler-output.log");
+
+        $schedule->command('app:check-progress-command')
         ->runInBackground()
-        ->everyTwoSeconds()
-        ->withoutOverlapping()
+        ->everyFiveSeconds()
         ->appendOutputTo("scheduler-output.log");
+        // check for highest bidder level and challenges progress every hour
+
+
 
         // $schedule->call('App\Http\Controllers\firstController@index')
         //      ->everyMinute()->name('firstController_cronjob')->withoutOverlapping();

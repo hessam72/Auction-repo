@@ -13,6 +13,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;   
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+
+
 /**
  * Class User
  * 
@@ -45,10 +47,12 @@ use Laravel\Sanctum\HasApiTokens;
  *
  * @package App\Models
  */
-class User extends Authenticatable
+class User extends Authenticatable  
 {
 	use HasApiTokens, HasFactory, Notifiable;
 	protected $table = 'users';
+
+
 
 	protected $casts = [
 		'status' => 'int',
@@ -102,7 +106,7 @@ class User extends Authenticatable
 
 	public function highest_bidders()
 	{
-		return $this->hasMany(HighestBidder::class);
+		return $this->hasOne(HighestBidder::class);
 	}
 
 	public function tickets()

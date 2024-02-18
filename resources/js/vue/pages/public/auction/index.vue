@@ -12,12 +12,23 @@
       <!-- left side -->
       <div class="">
         <!-- gllery -->
-        <div class="p-5 sm:p-8">
+        <div  v-if="auction.product.galleries.length >0" class="p-5 sm:p-8">
           <img
+         
             v-for="(item, index) in auction.product.galleries"
             :key="index"
             :src="'/storage/' + item.image"
-          />
+          /> 
+      
+        </div>
+        <div  v-else class="p-5 sm:p-8">
+          <img
+         
+            
+           
+          :src="'/storage/images/default/default_auction_pic.png'"
+          /> 
+      
         </div>
         <div>last winners list</div>
       </div>
@@ -64,7 +75,8 @@
             "
             v-slot="{ seconds }"
           >
-            Timer: {{ seconds + 1 }}
+            <!-- to sent backend for calculating heighest bidder time -->
+            Timer: {{ remaining_seccounds =seconds +1}}
           </vue-countdown>
         </div>
         <div>
@@ -106,8 +118,10 @@ import { convertDateToMilliSeconds } from "@/modules/utilities.js";
 export default {
   data() {
     return {
+      is_loading:false,
       message: "",
       seconds: 0,
+      remaining_seccounds:0,
       bidBodyCount: 0,
       auction: null,
       disable_bidding: false,
@@ -129,7 +143,14 @@ export default {
     seconds(val) {
       console.log("new seccound: " + val);
     },
+    $route(to, from) {
+      // Put your logic here...
+      if(to.name==="auction-index"){
+        this.fetchAuction();
+      }
+    },
   },
+  
 
   methods: {
     convertDateToMilliSeconds,
@@ -145,7 +166,7 @@ export default {
     },
 
     fetchAuction() {
-      console.log("start sending");
+      console.log("fetching auction");
 
       sendGet(
         this.baseUrl + this.localUrl + this.$route.params.id, //url
@@ -153,11 +174,14 @@ export default {
         { Accept: "application/json" } //headers
       )
         .then((data) => {
-          console.log(data);
+     
+          
           this.auction = data.data;
 
-          console.log(this.auction);
-          if (this.storedAuctions[0].id === null) {
+      
+          // if (this.storedAuctions[0].id === null) {
+          //   alert('new to store')
+            // nothing in store
             var x = {
               id: this.auction.id,
               current_winner_id: this.auction.current_winner_id,
@@ -165,16 +189,17 @@ export default {
               timer: this.auction.timer,
               status: this.auction.status,
             };
-            this.addBiddingQueue(x.bidding_queues);
+
+            this.addBiddingQueue(this.auction.bidding_queues);
             this.addAuction(x);
-          }
+          // }
         })
         .catch((err) => {
           console.log(err);
         });
     },
     endAuction() {
-      console.log("Aution is over");
+      console.log("Aution is about to be over");
       let bidding_queue = this.findBiddingQueue(this.auction.id);
       console.log(bidding_queue);
 
@@ -183,6 +208,8 @@ export default {
       if (bidding_queue != null) {
         console.log("running bid");
         this.runBidBudies(bidding_queue);
+      }else{
+        alert('we have a winner')
       }
     },
     runBidBudies(bidding_queue) {
@@ -211,23 +238,26 @@ export default {
     },
     submitBid() {
       // sending user bid
-      // const storedAuction = this.findAuction(this.auction.id);
+   
       const body = {
         auction_id: this.auction.id,
+      remaining_time: this.remaining_seccounds,
       };
-
-      sendPost(
-        this.baseUrl + this.bidUrl, //url
-        body, //body
-        { Accept: "application/json" } //headers
-      )
-        .then((data) => {
-          console.log("inside auction index");
-          console.log(data);
+     
+      axios
+        .post(  this.baseUrl + this.bidUrl, body,{ Accept: "application/json" } )
+        .then((response) => {
+          console.log(response.data);
+          
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(function (error) {
+          console.log(error);
+        })
+        .finally( ()=> {
+          // always executed
+          this.is_loading=false;
         });
+    
     },
     submitBiBuddy() {
       axios
@@ -248,7 +278,10 @@ export default {
     },
   },
   created() {
-    this.fetchAuction();
+    if(!this.auction){
+         this.fetchAuction();
+    }
+ 
   },
   mounted() {},
   components: {},

@@ -64,6 +64,8 @@ class MyTestCommand extends Command
                     BiddingHistory::create([
                         "user_id" => 2,
                         "auction_id" => $auction->id,
+                        "category_id" => $auction->product->category->id,
+
                         "bid_price" => $new_price
                     ]);
                     $next_bid->status = 0;

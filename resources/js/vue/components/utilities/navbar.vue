@@ -46,7 +46,7 @@
                     <a href="#" :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">Settings</a>
                   </MenuItem>
                   <MenuItem v-slot="{ active }">
-                    <a href="#" :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">Sign out</a>
+                    <a href="#" @click="logout" :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">Sign out</a>
                   </MenuItem>
                 </MenuItems>
               </transition>
@@ -73,4 +73,43 @@
     { name: 'Projects', href: '#', current: false },
     { name: 'Calendar', href: '#', current: false },
   ]
+  </script>
+  <script>
+  import { mapGetters, mapActions } from "vuex";
+  
+  export default {
+    data() {
+      return {
+        loginUrl: "auth/logout",
+        email: null,
+        password: null,
+      };
+    },
+    computed: {
+      ...mapGetters(["baseUrl"]),
+    },
+    methods: {
+      logout() {
+       
+        axios
+          .post(this.baseUrl + this.loginUrl, {
+            
+          })
+          .then((response) => {
+            console.log("logout response");
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log("error");
+            console.log(error);
+          })
+          .finally(function () {
+            // always executed
+          });
+       
+      },
+  
+    },
+  };
+
   </script>

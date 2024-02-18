@@ -16,7 +16,7 @@ const store = createStore({
     },
     plugins: [
         createPersistedState({
-            paths: ["authentication", "user"],
+            paths: ["authentication", "user", "auctions", "biddingQueues"],
             storage: window.sessionStorage,
         }),
         // createMutationsSharer({ predicate: ["setSingleAuction"] }),

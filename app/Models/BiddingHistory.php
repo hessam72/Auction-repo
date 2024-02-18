@@ -41,7 +41,8 @@ class BiddingHistory extends Model
 	protected $fillable = [
 		'user_id',
 		'auction_id',
-		'bid_price'
+		'bid_price',
+		'category_id'
 	];
 
 	public function auction()

@@ -69,6 +69,9 @@ class Product extends Model
 			$product->comments()->delete();
 			$product->product_galleries()->delete();
 		});
+		static::updating(function ($user) {
+          
+        });
 	}
 
 

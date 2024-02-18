@@ -3,6 +3,8 @@
   <auction-list :auctions="auctions"></auction-list>
 
   <pagination :links="links" :meta="meta"></pagination>
+  <loading class="loading" v-if="is_loading"></loading
+  >
 </template>
   
   <script>
@@ -23,34 +25,38 @@ export default {
       pusher_data: "no data yet...",
       links: null,
       meta: null,
+      is_loading:false,
     };
   },
   computed: {
     ...mapGetters(["baseUrl", "storedAuctions", "findAuction"]),
   },
   methods: {
-    ...mapActions(["setAuctions", "setSingleAuction" , "setBiddingQueues" , "setSingleBiddingQueue"]),
+    ...mapActions([
+      "setAuctions",
+      "setSingleAuction",
+      "setBiddingQueues",
+      "setSingleBiddingQueue",
+    ]),
     // pusher management
     connect() {
       let vm = this;
       window.Echo.channel("my-channel")
-      .listen(".my-event", (e) => {
-        console.log("*******pusher recieved from my event.....***********");
-        console.log(e);
-        return;
-        vm.upadteAnAuctionState(e);
-      })
-      .listen(".test-event", (e) => {
-        console.log("******schedule task response***********");
-        console.log(e);
-        return;
-        
-      });
+        .listen(".my-event", (e) => {
+         
+
+          vm.upadteAnAuctionState(e);
+        })
+        .listen(".test-event", (e) => {
+         
+          return;
+        });
     },
     disconnect() {
       window.Echo.leave("my-channel");
     },
     fetchAuctions() {
+      this.is_loading=true;
       var url = this.baseUrl + this.localUrl;
       if (this.$route.query.page) {
         url = url + "?page=" + this.$route.query.page;
@@ -63,17 +69,21 @@ export default {
           this.saveAuctions();
           this.links = response.data.links;
           this.meta = response.data.meta;
+          
+
         })
-        .catch(function (error) {
+        .catch( (error)=> {
           throw error.response.data.message;
         })
-        .finally(function () {
+        .finally( ()=> {
           // always executed
+        
+          this.is_loading=false;
         });
     },
     saveAuctions() {
       let data = [];
-      let queues=[];
+      let queues = [];
       for (let i = 0; i < this.auctions.length; i++) {
         data.push({
           id: this.auctions[i].id,
@@ -81,31 +91,26 @@ export default {
           current_price: this.auctions[i].current_price,
           timer: this.auctions[i].timer,
           status: this.auctions[i].status,
-         
-        
         });
         queues.push(this.auctions[i].bidding_queues);
       }
       this.setAuctions(data);
-      this.setBiddingQueues(queues)
+      this.setBiddingQueues(queues);
     },
     upadteAnAuctionState(item) {
-    console.log('*****item*******')
-    console.log(item)
+    
       // add 10 seccound to now
       var t = new Date();
-      t = t.setSeconds(t.getSeconds() + 5);
+      t = t.setSeconds(t.getSeconds() + 10);
       item.data.timer = t;
 
-      console.log("***************new timer***********");
-      console.log(item);
       this.setSingleAuction(item);
-      var next_queue=item.data.bidding_queues;
-      if(item.data.bidding_queues === null){
-        next_queue={
-          auction_id:item.data.id,
-          is_empthy:true
-        }
+      var next_queue = item.data.bidding_queues;
+      if (item.data.bidding_queues === null) {
+        next_queue = {
+          auction_id: item.data.id,
+          is_empthy: true,
+        };
       }
       this.setSingleBiddingQueue(next_queue);
     },
@@ -113,32 +118,10 @@ export default {
       const body = {
         search: text,
       };
-
-      sendPost(
-        this.baseUrl + this.searchUrl, //url
-        body, //body
-        { Accept: "application/json" } //headers
-      )
-        .then((data) => {
-          console.log(data);
-          this.auctions = data.data;
-          this.saveAuctions();
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-    filter(filter_id) {
-      const body = {
-        filter_id: filter_id,
-      };
-
       axios
-        .post(this.baseUrl + this.filterUrl, {
-          params: body,
-        })
+        .post( this.baseUrl + this.searchUrl, body ,  { Accept: "application/json" } )
         .then((response) => {
-          console.log(response.data);
+          console.log(response.data.data);
           this.auctions = response.data.data;
           this.saveAuctions();
         })
@@ -147,6 +130,30 @@ export default {
         })
         .finally(function () {
           // always executed
+        });
+     
+    },
+    filter(filter_id) {
+      this.is_loading=true;
+      const body = {
+        filter_id: filter_id,
+      };
+    
+      // set the value for you, you will need to manually set the X-XSRF-TOKEN header to match the value of the XSRF-TOKEN cookie that is set by this route
+     
+      axios
+        .post(this.baseUrl + this.filterUrl, body )
+        .then((response) => {
+          console.log(response.data);
+          this.auctions = response.data.data;
+          this.saveAuctions();
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+        .finally( ()=> {
+          // always executed
+          this.is_loading=false;
         });
     },
   },

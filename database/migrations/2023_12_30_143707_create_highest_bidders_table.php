@@ -19,8 +19,8 @@ return new class extends Migration
 
             $table->integer('time_spent')->default(0)->comment('the value is in secounds');
             
-            $table->unsignedBigInteger('current_level_id');
-            $table->foreign('current_level_id')->references('id')->on('highest_bidder_levels');
+            $table->unsignedBigInteger('current_level_id')->default(1);
+            // $table->foreign('current_level_id')->references('id')->on('highest_bidder_levels');
             $table->integer('multiplier')->default(1)->comment(' the ratio which user time might get multipy on');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();

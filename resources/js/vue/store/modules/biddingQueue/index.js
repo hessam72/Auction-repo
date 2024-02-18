@@ -2,43 +2,51 @@ export default {
     state() {
         return {
             // one queue for each auction - sorted by date
-            BiddingQueues: [{
-                id: null,
-                bid_buddy_id: null,
-                auction_id: null,
-                status: null,
-            }, ],
+            BiddingQueues: [
+                // {
+                // id: null,
+                // bid_buddy_id: null,
+                // auction_id: null,
+                // status: null,
+                // },
+            ],
         };
     },
     //setting state
     mutations: {
         setBiddingQueues(state, data) {
             state.BiddingQueues = data;
-            console.log("set all BiddingQueues store");
-            console.log(data);
         },
 
         setSingleBiddingQueue(state, data) {
-            var index = state.BiddingQueues.findIndex(
-                (obj) => obj.auction_id === data.auction_id
-            );
-            console.log('*******indexqueueu************')
-            console.log(index)
+            try {
+                var index = state.BiddingQueues.findIndex(
+                    (obj) => obj.auction_id === data.auction_id
+                );
 
-            state.BiddingQueues[index] = data;
+                state.BiddingQueues[index] = data;
+            } catch (e) {}
         },
         addBiddingQueue(state, data) {
             //replace old bidding queue with new one
+            console.log("------------------------------------");
+            console.log(state.BiddingQueues);
+            if (!data) return;
 
-            console.log("**************************store add*************");
-            console.log(data);
-            return;
             if (state.BiddingQueues.length === 0) {
                 var x = [data];
                 state.BiddingQueues = x;
             } else {
-                state.BiddingQueues.push(data);
+                var index = state.BiddingQueues.findIndex(
+                    (obj) => obj.auction_id === data.auction_id
+                );
+                if (state.BiddingQueues[index]) {
+                    state.BiddingQueues[index] = data;
+                } else {
+                    state.BiddingQueues.push(data);
+                }
             }
+            console.log(state.BiddingQueues);
         },
     },
     //calling mutations
@@ -59,7 +67,11 @@ export default {
             return state.BiddingQueues;
         },
         findBiddingQueue: (state) => (id) => {
-            return state.BiddingQueues.find((x) => x.auction_id === id);
+            try {
+                return state.BiddingQueues.find((x) => x.auction_id === id);
+            } catch (error) {
+                return null;
+            }
         },
     },
 };

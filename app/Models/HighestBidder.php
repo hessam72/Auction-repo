@@ -28,10 +28,13 @@ use Monolog\Handler\FormattableHandlerTrait;
  *
  * @package App\Models
  */
+
 class HighestBidder extends Model
 {
 	use HasFactory;
 	protected $table = 'highest_bidders';
+
+
 
 	protected $casts = [
 		'user_id' => 'int',

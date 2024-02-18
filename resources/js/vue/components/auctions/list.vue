@@ -19,9 +19,14 @@
         <a href="#"></a>
         <div class="relative">
           <router-link :to="{ name: 'auction-index', params: { id: item.id } }">
-            <img
+         <img v-if="item.product.galleries.length >0"
               class="w-full"
               :src="'/storage/' + item.product.galleries[0].image"
+              alt="Sunset in the mountains"
+            /> 
+            <img v-else
+              class="w-full"
+              :src="'/storage/images/default/default_auction_pic.png'"
               alt="Sunset in the mountains"
             />
             <!-- asset('storage/' . $img->image) -->

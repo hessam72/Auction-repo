@@ -20,8 +20,8 @@ class ApiController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-
-            return 'you did loged in';
+          
+            return 'you loged in';
         }
 
         return back()->withErrors([
