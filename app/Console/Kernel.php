@@ -22,7 +22,7 @@ class Kernel extends ConsoleKernel
         // ->withoutOverlapping()
         // ->appendOutputTo("scheduler-output.log");
 
-        $schedule->command('app:check-progress-command')
+        $schedule->command('app:check-monthly-challenges-command')
         ->runInBackground()
         ->everyFiveSeconds()
         ->appendOutputTo("scheduler-output.log");
