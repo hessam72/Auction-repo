@@ -1,5 +1,5 @@
 <template>
-  <Disclosure as="nav" class="bg-gray-800" v-slot="{ open }">
+  <Disclosure as="nav" class="main-nav bg-gray-50" v-slot="{ open }">
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
       <div class="relative flex h-16 items-center justify-between">
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -52,7 +52,7 @@
             class="w-full rounded-md border-gray-200 py-2.5 pe-10 shadow-sm sm:text-sm bg-slate-50"
           />
 
-          <span class="absolute inset-y-0 end-0 grid w-10 place-content-center">
+          <span class="search-label absolute inset-y-0 end-0 grid w-10 place-content-center">
             <button type="button" class="text-gray-600 hover:text-gray-700">
               <span class="sr-only">Search</span>
 
@@ -168,6 +168,7 @@
       </div>
     </DisclosurePanel>
   </Disclosure>
+ 
 </template>
   
   <script setup>
@@ -222,3 +223,25 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+#Search{
+  border-radius:40px;
+  width: 20rem;
+
+}
+.search-label{
+  background-color: rgba(169, 174, 251, 0.77);
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+
+}
+.main-nav{
+  // background: rgb(41,24,76);
+  // background: linear-gradient(90deg, rgba(41,24,76,1) 7%, rgba(77,115,173,0.9724089464887518) 100%); 
+  position: absolute;
+z-index: 30;
+width: 100vw;
+background: none;
+
+}
+</style>

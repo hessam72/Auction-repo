@@ -1,4 +1,5 @@
 <template>
+  <div class="mother-container">
   <nav-bar-section></nav-bar-section>
   <router-view class="main-container" v-slot="{ Component }">
     <keep-alive>
@@ -6,6 +7,7 @@
     </keep-alive>
   </router-view>
   <footer-section></footer-section>
+  </div>
 </template>
 
 <script>
@@ -20,6 +22,9 @@ export default {
 </script>
 
 <style>
-
 @import url("../../css/scss/main.scss");
+
+.mother-container{
+  position:relative;
+}
 </style>
