@@ -21,8 +21,9 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 @import url("../../css/scss/main.scss");
+
 
 .mother-container{
   position:relative;
