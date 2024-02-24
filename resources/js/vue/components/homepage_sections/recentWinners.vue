@@ -75,7 +75,11 @@
         </div>
       </div>
     </div>
+   
   </div>
+  <div class="more-container">
+      <button class="more-btn">See More</button>
+    </div>
 </template>
 
 <script>
