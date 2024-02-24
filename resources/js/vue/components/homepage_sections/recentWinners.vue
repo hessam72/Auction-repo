@@ -1,114 +1,80 @@
 <template>
   <div class="section-container">
-    <h2 class="section-title">Recent Winners</h2>
+    <h2 class="section-title">
+     Latest
+      <h2 style="display: inline; color: #6350d7">Wins</h2>
+    </h2>
 
     <div class="reviews-container flex gap-2.5">
-      <div class="review w-4/12 flex flex-col gap-1.5">
-        <div class="pic-container">
-          <div class="border-wrap">
-          <img
-            class="user_img"
-            :src="'/storage/images/user_profiles/150-9.jpg'"
-          />
-        </div>
-          <img
-            class="quote-icon"
-            :src="'/storage/images/utilities/quote.png'"
-          />
-
-          <div class="title">
-            <p class="name">Sara Brown</p>
-            <p class="winner">Winner of: Iphone</p>
+      <div class="container w-4/12">
+        <div class="card bg-1">
+          <div class="imgBx">
+            <img :src="'/storage/images/product_images/trans-ps5-2.png'" />
           </div>
-        </div>
-
-        <div class="desc">
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum
-            consectetur molestias velit consequatur 
-          </p>
+          <div class="contentBx">
+            <h2>PlayStation 5</h2>
+            <div class="size">
+              <h3>Winner: Sara Jones</h3>
+            </div>
+            <div class="color">
+              <h3>Original Price: 2000$</h3>
+            </div>
+            <a href="#"> <h3>Win Price: 112$</h3></a>
+          </div>
         </div>
       </div>
-   
-      <div class="review w-4/12 flex flex-col gap-1.5">
-        <div class="pic-container">
-          <div class="border-wrap">
-          <img
-            class="user_img"
-            :src="'/storage/images/user_profiles/150-11.jpg'"
-          />
+      <div class="container w-4/12">
+        <div class="card bg-1">
+          <div class="imgBx">
+            <img :src="'/storage/images/product_images/trans-glasses.png'" />
           </div>
-          <img
-            class="quote-icon"
-            :src="'/storage/images/utilities/quote.png'"
-          />
-
-          <div class="title">
-            <p class="name">Joe jefry</p>
-            <p class="winner">Winner of: Iphone</p>
+          <div class="contentBx">
+            <h2>PlayStation 5</h2>
+            <div class="size">
+              <h3>Winner: Sara Jones</h3>
+            </div>
+            <div class="color">
+              <h3>Original Price: 2000$</h3>
+            </div>
+            <a href="#"> <h3>Win Price: 112$</h3></a>
           </div>
-        </div>
-
-        <div class="desc">
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum
-            consectetur molestias velit
-          </p>
         </div>
       </div>
-      <div class="review w-4/12 flex flex-col gap-1.5">
-        <div class="pic-container">
-          <div class="border-wrap">
-          <img
-            class="user_img"
-            :src="'/storage/images/user_profiles/150-7.jpg'"
-          />
+      <div class="container w-4/12">
+        <div class="card bg-1">
+          <div class="imgBx">
+            <img :src="'/storage/images/product_images/trans-macbook-2.png'" />
           </div>
-          <img
-            class="quote-icon"
-            :src="'/storage/images/utilities/quote.png'"
-          />
-
-          <div class="title">
-            <p class="name">Sara Brown</p>
-            <p class="winner">Winner of: Iphone</p>
+          <div class="contentBx">
+            <h2>PlayStation 5</h2>
+            <div class="size">
+              <h3>Winner: Sara Jones</h3>
+            </div>
+            <div class="color">
+              <h3>Original Price: 2000$</h3>
+            </div>
+            <a href="#"> <h3>Win Price: 112$</h3></a>
           </div>
-        </div>
-
-        <div class="desc">
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum
-            consectetur molestias velit consequatur
-          </p>
         </div>
       </div>
-      <div class="review w-4/12 flex flex-col gap-1.5">
-        <div class="pic-container">
-          <div class="border-wrap">
-          <img
-            class="user_img"
-            :src="'/storage/images/user_profiles/150-2.jpg'"
-          />
+      <div class="container w-4/12">
+        <div class="card bg-1">
+          <div class="imgBx">
+            <img :src="'/storage/images/product_images/trans-iphone-2.png'" />
           </div>
-          <img
-            class="quote-icon"
-            :src="'/storage/images/utilities/quote.png'"
-          />
-
-          <div class="title">
-            <p class="name">Kim Brown</p>
-            <p class="winner">Winner of: Iphone</p>
+          <div class="contentBx">
+            <h2>PlayStation 5</h2>
+            <div class="size">
+              <h3>Winner: Sara Jones</h3>
+            </div>
+            <div class="color">
+              <h3>Original Price: 2000$</h3>
+            </div>
+            <a href="#"> <h3>Win Price: 112$</h3></a>
           </div>
-        </div>
-
-        <div class="desc">
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum
-            consectetur molestias velit consequatur 
-          </p>
         </div>
       </div>
-  </div>
+    </div>
   </div>
 </template>
 
@@ -117,68 +83,182 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
-.pic-container {
+.container {
   position: relative;
-display: flex;
-justify-content: start;
-gap: .5rem;
-flex-direction: column;
-align-items: center;
-margin-bottom: 1rem;
-  .title {
-    // padding-top: 1.5rem;
-    z-index:1;
-    .name {
-      font-size: 1.1rem;
-      color: #fff;
-      font-weight: 500;
-    }
-    .winner {
-      font-size: 0.8rem;
-      color: #ddd;
-    }
-  }
-.border-wrap{
- 
-  background: linear-gradient(to right, rgb(14, 165, 233), rgb(186, 230, 253));
-    border-radius: 100px;
-  .user_img {
-    width: 7rem;
-border-radius: 200px;
-height: 7rem;
-filter: grayscale(100%);
-box-shadow: 0 1px 5px rgba(114, 114, 115, 0.5411764706);
-color: white;
-padding: .15rem;
-text-align: center;
-    
-  }
-}
-  .quote-icon {
-    opacity: 0.071;
-    position: absolute;
-    top: 0;
-    right: -1rem;
-    width: 5rem;
-    height: 5rem;
-  }
-}
-.review {
-  background: rgb(42, 26, 78);
-  background: linear-gradient(
-    90deg,
-    rgba(42, 26, 78, 0.699) 2%,
-    rgba(76, 112, 171, 0.644) 95%
-  );
+  // zoom: 0.9;
+  //   -moz-transform: scale(0.9);
+  box-shadow: 0 7px 10px gray;
   border-radius: 20px;
-  box-shadow: 0 2px 10px gray;
-  padding: 1rem 2rem;
 }
-.desc {
-  font-size: 0.9rem;
-  color: #f9f9f9;
-  letter-spacing: 0.4px;
-  line-height: 1.8;
-  padding-bottom:1rem;
+
+.container .card {
+  position: relative;
+  width: 100%;
+  height: 450px;
+  background: rgb(42,26,78);
+background: linear-gradient(90deg, rgba(42,26,78,0.9471988624551383) 2%, rgba(76,113,171,0.7847338764607406) 95%);
+  border-radius: 20px;
+  overflow: hidden;
 }
+
+.container .card:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  clip-path: circle(150px at 80% 20%);
+  transition: 0.5s ease-in-out;
+}
+
+.container .card:hover:before {
+  clip-path: circle(300px at 80% -20%);
+}
+
+.container .card:after {
+  content: "WIN";
+  position: absolute;
+  top: 40%;
+  left: 0%;
+  font-size: 9em;
+  font-weight: 800;
+  font-style: italic;
+  color: rgba(176, 176, 176, 0.11);
+}
+
+.container .card .imgBx {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10000;
+  width: 100%;
+  height: 220px;
+  transition: 0.5s;
+}
+
+.container .card:hover .imgBx {
+  top: 0%;
+  transform: translateY(0%);
+}
+
+.container .card .imgBx img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-25deg);
+  width: 270px;
+}
+
+.container .card .contentBx {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  text-align: center;
+  transition: 1s;
+  z-index: 10;
+}
+
+.container .card:hover .contentBx {
+  height: 210px;
+}
+
+.container .card .contentBx h2 {
+  position: relative;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #fff;
+  margin: 0;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: #f3f5f9;
+}
+
+.container .card .contentBx .size,
+.container .card .contentBx .color {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 20px;
+  transition: 0.5s;
+  opacity: 0;
+  visibility: hidden;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-bottom: 0.7rem;
+}
+
+.container .card:hover .contentBx .size {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0.5s;
+}
+
+.container .card:hover .contentBx .color {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0.6s;
+}
+
+.container .card .contentBx .size h3,
+.container .card .contentBx .color h3 {
+  color: #fff;
+  font-weight: 300;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-right: 10px;
+}
+
+.container .card .contentBx .size span {
+  width: 26px;
+  height: 26px;
+  text-align: center;
+  line-height: 26px;
+  font-size: 14px;
+  display: inline-block;
+  color: #111;
+  background: #fff;
+  margin: 0 5px;
+  transition: 0.5s;
+  color: #111;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.container .card .contentBx a {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #fff;
+  border-radius: 4px;
+  margin-top: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  color: #111;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: 0.5s;
+  margin-top: 0;
+  cursor: auto;
+  background-color: #fdfdfded;
+}
+
+.container .card:hover .contentBx a {
+  opacity: 1;
+  transform: translateY(0px);
+  transition-delay: 0.75s;
+}
+.container .bg-1:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  clip-path: circle(150px at 80% 20%);
+  transition: 0.5s ease-in-out;
+  background-color: #ffffffeb;
+}
+
 </style>
