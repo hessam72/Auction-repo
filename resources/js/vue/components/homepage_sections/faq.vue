@@ -95,6 +95,7 @@ export default {};
   border-radius: 6px;
   background: #ffffff;
   box-shadow: 0 4px 8px #80808085;
+  border-radius: 30px;
 }
 .accordion-item .accordion-item-title {
   position: relative;
