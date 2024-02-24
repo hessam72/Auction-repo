@@ -1,184 +1,282 @@
 <template>
-  <div class="section-container">
-    <h2 class="section-title">Our Reviews</h2>
+    <div class="section-container">
+        <h2 class="section-title">Our Reviews</h2>
 
-    <div class="reviews-container flex gap-2.5">
-      <div class="review w-4/12 flex flex-col gap-1.5">
-        <div class="pic-container">
-          <div class="border-wrap">
-          <img
-            class="user_img"
-            :src="'/storage/images/user_profiles/150-9.jpg'"
-          />
-        </div>
-          <img
-            class="quote-icon"
-            :src="'/storage/images/utilities/quote.png'"
-          />
+        <main>
+            <div style="position: relative" class="slider">
+                <div class="buttons">
+                    <div class="previous"></div>
+                    <div class="next"></div>
+                </div>
+                <TransitionGroup name="list" tag="ul">
+                    <div :key="1"  class="slide">
+                        <div class="testimonial">
+                            <blockquote>
+                                “ I’ve been interested in coding for a while but
+                                never taken the jump, until now. I couldn’t
+                                recommend this course enough. I’m now in the job
+                                of my dreams and so excited about the future. ”
+                            </blockquote>
+                            <p class="author">
+                                Tanya Sinclair
+                                <span>UX Engineer</span>
+                            </p>
+                        </div>
 
-          <div class="title">
-            <p class="name">Sara Brown</p>
-            <p class="winner">Winner of: Iphone</p>
-          </div>
-        </div>
+                        <div class="slider-img">
+                            <img
+                                src="https://alcs-slider.netlify.app/images/image-tanya.jpg"
+                                alt="Author Image"
+                            />
+                        </div>
+                    </div>
 
-        <div class="desc">
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum
-            consectetur molestias velit consequatur 
-          </p>
-        </div>
-      </div>
-   
-      <div class="review w-4/12 flex flex-col gap-1.5">
-        <div class="pic-container">
-          <div class="border-wrap">
-          <img
-            class="user_img"
-            :src="'/storage/images/user_profiles/150-11.jpg'"
-          />
-          </div>
-          <img
-            class="quote-icon"
-            :src="'/storage/images/utilities/quote.png'"
-          />
+                    <div :key="2" class="slide">
+                        <div class="testimonial">
+                            <blockquote>
+                                “ If you want to lay the best foundation
+                                possible I’d recommend taking this course. The
+                                depth the instructors go into is incredible. I
+                                now feel so confident about starting up as a
+                                professional developer. ”
+                            </blockquote>
+                            <p class="author">
+                                John Tarkpor
+                                <span>Junior Front-end Developer</span>
+                            </p>
+                        </div>
 
-          <div class="title">
-            <p class="name">Joe jefry</p>
-            <p class="winner">Winner of: Iphone</p>
-          </div>
-        </div>
-
-        <div class="desc">
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum
-            consectetur molestias velit
-          </p>
-        </div>
-      </div>
-      <div class="review w-4/12 flex flex-col gap-1.5">
-        <div class="pic-container">
-          <div class="border-wrap">
-          <img
-            class="user_img"
-            :src="'/storage/images/user_profiles/150-7.jpg'"
-          />
-          </div>
-          <img
-            class="quote-icon"
-            :src="'/storage/images/utilities/quote.png'"
-          />
-
-          <div class="title">
-            <p class="name">Sara Brown</p>
-            <p class="winner">Winner of: Iphone</p>
-          </div>
-        </div>
-
-        <div class="desc">
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum
-            consectetur molestias velit consequatur
-          </p>
-        </div>
-      </div>
-      <div class="review w-4/12 flex flex-col gap-1.5">
-        <div class="pic-container">
-          <div class="border-wrap">
-          <img
-            class="user_img"
-            :src="'/storage/images/user_profiles/150-2.jpg'"
-          />
-          </div>
-          <img
-            class="quote-icon"
-            :src="'/storage/images/utilities/quote.png'"
-          />
-
-          <div class="title">
-            <p class="name">Kim Brown</p>
-            <p class="winner">Winner of: Iphone</p>
-          </div>
-        </div>
-
-        <div class="desc">
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum
-            consectetur molestias velit consequatur 
-          </p>
-        </div>
-      </div>
-  </div>
-  </div>
+                        <div class="slider-img">
+                            <img
+                                src="https://alcs-slider.netlify.app/images/image-john.jpg"
+                                alt="Author Image"
+                            />
+                        </div></div
+                ></TransitionGroup>
+            </div>
+        </main>
+    </div>
 </template>
-
 <script>
-export default {};
+import $ from "jquery";
+export default {
+    mounted: function () {
+        const next = document.querySelector(".next");
+        const prev = document.querySelector(".previous");
+        const slides = document.querySelectorAll(".slide");
+
+        let index = 0;
+        display(index);
+
+        function display(index) {
+            slides.forEach((slide) => {
+                slide.style.display = "none";
+            });
+            slides[index].style.display = "flex";
+        }
+
+        function nextSlide() {
+            index++;
+            if (index > slides.length - 1) {
+                index = 0;
+            }
+            display(index);
+        }
+
+        function prevSlide() {
+            index--;
+            if (index < 0) {
+                index = slides.length - 1;
+            }
+            display(index);
+        }
+
+        next.addEventListener("click", nextSlide);
+        prev.addEventListener("click", prevSlide);
+    },
+};
 </script>
 
 <style lang="scss" scoped>
-.pic-container {
-  position: relative;
-display: flex;
-justify-content: start;
-gap: .5rem;
-flex-direction: column;
-align-items: center;
-margin-bottom: 1rem;
-  .title {
-    // padding-top: 1.5rem;
-    z-index:1;
-    .name {
-      font-size: 1.1rem;
-      color: #fff;
-      font-weight: 500;
+main {
+    width: 100%;
+    max-width: 1440px;
+    padding: 16px;
+
+    .slider {
+        .buttons {
+            z-index: 1;
+            right: 50%;
+            top: 261px;
+            width: 80px;
+            height: 40px;
+            position: absolute;
+            border-radius: 50px;
+            transform: translateX(50%);
+            // background-color: pink;
+
+            .previous,
+            .next {
+                width: 50%;
+                height: 100%;
+                position: absolute;
+                background-repeat: no-repeat;
+                background-position: center;
+                cursor: pointer;
+            }
+
+            .previous {
+                left: 0;
+                background-image: url("https://alcs-slider.netlify.app/images/icon-prev.svg");
+
+                &:hover {
+                    transform: scale(1.25);
+                }
+            }
+
+            .next {
+                right: 0;
+                background-image: url("https://alcs-slider.netlify.app/images/icon-next.svg");
+
+                &:hover {
+                    transform: scale(1.25);
+                }
+            }
+        }
+
+        .slide {
+            display: flex;
+            margin: 0 auto;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column-reverse;
+
+            .testimonial {
+                padding: 32px 51px;
+                background-size: 60px;
+                background-position: top;
+                background-repeat: no-repeat;
+                background-image: url(https://alcs-slider.netlify.app/images/pattern-quotes.svg);
+
+                blockquote {
+                    font-size: 18px;
+                    font-weight: 300;
+                    line-height: 24px;
+                    margin-bottom: 36px;
+                }
+
+                .author {
+                    font-size: 15px;
+                    // font-weight: $font-700;
+
+                    span {
+                        display: block;
+                        color: skyblue;
+                        font-weight: 500;
+                    }
+                }
+            }
+
+            .slider-img {
+                width: 100%;
+                padding: 30px;
+                display: flex;
+                margin-bottom: 40px;
+                align-items: center;
+                justify-content: center;
+                background-size: contain;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-image: url(https://alcs-slider.netlify.app/images/pattern-bg.svg);
+
+                img {
+                    width: 240px;
+                    display: block;
+                    border-radius: 10px;
+                    box-shadow: 0px 16px 40px 0px rgba(135, 105, 210, 0.4);
+                }
+            }
+
+            .active {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+                transition-delay: 0.4s;
+            }
+        }
     }
-    .winner {
-      font-size: 0.8rem;
-      color: #ddd;
+}
+
+.hide {
+    display: none;
+}
+.list-enter-active,
+.list-leave-active {
+    transition: all 0.5s ease;
+}
+.list-enter-from,
+.list-leave-to {
+    opacity: 0;
+    transform: translateX(30px);
+}
+
+@media screen and (min-width: 600px) {
+    main {
+        max-width: 800px;
+
+        .slider {
+            .buttons {
+                top: 280px;
+            }
+        }
     }
-  }
-.border-wrap{
- 
-  background: linear-gradient(to right, rgb(14, 165, 233), rgb(186, 230, 253));
-    border-radius: 100px;
-  .user_img {
-    width: 7rem;
-border-radius: 200px;
-height: 7rem;
-filter: grayscale(100%);
-box-shadow: 0 1px 5px rgba(114, 114, 115, 0.5411764706);
-color: white;
-padding: .15rem;
-text-align: center;
-    
-  }
 }
-  .quote-icon {
-    opacity: 0.071;
-    position: absolute;
-    top: 0;
-    right: -1rem;
-    width: 5rem;
-    height: 5rem;
-  }
-}
-.review {
-  background: rgb(42, 26, 78);
-  background: linear-gradient(
-    90deg,
-    rgba(42, 26, 78, 0.699) 2%,
-    rgba(76, 112, 171, 0.644) 95%
-  );
-  border-radius: 20px;
-  box-shadow: 0 2px 10px gray;
-  padding: 1rem 2rem;
-}
-.desc {
-  font-size: 0.9rem;
-  color: #f9f9f9;
-  letter-spacing: 0.4px;
-  line-height: 1.8;
-  padding-bottom:1rem;
+
+@media screen and (min-width: 900px) {
+    main {
+        width: 100%;
+        max-width: 1054px;
+        padding: 64px 64px 64px 0;
+        margin: auto;
+        .slider {
+            .buttons {
+                right: 20%;
+                top: 75%;
+            }
+
+            .slide {
+                position: relative;
+                text-align: left;
+                display: flex;
+                flex-direction: row;
+
+                .testimonial {
+                    padding: 32px 0 0 0;
+                    background-size: 80px;
+                    background-position: 19% -7%;
+                    transform: translateX(100px);
+
+                    blockquote {
+                        font-size: 24px;
+                        line-height: 30px;
+                    }
+
+                    .author {
+                        span {
+                            display: contents;
+                        }
+                    }
+                }
+
+                .slider-img {
+                    padding: 55px;
+
+                    img {
+                        width: 400px;
+                    }
+                }
+            }
+        }
+    }
 }
 </style>

@@ -1,4 +1,7 @@
 //resources
+// import global.jQuery from 'jquery';
+// var $ = global.jQuery;
+// window.$ = $;
 import './bootstrap';
 import { createApp } from "vue";
 import App from "./vue/App.vue";
