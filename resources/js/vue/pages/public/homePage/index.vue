@@ -5,6 +5,7 @@
   <reviews-section></reviews-section>
   <recent-winners></recent-winners>
 <faq-section></faq-section>
+<pricing-plans></pricing-plans>
 </div>
 </template>
 
@@ -14,6 +15,7 @@ import liveAuctions from "../../../components/homepage_sections/liveAuctions.vue
 import reviewsSection from "../../../components/homepage_sections/reviews.vue";
 import recentWinners from "../../../components/homepage_sections/recentWinners.vue";
 import faqSection from "../../../components/homepage_sections/faq.vue";
+import pricingPlans from "../../../components/homepage_sections/pricingPlans.vue";
 
 export default {
   components: {
@@ -21,7 +23,8 @@ export default {
     liveAuctions,
     reviewsSection,
     recentWinners,
-    faqSection
+    faqSection,
+    pricingPlans
   },
 };
 </script>
