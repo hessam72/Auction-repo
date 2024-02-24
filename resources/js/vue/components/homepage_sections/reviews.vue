@@ -119,11 +119,14 @@ export default {};
 <style lang="scss" scoped>
 .pic-container {
   position: relative;
-  display: flex;
-  justify-content: start;
-  gap: 1rem;
+display: flex;
+justify-content: start;
+gap: .5rem;
+flex-direction: column;
+align-items: center;
+margin-bottom: 1rem;
   .title {
-    padding-top: 1.5rem;
+    // padding-top: 1.5rem;
     z-index:1;
     .name {
       font-size: 1.1rem;
@@ -140,9 +143,9 @@ export default {};
   background: linear-gradient(to right, rgb(14, 165, 233), rgb(186, 230, 253));
     border-radius: 100px;
   .user_img {
-    width: 6rem;
+    width: 7rem;
 border-radius: 200px;
-height: 6rem;
+height: 7rem;
 filter: grayscale(100%);
 box-shadow: 0 1px 5px rgba(114, 114, 115, 0.5411764706);
 color: white;
@@ -176,5 +179,6 @@ text-align: center;
   color: #f9f9f9;
   letter-spacing: 0.4px;
   line-height: 1.8;
+  padding-bottom:1rem;
 }
 </style>
