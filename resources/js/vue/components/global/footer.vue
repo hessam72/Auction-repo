@@ -1,28 +1,9 @@
 <template>
   <footer place-items-end>
-    <div class="bg-gray-800 py-4 text-gray-400">
+    <div class="footer-container bg-gray-800 py-4 text-gray-400">
       <div class="container px-4 mx-auto">
         <div class="-mx-4 flex flex-wrap justify-between">
-          <div class="px-4 my-4 w-full xl:w-1/5">
-            <a href="/" class="block w-56 mb-10">
-              <svg version="1.1" viewBox="0 0 3368 512" xmlns="http://www.w3.org/2000/svg">
-                <g fill="none" fill-rule="evenodd">
-                  <g transform="translate(0 -75)">
-                    <g transform="translate(0 75)">
-                      <rect width="512" height="512" rx="128" fill="#3D5AFE"></rect>
-                      <rect x="149" y="176" width="220" height="220" fill="#fff"></rect>
-                      <circle cx="259" cy="156" r="40" fill="#fff"></circle>
-                      <circle cx="369" cy="286" r="40" fill="#2962FF"></circle>
-                    </g>
-                    <text fill="white" font-family="Nunito-Bold, Nunito" font-size="512" font-weight="bold">
-                      <tspan x="654" y="518">Tailwindow</tspan>
-                    </text>
-                  </g>
-                </g>
-              </svg>
-            </a>
-           
-          </div>
+      
 
           <div class="px-4 my-4 w-full sm:w-auto">
             <div>
@@ -83,11 +64,11 @@
       <div class="container mx-auto px-4">
         <div class="-mx-4 flex flex-wrap justify-between">
           <div class="px-4 w-full text-center sm:w-auto sm:text-left">
-            Copyright © 2020
-            Tailwindow. All Rights Reserved.
+            Copyright © 2024
+            Auction. All Rights Reserved.
           </div>
           <div class="px-4 w-full text-center sm:w-auto sm:text-left">
-            Made with ❤️ by Tailwindow.
+            
           </div>
         </div>
       </div>
@@ -101,6 +82,17 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+footer{
+  margin-top: -3rem;
+}
 
+.footer-container{
+  padding: 1rem 3rem;
+  background: rgb(38,23,72);
+background: linear-gradient(90deg, rgba(38,23,72,1) 0%, rgba(85,114,169,1) 100%);
+color: #fff;
+height: 20rem;
+    padding-top: 2rem;
+}
 </style>

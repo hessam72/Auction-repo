@@ -1,4 +1,11 @@
 <template>
+   <div class="section-seperator">
+        <div class="divider"></div>
+        <span class="and">
+          <ion-icon name="help"></ion-icon>
+        </span>
+        <div class="divider"></div>
+    </div>
   <div class="section-container">
     <h2 class="section-title">Frequently Asked Questions</h2>
     <div class="accordion">
