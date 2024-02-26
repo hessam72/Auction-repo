@@ -21,3 +21,36 @@ a {
         font-weight: 500;
     }
 }
+
+.section-seperator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 7rem;
+    margin-bottom: -1rem;
+
+  }
+  
+  .divider {
+    width: 17%;
+    border-bottom: 1px dotted;
+    margin: 0 20px;
+  }
+  
+  .and {
+    width: 60px;
+    height: 60px;
+    line-height: 80px;
+    background: #363636;
+    color: #fff;
+    text-align: center;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    ion-icon{
+        font-size: 1.8rem;
+    opacity: 0.9;
+
+    }
+  }

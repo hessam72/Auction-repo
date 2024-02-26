@@ -1,4 +1,11 @@
 <template>
+     <div class="section-seperator">
+        <div class="divider"></div>
+        <span class="and">
+            <ion-icon name="basket"></ion-icon>
+        </span>
+        <div class="divider"></div>
+    </div>
     <div class="section-container">
         <!-- BEGIN TABLE STYLE 1 -->
         <section class="section">
@@ -122,6 +129,11 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
+// @import url("//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
+.container{
+    margin-bottom: 10rem 
+
+}
 .section {
     padding: 5% 0;
 }
@@ -133,7 +145,15 @@ export default {};
 .section.grey {
     background-color: #f6f6f6;
 }
-
+.row{
+    display: flex;
+    width: 75%;
+    margin: auto;
+   
+}
+.col-md-4{
+    width:33.33%;
+}
 .section-grad {
     background: transparent -webkit-gradient(
             linear,
@@ -290,9 +310,9 @@ export default {};
 }
 .table1 .button {
     background-color: rgb(174, 174, 245);
-
-    color: #333;
+    color: #fff;
     border-radius: 44px;
+    font-weight: 600;
 }
 .table1 .button:hover {
     -webkit-box-shadow: 0 0 50px rgba(0, 0, 0, 0.12);

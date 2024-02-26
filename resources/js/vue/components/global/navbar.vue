@@ -1,6 +1,6 @@
 <template>
   <Disclosure as="nav" class="main-nav bg-gray-50" v-slot="{ open }">
-    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    <div class="nav-content mx-auto  px-2 sm:px-6 lg:px-8">
       <div class="relative flex h-16 items-center justify-between">
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
           <!-- Mobile menu button-->
@@ -242,6 +242,10 @@ export default {
 z-index: 30;
 width: 100vw;
 background: none;
+padding-top: 1.4rem;
 
+}
+.nav-content{
+  width: 95%;
 }
 </style>
