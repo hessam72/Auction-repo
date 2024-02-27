@@ -4,7 +4,14 @@ import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
     plugins: [
-        vue(),
+        vue({
+            template: {
+                compilerOptions: {
+                    // i am ignorning my custom '<ion-icon>' tag
+                    isCustomElement: (tag) => ["ion-icon"].includes(tag),
+                },
+            },
+        }),
         laravel({
             input: [
                 'resources/css/scss/main.css',

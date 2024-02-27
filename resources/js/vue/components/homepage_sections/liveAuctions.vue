@@ -2,7 +2,7 @@
     <div class="section-seperator">
         <div class="divider"></div>
         <span class="and">
-            <ion-icon name="alarm"></ion-icon>
+            <ion-icon name="ribbon"></ion-icon>
         </span>
         <div class="divider"></div>
     </div>
@@ -79,9 +79,7 @@
                                 Bid during last 9 seconds.
                             </p>
                         </div>
-                        <!-- <div class="desc">
-              <p>lorem ipson dollorem ipson dollorem smith .....</p>
-            </div> -->
+                      
                         <div class="timer">
                             <vue-countdown
                                 :time="13 * 60 * 60 * 1000"
@@ -201,7 +199,9 @@
             </div>
         </div>
         <div class="more-container">
-            <button class="more-btn">View All</button>
+            <button class="more-btn">
+                View All <ion-icon name="share-alt"></ion-icon>
+            </button>
         </div>
     </div>
 </template>
@@ -266,7 +266,7 @@ export default {};
 .auction-img {
     width: 100%;
     img {
-        height: 10rem;
+        height: 13rem;
     }
 }
 .item-container {
@@ -352,18 +352,7 @@ export default {};
         rgb(255, 255, 255) 95%
     );
 }
-.more-container {
-    text-align: center;
-    margin-bottom: 3rem;
-    .more-btn {
-        background-color: #32334a;
-        border-radius: 50px;
-        padding: 0.5rem 2.5rem;
-        color: #fff;
-        font-size: 1.4rem;
-        font-weight: 500;
-    }
-}
+
 .no-new-bidders {
     position: absolute;
     background-color: #f9f937;

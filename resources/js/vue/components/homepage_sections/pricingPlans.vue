@@ -1,5 +1,5 @@
 <template>
-     <div class="section-seperator">
+    <div class="section-seperator">
         <div class="divider"></div>
         <span class="and">
             <ion-icon name="basket"></ion-icon>
@@ -7,10 +7,15 @@
         <div class="divider"></div>
     </div>
     <div class="section-container">
-        <!-- BEGIN TABLE STYLE 1 -->
+        <div class="buy-header-container">
+        <h2 style="display: inline" class="section-title">Buy</h2>
+        <h2 class="section-title" style="display: inline; color: #6350d7">
+            Bid
+        </h2>
+        <h2 class="section-title" style="display: inline">& Start Today</h2>
+        </div>
         <section class="section">
             <div class="container">
-                <h1>Choose Pricing Plan</h1>
                 <div class="row">
                     <div class="col-md-4 p-md-0">
                         <!-- BEGIN TABLE -->
@@ -120,7 +125,6 @@
                 </div>
             </div>
         </section>
-        <!-- END TABLE STYLE 1 -->
     </div>
 </template>
 
@@ -130,9 +134,13 @@ export default {};
 
 <style lang="scss" scoped>
 // @import url("//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
-.container{
-    margin-bottom: 10rem 
-
+.buy-header-container{
+    margin-bottom: -3rem;
+    margin-top:2.5rem;
+    text-align: center;
+}
+.container {
+    margin-bottom: 10rem;
 }
 .section {
     padding: 5% 0;
@@ -145,14 +153,13 @@ export default {};
 .section.grey {
     background-color: #f6f6f6;
 }
-.row{
+.row {
     display: flex;
     width: 75%;
     margin: auto;
-   
 }
-.col-md-4{
-    width:33.33%;
+.col-md-4 {
+    width: 33.33%;
 }
 .section-grad {
     background: transparent -webkit-gradient(

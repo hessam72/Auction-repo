@@ -26,7 +26,7 @@ export default {};
     div{
         padding: 1.5rem;
     border-radius: 90px;
-    background-color: #e8e8e8;
+    background-color: #e8e8e899;
     width: 6rem;
     height: 6rem;
     display: flex;

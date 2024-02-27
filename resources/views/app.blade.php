@@ -11,10 +11,8 @@
     <link rel="stylesheet" href="/assets/vue/css/loading.css">
 
     
-    {{-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> --}}
-
-    <!-- Bootstrap CSS -->
-    {{-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> --}}
+    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
@@ -30,12 +28,9 @@
 
     </div>
    
-
     <script src="/assets/vue/js/loading.js"></script>
-    {{-- <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script> --}}
-<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
-
+    
+ 
 </body>
 
 </html>

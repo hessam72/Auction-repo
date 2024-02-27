@@ -70,6 +70,11 @@
                 ></TransitionGroup>
             </div>
         </main>
+        <div class="more-container">
+            <button class="more-btn">
+                View All <ion-icon name="share-alt"></ion-icon>
+            </button>
+        </div>
     </div>
  
 

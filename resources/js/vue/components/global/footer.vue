@@ -1,8 +1,20 @@
 <template>
+  <section id="first-curve">
+		<div class="page-top-icon">
+		  <ion-icon class="footer-icon" name="compass"></ion-icon>
+		</div>
+		<div class="container">
+			<div class="row center mh">
+			
+			</div>
+		</div>
+	</section>
+
+
   <footer place-items-end>
     <div class="footer-container bg-gray-800 py-4 text-gray-400">
       <div class="container px-4 mx-auto">
-        <div class="-mx-4 flex flex-wrap justify-between">
+        <div class="-mx-4 flex flex-wrap justify-around">
       
 
           <div class="px-4 my-4 w-full sm:w-auto">
@@ -83,6 +95,80 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+section {
+	position: relative !important;
+}
+.footer-icon{
+  font-size: 4rem;
+    margin-top: 0.3rem;
+    color: #eee;
+}
+.pdt {
+	padding-top: 100px;
+  background: linear-gradient(90deg, rgb(38, 23, 72) 0%, rgb(85, 114, 169) 100%);
+}
+
+
+
+.mh {
+	height: 4rem;
+}
+
+.icon {
+  padding-top: 18px;
+  font-size: 36px;
+}
+
+.icon-social {
+  margin-right: 5px;
+}
+
+
+
+#first-curve {
+	background: linear-gradient(90deg, rgb(38, 23, 72) 0%, rgb(85, 114, 169) 100%);
+}
+
+#first-curve .page-top-icon {
+	position: absolute;
+	width: 104px;
+	height: 90px;
+	margin: 0px auto;
+  
+	background: rgb(63 69 121);
+	border-radius: 100%;
+	color: white;
+	text-align: center;
+	text-indent: .1em;
+	top: -30px;
+	left: 50%;
+	margin-left: -57px;
+	z-index: 10px;
+}
+
+#first-curve .page-top-icon:before, #first-curve .page-top-icon:after {
+	content: '';
+	background: none;
+	height: 40px;
+	width: 61px;
+	position: absolute;
+	top: -10px;
+	box-shadow: 0px 22px 0 0 rgb(60 65 117);
+}
+
+#first-curve .page-top-icon:before {
+	left: -35px;
+	border-radius: 0 0 100% 0;
+}
+
+#first-curve .page-top-icon:after {
+	right: -35px;
+	border-radius: 0 0 0 100%;
+  box-shadow: 0px 22px 0 0 rgb(63 72 124);
+}
+
+
+
 footer{
   margin-top: -3rem;
 }
@@ -90,9 +176,10 @@ footer{
 .footer-container{
   padding: 1rem 3rem;
   background: rgb(38,23,72);
-background: linear-gradient(90deg, rgba(38,23,72,1) 0%, rgba(85,114,169,1) 100%);
+background: linear-gradient(90deg, #261748 0%, rgba(85,114,169,1) 100%);
 color: #fff;
 height: 20rem;
     padding-top: 2rem;
 }
+
 </style>
