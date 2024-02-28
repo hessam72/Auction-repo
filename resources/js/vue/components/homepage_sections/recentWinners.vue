@@ -8,8 +8,8 @@
     </div>
     <div class="section-container">
         <h2 class="section-title">
-            Latest
-            <h2 style="display: inline; color: #6350d7">Wins</h2>
+            Our Latest
+            <h2 style="display: inline; color: #6350d7">Winners</h2>
         </h2>
 
         <div class="reviews-container flex gap-2.5">
@@ -131,8 +131,10 @@
         </div>
     </div>
     <div class="more-container">
-        <button class="more-btn">See More</button>
-    </div>
+            <button class="more-btn">
+                View All <ion-icon name="share-alt"></ion-icon>
+            </button>
+        </div>
 </template>
 
 <script>
@@ -140,6 +142,7 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
+
 .contentBx .o-price{
     margin-top: -1rem;
     font-style: italic;
@@ -161,7 +164,8 @@ export default {};
     position: relative;
     width: 100%;
     height: 450px;
-    background: rgb(169 174 251 / 35%);
+    background: rgb(182 182 246 / 43%);
+
     // background: linear-gradient(90deg, rgba(42,26,78,0.9471988624551383) 2%, rgba(76,113,171,0.7847338764607406) 95%);
     border-radius: 20px;
     overflow: hidden;
@@ -185,8 +189,8 @@ export default {};
 .container .card:after {
     content: "WIN";
     position: absolute;
-    top: 40%;
-    left: 0%;
+    top: 45%;
+    left: 8%;
     font-size: 9em;
     font-weight: 800;
     font-style: italic;

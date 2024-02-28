@@ -16,7 +16,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: #ffffff;
+    background: linear-gradient(90deg, rgb(177, 194, 219) 0%, rgb(232, 232, 232) 41%);
     display: flex;
     align-items: center;
 }
@@ -45,7 +45,7 @@
     bottom: 0;
     margin: auto;
     border: 3px solid;
-    border-color: transparent transparent #FF3D00 #FF3D00;
+    border-color: transparent transparent #261748 #261748;
     width: 40px;
     height: 40px;
     border-radius: 50%;

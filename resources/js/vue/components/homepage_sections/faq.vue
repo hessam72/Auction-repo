@@ -72,9 +72,12 @@
       </div>
       
     </div>
+   
     <div class="more-container">
-      <button class="more-btn">More Questions?</button>
-    </div>
+            <button class="more-btn">
+              More Questions? <ion-icon name="share-alt"></ion-icon>
+            </button>
+        </div>
   </div>
 </template>
   
@@ -87,7 +90,7 @@ export default {};
   display: flex;
   flex-direction: column;
   font-family: "Sora", sans-serif;
-  max-width: 991px;
+  max-width: 80%;
   min-width: 320px;
   margin: 50px auto;
   padding: 0 50px;
