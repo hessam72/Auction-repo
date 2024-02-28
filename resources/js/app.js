@@ -13,7 +13,9 @@ import store from "./vue/store/index.js";
 import loading from "./vue/components/utilities/loading.vue";
 import VueCountdown from '@chenfengyuan/vue-countdown';
 
-
+import jQuery from 'jquery';
+var $ = jQuery;
+window.$ = $;
 const app = createApp(App);
 axios.defaults.withCredentials = true;
 app.use(router);
