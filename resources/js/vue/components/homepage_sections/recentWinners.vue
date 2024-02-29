@@ -33,7 +33,7 @@
                                     />
                                 </div>
                             </div>
-                            <div class="content">
+                            <div class="winner-info">
                                 <h3>Winner: Sara Jones</h3>
                                <h3>Total Bids Placed: 97</h3>
                                 <h3>Win Price: $1000</h3>
@@ -65,7 +65,7 @@
                                     />
                                 </div>
                             </div>
-                            <div class="content">
+                            <div class="winner-info">
                                 <h3>Winner: Kate sinor</h3>
                               <h3>Total Bids Placed: 48</h3>
                                 <h3>Win Price: $100</h3>
@@ -92,7 +92,7 @@
                                     />
                                 </div>
                             </div>
-                            <div class="content">
+                            <div class="winner-info">
                                 <h3>Winner: Kim James</h3>
                                 <h3>Total Bids Placed: 65</h3>
                                 <h3>Win Price: $700</h3>
@@ -119,7 +119,7 @@
                                     />
                                 </div>
                             </div>
-                            <div class="content">
+                            <div class="winner-info">
                                 <h3>Winner: Flora timony</h3>
                               <h3>Total Bids Placed: 65</h3>
                                 <h3>Win Price: $2300</h3>
@@ -266,7 +266,7 @@ export default {};
     transition-delay: 0.5s;
     display: flex;
 }
-.content {
+.winner-info {
     text-align: left;
     padding-left: 0.7rem;
     line-height: 2;
