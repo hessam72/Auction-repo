@@ -3,6 +3,7 @@ import store from "../store/index.js";
 
 import homePage from "../pages/public/homePage/index.vue"
 import AuctionList from "../pages/public/auction/auctionList.vue"
+import help from "../pages/public/help/index.vue"
 import AuctionList_old from "../pages/public/auction/all.vue"
 import AuctionIndex from "../pages/public/auction/index.vue"
 import UserIndex from "../pages/public/guarded/user/index.vue"
@@ -19,6 +20,12 @@ const router = createRouter({
             path: "/vue/v1/auctions",
             name: "auctions",
             component: AuctionList,
+            // meta: { isGuest: true },
+        },
+        {
+            path: "/vue/v1/help",
+            name: "help",
+            component: help,
             // meta: { isGuest: true },
         },
         {

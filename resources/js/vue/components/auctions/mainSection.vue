@@ -593,6 +593,152 @@
             </div>
         </div>
 
+        <div v-if="show_more2" class="item-container relative">
+            <div class="bookmark-container">
+                <ion-icon class="icon-bg" name="bookmark"></ion-icon>
+                <ion-icon class="icon-border" name="bookmark-outline"></ion-icon>
+            </div>
+            <div class="rounded-t-3xl overflow-hidden">
+                <div class="auction-img">
+                    <p class="card-title">macbook pro m1</p>
+                    <img class="w-full" :src="'/storage/images/product_images/macbook-1.jpeg'"
+                        alt="Sunset in the mountains" />
+                </div>
+                <div class="content flex flex-col gap-2.5 py-5 px-7">
+                    <div class="header flex flex-col gap-1">
+                        <p class="live-price">$5.31</p>
+                        <p class="current-winner">ahmad_ali_24</p>
+                    </div>
+
+                    <div class="timer">
+                        <vue-countdown :time="7 * 60 * 60 * 1000" v-slot="{ hours, minutes, seconds }">
+                            <div class="count-down">
+                                <div class="number">{{ hours }}</div>
+                                <div class="seperator">:</div>
+                                <div class="number">{{ minutes }}</div>
+                                <div class="seperator">:</div>
+                                <div class="number">{{ seconds }}</div>
+                            </div>
+                        </vue-countdown>
+                    </div>
+                    <button class="btn-primary w-full">Bid Now</button>
+                    <button class="btn-secoundary">
+                        Buy it Now for 1020$
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div v-if="show_more2" class="item-container relative">
+            <div class="bookmark-container">
+                <ion-icon class="icon-bg" name="bookmark"></ion-icon>
+                <ion-icon class="icon-border" name="bookmark-outline"></ion-icon>
+            </div>
+            <div class="rounded-t-3xl overflow-hidden">
+                <div class="auction-img">
+                    <p class="card-title">iphone 13 pink</p>
+                    <img class="w-full" :src="'/storage/images/product_images/iphone-3.jpg'"
+                        alt="Sunset in the mountains" />
+                </div>
+                <div class="content flex flex-col gap-2.5 py-5 px-7">
+                    <div class="header flex flex-col gap-1">
+                        <p class="starting_time">Today at 5:58 PM</p>
+                        <p class="current-winner">
+                            Bid during last 9 seconds.
+                        </p>
+                    </div>
+
+                    <div class="timer">
+                        <vue-countdown :time="13 * 60 * 60 * 1000" v-slot="{ hours, minutes, seconds }">
+                            <div class="count-down">
+                                <div class="number">{{ hours }}</div>
+                                <div class="seperator">:</div>
+                                <div class="number">{{ minutes }}</div>
+                                <div class="seperator">:</div>
+                                <div class="number">{{ seconds }}</div>
+                            </div>
+                        </vue-countdown>
+                    </div>
+                    <button class="w-full startingsoon-btn">
+                        Starting Soon
+                    </button>
+                    <button class="btn-secoundary">
+                        Buy it Now for 1020$
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div v-if="show_more2" class="item-container relative">
+            <div class="no-new-bidders">no new bidders</div>
+            <div class="bookmark-container">
+                <ion-icon class="icon-bg" name="bookmark"></ion-icon>
+                <ion-icon class="icon-border" name="bookmark-outline"></ion-icon>
+            </div>
+            <div class="rounded-t-3xl overflow-hidden">
+                <div class="auction-img">
+                    <p class="card-title">macbook air m2</p>
+                    <img class="w-full" :src="'/storage/images/product_images/macbook-2.jpg'"
+                        alt="Sunset in the mountains" />
+                </div>
+                <div class="content flex flex-col gap-2.5 py-5 px-7">
+                    <div class="header flex flex-col gap-1">
+                        <p class="live-price">$0.57</p>
+                        <p class="current-winner">ahmad_ali_24</p>
+                    </div>
+                    <div class="timer">
+                        <vue-countdown :time="1 * 60 * 60 * 1000" v-slot="{ hours, minutes, seconds }">
+                            <div class="count-down">
+                                <div class="number">{{ hours }}</div>
+                                <div class="seperator">:</div>
+                                <div class="number">{{ minutes }}</div>
+                                <div class="seperator">:</div>
+                                <div class="number">{{ seconds }}</div>
+                            </div>
+                        </vue-countdown>
+                    </div>
+                    <button class="btn-primary w-full">Bid Now</button>
+
+                    <button class="btn-secoundary">
+                        Buy it Now for 1020$
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div v-if="show_more2" class="item-container relative">
+            <div class="bookmark-container">
+                <ion-icon class="icon-bg" name="bookmark"></ion-icon>
+                <ion-icon class="icon-border" name="bookmark-outline"></ion-icon>
+            </div>
+            <div class="rounded-t-3xl overflow-hidden">
+                <div class="auction-img">
+                    <p class="card-title">macbook pro m1</p>
+                    <img class="w-full" :src="'/storage/images/product_images/macbook-1.jpeg'"
+                        alt="Sunset in the mountains" />
+                </div>
+                <div class="content flex flex-col gap-2.5 py-5 px-7">
+                    <div class="header flex flex-col gap-1">
+                        <p class="live-price">$5.31</p>
+                        <p class="current-winner">ahmad_ali_24</p>
+                    </div>
+
+                    <div class="timer">
+                        <vue-countdown :time="7 * 60 * 60 * 1000" v-slot="{ hours, minutes, seconds }">
+                            <div class="count-down">
+                                <div class="number">{{ hours }}</div>
+                                <div class="seperator">:</div>
+                                <div class="number">{{ minutes }}</div>
+                                <div class="seperator">:</div>
+                                <div class="number">{{ seconds }}</div>
+                            </div>
+                        </vue-countdown>
+                    </div>
+                    <button class="btn-primary w-full">Bid Now</button>
+                    <button class="btn-secoundary">
+                        Buy it Now for 1020$
+                    </button>
+                </div>
+            </div>
+        </div>
+
     </div>
     <div v-if="is_loading_more" class="loading-container">
         <div class="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
@@ -617,6 +763,7 @@ export default {
         return {
             is_loading_more: false,
             show_more:false,
+            show_more2:false,
         }
     },
     methods: {
@@ -626,6 +773,9 @@ export default {
             this.is_loading_more = true;
             setTimeout( ()=> {
                 this.is_loading_more = false;
+                if(this.show_more){
+                    this.show_more2=true;
+                }
                 this.show_more=true;
             }, 2000);
 
@@ -742,7 +892,7 @@ export default {
 
     .icon-bg {
         position: absolute;
-        color: #a9aefb;
+        color: #999999;
         right: 0;
     }
 
@@ -783,7 +933,7 @@ export default {
 }
 
 .btn-primary {
-    background-color: #a9aefb;
+    background-color: #372065;
     border-radius: 50px;
     padding: 0.5rem;
     color: #fff;
@@ -791,6 +941,11 @@ export default {
     font-weight: 600;
     text-shadow: 0 4px 5px #80808082;
     margin-bottom: 0.4rem;
+    transition: all .5s ease;
+}
+.btn-primary:hover{
+    transform: scale(.9);
+    box-shadow: 0 8px 15px #997add;
 }
 
 .startingsoon-btn {

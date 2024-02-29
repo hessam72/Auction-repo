@@ -1,5 +1,5 @@
 <template>
-  <section id="first-curve">
+  <section class="first-curve">
 		<div class="page-top-icon">
 		  <ion-icon class="footer-icon" name="compass"></ion-icon>
 		</div>
@@ -125,11 +125,11 @@ section {
 
 
 
-#first-curve {
+.first-curve {
 	background: linear-gradient(90deg, rgb(38, 23, 72) 0%, rgb(85, 114, 169) 100%);
 }
 
-#first-curve .page-top-icon {
+.first-curve .page-top-icon {
 	position: absolute;
 	width: 104px;
 	height: 90px;
@@ -146,7 +146,7 @@ section {
 	z-index: 10px;
 }
 
-#first-curve .page-top-icon:before, #first-curve .page-top-icon:after {
+.first-curve .page-top-icon:before, .first-curve .page-top-icon:after {
 	content: '';
 	background: none;
 	height: 40px;
@@ -156,12 +156,12 @@ section {
 	box-shadow: 0px 22px 0 0 rgb(60 65 117);
 }
 
-#first-curve .page-top-icon:before {
+.first-curve .page-top-icon:before {
 	left: -35px;
 	border-radius: 0 0 100% 0;
 }
 
-#first-curve .page-top-icon:after {
+.first-curve .page-top-icon:after {
 	right: -35px;
 	border-radius: 0 0 0 100%;
   box-shadow: 0px 22px 0 0 rgb(63 72 124);
