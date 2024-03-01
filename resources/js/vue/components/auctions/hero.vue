@@ -1,33 +1,20 @@
 <template>
     <div class="hero-container flex w-full relative">
         <!-- slider -->
-        <div class="slider w-full absolute z-10">
-            <vueper-slides
-                :bullets="false"
-                :touchable="false"
-                :infinite="true"
-                fade
-                :arrows="false"
-                :pause-on-hover="false"
-                autoplay
-            >
-                <!-- autoplay -->
-                <vueper-slide
-                    v-for="(slide, i) in slides"
-                    :key="i"
-                    :image="slide.image"
-                />
+        <!-- <div class="slider w-full absolute z-10">
+            <vueper-slides :bullets="false" :touchable="false" :infinite="true" fade :arrows="false" :pause-on-hover="false"
+                autoplay>
+               
+                <vueper-slide v-for="(slide, i) in slides" :key="i"  :title="slide.title"
+    :content="slide.content" :image="slide.image" />
             </vueper-slides>
-        </div>
+        </div> -->
 
         <div class="content w-full px-20 flex flex-col gap-7 py-14 z-20">
             <div class="hero-badge countdown">
                 ends in:
                 <div class="timer">
-                    <vue-countdown
-                        :time="3 * 60 * 60 * 1000"
-                        v-slot="{ hours, minutes, seconds }"
-                    >
+                    <vue-countdown :time="3 * 60 * 60 * 1000" v-slot="{ hours, minutes, seconds }">
                         <div class="count-down">
                             <div class="number">{{ hours }}</div>
                             <div class="seperator">:</div>
@@ -40,7 +27,7 @@
             </div>
             <div class="hero-badge buy">Purchase It Now!</div>
             <div class="banner-content w-6/12">
-                <h1 class="header text-5xl text-slate-200">
+                <h1 class="anim-up-entrance header text-5xl text-slate-200">
                     Our Special Offer
                 </h1>
                 <p class="sub-header text-1xl text-slate-200">
@@ -70,13 +57,19 @@ export default {
         slides: [
             {
                 //   // You can also provide a URL for the image.
+                title: "discount Offer",
+                content: "15% off on our 250 Bids Package",
                 image: "/assets/img/backgrounds/iphone-bg.jpg",
             },
             {
                 //   // You can also provide a URL for the image.
+                title: "Buy it Now",
+                content: "Buy Iphone Now For Half of Price",
                 image: "/assets/img/backgrounds/mac-bg.jpg",
             },
             {
+                title: "Live Auction",
+                content: "Live Mackbook auction now",
                 // You can also provide a URL for the image.
                 image: "/assets/img/backgrounds/ps5-bg.png",
             },
@@ -89,6 +82,11 @@ export default {
 </script>
 
 <style lang="scss">
+.anim-up-entrance {
+    animation: upEntrance 2s ease-out 0s 1 normal none;
+
+}
+
 .timer {
     .count-down {
         display: flex;
@@ -98,14 +96,16 @@ export default {
         // border: 1px solid;
         width: 85%;
         margin: auto;
+
         .number {
-          padding: 0.5rem;
-    border-radius: 3px;
-    font-weight: 600;
-    width: 3rem;
-    background-color: #fff;
-    color: #000;
+            padding: 0.5rem;
+            border-radius: 3px;
+            font-weight: 600;
+            width: 3rem;
+            background-color: #fff;
+            color: #000;
         }
+
         .seperator {
             padding: 0.5rem;
             color: #eee;
@@ -113,6 +113,7 @@ export default {
         }
     }
 }
+
 .hero-badge {
     color: #fff;
     text-transform: uppercase;
@@ -126,6 +127,7 @@ export default {
     justify-content: center;
     align-items: center;
 }
+
 .countdown {
     background-color: #b72b05;
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 8% 100%);
@@ -136,7 +138,13 @@ export default {
     right: 0rem;
     width: 25rem;
     padding: 0;
+    opacity: 0;
+    // animation-fill-mode:forwards ;
+    // -webkit-animation-fill-mode:forwards ;
+
+    animation: slideFromLeft .7s cubic-bezier(0.87, 0, 0.13, 1) 2s 1 normal both;
 }
+
 .buy {
     background-color: #0ea5e9;
     padding: 0.75rem;
@@ -152,11 +160,15 @@ export default {
     width: 20rem;
     text-shadow: 0 1px 8px #ffffff80;
     letter-spacing: 1.1px;
+    opacity: 0;
+    animation: slideFromRight .7s cubic-bezier(0.85, 0, 0.15, 1) 2s 1 normal both;
 }
+
 .banner-content {
     margin: auto;
     text-align: center;
 }
+
 .vueperslides__parallax-wrapper {
     //   height: 30rem;
 }
@@ -166,20 +178,21 @@ export default {
     height: 100%;
     overflow: hidden;
 }
+
 .content {
-    background: rgb(41, 24, 76);
-    background: linear-gradient(
-        90deg,
-        rgba(41, 24, 76, 1) 7%,
-        rgba(77, 115, 173, 0.14607841427586654) 100%
-    );
+    background: rgb(77, 115, 173);
+    background: radial-gradient(circle, rgba(77, 115, 173, 0.4710477941176471) 0%, rgba(53, 29, 98, 1) 100%);
     height: 100%;
 }
+
 .header {
     margin-bottom: 2rem;
     letter-spacing: 0.1rem;
     margin-top: 3.5rem;
+    font-weight: 800;
+    text-shadow: 0 0.5px 7px #333;
 }
+
 .sub-header {
     line-height: 1.9rem;
     letter-spacing: 0.01rem;
