@@ -12,6 +12,7 @@ import store from "./vue/store/index.js";
 //global components
 import loading from "./vue/components/utilities/loading.vue";
 import VueCountdown from '@chenfengyuan/vue-countdown';
+import StarRating from 'vue-star-rating';
 
 import jQuery from 'jquery';
 var $ = jQuery;
@@ -24,5 +25,6 @@ app.use(store);
 
 app.component(VueCountdown.name, VueCountdown);
 app.component("loading", loading);
+app.component("star-rating", StarRating);
 
 app.mount("#app");

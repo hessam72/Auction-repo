@@ -33,6 +33,7 @@
         "vue": "^3.4.15",
         "vue-loader": "^17.4.2",
         "vue-router": "^4.2.5",
+        "vue-star-rating": "^2.1.0",
         "vueperslides": "^3.5.1",
         "vuex": "^4.1.0",
         "vuex-persistedstate": "^4.1.0"

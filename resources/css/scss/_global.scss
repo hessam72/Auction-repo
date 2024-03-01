@@ -15,8 +15,8 @@ a {
     .more-btn {
         position: relative;
         background: rgb(169, 174, 251);
-    background: linear-gradient(0deg, rgba(53, 29, 98, 0.7147452731092436) 0%, rgba(53, 29, 98, 0.975249474789916) 100%);
-    box-shadow: 0 5px 10px #8b91eb;
+        background: linear-gradient( 0deg, rgba(53, 29, 98, 0.7147452731092436) 0%, rgba(53, 29, 98, 0.975249474789916) 100%);
+        box-shadow: 0 5px 10px #8b91eb;
         border-radius: 50px;
         padding: 0.5rem 2.5rem;
         color: #fff;
@@ -37,16 +37,15 @@ a {
     justify-content: center;
     margin-top: 7rem;
     margin-bottom: -1rem;
+}
 
-  }
-  
-  .divider {
+.divider {
     width: 17%;
     border-bottom: 1px dotted;
     margin: 0 20px;
-  }
-  
-  .and {
+}
+
+.and {
     width: 60px;
     height: 60px;
     line-height: 80px;
@@ -57,18 +56,18 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    ion-icon{
+    ion-icon {
         font-size: 1.8rem;
-    opacity: 0.9;
-
+        opacity: 0.9;
     }
-  }
-  .mother-container{
-    background: rgb(177, 194, 219);
-    background: linear-gradient(90deg, rgb(177, 194, 219) 0%, rgb(232, 232, 232) 41%);
-  }
+}
 
-  .backdrop{
+.mother-container {
+    background: rgb(177, 194, 219);
+    background: linear-gradient( 90deg, rgb(177, 194, 219) 0%, rgb(232, 232, 232) 41%);
+}
+
+.backdrop {
     background-color: #3131314d;
     z-index: 10;
     position: absolute;
@@ -79,3 +78,10 @@ a {
     backdrop-filter: blur(1px);
     transition: all 0.5s ease;
 }
+
+// img .user_img {
+//     transition: all 0.3s ease;
+// }
+// img .user_img:hover {
+//     filter: grayscale(0);
+// }
