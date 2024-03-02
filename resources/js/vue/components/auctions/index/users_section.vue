@@ -4,7 +4,7 @@
       <div class="table-header w-full">Latest Winners</div>
 
       <div class="winners-tabel-container w-full">
-        <table class="w-full" border="0">
+        <table style="text-align: center;" class="w-full" border="0">
           <thead>
             <tr>
               <th>User</th>
@@ -205,11 +205,13 @@
   border: 1.5px solid #444;
   padding: 1rem;
   border-radius: 15px;
+  background-color: #fcfcfc;
 }
 .winners-tabel-container {
   border-radius: 10px;
   display: inline-block;
-  height: 20rem;
+  height: 22.5rem;
+  background-color: #fcfcfc;
 
   overflow: auto;
   width: 100%;
@@ -227,7 +229,7 @@
     border-collapse: collapse;
 
     th {
-      background-color: #5a3e94;
+      background-color: #4738ab;
       color: #fff;
     }
 
@@ -242,7 +244,7 @@
   }
 
   table tr:nth-child(odd) {
-    background-color: #bbdefb;
+    // background-color: #4738ab1c;
   }
 
   table tr:nth-child(even) {

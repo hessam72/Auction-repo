@@ -297,7 +297,7 @@ export default {
         border-radius: 20px;
         border: 1px solid #fff;
         background-color: #efdbff9c;
-
+z-index: 9;
         .k-header {
             padding: 1.5rem 0.5rem;
             font-size: 1.8rem;

@@ -252,6 +252,48 @@
       </div>
     </div>
   </div>
+  <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com --> 
+<nav class="pagination" aria-label="Page navigation example">
+  <ul class="list-style-none flex items-center justify-center">
+    <li>
+      <a
+        class="relative block rounded bg-transparent px-3 py-1.5 text-lg text-neutral-600 transition-all duration-300 hover:bg-neutral-100 "
+        href="#"
+        aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li>
+      <a
+        class="relative block rounded bg-transparent px-3 py-1.5 text-lg text-neutral-600 transition-all duration-300 hover:bg-neutral-100 "
+        href="#"
+        >1</a
+      >
+    </li>
+    <li aria-current="page">
+      <a
+        class="relative block rounded bg-transparent px-3 py-1.5 text-lg text-neutral-800 transition-all duration-300 hover:bg-neutral-100 "
+        href="#"
+        >2</a
+      >
+    </li>
+    <li>
+      <a
+        class="relative block rounded bg-transparent px-3 py-1.5 text-lg text-neutral-600 transition-all duration-300 hover:bg-neutral-100 "
+        href="#"
+        >3</a
+      >
+    </li>
+    <li>
+      <a
+        class="relative block rounded bg-transparent px-3 py-1.5 text-lg text-neutral-600 transition-all duration-300 hover:bg-neutral-100 "
+        href="#"
+        aria-label="Next"
+        ><span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
 </template>
 <style scoped lang="scss">
 .reviews-container {
@@ -382,5 +424,9 @@
 }
 .review-container:first-child {
   margin-top: 3rem;
+}
+.pagination{
+  margin-top: -3rem;
+    margin-bottom: 6rem;
 }
 </style>

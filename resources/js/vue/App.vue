@@ -6,7 +6,8 @@
       <component :is="Component" />
     </keep-alive>
   </router-view>
-  <footer-section></footer-section>
+  <div id="footer">
+  <footer-section></footer-section></div>
   </div>
 </template>
 
@@ -17,12 +18,27 @@ export default {
   
     footerSection,
   },
+  watch:{
+  '$route' (to, from){
+    var footer = document.getElementById("footer");
+    if(to.name === "auth"){
+      // hide footer
+     
+      footer.classList.add("hide");
+    }else{
+      footer.classList.remove("hide");
+    }
+   
+  }
+},
 };
 </script>
 
 <style lang="scss">
 @import url("../../css/scss/main.scss");
-
+.hide{
+  display: none;
+}
 
 .mother-container{
   position:relative;

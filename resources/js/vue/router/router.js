@@ -5,9 +5,10 @@ import homePage from "../pages/public/homePage/index.vue"
 import AuctionList from "../pages/public/auction/auctionList.vue"
 import help from "../pages/public/help/index.vue"
 import AuctionIndex from "../pages/public/auction/AuctionIndex.vue"
+import winners from "../pages/public/winners/index.vue"
 import UserIndex from "../pages/public/guarded/user/index.vue"
 
-import loginPage from "../pages/auth/login.vue"
+import auth from "../pages/auth/login_singup.vue"
 
 
 const router = createRouter({
@@ -32,6 +33,11 @@ const router = createRouter({
             name: "help",
             component: help,
             // meta: { isGuest: true },
+        },  {
+            path: "/vue/v1/winners",
+            name: "winners",
+            component: winners,
+            // meta: { isGuest: true },
         },
         {
             path: "/vue/v1/",
@@ -55,11 +61,17 @@ const router = createRouter({
 
         //auth routes
         {
-            path: "/vue/v1/login",
-            name: "login",
-            component: loginPage,
+            path: "/vue/v1/auth",
+            name: "auth",
+            component: auth,
             // meta: { isGuest: true },
-        },
+        }, 
+        // {
+        //     path: "/vue/v1/login",
+        //     name: "login",
+        //     component: loginPage,
+        //     // meta: { isGuest: true },
+        // },
 
     ]
 });

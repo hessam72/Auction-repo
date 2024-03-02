@@ -31,3 +31,20 @@ export function init_sticky_help_subjects() {
         }
     };
 }
+
+export function init_sticky_up_button() {
+  
+    let item = document.getElementById("up_btn");
+   
+    let offset = item.offsetHeight;
+    window.onscroll = function() {
+      
+        if (window.scrollY > offset + 360) {
+          
+            item.classList.remove("hidden");
+        } else if (window.scrollY < offset + 270) {
+            // alert('elsi')
+            item.classList.add("hidden");
+        }
+    };
+}
