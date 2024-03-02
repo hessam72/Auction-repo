@@ -6,7 +6,9 @@ import AuctionList from "../pages/public/auction/auctionList.vue"
 import help from "../pages/public/help/index.vue"
 import AuctionIndex from "../pages/public/auction/AuctionIndex.vue"
 import winners from "../pages/public/winners/index.vue"
-import UserIndex from "../pages/public/guarded/user/index.vue"
+import UserIndex from "../pages/user/index.vue"
+import bookmarks from "../pages/user/bookmarks.vue"
+import unpaidWins from "../pages/user/unpaid_wins.vue"
 
 import auth from "../pages/auth/login_singup.vue"
 
@@ -45,17 +47,24 @@ const router = createRouter({
             component: homePage,
             // meta: { isGuest: true },
         },
-        // {
-        //     path: "/vue/v1/auction/:id",
-        //     name: "auction-index",
-        //     component: AuctionIndex,
-        //     // meta: { isGuest: true },
-        // },
+      
         {
             path: "/vue/v1/user",
             name: "user-index",
             component: UserIndex,
             // meta: { isGuest: true },
+            children: [{
+                path: "bookmarks",
+                name: "bookmarks",
+                component: bookmarks,
+            },
+            {
+                path: "unpaid-wins",
+                name: "unpaidWins",
+                component: unpaidWins,
+            },
+
+        ],
         },
 
 
