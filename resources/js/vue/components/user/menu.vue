@@ -1,4 +1,6 @@
 <template>
+
+  <div>
   <OnClickOutside @trigger="close('outside')">
     <div id="menu" class="search-section-container temp-sticky">
       <div class="filter-container">
@@ -21,11 +23,15 @@
           <ul class="relative m-0 list-none px-[0.2rem]" data-te-sidenav-menu-ref>
             <li  class="relative text-center">
               <div class=" custom-btn btn-7 flex items-center justify-between">
+                <router-link @click="close('outside')" :to="{name:'profile'}">
                 <span>
+                
                 <ion-icon name="home"></ion-icon>
                 <p class="caption">Profile</p>
                 <ion-icon name="return-right"></ion-icon>
-                </span>
+             
+                </span> 
+              </router-link>
               </div>
              
             </li>
@@ -33,11 +39,13 @@
           <ul class="relative m-0 list-none px-[0.2rem]" data-te-sidenav-menu-ref>
             <li  class="relative text-center">
               <div class=" custom-btn btn-7 flex items-center justify-between">
+                <router-link @click="close('outside')" :to="{name:'challenges'}">
                 <span>
                 <ion-icon name="gift"></ion-icon>
                 <p class="caption">Challenges</p>
                 <ion-icon name="return-right"></ion-icon>
                 </span>
+                </router-link>
               </div>
              
             </li>
@@ -46,9 +54,11 @@
             <li  class="relative text-center">
               <div class=" custom-btn btn-7 flex items-center justify-between">
                 <span>
+                  <router-link @click="close('outside')" :to="{name:'bookmarks'}">
                   <ion-icon name="bookmark"></ion-icon>
                                   <p class="caption">Bookmarks</p>
                 <ion-icon name="return-right"></ion-icon>
+                </router-link>
                 </span>
               </div>
              
@@ -143,6 +153,7 @@
         <!-- Sidenav -->
 
         <!-- Toggler -->
+        <div class="flex items-center justify-center">
         <button style="background-color: #372065;"
           class="inline-block rounded bg-primary px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-primary-700 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-800 active:shadow-lg"
           data-te-sidenav-toggle-ref data-te-target="#sidenav-6" aria-controls="#sidenav-6" aria-haspopup="true">
@@ -154,8 +165,12 @@
             </svg>
           </span>
         </button>
-
+        <div class="user-section-title">
+        <h2>{{page_title  }}Dashboard</h2>
       </div>
+    </div>
+      </div>
+      
       <div class="bid-container flex  justify-center items-center gap-2">
         <ion-icon name="cash"></ion-icon>
         <p>127 bids</p>
@@ -163,6 +178,7 @@
     </div>
   </OnClickOutside>
   <hr class="seperator" />
+</div>
 </template>
 
 <script setup>
@@ -170,17 +186,14 @@ import { onMounted } from "vue";
 import { Select, initTE } from "tw-elements";
 import { Sidenav } from "tw-elements";
 import { OnClickOutside } from "@vueuse/components";
-import { init_dropdown } from "@/modules/utilities/dropdown.js";
 import { init_sticky_nav } from "@/modules/utilities/sticky.js";
-import { init_range_selector } from "@/modules/utilities/range_selector.js";
 
 function close() {
   document.getElementById("sidenav-6").style.transform = "translateX(-100%)";
 }
 
 onMounted(() => {
-  //select dropdown jquery
-  init_dropdown();
+
 
   // sticky filters
   init_sticky_nav();
@@ -189,20 +202,25 @@ onMounted(() => {
   initTE({ Select });
   initTE({ Sidenav });
 
-  // price range selector
-  init_range_selector();
+  
 });
 </script>
 
 <script>
 export default {
+  props:["page_title" , "x"],
   data() {
     return {
       min: 1,
       max: 100,
+    
     };
   },
-  mounted() { },
+  mounted() { 
+  //  alert(this.page_title)
+   console.log(this.page_title)
+  },
+ 
   methods: {
     open_filters() {
       // document.getElementById('backdrop').style.display = "block";
@@ -218,6 +236,14 @@ export default {
 * {
   transition: all 0.3s ease;
 }
+.user-section-title{
+  font-size: 1.5rem;
+    font-weight: 600;
+    margin-left: 2rem;
+    color: #372065;
+
+}
+
 
 .bid-container {
   font-size: 1.7rem;
@@ -241,6 +267,13 @@ export default {
     box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5), 7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
     outline: none;
 
+    a{
+      display: flex;
+      width: 100%;
+    text-align: center;
+    justify-content: space-around;
+    align-items: center;
+    }
 }
 
 /* 7 */
