@@ -1,46 +1,64 @@
 <template>
-
   <div>
     <OnClickOutside @trigger="close('outside')">
       <div id="menu" class="search-section-container temp-sticky">
         <div class="filter-container">
-          <nav id="sidenav-6" class="fixed left-0 top-0 z-[1035] h-screen w-60 -translate-x-full overflow-hidden 
-          bg-white shadow-[0_4px_12px_0_rgba(0,0,0,0.07),_0_2px_4px_rgba(0,0,0,0.05)] 
-          data-[te-sidenav-hidden='false']:translate-x-0 dark:bg-zinc-800" data-te-sidenav-init
-            data-te-sidenav-hidden="false" data-te-sidenav-accordion="true">
-            <ul class="relative m-0 list-none px-[0.2rem]" data-te-sidenav-menu-ref>
+          <nav
+            id="sidenav-6"
+            class="fixed left-0 top-0 z-[1035] h-screen w-60 -translate-x-full overflow-hidden bg-white shadow-[0_4px_12px_0_rgba(0,0,0,0.07),_0_2px_4px_rgba(0,0,0,0.05)] data-[te-sidenav-hidden='false']:translate-x-0 dark:bg-zinc-800"
+            data-te-sidenav-init
+            data-te-sidenav-hidden="false"
+            data-te-sidenav-accordion="true"
+          >
+            <ul
+              class="relative m-0 list-none px-[0.2rem]"
+              data-te-sidenav-menu-ref
+            >
               <li class="relative">
-                <a class="filter-header flex h-12 cursor-pointer items-center truncate rounded-[5px] px-6 py-4 text-[0.875rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
-                  data-te-sidenav-link-ref>
-                  <span class="mr-4 [&>svg]:h-4 [&>svg]:w-4 [&>svg]:text-gray-400 dark:[&>svg]:text-gray-300">
-                    <ion-icon style="color: #333;" name="home"></ion-icon>
+                <a
+                  class="filter-header flex h-12 cursor-pointer items-center truncate rounded-[5px] px-6 py-4 text-[0.875rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
+                  data-te-sidenav-link-ref
+                >
+                  <span
+                    class="mr-4 [&>svg]:h-4 [&>svg]:w-4 [&>svg]:text-gray-400 dark:[&>svg]:text-gray-300"
+                  >
+                    <ion-icon style="color: #333" name="home"></ion-icon>
                   </span>
-                  <span style="color: #333;">Menu</span>
+                  <span style="color: #333">Menu</span>
                 </a>
               </li>
             </ul>
             <hr class="my-4" />
-            <ul class="relative m-0 list-none px-[0.2rem]" data-te-sidenav-menu-ref>
+            <ul
+              class="relative m-0 list-none px-[0.2rem]"
+              data-te-sidenav-menu-ref
+            >
               <li class="relative text-center">
-                <div class=" custom-btn btn-7 flex items-center justify-between">
-                  <router-link @click="close('outside')" :to="{ name: 'profile' }">
+                <div class="custom-btn btn-7 flex items-center justify-between">
+                  <router-link
+                    @click="close('outside')"
+                    :to="{ name: 'profile' }"
+                  >
                     <span>
-
                       <ion-icon name="home"></ion-icon>
                       <p class="caption">Profile</p>
                       <ion-icon name="return-right"></ion-icon>
-
                     </span>
                   </router-link>
                 </div>
-
               </li>
             </ul>
             <hr class="my-4" />
-            <ul class="relative m-0 list-none px-[0.2rem]" data-te-sidenav-menu-ref>
+            <ul
+              class="relative m-0 list-none px-[0.2rem]"
+              data-te-sidenav-menu-ref
+            >
               <li class="relative text-center">
-                <div class=" custom-btn btn-7 flex items-center justify-between">
-                  <router-link @click="close('outside')" :to="{ name: 'challenges' }">
+                <div class="custom-btn btn-7 flex items-center justify-between">
+                  <router-link
+                    @click="close('outside')"
+                    :to="{ name: 'challenges' }"
+                  >
                     <span>
                       <ion-icon name="gift"></ion-icon>
                       <p class="caption">Challenges</p>
@@ -48,130 +66,154 @@
                     </span>
                   </router-link>
                 </div>
-
               </li>
             </ul>
             <hr class="my-4" />
-            <ul class="relative m-0 list-none px-[0.2rem]" data-te-sidenav-menu-ref>
+            <ul
+              class="relative m-0 list-none px-[0.2rem]"
+              data-te-sidenav-menu-ref
+            >
               <li class="relative text-center">
-                <div class=" custom-btn btn-7 flex items-center justify-between">
+                <div class="custom-btn btn-7 flex items-center justify-between">
                   <span>
-                    <router-link @click="close('outside')" :to="{ name: 'bookmarks' }">
+                    <router-link
+                      @click="close('outside')"
+                      :to="{ name: 'bookmarks' }"
+                    >
                       <ion-icon name="bookmark"></ion-icon>
                       <p class="caption">Bookmarks</p>
                       <ion-icon name="return-right"></ion-icon>
                     </router-link>
                   </span>
                 </div>
-
               </li>
             </ul>
             <hr class="my-4" />
-            <ul class="relative m-0 list-none px-[0.2rem]" data-te-sidenav-menu-ref>
+            <ul
+              class="relative m-0 list-none px-[0.2rem]"
+              data-te-sidenav-menu-ref
+            >
               <li class="relative text-center">
-                <div class=" custom-btn btn-7 flex items-center justify-between">
+                <div class="custom-btn btn-7 flex items-center justify-between">
                   <span>
                     <ion-icon name="cash"></ion-icon>
                     <p class="caption">Buy Bids</p>
                     <ion-icon name="return-right"></ion-icon>
                   </span>
                 </div>
-
               </li>
             </ul>
             <hr class="my-4" />
-            <ul class="relative m-0 list-none px-[0.2rem]" data-te-sidenav-menu-ref>
+            <ul
+              class="relative m-0 list-none px-[0.2rem]"
+              data-te-sidenav-menu-ref
+            >
               <li class="relative text-center">
-                <div class=" custom-btn btn-7 flex items-center justify-between">
+                <div class="custom-btn btn-7 flex items-center justify-between">
                   <span>
                     <ion-icon name="trophy"></ion-icon>
                     <p class="caption">Unpaid Wins</p>
                     <ion-icon name="return-right"></ion-icon>
                   </span>
                 </div>
-
               </li>
             </ul>
             <hr class="my-4" />
-            <ul class="relative m-0 list-none px-[0.2rem]" data-te-sidenav-menu-ref>
+            <ul
+              class="relative m-0 list-none px-[0.2rem]"
+              data-te-sidenav-menu-ref
+            >
               <li class="relative text-center">
-                <div class=" custom-btn btn-7 flex items-center justify-between">
-                  <span>
-                    <ion-icon name="cart"></ion-icon>
-                    <p class="caption">Buy It Now</p>
-                    <ion-icon name="return-right"></ion-icon>
-                  </span>
+                <div class="custom-btn btn-7 flex items-center justify-between">
+                  <router-link
+                    @click="close('outside')"
+                    :to="{ name: 'buy_it_now' }"
+                  >
+                    <span>
+                      <ion-icon name="cart"></ion-icon>
+                      <p class="caption">Buy It Now</p>
+                      <ion-icon name="return-right"></ion-icon>
+                    </span>
+                  </router-link>
                 </div>
-
               </li>
             </ul>
             <hr class="my-4" />
-            <ul class="relative m-0 list-none px-[0.2rem]" data-te-sidenav-menu-ref>
+            <ul
+              class="relative m-0 list-none px-[0.2rem]"
+              data-te-sidenav-menu-ref
+            >
               <li class="relative text-center">
-                <div class=" custom-btn btn-7 flex items-center justify-between">
+                <div class="custom-btn btn-7 flex items-center justify-between">
                   <span>
                     <ion-icon name="filing"></ion-icon>
                     <p class="caption">Bidding History</p>
                     <ion-icon name="return-right"></ion-icon>
                   </span>
                 </div>
-
               </li>
             </ul>
             <hr class="my-4" />
 
-            <ul class="relative m-0 list-none px-[0.2rem]" data-te-sidenav-menu-ref>
+            <ul
+              class="relative m-0 list-none px-[0.2rem]"
+              data-te-sidenav-menu-ref
+            >
               <li class="relative text-center">
-                <div class=" custom-btn btn-7 flex items-center justify-between">
+                <div class="custom-btn btn-7 flex items-center justify-between">
                   <span>
                     <ion-icon name="card"></ion-icon>
                     <p class="caption">Transactions</p>
                     <ion-icon name="return-right"></ion-icon>
                   </span>
                 </div>
-
               </li>
             </ul>
             <hr class="my-4" />
-            <ul class="relative m-0 list-none px-[0.2rem]" data-te-sidenav-menu-ref>
+            <ul
+              class="relative m-0 list-none px-[0.2rem]"
+              data-te-sidenav-menu-ref
+            >
               <li class="relative text-center">
-                <div class=" custom-btn btn-7 flex items-center justify-between">
-                  <router-link @click="close('outside')" :to="{ name: 'support' }">
+                <div class="custom-btn btn-7 flex items-center justify-between">
+                  <router-link
+                    @click="close('outside')"
+                    :to="{ name: 'support' }"
+                  >
                     <span>
                       <ion-icon name="help-circle"></ion-icon>
                       <p class="caption">Support</p>
                       <ion-icon name="return-right"></ion-icon>
-                    </span> </router-link>
-
+                    </span>
+                  </router-link>
                 </div>
-
               </li>
             </ul>
-
-
-
-
-
-
-
-
-
-
-
-
           </nav>
           <!-- Sidenav -->
 
           <!-- Toggler -->
           <div class="flex items-center justify-center">
-            <button style="background-color: #372065;"
+            <button
+              style="background-color: #372065"
               class="inline-block rounded bg-primary px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-primary-700 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-800 active:shadow-lg"
-              data-te-sidenav-toggle-ref data-te-target="#sidenav-6" aria-controls="#sidenav-6" aria-haspopup="true">
+              data-te-sidenav-toggle-ref
+              data-te-target="#sidenav-6"
+              aria-controls="#sidenav-6"
+              aria-haspopup="true"
+            >
               <span class="block [&>svg]:h-5 [&>svg]:w-5 [&>svg]:text-white">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
-                  <path fill-rule="evenodd"
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="h-5 w-5"
+                >
+                  <path
+                    fill-rule="evenodd"
                     d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z"
-                    clip-rule="evenodd" />
+                    clip-rule="evenodd"
+                  />
                 </svg>
               </span>
             </button>
@@ -181,13 +223,13 @@
           </div>
         </div>
 
-        <div class="bid-container flex  justify-center items-center gap-2">
+        <div class="bid-container flex justify-center items-center gap-2">
           <ion-icon name="cash"></ion-icon>
           <p>127 bids</p>
         </div>
       </div>
     </OnClickOutside>
-    <hr class="seperator" />
+    <!-- <hr class="seperator" /> -->
   </div>
 </template>
 
@@ -203,16 +245,12 @@ function close() {
 }
 
 onMounted(() => {
-
-
   // sticky filters
   init_sticky_nav();
   // close nav on click outside
 
   initTE({ Select });
   initTE({ Sidenav });
-
-
 });
 </script>
 
@@ -223,12 +261,11 @@ export default {
     return {
       min: 1,
       max: 100,
-
     };
   },
   mounted() {
     //  alert(this.page_title)
-    console.log(this.page_title)
+    console.log(this.page_title);
   },
 
   methods: {
@@ -252,16 +289,12 @@ export default {
   font-weight: 600;
   margin-left: 2rem;
   color: #372065;
-
 }
-
 
 .bid-container {
   font-size: 1.7rem;
   font-weight: 400;
   color: #fff;
-
-
 }
 
 .custom-btn {
@@ -276,7 +309,8 @@ export default {
   transition: all 0.3s ease;
   position: relative;
   display: inline-block;
-  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5), 7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+    7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
   outline: none;
 
   a {
@@ -322,11 +356,9 @@ export default {
   right: 0;
   bottom: 0;
   background: #8b58ffa0;
-  box-shadow:
-    -7px -7px 20px 0px rgba(255, 255, 255, .9),
-    -4px -4px 5px 0px rgba(255, 255, 255, .9),
-    7px 7px 20px 0px rgba(0, 0, 0, .2),
-    4px 4px 5px 0px rgba(0, 0, 0, .3);
+  box-shadow: -7px -7px 20px 0px rgba(255, 255, 255, 0.9),
+    -4px -4px 5px 0px rgba(255, 255, 255, 0.9),
+    7px 7px 20px 0px rgba(0, 0, 0, 0.2), 4px 4px 5px 0px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
 }
 
@@ -360,11 +392,9 @@ export default {
   left: 0;
   top: 0;
   background: #8b58ffa0;
-  box-shadow:
-    -7px -7px 20px 0px rgba(255, 255, 255, .9),
-    -4px -4px 5px 0px rgba(255, 255, 255, .9),
-    7px 7px 20px 0px rgba(0, 0, 0, .2),
-    4px 4px 5px 0px rgba(0, 0, 0, .3);
+  box-shadow: -7px -7px 20px 0px rgba(255, 255, 255, 0.9),
+    -4px -4px 5px 0px rgba(255, 255, 255, 0.9),
+    7px 7px 20px 0px rgba(0, 0, 0, 0.2), 4px 4px 5px 0px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
 }
 
@@ -398,7 +428,6 @@ export default {
 
   p {
     margin-left: -40%;
-
   }
 
   ion-icon {
@@ -406,12 +435,9 @@ export default {
   }
 }
 
-
-
 .backdrop {
   display: none;
 }
-
 
 .sticky {
   position: fixed;
@@ -465,7 +491,7 @@ export default {
   border-right: 4px solid #806cb2;
   background-color: rgb(253 252 255);
   backdrop-filter: blur(2px);
-  padding-bottom: .5rem;
+  padding-bottom: 0.5rem;
   width: 320px !important;
   transition: all 0.7s cubic-bezier(0.53, -0.57, 0.37, 1.44) 0s !important;
 }
@@ -500,7 +526,10 @@ export default {
   padding-right: 3.5rem;
   backdrop-filter: blur(9px);
   box-shadow: 0 2px 10px;
-  background: linear-gradient(94deg, rgba(111, 65, 215, 0.01726628151260501) 0%, rgba(58, 34, 100, 0.8828125) 100%);
-
+  background: linear-gradient(
+    94deg,
+    rgba(111, 65, 215, 0.01726628151260501) 0%,
+    rgba(58, 34, 100, 0.8828125) 100%
+  );
 }
 </style>

@@ -1,4 +1,5 @@
 <template>
+  <div class="footer-main">
   <section class="first-curve">
 		<div class="page-top-icon">
 		  <ion-icon class="footer-icon" name="compass"></ion-icon>
@@ -86,6 +87,7 @@
       </div>
     </div>
   </footer>
+  </div>
 </template>
 
 <script>
@@ -95,6 +97,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.footer-main{
+  margin-top:-4rem;
+}
 section {
 	position: relative !important;
 }

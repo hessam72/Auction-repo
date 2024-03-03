@@ -66,6 +66,7 @@ export default {
 
 .main-content {
   width: 80%;
+  margin-bottom:5rem;
   // padding-top: 3rem;
 }
 </style>

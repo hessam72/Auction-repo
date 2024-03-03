@@ -11,6 +11,7 @@ import bookmarks from "../pages/user/bookmarks.vue";
 import challenges from "../pages/user/challenges.vue";
 import support from "../pages/user/support.vue";
 import unpaidWins from "../pages/user/unpaid_wins.vue";
+import buy_it_now from "../pages/user/buy_it_now.vue";
 import profile from "../pages/user/profile.vue";
 
 import auth from "../pages/auth/login_singup.vue";
@@ -56,8 +57,7 @@ const router = createRouter({
             name: "user-index",
             component: UserIndex,
             // meta: { isGuest: true },
-            children: [
-                {
+            children: [{
                     path: "",
                     name: "profile",
                     component: profile,
@@ -67,12 +67,17 @@ const router = createRouter({
                     name: "bookmarks",
                     component: bookmarks,
                 },
-                 {
+                {
                     path: "challenges",
                     name: "challenges",
                     component: challenges,
-                }, 
-                 {
+                },
+                {
+                    path: "buy_it_now",
+                    name: "buy_it_now",
+                    component: buy_it_now,
+                },
+                {
                     path: "support",
                     name: "support",
                     component: support,
@@ -102,7 +107,7 @@ const router = createRouter({
 });
 // sessionStorage.clear();
 
-router.beforeEach(function (to, from, next) {
+router.beforeEach(function(to, from, next) {
     next();
 });
 
