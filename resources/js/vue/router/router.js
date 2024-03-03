@@ -9,6 +9,7 @@ import winners from "../pages/public/winners/index.vue";
 import UserIndex from "../pages/user/index.vue";
 import bookmarks from "../pages/user/bookmarks.vue";
 import challenges from "../pages/user/challenges.vue";
+import support from "../pages/user/support.vue";
 import unpaidWins from "../pages/user/unpaid_wins.vue";
 import profile from "../pages/user/profile.vue";
 
@@ -65,10 +66,16 @@ const router = createRouter({
                     path: "bookmarks",
                     name: "bookmarks",
                     component: bookmarks,
-                }, {
+                },
+                 {
                     path: "challenges",
                     name: "challenges",
                     component: challenges,
+                }, 
+                 {
+                    path: "support",
+                    name: "support",
+                    component: support,
                 },
                 {
                     path: "unpaid-wins",
