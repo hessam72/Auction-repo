@@ -2,7 +2,7 @@
   <div>
   <single-nav></single-nav>
   <bread-crumps v-bind:history="history" :current="current"></bread-crumps>
-  <menu-section :x="x" :page_title="page_title"></menu-section>
+  <menu-section :page_title="page_title"></menu-section>
   <div class="main-section flex">
     <user-info></user-info>
     <div class="main-content">
@@ -33,18 +33,27 @@ export default {
         {
           name: "Home",
           url: "/vue/v1"
+        }, 
+        {
+          name: "User",
+          url: "/vue/v1/user"
         },
 
       ],
       current: "user"
     }
   },
+  
   watch: {
-    // '$route'(to, from) {
-    //   this.page_title = to.name;
-    //   console.log(this.page_title + "first")
+    '$route'(to, from) {
+      this.current=to.name;
+      this.page_title=to.name;
 
-    // }
+    }
+  },
+  created(){
+  this.current = this.$route.name;
+  this.page_title = this.$route.name;
   },
   components: {
     breadCrumps,
@@ -59,7 +68,7 @@ export default {
 <style lang="scss" scoped>
 .main-section {
   position: relative;
-  z-index: 2;
+  z-index: 5;
   margin-bottom: 4rem;
 
 }

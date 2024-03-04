@@ -264,7 +264,7 @@ import {
 } from "@headlessui/vue";
 import { ExclamationTriangleIcon } from "@heroicons/vue/24/outline";
 
-const open = ref(true);
+const open = ref(false);
 </script>
 <script>
 import { Input, Offcanvas, Ripple, initTE } from "tw-elements";

@@ -1,7 +1,10 @@
 <template>
+
+
+
     <div class="challenges">
-
-        <div class="challenge-container flex flex-col relative">
+      
+        <div class="challenge-container card flex flex-col relative">
             <div class="challenge-header">
                 <div>
                     <h3 class="head">Daily challenge</h3>
@@ -43,7 +46,7 @@
         </div>
 
 
-  <div class="challenge-container flex flex-col relative">
+        <div class="challenge-container card flex flex-col relative">
             <div class="challenge-header">
                 <div>
                     <h3 class="head">Daily challenge</h3>
@@ -85,7 +88,7 @@
         </div>
 
 
-  <div class="challenge-container flex flex-col relative">
+        <div class="challenge-container card flex flex-col relative">
             <div class="challenge-header">
                 <div>
                     <h3 class="head">Daily challenge</h3>
@@ -127,7 +130,7 @@
         </div>
 
 
-  <div class="challenge-container flex flex-col relative">
+        <div class="challenge-container card flex flex-col relative">
             <div class="challenge-header">
                 <div>
                     <h3 class="head">Daily challenge</h3>
@@ -169,7 +172,7 @@
         </div>
 
 
-  <div class="challenge-container flex flex-col relative">
+        <div class="challenge-container card flex flex-col relative">
             <div class="challenge-header">
                 <div>
                     <h3 class="head">Daily challenge</h3>
@@ -240,6 +243,75 @@ export default {
             show_more: false,
             show_more2: false,
         }
+    },
+    mounted() {
+        var cards = $('.card');
+
+        cards.each((index, card) => {
+            $(card).prepend("<div class='shineLayer'></div>")
+        });
+
+        $(".card").mousemove(function (event) {
+
+            var card = this;
+            var mouseCoord = {
+                x: event.offsetX,
+                y: event.offsetY
+            };
+
+            //cleanup
+            mouseCoord.x = mouseCoord.x < 0 ? 0 : mouseCoord.x;
+            mouseCoord.x = mouseCoord.x > $(card).width() ? $(card).width() : mouseCoord.x;
+            mouseCoord.y = mouseCoord.y < 0 ? 0 : mouseCoord.y;
+            mouseCoord.y = mouseCoord.y > $(card).height() ? $(card).height() : mouseCoord.y;
+
+
+            var transformCard = "scale3d(1.08, 1.08, 1.08) perspective(700px)";
+            transformCard += " ";
+            //rotateX between -9 and +9
+            transformCard += "rotateX(" + ((((mouseCoord.y / $(card).height()) * 18) - 9)) + "deg)";
+            transformCard += " ";
+            //rotateY between -13 and +13
+            transformCard += "rotateY(" + ((((mouseCoord.x / $(card).width()) * 26) - 13) * -1) + "deg)";
+
+            transformCard += " ";
+            //translateX between -3 and +3
+            transformCard += "translateX(" + (((mouseCoord.x / $(card).width()) * 6) - 3) + "px)";
+            transformCard += " ";
+            //translateY between -5 and +5
+            transformCard += "translateY(" + (((mouseCoord.y / $(card).height()) * 10) - 5) + "px)";
+
+            $(card).css("transform", transformCard);
+
+            //rotateX between -5 and +5
+            var transformCardImage = "rotateX(" + ((((mouseCoord.y / $(card).height()) * 10) - 5) * -1) + "deg)";
+            transformCardImage += " ";
+            //rotateX between -13 and +13
+            transformCardImage += "rotateY(" + ((((mouseCoord.x / $(card).width()) * 26) - 13) * -1) + "deg)";
+            $(card).find("img").css("transform", transformCardImage);
+
+            //opacity of ShineLayer between 0.1 and 0.4
+            var backgroundShineLayerOpacity = ((mouseCoord.y / $(card).height()) * 0.3) + 0.1;
+            //bottom=0deg; left=90deg; top=180deg; right=270deg;
+            var backgroundShineLayerDegree = (Math.atan2(mouseCoord.y - ($(card).height() / 2), mouseCoord.x - ($(card).width() / 2)) * 180 / Math.PI) - 90;
+            backgroundShineLayerDegree = backgroundShineLayerDegree < 0 ? backgroundShineLayerDegree += 360 : backgroundShineLayerDegree
+            var backgroundShineLayer = "linear-gradient(" + backgroundShineLayerDegree + "deg, rgba(255,255,255," + backgroundShineLayerOpacity + ") 0%, rgba(255,255,255,0) 80%)";
+            $(card).find(".shineLayer").css("background", backgroundShineLayer);
+        });
+
+        $(".card").mouseenter(function (event) {
+            $(".card").addClass("blur");
+            $(this).removeClass("blur");
+        });
+
+        $(".card").mouseleave(function (event) {
+            var card = this;
+            $(card).css("transform", "scale3d(1, 1, 1)");
+            $(card).find("img").css("transform", "");
+            $(card).find(".shineLayer").css("background", "linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 80%)");
+
+            $(".card").removeClass("blur");
+        });
     },
     methods: {
         loadData($state) {
@@ -420,10 +492,12 @@ aside:after {
     padding: 2rem 2rem;
     box-shadow: 0px 3px 13px #666;
 
-	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-	background-size: 400% 400%;
-	animation: gradient 15s ease infinite;
-	color: #fff;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    color: #fff;
+    cursor: pointer;
+    transition: all .3s ease;
 
     .challenge-header {
         div {
@@ -438,7 +512,7 @@ aside:after {
                 // color: #000;
                 font-weight: 700;
                 text-shadow: 0 6px 5px #d778e66b;
-                font-size: 1.4rem;
+                font-size: 1.3rem;
             }
 
             .date {
@@ -476,17 +550,26 @@ aside:after {
         font-weight: 500;
     }
 }
-@keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+
+.challenge-container:hover {
+    scale: 1.03;
+
 }
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 .count-down {
     gap: 0.5rem;
     font-size: 1.7rem;
@@ -500,8 +583,64 @@ aside:after {
 .challenges {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    row-gap: 3rem;
+    row-gap: 4rem;
     column-gap: 4rem;
     padding: 3rem 4rem;
+    margin-top: 3rem;
+}
+
+
+//  card hover effect
+
+
+.card-section {
+    margin: 15px 0 20px 0;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-section>h1 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.card-section>h4 {
+    color: #999;
+    margin-top: 3px;
+    margin-bottom: 6px;
+}
+
+.card-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+  
+    // overflow: hidden;
+   
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2), 0 0 5px rgba(0, 0, 0, 0.15);
+    transform: scale3d(1, 1, 1);
+    transition: all 0.2s ease-out, filter 0.75s ease-out;
+
+    filter: grayscale(0.1) saturate(95%) brightness(95%) contrast(90%);
+}
+
+.card:hover {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 0, 0, 0.3);
+    filter: grayscale(0) saturate(101%) brightness(100%) contrast(100%);
+
+}
+
+
+.card>.shineLayer {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 80%);
+    transition: all 0.2s ease-out;
 }
 </style>
