@@ -57,7 +57,7 @@
 .loader::before {
     width: 32px;
     height: 32px;
-    border-color:  #7846dc #7846dc transparent transparent;
+    border-color: #7846dc #7846dc transparent transparent;
     animation: rotation 1.5s linear infinite;
 }
 
