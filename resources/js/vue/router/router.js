@@ -12,6 +12,7 @@ import challenges from "../pages/user/challenges.vue";
 import support from "../pages/user/support.vue";
 import unpaidWins from "../pages/user/unpaid_wins.vue";
 import buy_it_now from "../pages/user/buy_it_now.vue";
+import wins_and_shipping from "../pages/user/wins&shipping.vue";
 import profile from "../pages/user/profile.vue";
 
 import auth from "../pages/auth/login_singup.vue";
@@ -86,6 +87,10 @@ const router = createRouter({
                     path: "unpaid-wins",
                     name: "unpaidWins",
                     component: unpaidWins,
+                },{
+                    path: "wins&shipping",
+                    name: "wins&shipping",
+                    component: wins_and_shipping,
                 },
             ],
         },

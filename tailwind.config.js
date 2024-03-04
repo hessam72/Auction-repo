@@ -14,7 +14,7 @@ export default {
         "./resources/js/vue/**/*.vue",
         "./src/**/*.{vue,js,ts,jsx,tsx}",
         "./node_modules/tw-elements/dist/js/**/*.js",
-        "./node_modules/tw-elements/dist/js/*.js"
+        "./node_modules/tw-elements/dist/js/*.js",
     ],
 
     theme: {
@@ -24,7 +24,6 @@ export default {
             },
         },
     },
-
-    plugins: [forms,
-        require("tw-elements/dist/plugin.cjs")],
+    darkMode: "class",
+    plugins: [forms, require("tw-elements/dist/plugin.cjs")],
 };

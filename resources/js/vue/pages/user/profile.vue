@@ -28,6 +28,7 @@
         <div class="profile-container">
             <div class="section-head">
                 <h2>Edit Profile</h2>
+                <hr class="header-hr" />
             </div>
             <div class="edit-form">
                 <div class="edit-row under_line">
@@ -65,17 +66,17 @@
 export default {
     mounted() {
         $("button").click(function () {
-           
+
             var target = $(this);
             if (target.hasClass("done")) {
                 // Do nothing
-               
+
             } else {
                 target.addClass("processing");
                 setTimeout(function () {
                     target.removeClass("processing");
                     target.addClass("done");
-                }, 2200); 
+                }, 2200);
                 setTimeout(function () {
                     target.removeClass("done");
                 }, 4000);
@@ -86,10 +87,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.header-hr {
+    height: 4px;
+    background: linear-gradient(99deg, rgb(176 141 255 / 78%) 0%, rgba(45, 20, 89, 0.8744091386554622) 100%);
+    border: none;
+    border-radius: 30px;
+    margin-top: 0.8rem;
+}
+
 .header-container {
-    background-color: #eee;
+    background-color: #9f95b1;
     padding: 2rem;
     box-shadow: 1px 3px 15px #666;
+    color: #ffff;
+
 }
 
 .header-section {
@@ -98,13 +109,17 @@ export default {
     font-size: 1.5rem;
     font-weight: 500;
 
+
     .icon {
-        border-right: 3px solid #666;
+        border-right: 3px solid #fff;
         padding-right: 1rem;
+
     }
 
     ion-icon {
         font-size: 5.5rem;
+        filter: drop-shadow(5px 5px 5px #c17aff);
+        color: #fff;
     }
 }
 
@@ -122,21 +137,19 @@ export default {
     align-items: center;
     gap: 2rem;
 
+
     .edit-row {
         display: flex;
-        align-items: center;
+        align-items: start;
         justify-content: space-between;
-        width: 40%;
+        width: 60%;
         position: relative;
-        padding-bottom: 1rem;
+
+        flex-direction: row;
 
 
 
         // submit style
-
-
-
-
 
         // ----------
         @keyframes spin {
@@ -158,7 +171,7 @@ export default {
             appearance: none;
             -moz-appearance: none;
             -webkit-appearance: none;
-         
+
             padding: 0;
             width: 250px;
             height: 50px;
@@ -168,7 +181,7 @@ export default {
             cursor: pointer;
             overflow: hidden;
             margin: auto;
-    margin-top: 2rem;
+            margin-top: 2rem;
         }
 
         .spin {
@@ -265,16 +278,19 @@ export default {
             border-radius: 10px;
             width: 75%;
             padding: 1rem;
+            
         }
 
         textarea {
             border: none;
             border-radius: 10px;
             width: 75%;
+            background: #fff;
         }
 
 
     }
+
 
     .under_line::after {
         content: "";
@@ -290,6 +306,54 @@ export default {
 
     .under_line:hover::after {
         transform: scale(1);
-    }
+    }  
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder{
+    font-size: 1.1rem;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 97%;
+
+    outline: none;
+    border: none;
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    color: #474747;
+    font: 12px Century Gothic;
+
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+    border: 1px solid #c17aff;
+    -webkit-box-shadow: 21px 18px 7px 1px rgba(173, 173, 173, 0.82);
+    -moz-box-shadow: 21px 18px 7px 1px rgba(173, 173, 173, 0.82);
+    box-shadow: 21px 18px 7px 1px rgba(173, 173, 173, 0.82);
+    transform: scale(1.05);
+    -webkit-transition: ease .6s;
+    -moz-transition: ease .6s;
+    -o-transition: ease .6s;
+    -ms-transition: ease .6s;
+    transition: ease .6s;
+
+}
+// input[type="text"]:focus,
+// input[type="email"]:focus,
+// textarea:focus,
+//  .under_line::after {
+//         transform: scale(1);
+//     }
+
+textarea {
+    height: 200px;
+
+    width: 97%;
 }
 </style>

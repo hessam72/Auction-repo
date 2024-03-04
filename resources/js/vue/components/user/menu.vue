@@ -1,236 +1,174 @@
 <template>
-  <div>
-    <OnClickOutside @trigger="close('outside')">
-      <div id="menu" class="search-section-container temp-sticky">
-        <div class="filter-container">
-          <nav
-            id="sidenav-6"
-            class="fixed left-0 top-0 z-[1035] h-screen w-60 -translate-x-full overflow-hidden bg-white shadow-[0_4px_12px_0_rgba(0,0,0,0.07),_0_2px_4px_rgba(0,0,0,0.05)] data-[te-sidenav-hidden='false']:translate-x-0 dark:bg-zinc-800"
-            data-te-sidenav-init
-            data-te-sidenav-hidden="false"
-            data-te-sidenav-accordion="true"
-          >
-            <ul
-              class="relative m-0 list-none px-[0.2rem]"
-              data-te-sidenav-menu-ref
-            >
-              <li class="relative">
-                <a
-                  class="filter-header flex h-12 cursor-pointer items-center truncate rounded-[5px] px-6 py-4 text-[0.875rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
-                  data-te-sidenav-link-ref
-                >
-                  <span
-                    class="mr-4 [&>svg]:h-4 [&>svg]:w-4 [&>svg]:text-gray-400 dark:[&>svg]:text-gray-300"
-                  >
-                    <ion-icon style="color: #333" name="home"></ion-icon>
-                  </span>
-                  <span style="color: #333">Menu</span>
-                </a>
-              </li>
-            </ul>
-            <hr class="my-4" />
-            <ul
-              class="relative m-0 list-none px-[0.2rem]"
-              data-te-sidenav-menu-ref
-            >
-              <li class="relative text-center">
-                <div class="custom-btn btn-7 flex items-center justify-between">
-                  <router-link
-                    @click="close('outside')"
-                    :to="{ name: 'profile' }"
-                  >
-                    <span>
-                      <ion-icon name="home"></ion-icon>
-                      <p class="caption">Profile</p>
-                      <ion-icon name="return-right"></ion-icon>
-                    </span>
-                  </router-link>
-                </div>
-              </li>
-            </ul>
-            <hr class="my-4" />
-            <ul
-              class="relative m-0 list-none px-[0.2rem]"
-              data-te-sidenav-menu-ref
-            >
-              <li class="relative text-center">
-                <div class="custom-btn btn-7 flex items-center justify-between">
-                  <router-link
-                    @click="close('outside')"
-                    :to="{ name: 'challenges' }"
-                  >
-                    <span>
-                      <ion-icon name="gift"></ion-icon>
-                      <p class="caption">Challenges</p>
-                      <ion-icon name="return-right"></ion-icon>
-                    </span>
-                  </router-link>
-                </div>
-              </li>
-            </ul>
-            <hr class="my-4" />
-            <ul
-              class="relative m-0 list-none px-[0.2rem]"
-              data-te-sidenav-menu-ref
-            >
-              <li class="relative text-center">
-                <div class="custom-btn btn-7 flex items-center justify-between">
+  <OnClickOutside @trigger="close('outside')">
+    <div id="menu" class="search-section-container temp-sticky">
+      <!-- <div class="filter-container"> -->
+        <!-- <nav id="sidenav-6"
+          class="fixed left-0 top-0 z-[1035] h-screen w-60 -translate-x-full overflow-hidden bg-white shadow-[0_4px_12px_0_rgba(0,0,0,0.07),_0_2px_4px_rgba(0,0,0,0.05)] data-[te-sidenav-hidden='false']:translate-x-0 dark:bg-zinc-800"
+          data-te-sidenav-init data-te-sidenav-hidden="false" data-te-sidenav-accordion="true">
+          <ul class="relative m-0 list-none px-[0.2rem]" data-te-sidenav-menu-ref>
+            <li class="relative">
+              <a class="filter-header flex h-12 cursor-pointer items-center truncate rounded-[5px] px-6 py-4 text-[0.875rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
+                data-te-sidenav-link-ref>
+                <span class="mr-4 [&>svg]:h-4 [&>svg]:w-4 [&>svg]:text-gray-400 dark:[&>svg]:text-gray-300">
+                  <ion-icon style="color: #333" name="home"></ion-icon>
+                </span>
+                <span style="color: #333">Menu</span>
+              </a>
+            </li>
+          </ul>
+          <hr class="my-4" />
+          <ul class="relative m-0 list-none px-[0.2rem]" data-te-sidenav-menu-ref>
+            <li class="relative text-center">
+              <div class="custom-btn btn-7 flex items-center justify-between">
+                <router-link @click="close('outside')" :to="{ name: 'profile' }">
                   <span>
-                    <router-link
-                      @click="close('outside')"
-                      :to="{ name: 'bookmarks' }"
-                    >
-                      <ion-icon name="bookmark"></ion-icon>
-                      <p class="caption">Bookmarks</p>
-                      <ion-icon name="return-right"></ion-icon>
-                    </router-link>
-                  </span>
-                </div>
-              </li>
-            </ul>
-            <hr class="my-4" />
-            <ul
-              class="relative m-0 list-none px-[0.2rem]"
-              data-te-sidenav-menu-ref
-            >
-              <li class="relative text-center">
-                <div class="custom-btn btn-7 flex items-center justify-between">
-                  <span>
-                    <ion-icon name="cash"></ion-icon>
-                    <p class="caption">Buy Bids</p>
+                    <ion-icon name="home"></ion-icon>
+                    <p class="caption">Profile</p>
                     <ion-icon name="return-right"></ion-icon>
                   </span>
-                </div>
-              </li>
-            </ul>
-            <hr class="my-4" />
-            <ul
-              class="relative m-0 list-none px-[0.2rem]"
-              data-te-sidenav-menu-ref
-            >
-              <li class="relative text-center">
-                <div class="custom-btn btn-7 flex items-center justify-between">
+                </router-link>
+              </div>
+            </li>
+          </ul>
+          <hr class="my-4" />
+          <ul class="relative m-0 list-none px-[0.2rem]" data-te-sidenav-menu-ref>
+            <li class="relative text-center">
+              <div class="custom-btn btn-7 flex items-center justify-between">
+                <router-link @click="close('outside')" :to="{ name: 'challenges' }">
+                  <span>
+                    <ion-icon name="gift"></ion-icon>
+                    <p class="caption">Challenges</p>
+                    <ion-icon name="return-right"></ion-icon>
+                  </span>
+                </router-link>
+              </div>
+            </li>
+          </ul>
+          <hr class="my-4" />
+          <ul class="relative m-0 list-none px-[0.2rem]" data-te-sidenav-menu-ref>
+            <li class="relative text-center">
+              <div class="custom-btn btn-7 flex items-center justify-between">
+                <span>
+                  <router-link @click="close('outside')" :to="{ name: 'bookmarks' }">
+                    <ion-icon name="bookmark"></ion-icon>
+                    <p class="caption">Bookmarks</p>
+                    <ion-icon name="return-right"></ion-icon>
+                  </router-link>
+                </span>
+              </div>
+            </li>
+          </ul>
+          <hr class="my-4" />
+          <ul class="relative m-0 list-none px-[0.2rem]" data-te-sidenav-menu-ref>
+            <li class="relative text-center">
+              <div class="custom-btn btn-7 flex items-center justify-between">
+                <span>
+                  <ion-icon name="cash"></ion-icon>
+                  <p class="caption">Buy Bids</p>
+                  <ion-icon name="return-right"></ion-icon>
+                </span>
+              </div>
+            </li>
+          </ul>
+          <hr class="my-4" />
+          <ul class="relative m-0 list-none px-[0.2rem]" data-te-sidenav-menu-ref>
+            <li class="relative text-center">
+              <div class="custom-btn btn-7 flex items-center justify-between">
+                <router-link @click="close('outside')" :to="{ name: 'wins&shipping' }">
                   <span>
                     <ion-icon name="trophy"></ion-icon>
-                    <p class="caption">Unpaid Wins</p>
+                    <p class="caption">Wins & shipping</p>
                     <ion-icon name="return-right"></ion-icon>
                   </span>
-                </div>
-              </li>
-            </ul>
-            <hr class="my-4" />
-            <ul
-              class="relative m-0 list-none px-[0.2rem]"
-              data-te-sidenav-menu-ref
-            >
-              <li class="relative text-center">
-                <div class="custom-btn btn-7 flex items-center justify-between">
-                  <router-link
-                    @click="close('outside')"
-                    :to="{ name: 'buy_it_now' }"
-                  >
-                    <span>
-                      <ion-icon name="cart"></ion-icon>
-                      <p class="caption">Buy It Now</p>
-                      <ion-icon name="return-right"></ion-icon>
-                    </span>
-                  </router-link>
-                </div>
-              </li>
-            </ul>
-            <hr class="my-4" />
-            <ul
-              class="relative m-0 list-none px-[0.2rem]"
-              data-te-sidenav-menu-ref
-            >
-              <li class="relative text-center">
-                <div class="custom-btn btn-7 flex items-center justify-between">
+                </router-link>
+              </div>
+            </li>
+          </ul>
+          <hr class="my-4" />
+          <ul class="relative m-0 list-none px-[0.2rem]" data-te-sidenav-menu-ref>
+            <li class="relative text-center">
+              <div class="custom-btn btn-7 flex items-center justify-between">
+                <router-link @click="close('outside')" :to="{ name: 'buy_it_now' }">
                   <span>
-                    <ion-icon name="filing"></ion-icon>
-                    <p class="caption">Bidding History</p>
+                    <ion-icon name="cart"></ion-icon>
+                    <p class="caption">Buy It Now</p>
                     <ion-icon name="return-right"></ion-icon>
                   </span>
-                </div>
-              </li>
-            </ul>
-            <hr class="my-4" />
+                </router-link>
+              </div>
+            </li>
+          </ul>
+          <hr class="my-4" />
+          <ul class="relative m-0 list-none px-[0.2rem]" data-te-sidenav-menu-ref>
+            <li class="relative text-center">
+              <div class="custom-btn btn-7 flex items-center justify-between">
+                <span>
+                  <ion-icon name="filing"></ion-icon>
+                  <p class="caption">Bidding History</p>
+                  <ion-icon name="return-right"></ion-icon>
+                </span>
+              </div>
+            </li>
+          </ul>
+          <hr class="my-4" />
 
-            <ul
-              class="relative m-0 list-none px-[0.2rem]"
-              data-te-sidenav-menu-ref
-            >
-              <li class="relative text-center">
-                <div class="custom-btn btn-7 flex items-center justify-between">
+          <ul class="relative m-0 list-none px-[0.2rem]" data-te-sidenav-menu-ref>
+            <li class="relative text-center">
+              <div class="custom-btn btn-7 flex items-center justify-between">
+                <span>
+                  <ion-icon name="card"></ion-icon>
+                  <p class="caption">Transactions</p>
+                  <ion-icon name="return-right"></ion-icon>
+                </span>
+              </div>
+            </li>
+          </ul>
+          <hr class="my-4" />
+          <ul class="relative m-0 list-none px-[0.2rem]" data-te-sidenav-menu-ref>
+            <li class="relative text-center">
+              <div class="custom-btn btn-7 flex items-center justify-between">
+                <router-link @click="close('outside')" :to="{ name: 'support' }">
                   <span>
-                    <ion-icon name="card"></ion-icon>
-                    <p class="caption">Transactions</p>
+                    <ion-icon name="help-circle"></ion-icon>
+                    <p class="caption">Support</p>
                     <ion-icon name="return-right"></ion-icon>
                   </span>
-                </div>
-              </li>
-            </ul>
-            <hr class="my-4" />
-            <ul
-              class="relative m-0 list-none px-[0.2rem]"
-              data-te-sidenav-menu-ref
-            >
-              <li class="relative text-center">
-                <div class="custom-btn btn-7 flex items-center justify-between">
-                  <router-link
-                    @click="close('outside')"
-                    :to="{ name: 'support' }"
-                  >
-                    <span>
-                      <ion-icon name="help-circle"></ion-icon>
-                      <p class="caption">Support</p>
-                      <ion-icon name="return-right"></ion-icon>
-                    </span>
-                  </router-link>
-                </div>
-              </li>
-            </ul>
-          </nav>
-          <!-- Sidenav -->
+                </router-link>
+              </div>
+            </li>
+          </ul>
+        </nav> -->
+        <!-- Sidenav -->
 
-          <!-- Toggler -->
-          <div class="flex items-center justify-center">
-            <button
-              style="background-color: #372065"
-              class="inline-block rounded bg-primary px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-primary-700 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-800 active:shadow-lg"
-              data-te-sidenav-toggle-ref
-              data-te-target="#sidenav-6"
-              aria-controls="#sidenav-6"
-              aria-haspopup="true"
-            >
-              <span class="block [&>svg]:h-5 [&>svg]:w-5 [&>svg]:text-white">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  class="h-5 w-5"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </span>
-            </button>
-            <div class="user-section-title">
-              <h2>{{ page_title }}Dashboard</h2>
-            </div>
+        <!-- Toggler -->
+        <!-- <div class="flex items-center justify-center">
+          <button style="background-color: #372065"
+            class="inline-block rounded bg-primary px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-primary-700 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-800 active:shadow-lg"
+            data-te-sidenav-toggle-ref data-te-target="#sidenav-6" aria-controls="#sidenav-6" aria-haspopup="true">
+            <span class="block [&>svg]:h-5 [&>svg]:w-5 [&>svg]:text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
+                <path fill-rule="evenodd"
+                  d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z"
+                  clip-rule="evenodd" />
+              </svg>
+            </span>
+          </button>
+         
+        </div> -->
+      <!-- </div> -->
+ <div class="user-section-title">
+            <h2>{{ format_page_title(page_title) }}</h2>
           </div>
-        </div>
-
-        <div class="bid-container flex justify-center items-center gap-2">
-          <ion-icon name="cash"></ion-icon>
-          <p>127 bids</p>
-        </div>
+      <div class="bid-container flex justify-center items-center gap-2">
+        <ion-icon name="cash"></ion-icon>
+        <p>127 bids</p>
       </div>
-    </OnClickOutside>
-    <!-- <hr class="seperator" /> -->
-  </div>
+    </div>
+  </OnClickOutside>
+  <!-- <hr class="seperator" /> -->
+  <!-- new sidebar -->
+
+ 
 </template>
 
 <script setup>
@@ -243,10 +181,40 @@ import { init_sticky_nav } from "@/modules/utilities/sticky.js";
 function close() {
   document.getElementById("sidenav-6").style.transform = "translateX(-100%)";
 }
-
+const props = defineProps({
+  page_title: String,
+});
 onMounted(() => {
-  // sticky filters
-  init_sticky_nav();
+  // // sticky filters
+  // init_sticky_nav();
+  // sidebar
+  $(".toggle").click(function () {
+    $(".navigation").toggleClass("active");
+  });
+
+  $(".theme").click(function () {
+    $(".theme").removeClass("select");
+    $(this).addClass("select");
+  });
+
+  $(".dark").click(function () {
+    $("body").removeClass("lighted");
+    $("body").removeClass("purpled");
+    $("body").addClass("darked");
+  });
+
+  $(".light").click(function () {
+    $("body").removeClass("purpled");
+    $("body").removeClass("darked");
+    $("body").addClass("lighted");
+  });
+
+  $(".purple").click(function () {
+    $("body").removeClass("lighted");
+    $("body").removeClass("darked");
+    $("body").addClass("purpled");
+  });
+
   // close nav on click outside
 
   initTE({ Select });
@@ -256,7 +224,7 @@ onMounted(() => {
 
 <script>
 export default {
-  props: ["page_title", "x"],
+  props: ["page_title"],
   data() {
     return {
       min: 1,
@@ -272,6 +240,12 @@ export default {
     open_filters() {
       // document.getElementById('backdrop').style.display = "block";
     },
+    format_page_title(val) {
+      var title = val.replace(/_/g, " ");
+      title = title.replace(/&/g, " & ");
+      title = title.charAt(0).toUpperCase() + title.slice(1);
+      return title;
+    },
   },
   emits: [],
   props: [],
@@ -285,10 +259,12 @@ export default {
 }
 
 .user-section-title {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 600;
-  margin-left: 2rem;
-  color: #372065;
+  letter-spacing: 1.1px;
+  margin-left: 1rem;
+  color: #fff;
+  text-shadow: 0 3px 2px #523d77;
 }
 
 .bid-container {
@@ -526,10 +502,9 @@ export default {
   padding-right: 3.5rem;
   backdrop-filter: blur(9px);
   box-shadow: 0 2px 10px;
-  background: linear-gradient(
-    94deg,
-    rgba(111, 65, 215, 0.01726628151260501) 0%,
-    rgba(58, 34, 100, 0.8828125) 100%
-  );
+  background: linear-gradient(94deg,
+      rgba(111, 65, 215, 0.01726628151260501) 0%,
+      rgba(58, 34, 100, 0.8828125) 100%);
 }
 </style>
+
