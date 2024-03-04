@@ -136,7 +136,7 @@ export default {
 </style>
 <style lang="scss" scoped>
 .hero-container {
-    height: 60vh;
+    height: 70vh;
 }
 .slider {
     height: 100%;
@@ -150,7 +150,7 @@ export default {
         rgb(41, 24, 76) 7%,
         rgb(77 115 173) 100%
     );
-    padding-top: 6rem;
+    padding-top: 4rem;
 }
 .header {
     margin-bottom: 2rem;

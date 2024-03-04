@@ -17,18 +17,20 @@
           class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start"
         >
           <div class="flex flex-shrink-0 items-center">
+            <router-link style="  background-color:rgba(255, 255, 255, 0);" :to="{name:'home'}">
             <img
               class="h-8 w-auto"
               src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
               alt="Your Company"
             />
+          </router-link>
           </div>
           <div class="hidden sm:ml-6 sm:block">
             <div class="flex space-x-4">
-              <a
+              <router-link
                 v-for="item in navigation"
                 :key="item.name"
-                :href="item.href"
+                :to="{name:item.route_name}"
                 :class="[
                   item.current
                     ? 'bg-gray-900 text-white'
@@ -36,8 +38,8 @@
                   'rounded-md px-3 py-2 text-sm font-medium',
                 ]"
                 :aria-current="item.current ? 'page' : undefined"
-                >{{ item.name }}</a
-              >
+                >{{ item.name }}</router-link>
+              
             </div>
           </div>
         </div>
@@ -184,10 +186,11 @@ import {
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/vue/24/outline";
 
 const navigation = [
-  { name: "Dashboard", href: "#", current: true },
-  { name: "Team", href: "#", current: false },
-  { name: "Projects", href: "#", current: false },
-  { name: "Calendar", href: "#", current: false },
+{ name: "Auctions", route_name:"auctions",href: "#", current: false },
+  { name: "Winners", route_name:"winners", href:"#", current: false },
+  { name: "Help", route_name:"help",href: "#", current: false },
+  { name: "Dashboard",route_name:"profile" ,href: "#", current: false },
+
 ];
 </script>
   <script>
@@ -247,5 +250,11 @@ padding-top: 1.4rem;
 }
 .nav-content{
   width: 95%;
+}
+
+.router-link-exact-active{
+    color:#fff ;
+   background-color:#4e11ad;
+    
 }
 </style>

@@ -176,44 +176,16 @@ import { onMounted } from "vue";
 import { Select, initTE } from "tw-elements";
 import { Sidenav } from "tw-elements";
 import { OnClickOutside } from "@vueuse/components";
-import { init_sticky_nav } from "@/modules/utilities/sticky.js";
 
 function close() {
-  document.getElementById("sidenav-6").style.transform = "translateX(-100%)";
+  // document.getElementById("sidenav-6").style.transform = "translateX(-100%)";
 }
 const props = defineProps({
   page_title: String,
 });
 onMounted(() => {
-  // // sticky filters
-  // init_sticky_nav();
-  // sidebar
-  $(".toggle").click(function () {
-    $(".navigation").toggleClass("active");
-  });
-
-  $(".theme").click(function () {
-    $(".theme").removeClass("select");
-    $(this).addClass("select");
-  });
-
-  $(".dark").click(function () {
-    $("body").removeClass("lighted");
-    $("body").removeClass("purpled");
-    $("body").addClass("darked");
-  });
-
-  $(".light").click(function () {
-    $("body").removeClass("purpled");
-    $("body").removeClass("darked");
-    $("body").addClass("lighted");
-  });
-
-  $(".purple").click(function () {
-    $("body").removeClass("lighted");
-    $("body").removeClass("darked");
-    $("body").addClass("purpled");
-  });
+ 
+ 
 
   // close nav on click outside
 
@@ -262,9 +234,18 @@ export default {
   font-size: 1.6rem;
   font-weight: 600;
   letter-spacing: 1.1px;
-  margin-left: 1rem;
+  padding-left: 1rem;
   color: #fff;
   text-shadow: 0 3px 2px #523d77;
+  background-color: #c17aff;
+  clip-path: polygon(0 0, 73% 0, 100% 100%, 0 100%);
+  padding-right: 5rem;
+  position: absolute;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  left: 0;
+
 }
 
 .bid-container {
@@ -497,7 +478,7 @@ export default {
 .search-section-container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: right;
   padding: 1rem;
   padding-right: 3.5rem;
   backdrop-filter: blur(9px);

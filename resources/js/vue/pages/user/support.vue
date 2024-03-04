@@ -3,12 +3,13 @@
     <button @click="open = true" class="new-btn">New Ticket</button>
   </div>
   <div class="support-main-container flex">
-    <div class="tickets-group flex flex-col items-center justify-start">
-      <button class="ticket-group-btn">Pending</button>
-      <button class="ticket-group-btn">Answered</button>
-      <button class="ticket-group-btn">Closed</button>
+    <div class="tickets-group flex flex-col items-start justify-start">
+      <button :class = "(show_tab===1)?'active-btn':''" @click="show_tab=1" class="ticket-group-btn">Pending</button>
+      <button :class = "(show_tab===2)?'active-btn':''" @click="show_tab=2" class="ticket-group-btn">Answered</button>
+      <button :class = "(show_tab===3)?'active-btn':''" @click="show_tab=3" class="ticket-group-btn">Closed</button>
     </div>
-    <div class="tickets-list flex flex-col items-center justify-start">
+    <Transition mode="out-in">
+    <div v-if="show_tab===1" class="tickets-list flex flex-col items-start justify-start">
       <div
         data-te-offcanvas-toggle
         data-te-target="#offcanvasRight"
@@ -58,6 +59,60 @@
         <p>i want to do somthing great here and need....</p>
       </div>
     </div>
+    <div v-else-if="show_tab===2" class="tickets-list flex flex-col items-start justify-start">
+      <div
+        data-te-offcanvas-toggle
+        data-te-target="#offcanvasRight"
+        aria-controls="offcanvasRight"
+        data-te-ripple-init
+        data-te-ripple-color="light"
+        class="ticket-item flex justify-between items-center"
+      >
+        <p>#1</p>
+        <p>How to win?</p>
+        <p>i want to do somthing great here and need....</p>
+      </div>
+
+      <div
+        data-te-offcanvas-toggle
+        data-te-target="#offcanvasRight"
+        aria-controls="offcanvasRight"
+        data-te-ripple-init
+        data-te-ripple-color="light"
+        class="ticket-item flex justify-between items-center"
+      >
+        <p>#3</p>
+        <p>How to win?</p>
+        <p>i want to do somthing great here and need....</p>
+      </div>
+      <div
+        data-te-offcanvas-toggle
+        data-te-target="#offcanvasRight"
+        aria-controls="offcanvasRight"
+        data-te-ripple-init
+        data-te-ripple-color="light"
+        class="ticket-item flex justify-between items-center"
+      >
+        <p>#4</p>
+        <p>How to win?</p>
+        <p>i want to do somthing great here and need....</p>
+      </div>
+    </div>
+    <div v-else-if="show_tab===3" class="tickets-list flex flex-col items-start justify-start">
+      <div
+        data-te-offcanvas-toggle
+        data-te-target="#offcanvasRight"
+        aria-controls="offcanvasRight"
+        data-te-ripple-init
+        data-te-ripple-color="light"
+        class="ticket-item flex justify-between items-center"
+      >
+        <p>#4</p>
+        <p>How to win?</p>
+        <p>i want to do somthing great here and need....</p>
+      </div>
+    </div>
+  </Transition>
   </div>
 
   <!-- details modal  -->
@@ -262,6 +317,7 @@ import {
   TransitionChild,
   TransitionRoot,
 } from "@headlessui/vue";
+
 import { ExclamationTriangleIcon } from "@heroicons/vue/24/outline";
 
 const open = ref(false);
@@ -269,6 +325,16 @@ const open = ref(false);
 <script>
 import { Input, Offcanvas, Ripple, initTE } from "tw-elements";
 export default {
+  data() {
+    return {
+      
+      show_tab:1,
+    };
+  },
+  methods: {
+   
+  
+  },
   mounted() {
     initTE({ Offcanvas, Ripple, Input });
   },
@@ -283,14 +349,19 @@ export default {
 
 .new-btn,
 .ticket-group-btn {
-  background-color: #351d62;
+  background-color: #fff;
   padding: 0.7rem 2rem;
-  color: #fff;
+  color: #351d62;
   font-weight: 500;
   border-radius: 5px;
   transition: all 0.3s ease;
 }
-
+.active-btn{
+  background-color: #351d62;
+  color:#fff;
+  transform: translate(10px, -10px);
+  box-shadow: -10px 10px 10px 0px #606060 !important;
+}
 .new-btn:hover {
   border-color: #7384ff;
   transform: translate(10px, -10px);
@@ -299,6 +370,7 @@ export default {
 
 .support-main-container {
   width: 100%;
+  transition:all .3s ease;
 }
 
 .tickets-group {
@@ -317,11 +389,13 @@ export default {
   width: 75%;
   padding: 2rem;
   gap: 2rem;
+
 }
 
 .ticket-item {
+  position:relative;
   width: 90%;
-  margin: auto;
+  margin: 0 auto;
   justify-content: left;
   gap: 2rem;
   padding: 0.8rem 1.5rem;
@@ -398,5 +472,63 @@ export default {
     font-size: 1rem;
     letter-spacing: 0.7px;
   }
+}
+
+.slide-up-enter-active,
+.slide-up-leave-active {
+  transition: all 0.25s ease-out;
+}
+
+.slide-up-enter-from {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.slide-up-leave-to {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+
+
+
+.ticket-item::before,
+.ticket-item::after {
+  content: '';
+  height: 2rem;
+  width: 2rem;
+  position: absolute;
+  transition: all .35s ease;
+  opacity: 0;
+}
+
+.ticket-item::before {
+  content: '';
+  right: -.5rem;
+  top: -.5rem;
+  border-top: 3px solid #3f8914d0;
+  border-right: 3px solid #2e640fc7;
+  transform: translate(-100%, 50%);
+  border-top-right-radius:10px;
+}
+
+.ticket-item:after {
+  content: '';
+  left: -.5rem;
+  bottom: -.5rem;
+  border-bottom: 3px solid #2e640fb0;
+  border-left: 3px solid #3f8914c0;
+  transform: translate(100%, -50%);
+  border-bottom-left-radius:10px;
+
+}
+
+.ticket-item:hover:before,
+.ticket-item:hover:after{
+  transform: translate(0,0);
+  opacity: 1;
+}
+
+.ticket-item:hover {
+  color: #3DA35D;
 }
 </style>

@@ -2,9 +2,9 @@
     <nav class="bg-grey-light w-full rounded-md">
         <ol class="list-reset flex">
             
-            <li v-for="(item , index) in history">
-                <a :href="item.url"
-                    class="text-primary transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600">{{item.name}}</a>
+            <li v-for="(item , index) in history" :key="index">
+                <router-link :to="item.url"
+                    class="text-primary transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600">{{item.name}}</router-link>
            
                     <span class="mx-2 text-neutral-500 dark:text-neutral-400">></span>
                 </li>

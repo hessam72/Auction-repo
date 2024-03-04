@@ -12,7 +12,7 @@
   </div>
 
 
-  <fixed-buttons></fixed-buttons>
+  <!-- <fixed-buttons></fixed-buttons> -->
 </div>
 </template>
 

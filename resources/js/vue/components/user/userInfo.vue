@@ -7,7 +7,7 @@
                 <ul>
                     <li>
                         <a href="#">
-                            <ion-icon class="icon" name="help-circle"></ion-icon>
+                            <ion-icon class="icon" name="help-circleddd"></ion-icon>
                             <span class="title">Menu</span>
                         </a>
                     </li>
@@ -47,38 +47,7 @@
                             <span class="title">Support</span>
                         </router-link>
                     </li>
-                    <li>
-                        <router-link @click="close('outside')" :to="{ name: 'profile' }">
-                            <ion-icon class="icon" name="home"></ion-icon>
-                            <span class="title">Profile</span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link @click="close('outside')" :to="{ name: 'profile' }">
-                            <ion-icon class="icon" name="home"></ion-icon>
-                            <span class="title">Profile</span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link @click="close('outside')" :to="{ name: 'support' }">
-                            <ion-icon class="icon" name="help-circle"></ion-icon>
-                            <span class="title">Support</span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link @click="close('outside')" :to="{ name: 'profile' }">
-                            <ion-icon class="icon" name="home"></ion-icon>
-                            <span class="title">Profile</span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link @click="close('outside')" :to="{ name: 'profile' }">
-                            <ion-icon class="icon" name="home"></ion-icon>
-                            <span class="title">Profile</span>
-                        </router-link>
-                    </li>
-
-
+                   
                 </ul>
 
             </div>
@@ -129,7 +98,7 @@ onMounted(() => {
     // init_sticky_nav();
     // sidebar
     $(".toggle").click(function () {
-        console.log(8228)
+        console.log(82628)
         $(".navigation").toggleClass("active");
     });
 
@@ -138,7 +107,11 @@ onMounted(() => {
 
 });
 </script>
-
+<script>
+export default {
+   
+}
+</script>
 <style lang="scss" scoped>
 .edit-icon{
     font-size: 1.5rem;
@@ -397,7 +370,9 @@ onMounted(() => {
     margin-bottom: 40px;
     background: none;
 }
-
+.navigation ul li:not(:first-child){
+    margin:2rem 0;
+}
 .navigation ul li:not(:first-child):hover::before,
 .navigation ul li:not(:first-child):hover::after {
     content: "";
@@ -463,35 +438,6 @@ onMounted(() => {
 
 /* Themes */
 
-.theme-picker {
-    position: absolute;
-    top: 32px;
-    right: 45px;
-    background-color: #fefefe;
-    padding: 6.5px 25px;
-    border-radius: 26px;
-    display: flex;
-    box-shadow: 0 0 25px 5px rgba(0, 0, 0, 0.15);
-}
-
-.theme {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    background: #000;
-    margin: 0 18px;
-    border: 3px solid transparent;
-    box-shadow: 1px 4px 12px 4px rgba(0, 0, 0, 0.15);
-    cursor: pointer;
-}
-
-.dark {
-    background-color: #222;
-}
-
-.light {
-    background-color: #fefefe;
-}
 
 .purple {
     background-color: #c17aff;
@@ -610,5 +556,16 @@ body.purpled .toggle::before {
     position: absolute;
     bottom: 15px;
     right: 30px;
+}
+
+ .router-link-exact-active{
+    color:#fff !important;
+    ion-icon{
+        color: #fff;
+  background-color: #c17aff;
+  border-radius: 50px;
+  padding: .4rem;
+  margin-left: 0rem !important;
+    }
 }
 </style>

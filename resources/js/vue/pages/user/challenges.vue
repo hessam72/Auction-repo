@@ -1,10 +1,49 @@
 <template>
-
-
-
     <div class="challenges">
       
-        <div class="challenge-container card flex flex-col relative">
+        <div class="challenge-container  flex flex-col relative">
+            <div class="challenge-header">
+                <div>
+                    <h3 class="head">Daily challenge</h3>
+                    <h3 class="date">02/14/23</h3>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing eque nulla et dolorem,
+                    eanima sint similique sitferendis!</p>
+
+            </div>
+            <div class="challenge-prize">
+
+                <div id='content'>
+                    <aside class='ribbon'>
+                        <h2 style="font-size: 1.3rem;
+                         letter-spacing: 1.2px;">150 Free Bids</h2>
+                    </aside>
+
+                </div>
+            </div>
+            <div class="progress flex justify-between items-center">
+                <p>remaining:</p>
+                <p>140/500</p>
+            </div>
+            <div class="challenge-timer flex justify-between items-center">
+                <ion-icon name="alarm"></ion-icon>
+
+                <vue-countdown :time="13 * 60 * 60 * 1000" v-slot="{ hours, minutes, seconds }">
+                    <div class="count-down flex items-center">
+                        <div class="number">{{ hours }}</div>
+                        <div class="seperator">:</div>
+                        <div class="number">{{ minutes }}</div>
+                        <div class="seperator">:</div>
+                        <div class="number">{{ seconds }}</div>
+                    </div>
+                </vue-countdown>
+
+            </div>
+
+        </div>
+
+
+        <div class="challenge-container  flex flex-col relative">
             <div class="challenge-header">
                 <div>
                     <h3 class="head">Daily challenge</h3>
@@ -46,7 +85,7 @@
         </div>
 
 
-        <div class="challenge-container card flex flex-col relative">
+        <div class="challenge-container  flex flex-col relative">
             <div class="challenge-header">
                 <div>
                     <h3 class="head">Daily challenge</h3>
@@ -88,7 +127,7 @@
         </div>
 
 
-        <div class="challenge-container card flex flex-col relative">
+        <div class="challenge-container  flex flex-col relative">
             <div class="challenge-header">
                 <div>
                     <h3 class="head">Daily challenge</h3>
@@ -130,49 +169,7 @@
         </div>
 
 
-        <div class="challenge-container card flex flex-col relative">
-            <div class="challenge-header">
-                <div>
-                    <h3 class="head">Daily challenge</h3>
-                    <h3 class="date">02/14/23</h3>
-                </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing eque nulla et dolorem,
-                    eanima sint similique sitferendis!</p>
-
-            </div>
-            <div class="challenge-prize">
-
-                <div id='content'>
-                    <aside class='ribbon'>
-                        <h2 style="font-size: 1.3rem;
-    letter-spacing: 1.2px;">150 Free Bids</h2>
-                    </aside>
-
-                </div>
-            </div>
-            <div class="progress flex justify-between items-center">
-                <p>remaining:</p>
-                <p>140/500</p>
-            </div>
-            <div class="challenge-timer flex justify-between items-center">
-                <ion-icon name="alarm"></ion-icon>
-
-                <vue-countdown :time="13 * 60 * 60 * 1000" v-slot="{ hours, minutes, seconds }">
-                    <div class="count-down flex items-center">
-                        <div class="number">{{ hours }}</div>
-                        <div class="seperator">:</div>
-                        <div class="number">{{ minutes }}</div>
-                        <div class="seperator">:</div>
-                        <div class="number">{{ seconds }}</div>
-                    </div>
-                </vue-countdown>
-
-            </div>
-
-        </div>
-
-
-        <div class="challenge-container card flex flex-col relative">
+        <div class="challenge-container  flex flex-col relative">
             <div class="challenge-header">
                 <div>
                     <h3 class="head">Daily challenge</h3>
@@ -245,73 +242,7 @@ export default {
         }
     },
     mounted() {
-        var cards = $('.card');
-
-        cards.each((index, card) => {
-            $(card).prepend("<div class='shineLayer'></div>")
-        });
-
-        $(".card").mousemove(function (event) {
-
-            var card = this;
-            var mouseCoord = {
-                x: event.offsetX,
-                y: event.offsetY
-            };
-
-            //cleanup
-            mouseCoord.x = mouseCoord.x < 0 ? 0 : mouseCoord.x;
-            mouseCoord.x = mouseCoord.x > $(card).width() ? $(card).width() : mouseCoord.x;
-            mouseCoord.y = mouseCoord.y < 0 ? 0 : mouseCoord.y;
-            mouseCoord.y = mouseCoord.y > $(card).height() ? $(card).height() : mouseCoord.y;
-
-
-            var transformCard = "scale3d(1.08, 1.08, 1.08) perspective(700px)";
-            transformCard += " ";
-            //rotateX between -9 and +9
-            transformCard += "rotateX(" + ((((mouseCoord.y / $(card).height()) * 18) - 9)) + "deg)";
-            transformCard += " ";
-            //rotateY between -13 and +13
-            transformCard += "rotateY(" + ((((mouseCoord.x / $(card).width()) * 26) - 13) * -1) + "deg)";
-
-            transformCard += " ";
-            //translateX between -3 and +3
-            transformCard += "translateX(" + (((mouseCoord.x / $(card).width()) * 6) - 3) + "px)";
-            transformCard += " ";
-            //translateY between -5 and +5
-            transformCard += "translateY(" + (((mouseCoord.y / $(card).height()) * 10) - 5) + "px)";
-
-            $(card).css("transform", transformCard);
-
-            //rotateX between -5 and +5
-            var transformCardImage = "rotateX(" + ((((mouseCoord.y / $(card).height()) * 10) - 5) * -1) + "deg)";
-            transformCardImage += " ";
-            //rotateX between -13 and +13
-            transformCardImage += "rotateY(" + ((((mouseCoord.x / $(card).width()) * 26) - 13) * -1) + "deg)";
-            $(card).find("img").css("transform", transformCardImage);
-
-            //opacity of ShineLayer between 0.1 and 0.4
-            var backgroundShineLayerOpacity = ((mouseCoord.y / $(card).height()) * 0.3) + 0.1;
-            //bottom=0deg; left=90deg; top=180deg; right=270deg;
-            var backgroundShineLayerDegree = (Math.atan2(mouseCoord.y - ($(card).height() / 2), mouseCoord.x - ($(card).width() / 2)) * 180 / Math.PI) - 90;
-            backgroundShineLayerDegree = backgroundShineLayerDegree < 0 ? backgroundShineLayerDegree += 360 : backgroundShineLayerDegree
-            var backgroundShineLayer = "linear-gradient(" + backgroundShineLayerDegree + "deg, rgba(255,255,255," + backgroundShineLayerOpacity + ") 0%, rgba(255,255,255,0) 80%)";
-            $(card).find(".shineLayer").css("background", backgroundShineLayer);
-        });
-
-        $(".card").mouseenter(function (event) {
-            $(".card").addClass("blur");
-            $(this).removeClass("blur");
-        });
-
-        $(".card").mouseleave(function (event) {
-            var card = this;
-            $(card).css("transform", "scale3d(1, 1, 1)");
-            $(card).find("img").css("transform", "");
-            $(card).find(".shineLayer").css("background", "linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 80%)");
-
-            $(".card").removeClass("blur");
-        });
+      
     },
     methods: {
         loadData($state) {
@@ -593,54 +524,4 @@ aside:after {
 //  card hover effect
 
 
-.card-section {
-    margin: 15px 0 20px 0;
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.card-section>h1 {
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
-.card-section>h4 {
-    color: #999;
-    margin-top: 3px;
-    margin-bottom: 6px;
-}
-
-.card-list {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-}
-
-.card {
-  
-    // overflow: hidden;
-   
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2), 0 0 5px rgba(0, 0, 0, 0.15);
-    transform: scale3d(1, 1, 1);
-    transition: all 0.2s ease-out, filter 0.75s ease-out;
-
-    filter: grayscale(0.1) saturate(95%) brightness(95%) contrast(90%);
-}
-
-.card:hover {
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 0, 0, 0.3);
-    filter: grayscale(0) saturate(101%) brightness(100%) contrast(100%);
-
-}
-
-
-.card>.shineLayer {
-    height: 100%;
-    width: 100%;
-    background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 80%);
-    transition: all 0.2s ease-out;
-}
 </style>
