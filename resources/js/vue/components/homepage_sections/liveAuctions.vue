@@ -1,5 +1,5 @@
 <template>
-    <div class="section-seperator">
+    <div id="auctions" class="section-seperator">
         <div class="divider"></div>
         <span class="and">
             <ion-icon name="ribbon"></ion-icon>

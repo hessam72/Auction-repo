@@ -1,14 +1,19 @@
 <template>
  <div class="nav-container">
-      <nav-bar-section></nav-bar-section>
+      <nav-bar-section :is_single_nav></nav-bar-section>
     </div>
 </template>
 <script>
 import navBarSection from "./navbar.vue";
 
 export default{
+    data() {
+        return {
+            is_single_nav:true,
+        }
+    },
     components: {
-   
+        
         navBarSection
     },
 }

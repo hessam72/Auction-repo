@@ -1,6 +1,6 @@
 <template>
-    <div style="position: relative">
-        <div class="hero-container flex w-full relative">
+    <div id="hero-section" style="position: relative">
+        <div id="head-line" class="hero-container flex w-full relative">
             <!-- slider -->
             <!-- <div class="slider w-full absolute z-10">
                 <vueper-slides
