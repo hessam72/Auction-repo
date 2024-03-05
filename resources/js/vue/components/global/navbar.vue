@@ -1,4 +1,5 @@
-<template>
+<template><header>
+
   <Disclosure as="nav" class="main-nav bg-gray-50" v-slot="{ open }">
     <div class="nav-content mx-auto  px-2 sm:px-6 lg:px-8">
       <div class="relative flex h-16 items-center justify-between">
@@ -16,13 +17,14 @@
         <div
           class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start"
         >
-          <div class="flex flex-shrink-0 items-center">
+          <div id="brand" class="flex flex-shrink-0 items-center">
             <router-link style="  background-color:rgba(255, 255, 255, 0);" :to="{name:'home'}">
-            <img
+            <img id="logo"
               class="h-8 w-auto"
               src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
               alt="Your Company"
             />
+            <h2 id="word-mark"></h2>
           </router-link>
           </div>
           <div class="hidden sm:ml-6 sm:block">
@@ -170,7 +172,7 @@
       </div>
     </DisclosurePanel>
   </Disclosure>
- 
+ </header>
 </template>
   
   <script setup>

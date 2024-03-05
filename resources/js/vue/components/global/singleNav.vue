@@ -20,7 +20,7 @@ export default{
         padding-bottom: 1.5rem;
     }
    
-    background: rgb(38, 23, 72);
-    background: linear-gradient(90deg, #261748 0%, rgb(85, 114, 169) 100%);
+    background: var(--color-primary);
+    background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%)
 }
 </style>

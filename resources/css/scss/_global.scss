@@ -64,7 +64,7 @@ a {
 
 .mother-container {
     background: rgb(177, 194, 219);
-    background: linear-gradient( 90deg, rgb(177, 194, 219) 0%, rgb(232, 232, 232) 41%);
+    background: linear-gradient(90deg, var(--color-secondary-tint-2), rgb(232, 232, 232) 41%);
 }
 
 .backdrop {

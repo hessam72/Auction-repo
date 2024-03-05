@@ -1,8 +1,7 @@
 <template>
-    <div>
-  <p id="error">B<span>I</span>D</p>
-  <p id="code">no<span>w</span></p>
-  <p id="code">4<span>0</span><span>4</span></p>
+    <div class="logo">
+  <span class="hrs">%20 off</span>
+  <span class="open">300 bids package</span>
 </div>
 </template>
 <script>
@@ -11,45 +10,98 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-div {
-  font-size: 4rem;
-  font-family: 'Monoton', cursive;
+
+@font-face {
+    font-family: 'neontubes';
+    src: url('https://bitbucket.org/kennethjensen/webfonts/raw/fc13c1cb430a0e9462da56fe3f421ff7af72db71/neontubes/neontubes-webfont.eot');
+    src: url('https://bitbucket.org/kennethjensen/webfonts/raw/fc13c1cb430a0e9462da56fe3f421ff7af72db71/neontubes/neontubes-webfont.eot?#iefix') format('embedded-opentype'),
+         url('https://bitbucket.org/kennethjensen/webfonts/raw/fc13c1cb430a0e9462da56fe3f421ff7af72db71/neontubes/neontubes-webfont.woff2') format('woff2'),
+         url('https://bitbucket.org/kennethjensen/webfonts/raw/fc13c1cb430a0e9462da56fe3f421ff7af72db71/neontubes/neontubes-webfont.woff') format('woff'),
+         url('https://bitbucket.org/kennethjensen/webfonts/raw/fc13c1cb430a0e9462da56fe3f421ff7af72db71/neontubes/neontubes-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+$clr1: rgb(255,0,60);
+$clr2: rgb(38,149,255);
+
+body {
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  background: rgb(3,12,28);
+}
+
+.logo {
+  display: block;
+  position: absolute;
+    top: 50%;
+    left: 50%;
+  transform: translate(-50%,-50%);
+  width: 50vw;
+  height: auto;
+  font-family: "neontubes";
+  font-size: 16vw;
   text-align: center;
-  text-transform: uppercase;
-  text-shadow: 0 0 80px red,0 0 30px FireBrick,0 0 6px DarkRed;
-  color: red;
-}
-div p { margin:0; }
-#error:hover { text-shadow: 0 0 200px #ffffff,0 0 80px #008000,0 0 6px #0000ff; }
-#code:hover { text-shadow: 0 0 100px red,0 0 40px FireBrick,0 0 8px DarkRed; }
-#error {
-  color: #fff;
-  text-shadow: 0 0 80px #ffffff,0 0 30px #008000,0 0 6px #0000ff;
-}
-#error span {
-  animation: upper 11s linear infinite;
-}
-#code span:nth-of-type(2) {
-  animation: lower 10s linear infinite;
-}
-#code span:nth-of-type(1) {
-  text-shadow: none;
-  opacity:.4;
-}
-@keyframes upper {
-  0%,19.999%,22%,62.999%,64%, 64.999%,70%,100% {
-    opacity:.99; text-shadow: 0 0 80px #ffffff,0 0 30px #008000,0 0 6px #0000ff;
+  white-space: nowrap;
+  
+  span {
+    display: block;
+    position: relative;
+    transform: translateZ(0) translate3D(0,0,0);
+    backface-visibility: hidden;
+    will-change: opacity;
   }
-  20%,21.999%,63%,63.999%,65%,69.999% {
-    opacity:0.4; text-shadow: none; 
+  
+  .open {
+    transform: rotate(-1deg);
+    color: scale-color($clr1, $lightness: 85%);
+    text-shadow:
+      0 0 0 transparent,
+      0 0 10px $clr1,
+      /*0 5px 10px rgba(scale-color($clr1, $lightness: -80%),1),*/
+      0 0 20px rgba($clr1,.5),
+      0 0 40px rgba($clr1,1),
+      0 0 100px rgba($clr1,1),
+      0 0 200px rgba($clr1,1),
+      0 0 300px rgba($clr1,1),
+      0 0 500px rgba($clr1,1),
+      0 0 1000px rgba($clr1,1);
+    animation: blink 4s infinite alternate;
+  }
+  .hrs {
+    transform: rotate(1deg);
+    font-size: 11vw;
+    color: scale-color($clr2, $lightness: 80%);
+    text-shadow:
+      0 0 0 transparent,
+      /*0 5px 10px rgba(scale-color($clr2, $lightness: -80%),1),*/
+      0 0 10px $clr2,
+      0 0 20px rgba($clr2,.5),
+      0 0 40px rgba($clr2,1),
+      0 0 100px rgba($clr2,1),
+      0 0 200px rgba($clr2,1),
+      0 0 300px rgba($clr2,1),
+      0 0 500px rgba($clr2,1);
+    animation: buzz 0.01s infinite alternate;
   }
 }
-@keyframes lower {
-  0%,12%,18.999%,23%,31.999%,37%,44.999%,46%,49.999%,51%,58.999%,61%,68.999%,71%,85.999%,96%,100% {
-    opacity:0.99; text-shadow: 0 0 80px red,0 0 30px FireBrick,0 0 6px DarkRed;
+
+@keyframes buzz {
+  70% { opacity: 0.80; }
+}
+@keyframes blink {
+  40% { opacity: 1; }
+  42% { opacity: 0.8; }
+  43% { opacity: 1; }
+  45% { opacity: 0.2; }
+  46% { opacity: 1; }
+}
+
+@media screen and (min-width: 1000px) {
+  .logo {
+    width: 50%;
+    font-size: 6rem;
   }
-  19%,22.99%,32%,36.999%,45%,45.999%,50%,50.99%,59%,60.999%,69%,70.999%,86%,95.999% { 
-    opacity:0.4; text-shadow: none; 
-  }
+  .logo .hrs { font-size: 103px; }
 }
 </style>

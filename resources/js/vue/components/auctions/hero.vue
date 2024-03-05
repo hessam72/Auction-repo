@@ -19,17 +19,17 @@
             </div>
             <div class="hero-badge buy">Purchase It Now!</div>
             <div class="banner-content w-6/12">
-                <h1 class="anim-up-entrance header text-5xl text-slate-200">
-                    Our Special Offer
-                </h1>
-               
-<neon-header></neon-header>
-                <p class="sub-header text-1xl text-slate-200">
+               <!-- <h1 class=" header text-5xl text-slate-200"> -->
+                  
+   <neon-header class="header"></neon-header>
+                <!-- </h1> -->
+             
+                <!-- <p class="sub-header text-1xl text-slate-200">
                     It is a long established fact that a reader will be
                     distracted by the readable content of a page when looking at
                     its layout. The point of using Lorem Ipsum is that it has a
                     more-or-less normal distribution of letters.
-                </p>
+                </p> -->
                 <!-- <div class="flex gap-7 mt-8">
           <button
             class="transition ease-in-out bg-sky-500 hover:bg-sky-700 px-3 py-1.5 rounded text-slate-900 rounded-full"
@@ -78,7 +78,7 @@ export default {
 
 <style lang="scss">
 .anim-up-entrance {
-    animation: upEntrance 2s ease-out 0s 1 normal none;
+    animation: upEntrance 2s ease 0s 1 normal none;
 
 }
 
@@ -162,6 +162,7 @@ export default {
 .banner-content {
     margin: auto;
     text-align: center;
+    height: 15rem;
 }
 
 .vueperslides__parallax-wrapper {
@@ -176,16 +177,17 @@ export default {
 
 .content {
     background: rgb(77, 115, 173);
-    background: radial-gradient(circle, rgba(77, 115, 173, 0.4710477941176471) 0%, rgba(53, 29, 98, 1) 100%);
-    height: 100%;
+    background: radial-gradient(circle, var(--color-secondary) 0%, var(--color-primary) 100%);
+        height: 100%;
 }
 
 .header {
     margin-bottom: 2rem;
     letter-spacing: 0.1rem;
-    margin-top: 3.5rem;
+    margin-top: 1rem;
     font-weight: 800;
     text-shadow: 0 0.5px 7px #333;
+    line-height: 1.3;
 }
 
 .sub-header {
