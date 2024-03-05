@@ -230,13 +230,16 @@ export default {
 #Search{
   border-radius:40px;
   width: 20rem;
+ 
 
 }
 .search-label{
-  background-color: rgba(169, 174, 251, 0.77);
+  background-color: var(--color-primary);
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
-
+button{
+  color: #fff;
+}
 }
 .main-nav{
   // background: rgb(41,24,76);

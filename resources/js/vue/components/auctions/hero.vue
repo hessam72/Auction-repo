@@ -1,14 +1,6 @@
 <template>
     <div class="hero-container flex w-full relative">
-        <!-- slider -->
-        <!-- <div class="slider w-full absolute z-10">
-            <vueper-slides :bullets="false" :touchable="false" :infinite="true" fade :arrows="false" :pause-on-hover="false"
-                autoplay>
-               
-                <vueper-slide v-for="(slide, i) in slides" :key="i"  :title="slide.title"
-    :content="slide.content" :image="slide.image" />
-            </vueper-slides>
-        </div> -->
+     
 
         <div class="content w-full px-20 flex flex-col gap-7 py-14 z-20">
             <div class="hero-badge countdown">
@@ -30,6 +22,8 @@
                 <h1 class="anim-up-entrance header text-5xl text-slate-200">
                     Our Special Offer
                 </h1>
+               
+<neon-header></neon-header>
                 <p class="sub-header text-1xl text-slate-200">
                     It is a long established fact that a reader will be
                     distracted by the readable content of a page when looking at
@@ -46,12 +40,13 @@
             </div>
         </div>
     </div>
+    <link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
 </template>
 
 <script>
 import { VueperSlides, VueperSlide } from "vueperslides";
 import "vueperslides/dist/vueperslides.css";
-
+import NeonHeader from "./neon_header.vue"
 export default {
     data: () => ({
         slides: [
@@ -77,7 +72,7 @@ export default {
             // Other slides.
         ],
     }),
-    components: { VueperSlides, VueperSlide },
+    components: { VueperSlides, VueperSlide,NeonHeader },
 };
 </script>
 

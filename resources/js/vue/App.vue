@@ -36,6 +36,10 @@ export default {
 
 <style lang="scss">
 @import url("../../css/scss/main.scss");
+@import url("../../css/var/variables.css");
+
+
+
 .hide{
   display: none;
 }

@@ -4,7 +4,7 @@
     <hero-section></hero-section>
     <div class="winners-container flex flex-col">
         <div class="header">
-            <h1>Our Latest Winners</h1>
+            <h1 class="test_color">Our Latest Winners</h1>
         </div>
         <div class="box-container winners-list-container">
             <div class="box">
@@ -303,10 +303,11 @@
                     </div>
                 </div>
             </div>  
-            <InfiniteLoading @infinite="loadData" />
+            <inline-loading :is_loading_more></inline-loading>
+
         </div>
 
-
+   <InfiniteLoading @infinite="loadData" />
     </div>
   
 
@@ -656,4 +657,10 @@ export default {
         }
     }
 }
+// @import '../../../../../css/scss/variables'; 
+
+// .test_color{
+//     color:var(--primary-color) !important ;
+//     background-color:var(--primary-color)  !important;
+// }
 </style>

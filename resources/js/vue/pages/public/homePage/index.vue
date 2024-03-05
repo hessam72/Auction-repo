@@ -41,7 +41,7 @@ export default {
 .home-container {
     background: rgb(177, 194, 219);
     background: linear-gradient(90deg,
-            rgba(177, 194, 219, 1) 0%,
+            var(--color-secondary-tint-2),
             rgba(232, 232, 232, 1) 41%);
 }
 </style>

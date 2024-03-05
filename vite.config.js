@@ -3,6 +3,17 @@ import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
+    css: {
+        sourceMap: true,
+        loaderOptions: {
+          sass: {
+            data: `
+              @import "./resources/css/scss/_variables.scss";
+             
+            `,
+          },
+        },
+      },
     plugins: [
         vue({
             template: {
@@ -11,6 +22,7 @@ export default defineConfig({
                     isCustomElement: (tag) => ["ion-icon"].includes(tag),
                 },
             },
+          
         }),
         laravel({
             input: [
@@ -25,5 +37,6 @@ export default defineConfig({
     },
     define: {
         global: {},
-    }
+    },
+    
 });

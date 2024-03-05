@@ -10,7 +10,7 @@
   <div class="section-container">
     <h2 class="section-title">
       What our
-      <h2 style="display: inline; color: #6350d7">Clients say?</h2>
+      <h2 style="display: inline; color: var(  --color-secondary)">Clients say?</h2>
     </h2>
 
     <main>

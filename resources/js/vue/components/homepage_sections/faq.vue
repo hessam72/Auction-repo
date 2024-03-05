@@ -69,9 +69,10 @@
     </div>
 
     <div class="more-container">
+       <router-link :to="{name:'help'}">
       <button class="more-btn">
         More Questions? <ion-icon name="share-alt"></ion-icon>
-      </button>
+      </button> </router-link>
     </div>
   </div>
 </template>

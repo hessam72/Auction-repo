@@ -136,7 +136,7 @@ export default {
 </style>
 <style lang="scss" scoped>
 .hero-container {
-    height: 70vh;
+    height: 60vh;
 }
 .slider {
     height: 100%;
@@ -147,15 +147,15 @@ export default {
     // background: linear-gradient(90deg, rgba(41,24,76,1) 7%, rgba(77,115,173,0.14607841427586654) 100%);   height: 100%;
     background: linear-gradient(
         90deg,
-        rgb(41, 24, 76) 7%,
-        rgb(77 115 173) 100%
+        var(--color-primary),
+        var(--color-secondary)
     );
     padding-top: 4rem;
 }
 .header {
     margin-bottom: 2rem;
     letter-spacing: 0.1rem;
-    margin-top: 3.5rem;
+    margin-top: 6rem;
 }
 .sub-header {
     line-height: 1.9rem;
@@ -178,12 +178,12 @@ export default {
     font-size: 1.5rem;
     padding: 0.6rem 2rem;
     font-weight: 600;
-    background-color: #4c72ab;
-    box-shadow: 0 2px 10px #9977e1c4;
+    background-color: var(--color-secondary);
+    box-shadow: 0 2px 10px var(--color-primary-tint-4);
 }
 .seccoundary {
     color: #fff;
-    background-color: #4c72abb3;
+    background-color: var(--color-primary);
     padding: 0.6rem 1.5rem;
 }
 .parallax1 > use {
