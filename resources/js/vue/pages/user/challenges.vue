@@ -2,275 +2,177 @@
     <page-title :title="'Challenges'"></page-title>
 
     <div class="challenges">
-
-
         <div class="flip-card">
             <div class="flip-card-inner">
                 <div class="flip-card-front">
                     <p class="title">Place 50 Bids</p>
 
                     <div class="challenge-prize">
-
-                        <div id='content'>
-                            <aside class='ribbon'>
-                                <h2 style="font-size: 1.3rem;
-         letter-spacing: 1.2px;">Win 150 Bids</h2>
+                        <div id="content">
+                            <aside class="ribbon">
+                                <h2
+                                    style="
+                                        font-size: 1.3rem;
+                                        letter-spacing: 1.2px;
+                                    "
+                                >
+                                    Win 150 Bids
+                                </h2>
                             </aside>
+                        </div>
+                    </div>
 
-                        </div>
-                    </div>
-                    <vue-countdown :time="2 * 15 * 60 * 60 * 1000" v-slot="{ days ,hours, minutes, seconds }">
-                       
+                    <vue-countdown
+                        :time="2 * 15 * 60 * 60 * 1000"
+                        v-slot="{ days, hours, minutes, seconds }"
+                    >
                         <div id="countdown">
-                        <div id='tiles'>
-                            <span>{{ days }}</span>
-                            <span>{{hours}}</span>
-                            <span> {{minutes}}</span>
-                            <span> {{seconds}}</span>
+                            <div id="tiles">
+                                <span>{{ days }}</span>
+                                <span>{{ hours }}</span>
+                                <span> {{ minutes }}</span>
+                                <span> {{ seconds }}</span>
+                            </div>
+                            <div class="labels">
+                                <li>Days</li>
+                                <li>Hours</li>
+                                <li>Mins</li>
+                                <li>Secs</li>
+                            </div>
                         </div>
-                        <div class="labels">
-                            <li>Days</li>
-                            <li>Hours</li>
-                            <li>Mins</li>
-                            <li>Secs</li>
-                        </div>
-                    </div>
                     </vue-countdown>
-                   
                 </div>
                 <div class="flip-card-back">
                     <p class="title">How To Win</p>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel consequatur beatae dignissimos similique autem rerum pariatur dicta eligendi! Qui.</p>
-                </div>
-            </div>
-        </div>
-
-
-
-        <div class="challenge-container  flex flex-col relative">
-            <div class="challenge-header">
-                <div>
-                    <h3 class="head">Daily challenge</h3>
-                    <h3 class="date">02/14/23</h3>
-                </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing eque nulla et dolorem,
-                    eanima sint similique sitferendis!</p>
-
-            </div>
-            <div class="challenge-prize">
-
-                <div id='content'>
-                    <aside class='ribbon'>
-                        <h2 style="font-size: 1.3rem;
-                         letter-spacing: 1.2px;">150 Free Bids</h2>
-                    </aside>
-
-                </div>
-            </div>
-            <div class="progress flex justify-between items-center">
-                <p>remaining:</p>
-                <p>140/500</p>
-            </div>
-            <div class="challenge-timer flex justify-between items-center">
-                <ion-icon name="alarm"></ion-icon>
-
-                <vue-countdown :time="13 * 60 * 60 * 1000" v-slot="{ hours, minutes, seconds }">
-                    <div class="count-down flex items-center">
-                        <div class="number">{{ hours }}</div>
-                        <div class="seperator">:</div>
-                        <div class="number">{{ minutes }}</div>
-                        <div class="seperator">:</div>
-                        <div class="number">{{ seconds }}</div>
+                    <p>
+                        Lorem, ipsum dolor sit amet consectetur adipisicing
+                        elit. Vel consequatur beatae dignissimos similique autem
+                        rerum pariatur dicta eligendi! Qui.
+                    </p>
+                    <div class="progress flex justify-between items-center">
+                        <p>remaining:</p>
+                        <p>140/500</p>
                     </div>
-                </vue-countdown>
-
+                </div>
             </div>
-
         </div>
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <p class="title">Win 1 Auction</p>
 
-
-        <div class="challenge-container  flex flex-col relative">
-            <div class="challenge-header">
-                <div>
-                    <h3 class="head">Daily challenge</h3>
-                    <h3 class="date">02/14/23</h3>
-                </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing eque nulla et dolorem,
-                    eanima sint similique sitferendis!</p>
-
-            </div>
-            <div class="challenge-prize">
-
-                <div id='content'>
-                    <aside class='ribbon'>
-                        <h2 style="font-size: 1.3rem;
-    letter-spacing: 1.2px;">150 Free Bids</h2>
-                    </aside>
-
-                </div>
-            </div>
-            <div class="progress flex justify-between items-center">
-                <p>remaining:</p>
-                <p>140/500</p>
-            </div>
-            <div class="challenge-timer flex justify-between items-center">
-                <ion-icon name="alarm"></ion-icon>
-
-                <vue-countdown :time="13 * 60 * 60 * 1000" v-slot="{ hours, minutes, seconds }">
-                    <div class="count-down flex items-center">
-                        <div class="number">{{ hours }}</div>
-                        <div class="seperator">:</div>
-                        <div class="number">{{ minutes }}</div>
-                        <div class="seperator">:</div>
-                        <div class="number">{{ seconds }}</div>
+                    <div class="challenge-prize">
+                        <div id="content">
+                            <aside class="ribbon">
+                                <h2
+                                    style="
+                                        font-size: 1.3rem;
+                                        letter-spacing: 1.2px;
+                                    "
+                                >
+                                    Win 200 Bids
+                                </h2>
+                            </aside>
+                        </div>
                     </div>
-                </vue-countdown>
 
-            </div>
-
-        </div>
-
-
-        <div class="challenge-container  flex flex-col relative">
-            <div class="challenge-header">
-                <div>
-                    <h3 class="head">Daily challenge</h3>
-                    <h3 class="date">02/14/23</h3>
+                    <vue-countdown
+                        :time="2 * 15 * 60 * 60 * 1000"
+                        v-slot="{ days, hours, minutes, seconds }"
+                    >
+                        <div id="countdown">
+                            <div id="tiles">
+                                <span>{{ days }}</span>
+                                <span>{{ hours }}</span>
+                                <span> {{ minutes }}</span>
+                                <span> {{ seconds }}</span>
+                            </div>
+                            <div class="labels">
+                                <li>Days</li>
+                                <li>Hours</li>
+                                <li>Mins</li>
+                                <li>Secs</li>
+                            </div>
+                        </div>
+                    </vue-countdown>
                 </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing eque nulla et dolorem,
-                    eanima sint similique sitferendis!</p>
-
-            </div>
-            <div class="challenge-prize">
-
-                <div id='content'>
-                    <aside class='ribbon'>
-                        <h2 style="font-size: 1.3rem;
-    letter-spacing: 1.2px;">150 Free Bids</h2>
-                    </aside>
-
-                </div>
-            </div>
-            <div class="progress flex justify-between items-center">
-                <p>remaining:</p>
-                <p>140/500</p>
-            </div>
-            <div class="challenge-timer flex justify-between items-center">
-                <ion-icon name="alarm"></ion-icon>
-
-                <vue-countdown :time="13 * 60 * 60 * 1000" v-slot="{ hours, minutes, seconds }">
-                    <div class="count-down flex items-center">
-                        <div class="number">{{ hours }}</div>
-                        <div class="seperator">:</div>
-                        <div class="number">{{ minutes }}</div>
-                        <div class="seperator">:</div>
-                        <div class="number">{{ seconds }}</div>
+                <div class="flip-card-back">
+                    <p class="title">How To Win</p>
+                    <p>
+                        Lorem, ipsum dolor sit amet consectetur adipisicing
+                        elit. Vel consequatur beatae dignissimos similique autem
+                        rerum pariatur dicta eligendi! Qui.
+                    </p>
+                    <div class="progress flex justify-between items-center">
+                        <p>remaining:</p>
+                        <p>140/500</p>
                     </div>
-                </vue-countdown>
-
+                </div>
             </div>
-
         </div>
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <p class="title">Place 150 Bids</p>
 
-
-        <div class="challenge-container  flex flex-col relative">
-            <div class="challenge-header">
-                <div>
-                    <h3 class="head">Daily challenge</h3>
-                    <h3 class="date">02/14/23</h3>
-                </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing eque nulla et dolorem,
-                    eanima sint similique sitferendis!</p>
-
-            </div>
-            <div class="challenge-prize">
-
-                <div id='content'>
-                    <aside class='ribbon'>
-                        <h2 style="font-size: 1.3rem;
-    letter-spacing: 1.2px;">150 Free Bids</h2>
-                    </aside>
-
-                </div>
-            </div>
-            <div class="progress flex justify-between items-center">
-                <p>remaining:</p>
-                <p>140/500</p>
-            </div>
-            <div class="challenge-timer flex justify-between items-center">
-                <ion-icon name="alarm"></ion-icon>
-
-                <vue-countdown :time="13 * 60 * 60 * 1000" v-slot="{ hours, minutes, seconds }">
-                    <div class="count-down flex items-center">
-                        <div class="number">{{ hours }}</div>
-                        <div class="seperator">:</div>
-                        <div class="number">{{ minutes }}</div>
-                        <div class="seperator">:</div>
-                        <div class="number">{{ seconds }}</div>
+                    <div class="challenge-prize">
+                        <div id="content">
+                            <aside class="ribbon">
+                                <h2
+                                    style="
+                                        font-size: 1.3rem;
+                                        letter-spacing: 1.2px;
+                                    "
+                                >
+                                    Win 250 Bids
+                                </h2>
+                            </aside>
+                        </div>
                     </div>
-                </vue-countdown>
 
-            </div>
-
-        </div>
-
-
-        <div class="challenge-container  flex flex-col relative">
-            <div class="challenge-header">
-                <div>
-                    <h3 class="head">Daily challenge</h3>
-                    <h3 class="date">02/14/23</h3>
+                    <vue-countdown
+                        :time="1 * 1 * 60 * 60 * 1000"
+                        v-slot="{ days, hours, minutes, seconds }"
+                    >
+                        <div id="countdown">
+                            <div id="tiles">
+                                <span>{{ days }}</span>
+                                <span>{{ hours }}</span>
+                                <span> {{ minutes }}</span>
+                                <span> {{ seconds }}</span>
+                            </div>
+                            <div class="labels">
+                                <li>Days</li>
+                                <li>Hours</li>
+                                <li>Mins</li>
+                                <li>Secs</li>
+                            </div>
+                        </div>
+                    </vue-countdown>
                 </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing eque nulla et dolorem,
-                    eanima sint similique sitferendis!</p>
-
-            </div>
-            <div class="challenge-prize">
-
-                <div id='content'>
-                    <aside class='ribbon'>
-                        <h2 style="font-size: 1.3rem;
-    letter-spacing: 1.2px;">150 Free Bids</h2>
-                    </aside>
-
-                </div>
-            </div>
-            <div class="progress flex justify-between items-center">
-                <p>remaining:</p>
-                <p>140/500</p>
-            </div>
-            <div class="challenge-timer flex justify-between items-center">
-                <ion-icon name="alarm"></ion-icon>
-
-                <vue-countdown :time="13 * 60 * 60 * 1000" v-slot="{ hours, minutes, seconds }">
-                    <div class="count-down flex items-center">
-                        <div class="number">{{ hours }}</div>
-                        <div class="seperator">:</div>
-                        <div class="number">{{ minutes }}</div>
-                        <div class="seperator">:</div>
-                        <div class="number">{{ seconds }}</div>
+                <div class="flip-card-back">
+                    <p class="title">How To Win</p>
+                    <p>
+                        Lorem, ipsum dolor sit amet consectetur adipisicing
+                        elit. Vel consequatur beatae dignissimos similique autem
+                        rerum pariatur dicta eligendi! Qui.
+                    </p>
+                    <div class="progress flex justify-between items-center">
+                        <p>remaining:</p>
+                        <p>140/500</p>
                     </div>
-                </vue-countdown>
-
+                </div>
             </div>
-
         </div>
-
-
-
-
     </div>
-    <inline-loading :is_loading_more></inline-loading>
+    <!-- <inline-loading :is_loading_more></inline-loading> -->
 
-    <InfiniteLoading @infinite="loadData" />
-
+    <!-- <InfiniteLoading @infinite="loadData" /> -->
 </template>
 
 <script setup>
 import InfiniteLoading from "v3-infinite-loading";
 import "v3-infinite-loading/lib/style.css"; //required if you're not going to override default slots
-
-
 </script>
 
 <script>
@@ -280,11 +182,9 @@ export default {
             is_loading_more: false,
             show_more: false,
             show_more2: false,
-        }
+        };
     },
-    mounted() {
-
-    },
+    mounted() {},
     methods: {
         loadData($state) {
             //calling the api
@@ -297,26 +197,24 @@ export default {
                 }
                 this.show_more = true;
             }, 2000);
-
         },
     },
-
-
-}
+};
 </script>
 
 <style lang="scss" scoped>
-$bg: #E8B5DB;
-$color-diamond: #C6ED8D;
+$bg: #e8b5db;
+$color-diamond: #c6ed8d;
 $color-ribbon: #341e60;
-$color-arrow: #8D96ED;
-$color-rounded: #FC9E86;
-$color-sheer: #85C9ED;
-.challenge-prize{
+$color-arrow: #8d96ed;
+$color-rounded: #fc9e86;
+$color-sheer: #85c9ed;
+
+.challenge-prize {
     position: relative;
     top: 1.5rem;
-
 }
+
 #content {
     width: 102%;
     left: 0;
@@ -361,11 +259,11 @@ aside {
 
     &.ribbon {
         color: #fff;
-    background-color: #341e60;
-    height: 3.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+        background-color: #341e60;
+        height: 3.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         &:before,
         &:after {
@@ -383,7 +281,8 @@ aside {
         &:after {
             border-color: $color-ribbon transparent $color-ribbon $color-ribbon;
             right: -34px;
-            border-width: 17px;height: 3.5rem;
+            border-width: 17px;
+            height: 3.5rem;
         }
     }
 
@@ -437,15 +336,13 @@ aside {
 
 aside:before,
 aside:after {
-    content: '';
+    content: "";
     position: absolute;
     height: 0;
     width: 0;
     border-style: solid;
     border-width: 0;
 }
-
-
 
 .bookmarks-container {
     display: grid;
@@ -456,14 +353,20 @@ aside:after {
 }
 
 .loading-container {
-
     width: 100%;
     margin: auto;
     text-align: center;
     margin-bottom: -2rem;
-
 }
+.progress {
+    padding: 0 2rem !important;
 
+    p {
+        padding: 0 !important;
+        font-size: 1.3rem;
+        font-weight: 800;
+    }
+}
 .challenge-container {
     width: 90%;
     border: 1.5px solid #666;
@@ -476,7 +379,7 @@ aside:after {
     // animation: gradient 15s ease infinite;
     color: #fff;
     cursor: pointer;
-    transition: all .3s ease;
+    transition: all 0.3s ease;
     background: #aaa;
 
     .challenge-header {
@@ -498,18 +401,18 @@ aside:after {
             .date {
                 font-size: 1rem;
             }
-
         }
 
         p {
             text-align: left;
-            letter-spacing: .8px;
+            letter-spacing: 0.8px;
             font-size: 1rem;
             margin-bottom: 1rem;
         }
     }
 
-    .challenge-prize {}
+    .challenge-prize {
+    }
 
     .progress {
         margin-top: 1.5rem;
@@ -517,6 +420,10 @@ aside:after {
         font-weight: 500;
         padding: 0.6rem;
         margin-bottom: 1rem;
+        p {
+            font-size: 1.4rem;
+            font-weight: 500;
+        }
     }
 
     .challenge-timer {
@@ -533,9 +440,7 @@ aside:after {
 
 .challenge-container:hover {
     scale: 1.03;
-
 }
-
 
 .count-down {
     gap: 0.5rem;
@@ -556,8 +461,8 @@ aside:after {
     margin-top: 3rem;
 }
 
-
-//  card hover effect</style>
+//  card hover effect
+</style>
 
 <style lang="scss" scoped>
 .flip-card {
@@ -604,23 +509,39 @@ aside:after {
 }
 
 .flip-card-front {
-    background: linear-gradient(120deg, var(--color-primary-tint-0) 60%,#d4c8e8 88%,
-            rgb(255, 211, 195) 40%, var(--color-primary-tint-5) 48%);
+    background: linear-gradient(
+        120deg,
+        var(--color-primary-tint-0) 60%,
+        #d4c8e8 88%,
+        rgb(255, 211, 195) 40%,
+        var(--color-primary-tint-5) 48%
+    );
     color: var(--color-primary-shade-2);
 }
 
 .flip-card-back {
-    background: linear-gradient(120deg, rgb(255, 174, 145) 30%, coral 88%,
-            bisque 40%, rgb(255, 185, 160) 78%);
-            background: linear-gradient(120deg, var(--color-primary-tint-5) 60%,var(--color-primary-tint-5) 88%,
-            rgb(255, 211, 195) 40%, #ac98cd 48%);
+    background: linear-gradient(
+        120deg,
+        rgb(255, 174, 145) 30%,
+        coral 88%,
+        bisque 40%,
+        rgb(255, 185, 160) 78%
+    );
+    background: linear-gradient(
+        120deg,
+        var(--color-primary-tint-5) 60%,
+        var(--color-primary-tint-5) 88%,
+        rgb(255, 211, 195) 40%,
+        #ac98cd 48%
+    );
     color: #eee;
     transform: rotateY(180deg);
-    p{
+
+    p {
         padding: 1rem 2rem;
-    text-align: left;
-    line-height: 1.7rem;
-    letter-spacing: .3px;
+        text-align: left;
+        line-height: 1.7rem;
+        letter-spacing: 0.3px;
     }
 }
 </style>
@@ -637,7 +558,7 @@ aside:after {
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.6);
     padding: 0.5rem;
     position: relative;
-    transform: scale(.5);
+    transform: scale(0.5);
     margin-left: -5.4rem;
     top: 1rem;
 }
@@ -683,10 +604,10 @@ aside:after {
     z-index: 1;
 }
 
-#countdown #tiles>span {
+#countdown #tiles > span {
     width: 92px;
     max-width: 92px;
-    font: bold 48px 'Droid Sans', Arial, sans-serif;
+    font: bold 48px "Droid Sans", Arial, sans-serif;
     text-align: center;
     color: #111;
     background-color: #ddd;
@@ -703,7 +624,7 @@ aside:after {
     position: relative;
 }
 
-#countdown #tiles>span:before {
+#countdown #tiles > span:before {
     content: "";
     width: 100%;
     height: 13px;
@@ -716,7 +637,7 @@ aside:after {
     z-index: -1;
 }
 
-#countdown #tiles>span:after {
+#countdown #tiles > span:after {
     content: "";
     width: 100%;
     height: 1px;
@@ -738,7 +659,7 @@ aside:after {
 
 #countdown .labels li {
     width: 102px;
-    font: bold 15px 'Droid Sans', Arial, sans-serif;
+    font: bold 15px "Droid Sans", Arial, sans-serif;
     color: #f47321;
     text-shadow: 1px 1px 0px #000;
     text-align: center;

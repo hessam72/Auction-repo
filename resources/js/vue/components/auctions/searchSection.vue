@@ -107,8 +107,10 @@
         <!-- Sidenav -->
 
         <!-- Toggler -->
-        <button style="    background-color: var(--color-primary-tint-0);"
-          class="inline-block rounded bg-primary px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-primary-700 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-800 active:shadow-lg"
+        <!-- <button style="    background-color: var(--color-primary-tint-0);"
+          class="inline-block rounded bg-primary px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white
+           shadow-md transition duration-150 ease-in-out hover:bg-primary-700 hover:shadow-lg focus:bg-primary-700 
+           focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-800 active:shadow-lg"
           data-te-sidenav-toggle-ref data-te-target="#sidenav-6" aria-controls="#sidenav-6" aria-haspopup="true">
           <span class="block [&>svg]:h-5 [&>svg]:w-5 [&>svg]:text-white">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" class="h-5 w-5">
@@ -117,8 +119,19 @@
                 clip-rule="evenodd" />
             </svg>
           </span>
-        </button>
+        </button> -->
 
+        <!-- new btn -->
+        <button class="filter-btn"  data-te-sidenav-toggle-ref data-te-target="#sidenav-6" aria-controls="#sidenav-6" aria-haspopup="true">
+          <span class="filter-icon">
+            <svg viewBox="0 0 175 80" width="40" height="40">
+              <rect width="80" height="15" fill="#333" rx="10"></rect>
+              <rect y="30" width="80" height="15" fill="#333" rx="10"></rect>
+              <rect y="60" width="80" height="15" fill="#333" rx="10"></rect>
+            </svg>
+          </span>
+          <span class="filter-text">Filter</span>
+        </button>
       </div>
       <!-- <div class="search-container">
         <input
@@ -152,6 +165,7 @@
     </div>
   </OnClickOutside>
 </template>
+
 <script setup>
 import { onMounted } from "vue";
 import { Select, initTE } from "tw-elements";
@@ -166,7 +180,7 @@ function close() {
 }
 
 onMounted(() => {
- 
+
   close();
   //select dropdown jquery
   init_dropdown();
@@ -182,6 +196,7 @@ onMounted(() => {
   init_range_selector();
 });
 </script>
+
 <script>
 export default {
   data() {
@@ -190,8 +205,8 @@ export default {
       max: 100,
     };
   },
-  mounted() { 
-    
+  mounted() {
+
   },
   methods: {
     open_filters() {
@@ -499,11 +514,11 @@ input[type="range"]::-webkit-slider-thumb::before {
   backdrop-filter: blur(2px);
   padding-bottom: .5rem;
   width: 240px;
-    height: auto;
-    position: fixed;
-    transition: all 0.3s linear 0s;
-    transform: translateX(0%);
-    padding-bottom: 4rem;
+  height: auto;
+  position: fixed;
+  transition: all 0.3s linear 0s;
+  transform: translateX(0%);
+  padding-bottom: 4rem;
 }
 
 .filter_item {
@@ -589,6 +604,54 @@ input[type="range"]::-webkit-slider-thumb::before {
   border: none !important;
 
 }
+// filter btn
+.filter-btn {
+  width: 150px;
+  height: 50px;
+  border-radius: 5px;
+  border: none;
+  transition: all 0.5s ease-in-out;
+  font-size: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  background: #eee;
+    color: #333;
+}
 
+.filter-btn:hover {
+  box-shadow: 0 0 20px 0px #2e2e2e3a;
+}
 
+.filter-btn .filter-icon {
+  position: absolute;
+  height: 40px;
+  width: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s;
+}
+
+.filter-btn .filter-text {
+  transform: translateX(55px);
+}
+
+.filter-btn:hover .filter-icon {
+  width: 175px;
+}
+
+.filter-btn:hover .filter-text {
+  transition: all 0.5s;
+  opacity: 0;
+}
+
+.filter-btn:focus {
+  outline: none;
+}
+
+.filter-btn:active .filter-icon {
+  transform: scale(0.85);
+}
 </style>

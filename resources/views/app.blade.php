@@ -21,11 +21,12 @@
 
 <body>
    
-    <div id="load" class="screen">
-        <span class="loader"></span>
-       
-
-    </div>
+    <div id="load" class="loader-container">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
 
     <div id="app">
 
