@@ -11,6 +11,7 @@ import store from "./vue/store/index.js";
 
 //global components
 import loading from "./vue/components/utilities/loading.vue";
+import page_title from "./vue/components/user/page_title.vue";
 import inline_loading from "./vue/components/utilities/inline_loading.vue";
 import VueCountdown from '@chenfengyuan/vue-countdown';
 import StarRating from 'vue-star-rating';
@@ -26,6 +27,7 @@ app.use(store);
 
 app.component(VueCountdown.name, VueCountdown);
 app.component("loading", loading);
+app.component("page-title", page_title);
 app.component("inline-loading", inline_loading);
 app.component("star-rating", StarRating);
 

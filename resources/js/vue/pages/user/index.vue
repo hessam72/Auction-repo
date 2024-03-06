@@ -2,7 +2,7 @@
   <div>
   <single-nav></single-nav>
   <bread-crumps v-bind:history="history" :current="current"></bread-crumps>
-  <menu-section :page_title="page_title"></menu-section>
+  <!-- <menu-section :page_title="page_title"></menu-section> -->
   <div class="main-section flex">
     <user-info></user-info>
     <div class="main-content">
@@ -19,7 +19,7 @@
 <script>
 import singleNav from "../../components/global/singleNav.vue";
 import breadCrumps from "../../components/global/breadCrumps.vue";
-import menuSection from "../../components/user/menu.vue";
+// import menuSection from "../../components/user/menu.vue";
 import userInfo from "../../components/user/userInfo.vue";
 
 
@@ -60,7 +60,7 @@ export default {
     fixedButtons,
     singleNav,
     userInfo,
-    menuSection
+    // menuSection
   },
 };
 </script>

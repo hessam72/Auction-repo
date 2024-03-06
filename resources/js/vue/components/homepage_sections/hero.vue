@@ -136,7 +136,7 @@ export default {
 </style>
 <style lang="scss" scoped>
 .hero-container {
-    height: 60vh;
+    // height: 60vh;
 }
 .slider {
     height: 100%;

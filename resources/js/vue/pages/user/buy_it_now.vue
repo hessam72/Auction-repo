@@ -1,4 +1,6 @@
 <template>
+       <page-title :title="'Buy Now Offers'" ></page-title>
+
   <div class="b-main-container">
     <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com -->
     <div class="mb-3">

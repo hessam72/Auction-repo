@@ -16,7 +16,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(90deg, rgb(177, 194, 219) 0%, rgb(232, 232, 232) 41%);
+    background: linear-gradient(90deg, var(--color-secondary-tint-1) 0%, rgb(232, 232, 232) 41%);
     display: flex;
     align-items: center;
 }
@@ -28,7 +28,7 @@
     display: inline-block;
     position: relative;
     border: 3px solid;
-    border-color: #7846dc #7846dc transparent transparent;
+    border-color: var( --color-primary-tint-5) var( --color-primary-tint-5) transparent transparent;
     box-sizing: border-box;
     animation: rotation 1s linear infinite;
     margin: auto;
@@ -45,7 +45,7 @@
     bottom: 0;
     margin: auto;
     border: 3px solid;
-    border-color: transparent transparent #7846dc #7846dc;
+    border-color: transparent transparent var( --color-primary-tint-5) var( --color-primary-tint-5);
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -57,7 +57,7 @@
 .loader::before {
     width: 32px;
     height: 32px;
-    border-color: #7846dc #7846dc transparent transparent;
+    border-color: var(--color-primary-tint-5) var( --color-primary-tint-5) transparent transparent;
     animation: rotation 1.5s linear infinite;
 }
 

@@ -379,7 +379,7 @@ z-index: 9;
 .pic-container {
     position: relative;
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     gap: 0.5rem;
     flex-direction: column;
     align-items: center;

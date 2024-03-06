@@ -1,17 +1,15 @@
 <template>
-    <div class="home-container">
-        <nav-bar-section></nav-bar-section>
+  <div class="home-container">
+    <nav-bar-section :is_single_nav="false"></nav-bar-section>
 
-        <hero-section></hero-section>
-        <live-auctions ></live-auctions>
-        <reviews-section ></reviews-section>
-        <recent-winners ></recent-winners>
-        <faq-section ></faq-section>
-        <pricing-plans></pricing-plans>
-        <fixed-buttons></fixed-buttons>
-    </div>
-    
-
+    <hero-section></hero-section>
+    <live-auctions></live-auctions>
+    <reviews-section></reviews-section>
+    <recent-winners></recent-winners>
+    <faq-section></faq-section>
+    <pricing-plans></pricing-plans>
+    <fixed-buttons></fixed-buttons>
+  </div>
 </template>
 
 <script>
@@ -24,67 +22,102 @@ import pricingPlans from "../../../components/homepage_sections/pricingPlans.vue
 import fixedButtons from "../../../components/utilities/fixedButtons.vue";
 import navBarSection from "../../../components/global/navbar.vue";
 
-
 export default {
-    mounted() {
-        $(() => {
+  mounted() {
+    
+    $(() => {
+      
+      window.onscroll = function () {
+        let menu = document.getElementById("site_nav");
+        let offset = menu.offsetHeight;
+        window.onscroll = function () {
+          // if (window.scrollY > offset + 262) {
+          if (window.scrollY > offset + 100) {
+            // page scrolled down off the item
 
-            //On Scroll Functionality
-            $(window).scroll(() => {
-                var windowTop = $(window).scrollTop();
-                windowTop > 100 ? $('nav').addClass('navShadow') : $('nav').removeClass('navShadow');
-                windowTop > 100 ? $('ul').css('top', '100px') : $('ul').css('top', '160px');
-            });
+            menu.classList.add("sticky");
+          } else if (window.scrollY < offset + 270) {
+            // page scrolled up to init position
 
-            //Click Logo To Scroll To Top
-            $('#logo').on('click', () => {
-                $('html,body').animate({
-                    scrollTop: 0
-                }, 500);
-            });
+            menu.classList.remove("sticky");
+          }
+        };
+    }
+      //On Scroll Functionality
+    //   $(window).scroll(() => {
+    //     console.log("scrolling");
+    //     var windowTop = $(window).scrollTop();
+    //     if (windowTop > 200) {
+    //         console.log('nav not top')
+    //       $("nav").addClass("navShadow");
+    //     } else {
+    //         console.log('nav on top')
+    //       $("nav").removeClass("navShadow");
+    //     }
+       
+    //   });
 
-            //Smooth Scrolling Using Navigation Menu
-            $('a[href*="#"]').on('click', function (e) {
-                $('html,body').animate({
-                    scrollTop: $($(this).attr('href')).offset().top - 100
-                }, 500);
-                e.preventDefault();
-            });
+      //Click Logo To Scroll To Top
+      $("#logo").on("click", () => {
+        $("html,body").animate(
+          {
+            scrollTop: 0,
+          },
+          500
+        );
+      });
 
-            //Toggle Menu
-            $('#menu-toggle').on('click', () => {
-                $('#menu-toggle').toggleClass('closeMenu');
-                $('ul').toggleClass('showMenu');
+      //Smooth Scrolling Using Navigation Menu
+      $('a[href*="#"]').on("click", function (e) {
+        $("html,body").animate(
+          {
+            scrollTop: $($(this).attr("href")).offset().top - 100,
+          },
+          900
+        );
+        e.preventDefault();
+      });
 
-                $('li').on('click', () => {
-                    $('ul').removeClass('showMenu');
-                    $('#menu-toggle').removeClass('closeMenu');
-                });
-            });
+      //Toggle Menu
+      $("#menu-toggle").on("click", () => {
+        $("#menu-toggle").toggleClass("closeMenu");
+        $("ul").toggleClass("showMenu");
 
+        $("li").on("click", () => {
+          $("ul").removeClass("showMenu");
+          $("#menu-toggle").removeClass("closeMenu");
         });
+      });
+    });
+  },
+  watch:{
+    $route(to, from) {
+      // Put your logic here...
+      if(to.name==="home"){
+        document.getElementById("site_nav").classList.remove("sticky");
+      }
     },
-    components: {
-        heroSection,
-        liveAuctions,
-        reviewsSection,
-        recentWinners,
-        faqSection,
-        pricingPlans,
-        fixedButtons,
-        navBarSection
-    },
+  },
+  components: {
+    heroSection,
+    liveAuctions,
+    reviewsSection,
+    recentWinners,
+    faqSection,
+    pricingPlans,
+    fixedButtons,
+    navBarSection,
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .home-container {
-    background: rgb(177, 194, 219);
-    background: linear-gradient(90deg,
-            var(--color-secondary-tint-2),
-            rgba(232, 232, 232, 1) 41%);
+  background: rgb(177, 194, 219);
+  background: linear-gradient(
+    90deg,
+    var(--color-secondary-tint-2),
+    rgba(232, 232, 232, 1) 41%
+  );
 }
-
-
-
 </style>

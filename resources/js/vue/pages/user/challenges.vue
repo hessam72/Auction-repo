@@ -1,4 +1,6 @@
 <template>
+         <page-title :title="'Challenges'" ></page-title>
+
     <div class="challenges">
       
         <div class="challenge-container  flex flex-col relative">

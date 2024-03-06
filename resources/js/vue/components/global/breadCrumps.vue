@@ -10,7 +10,7 @@
                 </li>
            
             
-            <li class="text-neutral-500 dark:text-neutral-400">{{current}}</li>
+            <li class="text-neutral-200 dark:text-neutral-400">{{current}}</li>
         </ol>
     </nav>
 </template>
@@ -22,7 +22,10 @@ export default{
 <style lang="scss" scoped>
 nav{
     padding: 0.5rem 5rem;
-    background-color: #08001ad9;
-    border-radius: 0;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  border-radius: 0;
+  border-top: 1px solid #aaa;
+  border-bottom: 1px solid #aaa;
+
 }
 </style>

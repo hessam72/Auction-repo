@@ -672,7 +672,7 @@ export default {
     }
 
     .active {
-        background-color: #222;
+        background-color: var(--color-primary-tint-6);
         box-shadow: 0 2px 20px #d5d5d5;
         color: #fff;
 

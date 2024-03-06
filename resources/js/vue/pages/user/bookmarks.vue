@@ -1,5 +1,7 @@
 <template>
+     <page-title :title="'Bookmarks'" ></page-title>
     <div class="bookmarks-container">
+       
         <auction-card
             :time="7 * 60 * 60 * 1000"
             :buy_now_price="1300"

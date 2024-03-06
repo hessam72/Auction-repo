@@ -1,4 +1,6 @@
 <template>
+       <page-title :title="'Wins & Shipping'" ></page-title>
+
   <div class="w_s-main-container">
     <div class="mb-3">
       <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com -->

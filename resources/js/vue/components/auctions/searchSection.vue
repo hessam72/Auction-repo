@@ -151,7 +151,6 @@
       </div>
     </div>
   </OnClickOutside>
-  <hr class="seperator" />
 </template>
 <script setup>
 import { onMounted } from "vue";
@@ -167,9 +166,11 @@ function close() {
 }
 
 onMounted(() => {
+ 
+  close();
   //select dropdown jquery
   init_dropdown();
-console.log(22)
+
   // sticky filters
   init_sticky_nav();
   // close nav on click outside
@@ -189,7 +190,9 @@ export default {
       max: 100,
     };
   },
-  mounted() { },
+  mounted() { 
+    
+  },
   methods: {
     open_filters() {
       // document.getElementById('backdrop').style.display = "block";

@@ -1,4 +1,6 @@
 <template>
+         <!-- <page-title :title="'Profile'" ></page-title> -->
+
     <div class="center-container flex flex-col">
         <div class="header-container flex justify-around items-center">
             <div class="header-section flex">
@@ -96,10 +98,10 @@ export default {
 }
 
 .header-container {
-    background-color: #9f95b1;
+    // background-color:var(--color-primary-tint-4) ;
     padding: 2rem;
-    box-shadow: 1px 3px 15px #666;
-    color: #ffff;
+  box-shadow: 1px 1px 6px #aaa;
+  color: var(--color-primary-tint-5);
 
 }
 
@@ -111,15 +113,15 @@ export default {
 
 
     .icon {
-        border-right: 3px solid #fff;
+        border-right: 3px solid  var(--color-primary-tint-5);
         padding-right: 1rem;
 
     }
 
     ion-icon {
         font-size: 5.5rem;
-        filter: drop-shadow(5px 5px 5px #c17aff);
-        color: #fff;
+  filter: drop-shadow(5px 5px 5px var(--color-secondary-tint-2));
+  color: var(--color-primary-tint-5);
     }
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <nav-bar-section></nav-bar-section>
+  <nav-bar-section  :is_single_nav="true"></nav-bar-section>
   <hero-section></hero-section>
  
  <main-section></main-section>

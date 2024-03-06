@@ -1,4 +1,6 @@
 <template>
+       <page-title :title="'Support'" ></page-title>
+
   <div class="support-head">
     <button @click="open = true" class="new-btn">New Ticket</button>
   </div>
