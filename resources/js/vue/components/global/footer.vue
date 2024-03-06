@@ -73,7 +73,7 @@
         </div>
       </div>
     </div>
-    <div class="bg-indigo-700 py-4 text-gray-100">
+    <div style="background-color: var(--color-primary);" class=" py-4 text-gray-100">
       <div class="container mx-auto px-4">
         <div class="-mx-4 flex flex-wrap justify-between">
           <div class="px-4 w-full text-center sm:w-auto sm:text-left">
@@ -131,7 +131,7 @@ section {
 
 
 .first-curve {
-	background: linear-gradient(90deg, rgb(38, 23, 72) 0%, rgb(85, 114, 169) 100%);
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
 }
 
 .first-curve .page-top-icon {
@@ -140,7 +140,7 @@ section {
 	height: 90px;
 	margin: 0px auto;
   
-	background: rgb(63 69 121);
+	background: #263c68;
 	border-radius: 100%;
 	color: white;
 	text-align: center;
@@ -158,7 +158,7 @@ section {
 	width: 61px;
 	position: absolute;
 	top: -10px;
-	box-shadow: 0px 22px 0 0 rgb(60 65 117);
+  box-shadow: 0px 22px 0 0 rgb(38 55 100);
 }
 
 .first-curve .page-top-icon:before {
@@ -169,7 +169,7 @@ section {
 .first-curve .page-top-icon:after {
 	right: -35px;
 	border-radius: 0 0 0 100%;
-  box-shadow: 0px 22px 0 0 rgb(63 72 124);
+  box-shadow: 0px 22px 0 0 rgb(37 64 108);
 }
 
 
@@ -180,9 +180,8 @@ footer{
 
 .footer-container{
   padding: 1rem 3rem;
-  background: rgb(38,23,72);
-background: linear-gradient(90deg, #261748 0%, rgba(85,114,169,1) 100%);
-color: #fff;
+  background: var(--color-primary);
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));color: #fff;
 height: 20rem;
     padding-top: 2rem;
 }

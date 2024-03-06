@@ -1,14 +1,6 @@
 <template>
     <div class="hero-container flex w-full relative">
-        <!-- slider -->
-        <!-- <div class="slider w-full absolute z-10">
-            <vueper-slides :bullets="false" :touchable="false" :infinite="true" fade :arrows="false" :pause-on-hover="false"
-                autoplay>
-               
-                <vueper-slide v-for="(slide, i) in slides" :key="i"  :title="slide.title"
-    :content="slide.content" :image="slide.image" />
-            </vueper-slides>
-        </div> -->
+     
 
         <div class="content w-full px-20 flex flex-col gap-7 py-14 z-20">
             <div class="hero-badge countdown">
@@ -27,15 +19,17 @@
             </div>
             <div class="hero-badge buy">Purchase It Now!</div>
             <div class="banner-content w-6/12">
-                <h1 class="anim-up-entrance header text-5xl text-slate-200">
-                    Our Special Offer
-                </h1>
-                <p class="sub-header text-1xl text-slate-200">
+               <!-- <h1 class=" header text-5xl text-slate-200"> -->
+                  
+   <neon-header class="header"></neon-header>
+                <!-- </h1> -->
+             
+                <!-- <p class="sub-header text-1xl text-slate-200">
                     It is a long established fact that a reader will be
                     distracted by the readable content of a page when looking at
                     its layout. The point of using Lorem Ipsum is that it has a
                     more-or-less normal distribution of letters.
-                </p>
+                </p> -->
                 <!-- <div class="flex gap-7 mt-8">
           <button
             class="transition ease-in-out bg-sky-500 hover:bg-sky-700 px-3 py-1.5 rounded text-slate-900 rounded-full"
@@ -46,12 +40,13 @@
             </div>
         </div>
     </div>
+    <link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
 </template>
 
 <script>
 import { VueperSlides, VueperSlide } from "vueperslides";
 import "vueperslides/dist/vueperslides.css";
-
+import NeonHeader from "./neon_header.vue"
 export default {
     data: () => ({
         slides: [
@@ -77,13 +72,13 @@ export default {
             // Other slides.
         ],
     }),
-    components: { VueperSlides, VueperSlide },
+    components: { VueperSlides, VueperSlide,NeonHeader },
 };
 </script>
 
 <style lang="scss">
 .anim-up-entrance {
-    animation: upEntrance 2s ease-out 0s 1 normal none;
+    animation: upEntrance 2s ease 0s 1 normal none;
 
 }
 
@@ -167,6 +162,7 @@ export default {
 .banner-content {
     margin: auto;
     text-align: center;
+    height: 15rem;
 }
 
 .vueperslides__parallax-wrapper {
@@ -181,16 +177,17 @@ export default {
 
 .content {
     background: rgb(77, 115, 173);
-    background: radial-gradient(circle, rgba(77, 115, 173, 0.4710477941176471) 0%, rgba(53, 29, 98, 1) 100%);
-    height: 100%;
+    background: radial-gradient(circle, var(--color-secondary) 0%, var(--color-primary) 100%);
+        height: 100%;
 }
 
 .header {
     margin-bottom: 2rem;
     letter-spacing: 0.1rem;
-    margin-top: 3.5rem;
+    margin-top: 1rem;
     font-weight: 800;
     text-shadow: 0 0.5px 7px #333;
+    line-height: 1.3;
 }
 
 .sub-header {

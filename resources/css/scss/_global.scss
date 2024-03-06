@@ -14,9 +14,9 @@ a {
     margin-bottom: 3rem;
     .more-btn {
         position: relative;
-        background: rgb(169, 174, 251);
-        background: linear-gradient( 0deg, rgba(53, 29, 98, 0.7147452731092436) 0%, rgba(53, 29, 98, 0.975249474789916) 100%);
-        box-shadow: 0 5px 10px #8b91eb;
+        background:var(--color-primary-tint-6);
+        background: linear-gradient( 0deg, var(--color-primary-tint-6) 0%, var(--color-primary-tint-4) 100%);
+        box-shadow: 0 5px 10px var(--color-primary-shade-2);
         border-radius: 50px;
         padding: 0.5rem 2.5rem;
         color: #fff;
@@ -64,7 +64,7 @@ a {
 
 .mother-container {
     background: rgb(177, 194, 219);
-    background: linear-gradient( 90deg, rgb(177, 194, 219) 0%, rgb(232, 232, 232) 41%);
+    background: linear-gradient(90deg, var(--color-secondary-tint-2), rgb(232, 232, 232) 41%);
 }
 
 .backdrop {

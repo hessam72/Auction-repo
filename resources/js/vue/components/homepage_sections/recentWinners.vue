@@ -1,5 +1,5 @@
 <template>
-    <div class="section-seperator">
+    <div  id="winners"class="section-seperator">
         <div class="divider"></div>
         <span class="and">
             <ion-icon name="trophy"></ion-icon>
@@ -9,7 +9,7 @@
     <div class="section-container">
         <h2 class="section-title">
             Our Latest
-            <h2 style="display: inline; color: #6350d7">Winners</h2>
+            <h2 style="display: inline; color: var(  --color-secondary)">Winners</h2>
         </h2>
 
         <div class="reviews-container flex gap-2.5">
@@ -130,10 +130,10 @@
             </div>
         </div>
     </div>
-    <div class="more-container">
+    <div class="more-container"> <router-link :to="{name:'winners'}">
             <button class="more-btn">
                 View All <ion-icon name="share-alt"></ion-icon>
-            </button>
+            </button> </router-link>
         </div>
 </template>
 
@@ -147,7 +147,7 @@ export default {};
     margin-top: -1rem;
     font-style: italic;
     font-weight: 500;
-    color: rgb(255, 255, 255);
+    color: var(--color-primary-tint-4);;
 }
 .more-container{
     margin-top: 5rem;
@@ -164,7 +164,7 @@ export default {};
     position: relative;
     width: 100%;
     height: 450px;
-    background: rgb(182 182 246 / 43%);
+    background: var(--color-primary-tint-0);
 
     // background: linear-gradient(90deg, rgba(42,26,78,0.9471988624551383) 2%, rgba(76,113,171,0.7847338764607406) 95%);
     border-radius: 20px;
@@ -238,11 +238,11 @@ export default {};
     position: relative;
     font-weight: 600;
     letter-spacing: 1px;
-    color: #fff;
+    
     margin: 0;
     margin-bottom: 1rem;
     font-size: 1.5rem;
-    color: #f3f5f9;
+    color: var(--color-primary-shade-1);
 }
 
 
@@ -280,7 +280,7 @@ export default {};
 
 .container .card .contentBx .size h3,
 .container .card .contentBx .color h3 {
-  color: #6350d7;
+  color: var(--color-primary-tint-5);
     text-transform: uppercase;
     margin-right: 10px;
     letter-spacing: 1.6px;
@@ -360,7 +360,7 @@ export default {};
     }
     .border-wrap {
        
-        background: linear-gradient(to right, rgb(99 80 215), rgb(236 236 236));
+        background: linear-gradient(to right,var(--color-secondary), rgb(236 236 236));
 
         border-radius: 100px;
         .user_img {

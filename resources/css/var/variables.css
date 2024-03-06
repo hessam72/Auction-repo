@@ -1,0 +1,48 @@
+/* // COLOR VARIABLES
+$color-primary: #fd0000;
+
+$color-primary-dark: #32334a;
+$color-secondary: #e8e8e8;
+$color-grey-light-1: #f9f7f6;
+$color-grey-light-2: #aaa;
+$color-grey-dark-1: #54483a;
+$color-grey-dark-2: #6d5d4b;
+// FONT VARIABLES
+$font-primary: "Mirza",
+sans-serif;
+$font-display: "Mirza",
+sans-serif;
+// RESPONSIVE BREAKPOINTS
+$bp-largest: 75em; // 1200px
+$bp-large: 62.5em; // 1000px
+$bp-medium: 50em; // 800px;
+$bp-small: 37.5em; // 600px; */
+:root {
+  --color-primary: #251646;
+  --color-secondary: #1e618b;
+  /* --color-secondary: #5572A9; */
+/* primary layers */
+  --color-primary-shade-1: #130928;
+  --color-primary-shade-2: #080315;
+  --color-primary-tint-0: #e6e5ec;
+  --color-primary-tint-1: #ceccd8;
+  --color-primary-tint-2: #b6b3c5;
+  --color-primary-tint-3: #9f9bb2;
+  --color-primary-tint-4: #5e567b;
+  --color-primary-tint-5: #4F3C71; 
+  --color-primary-tint-6: #372b58; 
+  
+  
+  /* secondary leyers */
+  
+  --color-secondary-shade-1: #031523;
+  --color-secondary-shade-2: #092d43;
+  --color-secondary-tint-1: #bbcedc;
+  --color-secondary-tint-2: #a5bed1;
+  --color-secondary-tint-3: #4f7fa2;
+  
+
+
+}
+
+/*  color:var(--color-primary) !important ; */

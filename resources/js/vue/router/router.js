@@ -19,6 +19,7 @@ import auth from "../pages/auth/login_singup.vue";
 
 const router = createRouter({
     history: createWebHistory(),
+    
     routes: [
         // public routes
 
@@ -109,10 +110,15 @@ const router = createRouter({
         //     // meta: { isGuest: true },
         // },
     ],
+    scrollBehavior(to, from, savedPosition) {
+        // always scroll to top
+        return { top: 0 }
+      },
 });
 // sessionStorage.clear();
 
 router.beforeEach(function(to, from, next) {
+    
     next();
 });
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="section-seperator">
+    <div id="pricing" class="section-seperator">
         <div class="divider"></div>
         <span class="and">
             <ion-icon name="basket"></ion-icon>
@@ -9,7 +9,7 @@
     <div class="section-container">
         <div class="buy-header-container">
         <h2 style="display: inline" class="section-title">Buy</h2>
-        <h2 class="section-title" style="display: inline; color: #6350d7">
+        <h2 class="section-title" style="display: inline; color: var(--color-secondary)">
             Bid
         </h2>
         <h2 class="section-title" style="display: inline">& Start Today</h2>
@@ -191,7 +191,7 @@ export default {};
     background: linear-gradient(
         0deg,
         rgba(170, 170, 170, 0) 64%,
-        rgba(103, 103, 103, 1) 100%
+        var(--color-primary-tint-3) 100%
     );
 }
 
@@ -203,7 +203,7 @@ export default {};
     background: linear-gradient(
         0deg,
         rgba(170, 170, 170, 0) 64%,
-        rgba(174, 174, 245, 1) 100%
+        var(--color-primary-tint-6) 100%
     );
 }
 
@@ -215,7 +215,7 @@ export default {};
     background: linear-gradient(
         0deg,
         rgba(170, 170, 170, 0) 64%,
-        rgba(103, 103, 103, 1) 100%
+        var(--color-primary-tint-3) 100%
     );
 }
 
@@ -316,7 +316,7 @@ export default {};
     opacity: 0.1;
 }
 .table1 .button {
-    background-color: rgb(174, 174, 245);
+    background-color: var(--color-primary-tint-5);
     color: #fff;
     border-radius: 44px;
     font-weight: 600;
