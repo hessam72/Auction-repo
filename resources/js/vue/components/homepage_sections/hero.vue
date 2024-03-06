@@ -151,6 +151,7 @@ export default {
         var(--color-secondary)
     );
     padding-top: 4rem;
+    margin-bottom: 1rem;
 }
 .header {
     margin-bottom: 2rem;

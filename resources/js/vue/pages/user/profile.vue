@@ -91,10 +91,16 @@ export default {
 <style lang="scss" scoped>
 .header-hr {
     height: 4px;
-    background: linear-gradient(99deg, rgb(176 141 255 / 78%) 0%, rgba(45, 20, 89, 0.8744091386554622) 100%);
+    // background: linear-gradient(99deg, rgba(176, 141, 255, 0.78) 0%, rgba(45, 20, 89, 0.8744091387) 100%);
     border: none;
-    border-radius: 30px;
     margin-top: 0.8rem;
+    border-radius: 50px;
+    background: linear-gradient(-45deg, #492B89, #782B89, #2B3D89, #2B8978);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+   
+    transition: all .3s ease;
+
 }
 
 .header-container {

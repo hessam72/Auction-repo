@@ -1,8 +1,52 @@
 <template>
-         <page-title :title="'Challenges'" ></page-title>
+    <page-title :title="'Challenges'"></page-title>
 
     <div class="challenges">
-      
+
+
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <p class="title">Place 50 Bids</p>
+
+                    <div class="challenge-prize">
+
+                        <div id='content'>
+                            <aside class='ribbon'>
+                                <h2 style="font-size: 1.3rem;
+         letter-spacing: 1.2px;">Win 150 Bids</h2>
+                            </aside>
+
+                        </div>
+                    </div>
+                    <vue-countdown :time="2 * 15 * 60 * 60 * 1000" v-slot="{ days ,hours, minutes, seconds }">
+                       
+                        <div id="countdown">
+                        <div id='tiles'>
+                            <span>{{ days }}</span>
+                            <span>{{hours}}</span>
+                            <span> {{minutes}}</span>
+                            <span> {{seconds}}</span>
+                        </div>
+                        <div class="labels">
+                            <li>Days</li>
+                            <li>Hours</li>
+                            <li>Mins</li>
+                            <li>Secs</li>
+                        </div>
+                    </div>
+                    </vue-countdown>
+                   
+                </div>
+                <div class="flip-card-back">
+                    <p class="title">How To Win</p>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel consequatur beatae dignissimos similique autem rerum pariatur dicta eligendi! Qui.</p>
+                </div>
+            </div>
+        </div>
+
+
+
         <div class="challenge-container  flex flex-col relative">
             <div class="challenge-header">
                 <div>
@@ -239,7 +283,7 @@ export default {
         }
     },
     mounted() {
-      
+
     },
     methods: {
         loadData($state) {
@@ -268,13 +312,17 @@ $color-ribbon: #341e60;
 $color-arrow: #8D96ED;
 $color-rounded: #FC9E86;
 $color-sheer: #85C9ED;
+.challenge-prize{
+    position: relative;
+    top: 1.5rem;
 
+}
 #content {
-    position: absolute;
-    width: 100%;
+    width: 102%;
     left: 0;
     z-index: 1;
-    top: 46%;
+    position: relative;
+    box-shadow: 0px 6px 10px #999;
 }
 
 aside {
@@ -313,9 +361,11 @@ aside {
 
     &.ribbon {
         color: #fff;
-        text-align: center;
-        background-color: $color-ribbon;
-        $color-ribbon: darken($color-ribbon, 10);
+    background-color: #341e60;
+    height: 3.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
         &:before,
         &:after {
@@ -325,14 +375,15 @@ aside {
 
         &:before {
             border-color: $color-ribbon $color-ribbon $color-ribbon transparent;
-            left: -25px;
+            left: -34px;
             border-width: 17px;
+            height: 3.5rem;
         }
 
         &:after {
             border-color: $color-ribbon transparent $color-ribbon $color-ribbon;
-            right: -25px;
-            border-width: 17px;
+            right: -34px;
+            border-width: 17px;height: 3.5rem;
         }
     }
 
@@ -422,10 +473,11 @@ aside:after {
 
     background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
     background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
+    // animation: gradient 15s ease infinite;
     color: #fff;
     cursor: pointer;
     transition: all .3s ease;
+    background: #aaa;
 
     .challenge-header {
         div {
@@ -484,19 +536,6 @@ aside:after {
 
 }
 
-@keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
-}
 
 .count-down {
     gap: 0.5rem;
@@ -518,7 +557,192 @@ aside:after {
 }
 
 
-//  card hover effect
+//  card hover effect</style>
 
+<style lang="scss" scoped>
+.flip-card {
+    background-color: transparent;
+    width: 17rem;
+    height: 24rem;
+    perspective: 1000px;
+    font-family: sans-serif;
+}
 
+.title {
+    font-size: 1.5em;
+    font-weight: 900;
+    text-align: center;
+    margin: 0;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.2);
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border: 1px solid var(--color-primary-tint-5);
+    border-radius: 1rem;
+}
+
+.flip-card-front {
+    background: linear-gradient(120deg, var(--color-primary-tint-0) 60%,#d4c8e8 88%,
+            rgb(255, 211, 195) 40%, var(--color-primary-tint-5) 48%);
+    color: var(--color-primary-shade-2);
+}
+
+.flip-card-back {
+    background: linear-gradient(120deg, rgb(255, 174, 145) 30%, coral 88%,
+            bisque 40%, rgb(255, 185, 160) 78%);
+            background: linear-gradient(120deg, var(--color-primary-tint-5) 60%,var(--color-primary-tint-5) 88%,
+            rgb(255, 211, 195) 40%, #ac98cd 48%);
+    color: #eee;
+    transform: rotateY(180deg);
+    p{
+        padding: 1rem 2rem;
+    text-align: left;
+    line-height: 1.7rem;
+    letter-spacing: .3px;
+    }
+}
+</style>
+<!-- timer -->
+
+<style scoped lang="scss">
+#countdown {
+    width: max-content;
+    height: 10rem;
+    text-align: center;
+    background: #222;
+    border: 1px solid #111;
+    border-radius: 5px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.6);
+    padding: 0.5rem;
+    position: relative;
+    transform: scale(.5);
+    margin-left: -5.4rem;
+    top: 1rem;
+}
+
+#countdown:before {
+    content: "";
+    width: 8px;
+    height: 65px;
+    background: #444;
+    background-image: -webkit-linear-gradient(top, #555, #444, #444, #555);
+    background-image: -moz-linear-gradient(top, #555, #444, #444, #555);
+    background-image: -ms-linear-gradient(top, #555, #444, #444, #555);
+    background-image: -o-linear-gradient(top, #555, #444, #444, #555);
+    border: 1px solid #111;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    display: block;
+    position: absolute;
+    top: 48px;
+    left: -10px;
+}
+
+#countdown:after {
+    content: "";
+    width: 8px;
+    height: 65px;
+    background: #444;
+    background-image: -webkit-linear-gradient(top, #555, #444, #444, #555);
+    background-image: -moz-linear-gradient(top, #555, #444, #444, #555);
+    background-image: -ms-linear-gradient(top, #555, #444, #444, #555);
+    background-image: -o-linear-gradient(top, #555, #444, #444, #555);
+    border: 1px solid #111;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    display: block;
+    position: absolute;
+    top: 48px;
+    right: -10px;
+}
+
+#countdown #tiles {
+    position: relative;
+    z-index: 1;
+}
+
+#countdown #tiles>span {
+    width: 92px;
+    max-width: 92px;
+    font: bold 48px 'Droid Sans', Arial, sans-serif;
+    text-align: center;
+    color: #111;
+    background-color: #ddd;
+    background-image: -webkit-linear-gradient(top, #bbb, #eee);
+    background-image: -moz-linear-gradient(top, #bbb, #eee);
+    background-image: -ms-linear-gradient(top, #bbb, #eee);
+    background-image: -o-linear-gradient(top, #bbb, #eee);
+    border-top: 1px solid #fff;
+    border-radius: 3px;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.7);
+    margin: 0 7px;
+    padding: 18px 0;
+    display: inline-block;
+    position: relative;
+}
+
+#countdown #tiles>span:before {
+    content: "";
+    width: 100%;
+    height: 13px;
+    background: #111;
+    display: block;
+    padding: 0 3px;
+    position: absolute;
+    top: 41%;
+    left: -3px;
+    z-index: -1;
+}
+
+#countdown #tiles>span:after {
+    content: "";
+    width: 100%;
+    height: 1px;
+    background: #eee;
+    border-top: 1px solid #333;
+    display: block;
+    position: absolute;
+    top: 48%;
+    left: 0;
+}
+
+#countdown .labels {
+    width: 100%;
+    height: 25px;
+    text-align: center;
+    position: absolute;
+    bottom: 8px;
+}
+
+#countdown .labels li {
+    width: 102px;
+    font: bold 15px 'Droid Sans', Arial, sans-serif;
+    color: #f47321;
+    text-shadow: 1px 1px 0px #000;
+    text-align: center;
+    text-transform: uppercase;
+    display: inline-block;
+}
 </style>

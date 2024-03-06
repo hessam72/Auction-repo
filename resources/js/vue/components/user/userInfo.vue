@@ -58,7 +58,7 @@
         <div class="border-wrap">
           <img
             class="user_img"
-            :src="'/storage/images/user_profiles/150-11.jpg'"
+            :src="'/storage/images/user_profiles/150-9.jpg'"
           />
         </div>
       </div>
@@ -123,6 +123,7 @@ export default {};
   box-shadow: 0 2px 8px #eee;
   cursor: pointer;
   transition: all 0.3 ease;
+  z-index: 1;
 }
 .edit-icon:hover {
   background-color: #dedede;
@@ -152,7 +153,7 @@ export default {};
     height: 4px;
     background: linear-gradient(
       99deg,
-      rgb(176 141 255 / 78%) 0%,
+      var(--color-secondary) 0%,
       rgba(45, 20, 89, 0.8744091386554622) 100%
     );
     border: none;
@@ -188,7 +189,7 @@ export default {};
   }
 
   .border-wrap {
-    background: linear-gradient(to right, rgb(99 80 215), rgb(236 236 236));
+    background: linear-gradient(to right, var(--color-secondary), rgb(236, 236, 236));
 
     border-radius: 100px;
 
@@ -201,6 +202,11 @@ export default {};
       color: white;
       padding: 0.15rem;
       text-align: center;
+      filter: grayscale(1);
+      transition: all .3s ease-in-out;
+    }
+    .user_img:hover {
+      filter: grayscale(0);
     }
   }
 
@@ -226,7 +232,7 @@ export default {};
     height: 4px;
     background: linear-gradient(
       99deg,
-      rgb(176 141 255 / 78%) 0%,
+      var(--color-secondary) 0%,
       rgba(45, 20, 89, 0.8744091386554622) 100%
     );
     border: none;
@@ -261,7 +267,7 @@ export default {};
 .navigation {
   position: absolute;
   inset: 20px;
-  background: var(--color-primary);
+  background: #25164691;
   width: 60px;
   // border-left: 10px solid rgba(17, 34, 17, 0.1333333333);
   overflow: hidden;
@@ -300,7 +306,7 @@ export default {};
   left: 1%;
   width: 50px;
   height: 50px;
-  background: #f1e1ff;
+  background: #eee;
   border-radius: 50%;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
   cursor: pointer;
