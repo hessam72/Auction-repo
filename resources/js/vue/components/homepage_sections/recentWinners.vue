@@ -130,11 +130,12 @@
             </div>
         </div>
     </div>
-    <div class="more-container"> <router-link :to="{name:'winners'}">
+    <!-- <div class="more-container"> <router-link :to="{name:'winners'}">
             <button class="more-btn">
                 View All <ion-icon name="share-alt"></ion-icon>
             </button> </router-link>
-        </div>
+        </div> -->
+        <more-btn :url_name="'winners'"></more-btn>
 </template>
 
 <script>

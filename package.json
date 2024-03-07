@@ -35,6 +35,7 @@
         "vue-loader": "^17.4.2",
         "vue-router": "^4.2.5",
         "vue-star-rating": "^2.1.0",
+        "vue3-flip-countdown": "^0.1.6",
         "vueperslides": "^3.5.1",
         "vuex": "^4.1.0",
         "vuex-persistedstate": "^4.1.0"

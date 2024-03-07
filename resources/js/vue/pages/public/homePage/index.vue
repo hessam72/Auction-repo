@@ -3,6 +3,7 @@
     <nav-bar-section :is_single_nav="false"></nav-bar-section>
 
     <hero-section></hero-section>
+<statictic-count></statictic-count>
     <live-auctions></live-auctions>
     <reviews-section></reviews-section>
     <recent-winners></recent-winners>
@@ -14,6 +15,7 @@
 
 <script>
 import heroSection from "../../../components/homepage_sections/hero.vue";
+import staticticCount from "../../../components/homepage_sections/statictic_count.vue";
 import liveAuctions from "../../../components/homepage_sections/liveAuctions.vue";
 import reviewsSection from "../../../components/homepage_sections/reviews.vue";
 import recentWinners from "../../../components/homepage_sections/recentWinners.vue";
@@ -107,6 +109,7 @@ export default {
     pricingPlans,
     fixedButtons,
     navBarSection,
+    staticticCount
   },
 };
 </script>

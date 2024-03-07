@@ -353,11 +353,7 @@ export default {
   z-index: 30;
   width: 100vw;
   background: none;
-  background: linear-gradient(
-    90deg,
-    var(--color-primary),
-    var(--color-secondary)
-  );
+ 
   padding-top: 1.4rem;
 }
 
@@ -385,6 +381,12 @@ export default {
   transform: translate(0, 0);
   padding-bottom: 1rem;
   z-index: 99999;
+  background: linear-gradient(
+    90deg,
+    var(--color-primary),
+    var(--color-secondary)
+  );
+  
 }
 
 .temp-sticky {

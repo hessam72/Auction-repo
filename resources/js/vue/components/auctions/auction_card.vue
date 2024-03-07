@@ -31,7 +31,29 @@
                         </div>
                     </vue-countdown>
                 </div>
-                <button v-if="status === 1" class="btn-primary w-full">Bid Now</button>
+                <router-link v-if="status === 1" :to="{ name: 'auction-index', params: { id: auction_id } }"> <button 
+                        class="bid-now-btn rounded-full relative border hover:border-violet-600 duration-500 group cursor-pointer text-sky-50  overflow-hidden h-14   bg-violet-950 p-2 flex justify-center items-center font-extrabold w-full">
+                        <div
+                            class="absolute z-10 w-48 h-48 rounded-full group-hover:scale-150 transition-all  duration-500 ease-in-out bg-violet-900 delay-150 group-hover:delay-75">
+                        </div>
+                        <div
+                            class="absolute z-10 w-40 h-40 rounded-full group-hover:scale-150 transition-all  duration-500 ease-in-out bg-violet-800 delay-150 group-hover:delay-100">
+                        </div>
+                        <div
+                            class="absolute z-10 w-32 h-32 rounded-full group-hover:scale-150 transition-all  duration-500 ease-in-out bg-violet-700 delay-150 group-hover:delay-150">
+                        </div>
+                        <div
+                            class="absolute z-10 w-24 h-24 rounded-full group-hover:scale-150 transition-all  duration-500 ease-in-out bg-violet-600 delay-150 group-hover:delay-200">
+                        </div>
+                        <div
+                            class="absolute z-10 w-16 h-16 rounded-full group-hover:scale-150 transition-all  duration-500 ease-in-out bg-violet-500 delay-150 group-hover:delay-300">
+                        </div>
+                        <p class="z-10">BID NOW</p>
+                    </button></router-link>
+
+
+
+                <!-- <button v-if="status === 1" class="btn-primary w-full">Bid Now</button> -->
                 <button v-else-if="status === 2" class="w-full startingsoon-btn">
                     Starting Soon
                 </button>
@@ -46,13 +68,15 @@
 </template>
 
 <script>
+import { param } from 'jquery';
+
 export default {
     props: {
         time: Number,
         buy_now_price: Number,
         auction_id: {
             type: String,
-            default: "0"
+            default: "99999999"
         },
         current_winner_username: {
             type: String,
@@ -76,9 +100,9 @@ export default {
             type: Number,
             default: 1
         },
-        no_new_bidders:{
-            type:Boolean,
-            default:false
+        no_new_bidders: {
+            type: Boolean,
+            default: false
         }
 
 
@@ -99,37 +123,40 @@ export default {
     margin-bottom: 3rem;
     border-radius: 30px;
     box-shadow: 0 2px 14px #3a3a3a8c;
+
     .content {
         border-bottom-right-radius: 30px;
         border-bottom-left-radius: 30px;
-        background: linear-gradient(
-            0deg,
-            var(--color-primary-tint-1),
-            rgb(255, 255, 255) 95%
-        );
+        background: linear-gradient(0deg,
+                var(--color-primary-tint-1),
+                rgb(255, 255, 255) 95%);
     }
-   
+
 }
- .bookmark-container {
-        position: relative;
-        font-size: 2.7rem;
-        top: -1.2rem;
-        right: -1rem;
-        color: #ececec;
 
-        .icon-bg {
-            position: absolute;
-            color: var( --color-primary-tint-1);
-            right: 0;
-        }
+.bookmark-container {
+    position: relative;
+    font-size: 2.7rem;
+    top: -1.2rem;
+    right: -1rem;
+    color: #ececec;
+    cursor: pointer;
 
-        .icon-border {
-            position: absolute;
-            z-index: 20;
-            color: #00000059;
-            right: 0;
-        }
+    .icon-bg {
+        position: absolute;
+        color: var(--color-primary-tint-1);
+        right: 0;
+        cursor: pointer;
+        z-index: 11;
     }
+
+    .icon-border {
+        position: absolute;
+        z-index: 20;
+        color: #00000059;
+        right: 0;
+    }
+}
 
 
 .no-new-bidders {
@@ -186,8 +213,10 @@ export default {
     background-color: #fff;
     padding-top: 0.6rem;
 }
+
 .auction-timer {
     margin: auto;
+
     .count-down {
         display: flex;
         gap: 0.1rem;
@@ -235,8 +264,17 @@ export default {
         color: #555;
     }
 }
+
 .bookmarked {
     color: var(--color-primary-tint-5) !important;
     filter: drop-shadow(2px 2px 2px #888) !important;
+}
+
+.bid-now-btn {
+    width: 90%;
+    margin: auto;
+    height: 4rem;
+    font-size: 1.2rem;
+    filter: grayscale(.55);
 }
 </style>

@@ -155,16 +155,18 @@ export default {
 }
 #advanced-search-input {
   background-color: #fff;
-  border-radius: 15px;
-  overflow: clip;
-  box-shadow: 0 3px 5px #999;
-  width: 100%;
+    border-radius: 50px;
+    overflow: clip;
+    box-shadow: 0 3px 5px #999;
+    width: 100%;
+    padding: 0.7rem;
+    padding-left: 1.5rem;
 }
 #advanced-search-button {
   position: absolute;
-  right: 0px;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
+  right: -2px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
   height: 100%;
   z-index: 3;
 }

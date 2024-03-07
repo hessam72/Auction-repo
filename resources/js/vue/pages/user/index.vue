@@ -70,6 +70,7 @@ export default {
   position: relative;
   z-index: 5;
   margin-bottom: 4rem;
+  overflow-x:hidden;
 
 }
 

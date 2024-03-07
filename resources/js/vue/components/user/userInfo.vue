@@ -137,6 +137,7 @@ export default {};
   background-color: var(--color-primary);
   padding-left: 3rem;
   color: #fff;
+  min-height: 45rem;
 }
 
 .size {

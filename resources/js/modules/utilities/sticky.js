@@ -37,6 +37,7 @@ export function init_sticky_up_button() {
     let item = document.getElementById("up_btn");
    
     let offset = item.offsetHeight;
+  
     window.onscroll = function() {
       
         if (window.scrollY > offset + 360) {

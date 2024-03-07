@@ -115,7 +115,7 @@
                         <div class="timer-section">
                             <h3>Time Left</h3>
                             <div class="auction-timer">
-                                <vue-countdown :time="1 * 60 * 60 * 1000" v-slot="{ hours, minutes, seconds }">
+                                <vue-countdown :time="3 * 60 * 60 * 1000" v-slot="{ hours, minutes, seconds }">
                                     <div class="count-down">
                                         <div class="number">{{ hours }}</div>
                                         <div class="seperator">:</div>
@@ -292,12 +292,12 @@ export default {
 
     .kernel {
         margin-top: 1.5rem;
-        box-shadow: 0 2px 20px #6451d8;
-        padding: 0 2rem;
-        border-radius: 20px;
-        border: 1px solid #fff;
-        background-color: #efdbff9c;
-z-index: 9;
+    box-shadow: 0 2px 20px #3b2670;
+    padding: 0 2rem;
+    border-radius: 20px;
+    border: 1px solid #fff;
+    background-color: #e3e3e3a3;
+    z-index: 9;
         .k-header {
             padding: 1.5rem 0.5rem;
             font-size: 1.8rem;
@@ -454,6 +454,7 @@ z-index: 9;
 
             .number {
                 background-color: #77141f;
+                box-shadow: inset 0px 5px 9px 0px #f00;
             }
         }
     }
@@ -483,4 +484,37 @@ z-index: 9;
 .history-section {
     border-bottom: 1px solid #888;
     padding-bottom: 1rem;
-}</style>
+}
+
+.auction-timer {
+    margin: auto;
+
+    .count-down {
+        display: flex;
+        gap: 0.1rem;
+        text-align: center;
+        padding: 0.6rem 1rem;
+        // border: 1px solid;
+        width: 85%;
+        margin: auto;
+
+        .number {
+            border-radius: 9px;
+            font-weight: 600;
+            background-color: var(--color-primary);
+            color: #fff;
+            padding: 1rem;
+            width: 4.5rem;
+            font-size: 1.3rem;
+        }
+
+        .seperator {
+            padding: 0.5rem;
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+    }
+}
+
+
+</style>
