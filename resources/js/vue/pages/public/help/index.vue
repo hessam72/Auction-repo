@@ -589,7 +589,7 @@ export default {
     .content {
         width: 70%;
         border-left: 2px solid #33333391;
-
+margin-bottom: 7rem;
         .content-index {
             text-align: center;
             margin: 3rem 0;

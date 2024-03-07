@@ -179,7 +179,7 @@ export default {
     text-shadow: 0 1px 8px #ffffff80;
     letter-spacing: 1.1px;
     opacity: 0;
-    animation: slideFromRight 0.7s cubic-bezier(0.85, 0, 0.15, 1) 2s 1 normal
+    animation: slideFromRight 0.7s cubic-bezier(0.85, 0, 0.15, 1) 1.2s 1 normal
         both;
 }
 
@@ -217,6 +217,7 @@ export default {
     font-weight: 800;
     text-shadow: 0 0.5px 7px #333;
     line-height: 1.3;
+   
 }
 
 .sub-header {
@@ -247,7 +248,7 @@ export default {
     font-size: 1.7rem;
     font-weight: 500;
     box-shadow: -7px 6px 19px 0px #fed8e159;
-    animation: slideFromRight 0.7s cubic-bezier(0.85, 0, 0.15, 1) 2s 1 normal
+    animation: slideFromRight 0.7s cubic-bezier(0.85, 0, 0.15, 1) 1.2s 1 normal
         both;
     left: 2rem;
     bottom: 2rem;

@@ -19,15 +19,17 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body onload="init()">
-   
-    <div id="load" class="loader-container">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-
+<body>
+   <div id="load" class="load-container">
+    <div  class="loader-wrapper">
+		<div class="circle"></div>
+		<div class="circle"></div>
+		<div class="circle"></div>
+		<div class="shadow"></div>
+		<div class="shadow"></div>
+		<div class="shadow"></div>
+	</div>
+</div>
     <div id="app">
 
     </div>
@@ -35,76 +37,29 @@
     <script src="/assets/vue/js/loading.js"></script>
     
     <script src="https://unpkg.com/beerslider/dist/BeerSlider.js"></script> 
-  <script>
-    function init(){
-	new SmoothScroll(document,120,12)
+ <script>
+	if (window.addEventListener) window.addEventListener('DOMMouseScroll', wheel, false);
+window.onmousewheel = document.onmousewheel = wheel;
+
+function wheel(event) {
+    var delta = 0;
+    if (event.wheelDelta) delta = event.wheelDelta / 120;
+    else if (event.detail) delta = -event.detail / 3;
+
+    handle(delta);
+    if (event.preventDefault) event.preventDefault();
+    event.returnValue = false;
 }
 
-function SmoothScroll(target, speed, smooth) {
-	if (target === document)
-		target = (document.scrollingElement 
-              || document.documentElement 
-              || document.body.parentNode 
-              || document.body) // cross browser support for document scrolling
-      
-	var moving = false
-	var pos = target.scrollTop
-  var frame = target === document.body 
-              && document.documentElement 
-              ? document.documentElement 
-              : target // safari is the new IE
-  
-	target.addEventListener('mousewheel', scrolled, { passive: false })
-	target.addEventListener('DOMMouseScroll', scrolled, { passive: false })
-
-	function scrolled(e) {
-		e.preventDefault(); // disable default scrolling
-
-		var delta = normalizeWheelDelta(e)
-
-		pos += -delta * speed
-		pos = Math.max(0, Math.min(pos, target.scrollHeight - frame.clientHeight)) // limit scrolling
-
-		if (!moving) update()
-	}
-
-	function normalizeWheelDelta(e){
-		if(e.detail){
-			if(e.wheelDelta)
-				return e.wheelDelta/e.detail/40 * (e.detail>0 ? 1 : -1) // Opera
-			else
-				return -e.detail/3 // Firefox
-		}else
-			return e.wheelDelta/120 // IE,Safari,Chrome
-	}
-
-	function update() {
-		moving = true
+function handle(delta) {
+    var time = 400;
+	var distance = 50;
     
-		var delta = (pos - target.scrollTop) / smooth
-    
-		target.scrollTop += delta
-    
-		if (Math.abs(delta) > 0.5)
-			requestFrame(update)
-		else
-			moving = false
-	}
-
-	var requestFrame = function() { // requestAnimationFrame cross browser
-		return (
-			window.requestAnimationFrame ||
-			window.webkitRequestAnimationFrame ||
-			window.mozRequestAnimationFrame ||
-			window.oRequestAnimationFrame ||
-			window.msRequestAnimationFrame ||
-			function(func) {
-				window.setTimeout(func, 1000 / 50);
-			}
-		);
-	}()
+    $('html, body').stop().animate({
+        scrollTop: $(window).scrollTop() - (distance * delta)
+    }, time );
 }
-    </script>
+	</script>
 </body>
 
 </html>

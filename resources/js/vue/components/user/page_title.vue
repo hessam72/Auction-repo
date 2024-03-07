@@ -15,7 +15,7 @@ export default {
 .page-title-container{
     width:100%;
     padding: 2rem 0 0 2rem;
-    font-size: 1.6rem;
+    font-size: 1.45rem;
     font-weight: 500;
     color:var(--color-primary-tint-6);
 

@@ -15,7 +15,7 @@
 			<div class="col-lg-3 stats">
 				<ion-icon class="fa" name="stopwatch"></ion-icon>
 				<div class="counting" data-count="210">0</div>
-				<h5>Comming Soon</h5>
+				<h5>Upcomming Auctions</h5>
 			</div>
 
 			<div class="col-lg-3 stats">

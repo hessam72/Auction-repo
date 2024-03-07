@@ -89,6 +89,26 @@ export default {
         bids_to_claim: "75",
         expire_date: "23 / 12 / 05",
        
+      }, {
+        auction: "Tiger Nixon",
+        price: "$1200",
+        bids_to_claim: "128",
+        expire_date: "23 / 12 / 05",
+      
+      },
+      {
+        auction: "Sonya Frost",
+        price: "$1300",
+        bids_to_claim: "29",
+        expire_date: "23 / 12 / 05",
+       
+      },
+      {
+        auction: "Tatyana Fitzpatrick",
+        price: "$1270",
+        bids_to_claim: "75",
+        expire_date: "23 / 12 / 05",
+       
       },
     ];
     new Datatable(

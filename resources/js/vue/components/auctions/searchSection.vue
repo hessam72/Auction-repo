@@ -64,7 +64,7 @@
                   <ion-icon name="switch"></ion-icon>
                   <p>Sort By</p>
                 </div>
-                <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
+                <!-- <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
                   <input
                     class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
                     type="radio" name="flexRadioDefault" id="radioDefault01" />
@@ -95,7 +95,8 @@
                   <label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" for="radioDefault01">
                     Starting Soon
                   </label>
-                </div>
+                </div> -->
+                <radio-btn></radio-btn>
               </div>
             </li>
           </ul>
@@ -106,20 +107,7 @@
         </nav>
         <!-- Sidenav -->
 
-        <!-- Toggler -->
-        <!-- <button style="    background-color: var(--color-primary-tint-0);"
-          class="inline-block rounded bg-primary px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white
-           shadow-md transition duration-150 ease-in-out hover:bg-primary-700 hover:shadow-lg focus:bg-primary-700 
-           focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-800 active:shadow-lg"
-          data-te-sidenav-toggle-ref data-te-target="#sidenav-6" aria-controls="#sidenav-6" aria-haspopup="true">
-          <span class="block [&>svg]:h-5 [&>svg]:w-5 [&>svg]:text-white">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" class="h-5 w-5">
-              <path fill-rule="evenodd"
-                d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z"
-                clip-rule="evenodd" />
-            </svg>
-          </span>
-        </button> -->
+       
 
         <!-- new btn -->
         <button class="filter-btn"  data-te-sidenav-toggle-ref data-te-target="#sidenav-6" aria-controls="#sidenav-6" aria-haspopup="true">
@@ -133,35 +121,18 @@
           <span class="filter-text">Filter</span>
         </button>
       </div>
-      <!-- <div class="search-container">
-        <input
-          class="search-input"
-          type="text"
-          placeholder="Search in Auctions"
-        />
-        <ion-icon name="search"></ion-icon>
-      </div> -->
+     
       <div class="s-container">
-        <form action="" class="search">
-          <input class="search__input" type="search" placeholder="Search" id="searchInput">
+        <input checked="" class="checkbox" type="checkbox"> 
+        <div class="mainbox">
+            <div class="iconContainer">
+                <svg viewBox="0 0 512 512" height="1em" xmlns="http://www.w3.org/2000/svg" class="search_icon"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path></svg>
+            </div>
+         <input class="search_input" placeholder="search" type="text">
+        </div>
+    </div>
 
-          <div class="search__icon-container">
-            <label for="searchInput" class="search__label" aria-label="Search">
-              <svg viewBox="0 0 1000 1000" title="Search">
-                <path fill="currentColor"
-                  d="M408 745a337 337 0 1 0 0-674 337 337 0 0 0 0 674zm239-19a396 396 0 0 1-239 80 398 398 0 1 1 319-159l247 248a56 56 0 0 1 0 79 56 56 0 0 1-79 0L647 726z" />
-              </svg>
-            </label>
-
-            <button class="search__submit" aria-label="Search">
-              <svg viewBox="0 0 1000 1000" title="Search">
-                <path fill="currentColor"
-                  d="M408 745a337 337 0 1 0 0-674 337 337 0 0 0 0 674zm239-19a396 396 0 0 1-239 80 398 398 0 1 1 319-159l247 248a56 56 0 0 1 0 79 56 56 0 0 1-79 0L647 726z" />
-              </svg>
-            </button>
-          </div>
-        </form>
-      </div>
+      
     </div>
   </OnClickOutside>
 </template>
@@ -198,6 +169,7 @@ onMounted(() => {
 </script>
 
 <script>
+import radioBtn from "../utilities/radio_btn.vue";
 export default {
   data() {
     return {
@@ -213,6 +185,9 @@ export default {
       // document.getElementById('backdrop').style.display = "block";
     },
   },
+  components:{
+    radioBtn
+  },
   emits: [],
   props: [],
   watch: {},
@@ -226,147 +201,97 @@ export default {
 
 //reactive search
 
-
-
-
 .s-container {
-  align-items: center;
-
-  display: flex;
-
-  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  width: fit-content;
 }
 
-.search {
-  --easing: cubic-bezier(0.4, 0, 0.2, 1);
-  --font-size: 1.5rem;
-  --color: var(--color-foreground);
-  --color-highlight: white;
-  --transition-time-icon: 0.2s;
-  --transition-time-input: 0.3s 0.25s;
-  color: #fff;
-
-  &:not(:focus-within) {
-    --transition-time-input: 0.2s 0s;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    --transition-time-icon: 0s !important;
-    --transition-time-input: 0s !important;
-  }
-
-  $root: &;
-
-  border-radius: 999px;
-  border: 2px solid transparent;
-  display: flex;
-  transition: border-color var(--transition-time-icon) linear,
-  padding var(--transition-time-input) var(--easing);
-
-  &__input {
-    background: transparent;
-    border: none;
-    color: var(--color-highlight);
-    font-size: var(--font-size);
-    opacity: 0;
-    outline: none;
-    padding: 0;
-    transition: width var(--transition-time-input) var(--easing),
-      padding var(--transition-time-input) var(--easing),
-      opacity var(--transition-time-input) linear;
-    width: 0;
-
-    &::placeholder {
-      color: var(--color);
-      opacity: 0.75;
-    }
-  }
-
-  input:focus {
-    outline: none;
-  }
-
-  &__icon-container {
-    height: calc(var(--font-size) + 2rem);
-    position: relative;
-    width: calc(var(--font-size) + 2rem);
-  }
-
-  &__label,
-  &__submit {
-    color: var(--color);
-    cursor: pointer;
-    display: block;
-    height: 100%;
-    padding: 0;
-    position: absolute;
-    width: 100%;
-
-    &:hover,
-    &:focus,
-    &:active {
-      color: var(--color-highlight);
-    }
-  }
-
-  &__label {
-    transition: transform var(--transition-time-icon) var(--easing), color 0.1s;
-  }
-
-  &__submit {
-    background: none;
-    border-radius: 50%;
-    border: none;
-    box-shadow: 0 0 0 4px inset transparent;
-    display: none;
-    outline: none;
-    transition: color 0.1s, box-shadow 0.1s;
-
-    svg {
-      transform: scale(0.5);
-    }
-
-    &:focus {
-      box-shadow: 0 0 0 4px inset var(--color-highlight);
-    }
-  }
-
-  &:focus-within {
-    border-color: var(--color);
-
-    #{$root} {
-      &__input {
-        opacity: 1;
-        padding: 0 1rem 0 2rem;
-        width: calc(var(--font-size) * 12);
-      }
-
-      &__label {
-        transform: scale(0.5);
-      }
-
-      &__submit {
-        animation: unhide var(--transition-time-icon) steps(1, end);
-        display: block;
-      }
-    }
-  }
+.mainbox {
+  position: relative;
+    width: 310px;
+    height: 50px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 160px;
+    background-color: rgb(251, 251, 251);
+    transition: all 0.3s ease;
+    padding: 0.3rem 0.45rem;
 }
 
-@keyframes unhide {
-  from {
-    height: 0;
-    opacity: 0;
-  }
-
-  to {
-    height: auto;
-    opacity: 1;
-  }
+.checkbox:focus {
+  border: none;
+  outline: none;
 }
 
+.checkbox:checked {
+  right: 10px;
+}
 
+.checkbox:checked ~ .mainbox {
+  width: 50px;
+}
 
+.checkbox:checked ~ .mainbox .search_input {
+  width: 0;
+  height: 0px;
+}
+
+.checkbox:checked ~ .mainbox .iconContainer {
+  padding-right: 8px;
+}
+
+.checkbox {
+  box-sizing: border-box;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 17px;
+  top: 10px;
+  z-index: 9;
+  cursor: pointer;
+  appearance: none;
+  opacity: 0;
+}
+
+.search_input {
+  box-sizing: border-box;
+  height: 100%;
+  width: 170px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding-bottom: 4px;
+  padding-left: 10px;
+  font-size: 1em;
+  color: rgb(29, 29, 29);
+  transition: all 0.3s ease;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.search-input:focus{
+  // border: 1px solid red !important;
+}
+
+.search_input::placeholder {
+  color: rgba(31, 31, 31, 0.776);
+}
+
+.iconContainer {
+  box-sizing: border-box;
+  padding-right: 0.4rem;
+  width: fit-content;
+  transition: all 0.3s ease;
+}
+
+.search_icon {
+  box-sizing: border-box;
+  fill: rgb(26, 26, 26);
+  font-size: 1.3em;
+}
+
+// **************
 
 
 
@@ -434,7 +359,7 @@ input[type="range"] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  width: 12rem;
+  width: 18rem;
   margin: 0;
   padding: 0 2px;
   /* Add some L/R padding to ensure box shadow of handle is shown */
@@ -475,7 +400,7 @@ input[type="range"]::-webkit-slider-thumb::before {
   position: absolute;
   top: 13px;
   left: 100%;
-  width: 2000px;
+  
   height: 2px;
 }
 
@@ -513,7 +438,7 @@ input[type="range"]::-webkit-slider-thumb::before {
   background-color: rgba(40, 24, 76, 0.95);
   backdrop-filter: blur(2px);
   padding-bottom: .5rem;
-  width: 240px;
+  width: 20% !important;
   height: auto;
   position: fixed;
   transition: all 0.3s linear 0s;
@@ -569,6 +494,8 @@ input[type="range"]::-webkit-slider-thumb::before {
     border-radius: 15px;
     box-shadow: 2px 7px 19px #ac94e9;
     border: 1px solid #ffffff;
+    width: auto;
+    margin: auto;
   }
 }
 
