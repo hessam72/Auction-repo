@@ -426,7 +426,7 @@ export default {
 
 .box-container .box:before,
 .box-container .box:after {
-    background: linear-gradient(180deg, rgba(38, 23, 72, 1) 0%, rgba(140, 86, 238, 0.7819721638655462) 100%);
+    background: linear-gradient(180deg, var(--color-primary-tint-4) 0%, var(--color-primary-tint-1) 100%);
 
 }
 

@@ -53,6 +53,11 @@
                     <stop offset="10%" stop-color="rgb(178 195 219)" />
                     <stop offset="80%" stop-color="rgb(232 232 232)" />
                 </linearGradient>
+                <linearGradient id="grad2" x1="0%" x2="100%" y1="0%" y2="0%">
+                    <stop offset="10%" stop-color="var(--color-secondary-tint-2)" />
+                    <stop offset="80%" stop-color="rgb(232, 232, 232) " />
+                </linearGradient>
+                background: linear-gradient(90deg, var(--color-secondary-tint-2), rgb(232, 232, 232) 41%);
             </defs>
             <g class="parallax1">
                 <use xlink:href="#gentle-wave" x="50" y="3" fill="rgb(41, 24, 76)" />
@@ -60,11 +65,11 @@
             <g class="parallax2">
                 <use xlink:href="#gentle-wave" x="50" y="0" fill="rgb(77, 115, 173) " />
             </g>
-            <!-- <g class="parallax3">
-            <use xlink:href="#gentle-wave" x="50" y="9" fill="#3461c1" />
-        </g> -->
+            <g class="parallax3">
+                <use xlink:href="#gentle-wave" x="50" y="9" fill="#3461c1" />
+            </g>
             <g class="parallax4">
-                <use xlink:href="#gentle-wave" x="50" y="6" fill="url(#grad1)" />
+                <use xlink:href="#gentle-wave" x="50" y="6" fill="url(#grad2)" />
                 />
             </g>
         </svg>
@@ -104,30 +109,30 @@ export default {
         ],
     }),
     mounted() {
-         //Smooth Scrolling Using Navigation Menu
-      $('#scroll_down_link').on("click", function (e) {
-        $('#scroll-down-animation').removeClass('fade-in');
-        $('#scroll-down-animation').addClass('fade-out');
-        $("html,body").animate(
-          {
-            scrollTop: $($(this).attr("href")).offset().top - 100,
-          },
-          900
-        );
-        e.preventDefault();
-      });
-      // apear scrolldown icon on top
-      //On Scroll Functionality
-      $(window).scroll(() => {
-      
-        var windowTop = $(window).scrollTop();
-        if (windowTop < 100) {
-           //on top
-           $('#scroll-down-animation').removeClass('fade-out');
-        $('#scroll-down-animation').addClass('fade-in-slow');
-        } 
-       
-      });
+        //Smooth Scrolling Using Navigation Menu
+        $('#scroll_down_link').on("click", function (e) {
+            $('#scroll-down-animation').removeClass('fade-in');
+            $('#scroll-down-animation').addClass('fade-out');
+            $("html,body").animate(
+                {
+                    scrollTop: $($(this).attr("href")).offset().top - 100,
+                },
+                900
+            );
+            e.preventDefault();
+        });
+        // apear scrolldown icon on top
+        //On Scroll Functionality
+        $(window).scroll(() => {
+
+            var windowTop = $(window).scrollTop();
+            if (windowTop < 100) {
+                //on top
+                $('#scroll-down-animation').removeClass('fade-out');
+                $('#scroll-down-animation').addClass('fade-in-slow');
+            }
+
+        });
     },
     components: { VueperSlides, VueperSlide },
 };
@@ -344,21 +349,21 @@ export default {
     z-index: 99;
     cursor: pointer;
     // transition: all .3;
-   
+
 
 
 }
-.fade-in{
-    animation: fade-in 0.7s cubic-bezier(0.85, 0, 0.15, 1) 2s 1 normal
-        both;
-}.fade-in-slow{
-    animation: fade-in 0.7s cubic-bezier(0.85, 0, 0.15, 1) 3.5s 1 normal
-        both;
+
+.fade-in {
+    animation: fade-in 0.7s cubic-bezier(0.85, 0, 0.15, 1) 2s 1 normal both;
 }
 
-.fade-out{
-     animation: fade-out 0.7s cubic-bezier(0.85, 0, 0.15, 1) .5s 1 normal
-        both;
+.fade-in-slow {
+    animation: fade-in 0.7s cubic-bezier(0.85, 0, 0.15, 1) 3.5s 1 normal both;
+}
+
+.fade-out {
+    animation: fade-out 0.7s cubic-bezier(0.85, 0, 0.15, 1) .5s 1 normal both;
 }
 
 #scroll-header {
@@ -406,5 +411,4 @@ export default {
         opacity: 0;
     }
 }
-
 </style>

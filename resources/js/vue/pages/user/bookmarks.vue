@@ -116,6 +116,7 @@ export default {
                     this.show_more2 = true;
                 }
                 this.show_more = true;
+                
             }, 2000);
         },
     },

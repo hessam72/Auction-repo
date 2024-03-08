@@ -65,7 +65,11 @@
                 alt="Author Image"
               />
             </div></div
-        ></TransitionGroup>
+        >
+      
+       
+      
+      </TransitionGroup>
       </div>
     </main>
     <!-- <div class="more-container">
@@ -89,6 +93,7 @@ export default {
       slides.forEach((slide) => {
         slide.style.display = "none";
       });
+      slides[index].classList.add('show');
       slides[index].style.display = "flex";
     }
 
@@ -243,6 +248,12 @@ main {
   opacity: 0;
   transform: translateX(30px);
 }
+
+
+.show{
+  animation: slide-in-fwd-center .8s linear 0s 1 normal none;
+}
+
 
 @media screen and (min-width: 600px) {
   main {

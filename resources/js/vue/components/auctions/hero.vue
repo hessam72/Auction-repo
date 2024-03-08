@@ -179,7 +179,7 @@ export default {
     text-shadow: 0 1px 8px #ffffff80;
     letter-spacing: 1.1px;
     opacity: 0;
-    animation: slideFromRight 0.7s cubic-bezier(0.85, 0, 0.15, 1) 1.2s 1 normal
+    animation: slideFromRight 0.7s cubic-bezier(0.85, 0, 0.15, 1) 2.6s 1 normal
         both;
 }
 

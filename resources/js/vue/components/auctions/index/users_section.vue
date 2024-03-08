@@ -229,7 +229,7 @@
     border-collapse: collapse;
 
     th {
-      background-color: #4738ab;
+      background-color: #372065;
       color: #fff;
     }
 

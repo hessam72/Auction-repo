@@ -48,7 +48,7 @@
 
                     <section id="home" class="accordion">
                         <div class="accordion-item">
-                            <input type="checkbox" id="accordion1" />
+                            <input type="checkbox" class="js_checkbox" id="accordion1" />
                             <label for="accordion1" class="accordion-item-title"><span class="icon"></span>What is SEO, and
                                 why is it
                                 important for
@@ -64,7 +64,7 @@
                         </div>
 
                         <div class="accordion-item">
-                            <input type="checkbox" id="accordion2" />
+                            <input type="checkbox" class="js_checkbox" id="accordion2" />
                             <label for="accordion2" class="accordion-item-title"><span class="icon"></span>How long does it
                                 take to see
                                 results from
@@ -80,7 +80,7 @@
                         </div>
 
                         <div class="accordion-item">
-                            <input type="checkbox" id="accordion3" />
+                            <input type="checkbox" class="js_checkbox" id="accordion3" />
                             <label for="accordion3" class="accordion-item-title"><span class="icon"></span>What are the key
                                 components of a
                                 successful
@@ -95,7 +95,7 @@
                         </div>
 
                         <div class="accordion-item">
-                            <input type="checkbox" id="accordion4" />
+                            <input type="checkbox" class="js_checkbox" id="accordion4" />
                             <label for="accordion4" class="accordion-item-title"><span class="icon"></span>How does mobile
                                 optimization impact
                                 SEO?</label>
@@ -120,8 +120,8 @@
 
                     <section id="about" class="accordion">
                         <div class="accordion-item">
-                            <input type="checkbox" id="accordion1" />
-                            <label for="accordion1" class="accordion-item-title"><span class="icon"></span>What is SEO, and
+                            <input type="checkbox" class="js_checkbox" id="about1" />
+                            <label for="about1" class="accordion-item-title"><span class="icon"></span>What is SEO, and
                                 why is it
                                 important for
                                 online businesses?</label>
@@ -138,8 +138,8 @@
 
 
                         <div class="accordion-item">
-                            <input type="checkbox" id="accordion3" />
-                            <label for="accordion3" class="accordion-item-title"><span class="icon"></span>What are the key
+                            <input type="checkbox" class="js_checkbox" id="about2" />
+                            <label for="about2" class="accordion-item-title"><span class="icon"></span>What are the key
                                 components of a
                                 successful
                                 SEO strategy?</label>
@@ -153,8 +153,8 @@
                         </div>
 
                         <div class="accordion-item">
-                            <input type="checkbox" id="accordion4" />
-                            <label for="accordion4" class="accordion-item-title"><span class="icon"></span>How does mobile
+                            <input type="checkbox" class="js_checkbox" id="about3" />
+                            <label for="about3" class="accordion-item-title"><span class="icon"></span>How does mobile
                                 optimization impact
                                 SEO?</label>
                             <div class="accordion-item-desc">
@@ -178,8 +178,8 @@
 
                     <section id="services" class="accordion">
                         <div class="accordion-item">
-                            <input type="checkbox" id="accordion1" />
-                            <label for="accordion1" class="accordion-item-title"><span class="icon"></span>What is SEO, and
+                            <input type="checkbox" class="js_checkbox" id="why1" />
+                            <label for="why1" class="accordion-item-title"><span class="icon"></span>What is SEO, and
                                 why is it
                                 important for
                                 online businesses?</label>
@@ -194,8 +194,8 @@
                         </div>
 
                         <div class="accordion-item">
-                            <input type="checkbox" id="accordion2" />
-                            <label for="accordion2" class="accordion-item-title"><span class="icon"></span>How long does it
+                            <input type="checkbox" class="js_checkbox" id="why2" />
+                            <label for="why2" class="accordion-item-title"><span class="icon"></span>How long does it
                                 take to see
                                 results from
                                 SEO efforts?</label>
@@ -210,8 +210,8 @@
                         </div>
 
                         <div class="accordion-item">
-                            <input type="checkbox" id="accordion3" />
-                            <label for="accordion3" class="accordion-item-title"><span class="icon"></span>What are the key
+                            <input type="checkbox" class="js_checkbox" id="why" />
+                            <label for="why" class="accordion-item-title"><span class="icon"></span>What are the key
                                 components of a
                                 successful
                                 SEO strategy?</label>
@@ -224,8 +224,8 @@
                             </div>
                         </div>
                         <div class="accordion-item">
-                            <input type="checkbox" id="accordion1" />
-                            <label for="accordion1" class="accordion-item-title"><span class="icon"></span>What is SEO, and
+                            <input type="checkbox" class="js_checkbox" id="why3" />
+                            <label for="why3" class="accordion-item-title"><span class="icon"></span>What is SEO, and
                                 why is it
                                 important for
                                 online businesses?</label>
@@ -240,8 +240,8 @@
                         </div>
 
                         <div class="accordion-item">
-                            <input type="checkbox" id="accordion2" />
-                            <label for="accordion2" class="accordion-item-title"><span class="icon"></span>How long does it
+                            <input type="checkbox" class="js_checkbox" id="why4" />
+                            <label for="why4" class="accordion-item-title"><span class="icon"></span>How long does it
                                 take to see
                                 results from
                                 SEO efforts?</label>
@@ -256,8 +256,8 @@
                         </div>
 
                         <div class="accordion-item">
-                            <input type="checkbox" id="accordion3" />
-                            <label for="accordion3" class="accordion-item-title"><span class="icon"></span>What are the key
+                            <input type="checkbox" class="js_checkbox" id="why5" />
+                            <label for="why5" class="accordion-item-title"><span class="icon"></span>What are the key
                                 components of a
                                 successful
                                 SEO strategy?</label>
@@ -283,8 +283,8 @@
 
                     <section id="contact" class="accordion">
                         <div class="accordion-item">
-                            <input type="checkbox" id="accordion1" />
-                            <label for="accordion1" class="accordion-item-title"><span class="icon"></span>What is SEO, and
+                            <input type="checkbox" class="js_checkbox" id="contact1" />
+                            <label for="contact1" class="accordion-item-title"><span class="icon"></span>What is SEO, and
                                 why is it
                                 important for
                                 online businesses?</label>
@@ -299,8 +299,8 @@
                         </div>
 
                         <div class="accordion-item">
-                            <input type="checkbox" id="accordion2" />
-                            <label for="accordion2" class="accordion-item-title"><span class="icon"></span>How long does it
+                            <input type="checkbox" class="js_checkbox" id="contact2" />
+                            <label for="contact2" class="accordion-item-title"><span class="icon"></span>How long does it
                                 take to see
                                 results from
                                 SEO efforts?</label>
@@ -315,8 +315,8 @@
                         </div>
 
                         <div class="accordion-item">
-                            <input type="checkbox" id="accordion3" />
-                            <label for="accordion3" class="accordion-item-title"><span class="icon"></span>What are the key
+                            <input type="checkbox" class="js_checkbox" id="contact3" />
+                            <label for="contact3" class="accordion-item-title"><span class="icon"></span>What are the key
                                 components of a
                                 successful
                                 SEO strategy?</label>
@@ -329,8 +329,8 @@
                             </div>
                         </div>
                         <div class="accordion-item">
-                            <input type="checkbox" id="accordion1" />
-                            <label for="accordion1" class="accordion-item-title"><span class="icon"></span>What is SEO, and
+                            <input type="checkbox" class="js_checkbox" id="contact6" />
+                            <label for="contact6" class="accordion-item-title"><span class="icon"></span>What is SEO, and
                                 why is it
                                 important for
                                 online businesses?</label>
@@ -345,8 +345,8 @@
                         </div>
 
                         <div class="accordion-item">
-                            <input type="checkbox" id="accordion2" />
-                            <label for="accordion2" class="accordion-item-title"><span class="icon"></span>How long does it
+                            <input type="checkbox" class="js_checkbox" id="contact4" />
+                            <label for="contact4" class="accordion-item-title"><span class="icon"></span>How long does it
                                 take to see
                                 results from
                                 SEO efforts?</label>
@@ -361,8 +361,8 @@
                         </div>
 
                         <div class="accordion-item">
-                            <input type="checkbox" id="accordion3" />
-                            <label for="accordion3" class="accordion-item-title"><span class="icon"></span>What are the key
+                            <input type="checkbox" class="js_checkbox" id="contact5" />
+                            <label for="contact5" class="accordion-item-title"><span class="icon"></span>What are the key
                                 components of a
                                 successful
                                 SEO strategy?</label>
@@ -397,10 +397,7 @@ export default {
                     name: "Home",
                     url: "/vue/v1"
                 },
-                {
-                    name: "Auctions",
-                    url: "/vue/v1/auctions"
-                }
+               
             ],
             current: "Help"
         }
@@ -429,29 +426,13 @@ export default {
                 e.preventDefault();
             });
 
-            // Run the scrNav when scroll
-            // $(window).on('scroll', function () {
-            //     scrNav();
-            // });
-
-            // scrNav function 
-            // Change active dot according to the active section in the window
-            // function scrNav() {
-            //     var sTop = $(window).scrollTop();
-            //     $('section').each(function () {
-
-            //         var id = $(this).attr('id'),
-            //             offset = $(this).offset().top - 1,
-            //             height = $(this).height();
-            //         console.log(id)
-            //         if (sTop >= offset && sTop < offset + height) {
-            //             link.removeClass('active');
-            //             $('#navbar').find('[data-scroll="' + id + '"]').addClass('active');
-            //         }
-            //     });
-            // }
-            // scrNav();
+         
         });
+
+        $('.js_checkbox').click(function(){
+           
+            $('.accordion-item-desc').addClass('hide_it');
+        })
 
     },
 }
@@ -465,8 +446,10 @@ export default {
     min-width: 320px;
     margin: 5px auto;
     padding: 0 50px;
+    transition: all .3 ease;
 
 }
+
 
 .accordion h1 {
     font-size: 32px;
@@ -480,6 +463,7 @@ export default {
     background: #ffffff;
     box-shadow: 0 4px 8px #80808085;
     border-radius: 30px;
+    transition: all .3 ease;
 }
 
 .accordion-item .accordion-item-title {
@@ -509,6 +493,7 @@ export default {
     box-sizing: border-box;
     text-align: left;
     letter-spacing: .4px;
+    transition: all .3 ease;
 }
 
 .accordion-item input[type="checkbox"] {
@@ -518,10 +503,15 @@ export default {
     opacity: 0;
 }
 
+
 .accordion-item input[type="checkbox"]:checked~.accordion-item-desc {
+    
+    animation: fade-in 1s  ease-in-out ;
     display: block;
 }
-
+.hide_it{
+    display: none ;
+}
 .accordion-item input[type="checkbox"]:checked~.accordion-item-title .icon:after {
     content: "-";
     font-size: 20px;
@@ -563,7 +553,7 @@ export default {
     transform: translate(0, 0);
     width: 28% !important;
     height: auto !important;
-    background-color: #281a4b1a;
+    // background-color: #281a4b1a;
 }
 
 .help-container {
@@ -681,4 +671,5 @@ margin-bottom: 7rem;
         }
     }
 }
+
 </style>
