@@ -89,6 +89,26 @@ export default {
         bids_to_claim: "75",
         expire_date: "23 / 12 / 05",
        
+      }, {
+        auction: "Tiger Nixon",
+        price: "$1200",
+        bids_to_claim: "128",
+        expire_date: "23 / 12 / 05",
+      
+      },
+      {
+        auction: "Sonya Frost",
+        price: "$1300",
+        bids_to_claim: "29",
+        expire_date: "23 / 12 / 05",
+       
+      },
+      {
+        auction: "Tatyana Fitzpatrick",
+        price: "$1270",
+        bids_to_claim: "75",
+        expire_date: "23 / 12 / 05",
+       
       },
     ];
     new Datatable(
@@ -155,16 +175,18 @@ export default {
 }
 #advanced-search-input {
   background-color: #fff;
-  border-radius: 15px;
-  overflow: clip;
-  box-shadow: 0 3px 5px #999;
-  width: 100%;
+    border-radius: 50px;
+    overflow: clip;
+    box-shadow: 0 3px 5px #999;
+    width: 100%;
+    padding: 0.7rem;
+    padding-left: 1.5rem;
 }
 #advanced-search-button {
   position: absolute;
-  right: 0px;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
+  right: -2px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
   height: 100%;
   z-index: 3;
 }

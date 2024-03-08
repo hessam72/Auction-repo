@@ -7,12 +7,16 @@
                 <div class="product-content">
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis, obcaecati omnis culpa recusandae
                         odit, placeat labore dolor beatae sed incidunt quidem delectus nemo voluptatum consectetur facilis
-                        molestias nobis voluptas saepe.
+                        molestias nobis voluptas saepe.<br/>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis illo et exercitationem? Quod
                         eaque, earum voluptatem vero odio animi assumenda. Optio quos aut necessitatibus maiores illum error
                         ipsum nisi quo.;Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus alias dolore neque
                         ullam, maxime molestiae est ex suscipit aperiam debitis inventore rem doloremque tempore tenetur
-                        distinctio sunt, officia, dolorem voluptatibus?
+                        distinctio sunt, officia, dolorem voluptatibus?<br/>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis illo et exercitationem? Quod
+                        eaque, earum voluptatem vero odio animi assumenda. Optio quos aut necessitatibus maiores illum error
+                        ipsum nisi quo.;Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus alias dolore neque
+                        ullam, maxime molestiae est ex suscipit
                     </p>
                 </div>
             </div>
@@ -39,7 +43,7 @@
     .product-content{
 p{
     font-size: 1.25rem;
-    line-height: 2.2rem;
+    line-height: 2.5rem;
     text-align: justify;
 }
     }

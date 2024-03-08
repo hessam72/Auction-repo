@@ -92,6 +92,48 @@ export default {
         product: "Tatyana Fitzpatrick",
         price: "$1270",
         bids: "268",
+      }, {
+        product: "Tiger Nixon",
+        price: "$1200",
+        bids: "231",
+      },
+      {
+        product: "Sonya Frost",
+        price: "$1300",
+        bids: "131",
+      },
+      {
+        product: "Tatyana Fitzpatrick",
+        price: "$1270",
+        bids: "268",
+      }, {
+        product: "Tiger Nixon",
+        price: "$1200",
+        bids: "231",
+      },
+      {
+        product: "Sonya Frost",
+        price: "$1300",
+        bids: "131",
+      },
+      {
+        product: "Tatyana Fitzpatrick",
+        price: "$1270",
+        bids: "268",
+      }, {
+        product: "Tiger Nixon",
+        price: "$1200",
+        bids: "231",
+      },
+      {
+        product: "Sonya Frost",
+        price: "$1300",
+        bids: "131",
+      },
+      {
+        product: "Tatyana Fitzpatrick",
+        price: "$1270",
+        bids: "268",
       },
     ];
     new Datatable(

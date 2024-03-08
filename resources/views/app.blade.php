@@ -20,13 +20,16 @@
 </head>
 
 <body>
-   
-    <div id="load" class="screen">
-        <span class="loader"></span>
-       
-
-    </div>
-
+   <div id="load" class="load-container">
+    <div  class="loader-wrapper">
+		<div class="circle"></div>
+		<div class="circle"></div>
+		<div class="circle"></div>
+		<div class="shadow"></div>
+		<div class="shadow"></div>
+		<div class="shadow"></div>
+	</div>
+</div>
     <div id="app">
 
     </div>
@@ -34,7 +37,29 @@
     <script src="/assets/vue/js/loading.js"></script>
     
     <script src="https://unpkg.com/beerslider/dist/BeerSlider.js"></script> 
-  
+ <script>
+// 	if (window.addEventListener) window.addEventListener('DOMMouseScroll', wheel, false);
+// window.onmousewheel = document.onmousewheel = wheel;
+
+// function wheel(event) {
+//     var delta = 0;
+//     if (event.wheelDelta) delta = event.wheelDelta / 120;
+//     else if (event.detail) delta = -event.detail / 3;
+
+//     handle(delta);
+//     if (event.preventDefault) event.preventDefault();
+//     event.returnValue = false;
+// }
+
+// function handle(delta) {
+//     var time = 400;
+// 	var distance = 50;
+    
+//     $('html, body').stop().animate({
+//         scrollTop: $(window).scrollTop() - (distance * delta)
+//     }, time );
+// }
+	</script>
 </body>
 
 </html>

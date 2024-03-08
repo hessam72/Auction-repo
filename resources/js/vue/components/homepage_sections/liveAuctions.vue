@@ -52,13 +52,15 @@
             :no_new_bidders="false"
         ></auction-card>
         </div>
-        <div class="more-container">
-            <router-link :to="{name:'auctions'}">
-            <button class="more-btn">
+        <!-- <div class="more-container">
+            <router-link :to="{name:'auctions'}"> -->
+            <!-- <button class="more-btn">
                 View All <ion-icon name="share-alt"></ion-icon>
-            </button>
-            </router-link>
-        </div>
+            </button> -->
+           <more-btn :url_name="'auctions'"></more-btn>
+
+            <!-- </router-link>
+        </div> -->
     </div>
 </template>
 
@@ -81,7 +83,7 @@ export default {
     text-align: center;
     //   margin: 1.5rem;
     font-size: 1.2rem;
-    color: #555555;
+    // color: #e70606;
 }
 .auction-container {
     display: flex;

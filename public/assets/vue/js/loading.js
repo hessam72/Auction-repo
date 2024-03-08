@@ -1,4 +1,5 @@
 document.getElementById("app").style.visibility = "hidden";
+document.getElementById("load").classList.remove("hide-loader");
 document.onreadystatechange = function() {
 
     var state = document.readyState;
@@ -8,11 +9,12 @@ document.onreadystatechange = function() {
 
         document.getElementById("interactive");
         // document.getElementById('load').style.visibility = "hidden";
-        document.getElementById("load").classList.add("is-invisible");
+       
 
 
         setTimeout(function() {
+            document.getElementById("load").classList.add("hide-loader");
             document.getElementById("app").style.visibility = "visible";
-        }, 300);
+        }, 700);
     }
 };

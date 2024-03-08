@@ -1,80 +1,105 @@
-.is-invisible {
-    transition: 0.3s;
-    opacity: 0;
-    visibility: hidden;
+.loader-wrapper {
+  width: 200px;
+  height: 60px;
+  position: relative;
+  z-index: 1;
+  margin: auto;
+   
 }
 
-.is-visible {
-    transition: 0.3s;
-    opacity: 1;
-    visibility: visible;
+.circle {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  border-radius: 50%;
+  background-color: var(--color-primary-tint-5);
+  left: 15%;
+  transform-origin: 50%;
+  animation: circle7124 .5s alternate infinite ease;
 }
 
-.screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(90deg, var(--color-secondary-tint-1) 0%, rgb(232, 232, 232) 41%);
-    display: flex;
-    align-items: center;
-}
+@keyframes circle7124 {
+  0% {
+    top: 60px;
+    height: 5px;
+    border-radius: 50px 50px 25px 25px;
+    transform: scaleX(1.7);
+  }
 
-.loader {
-    width: 48px;
-    height: 48px;
+  40% {
+    height: 20px;
     border-radius: 50%;
-    display: inline-block;
-    position: relative;
-    border: 3px solid;
-    border-color: var( --color-primary-tint-5) var( --color-primary-tint-5) transparent transparent;
-    box-sizing: border-box;
-    animation: rotation 1s linear infinite;
-    margin: auto;
+    transform: scaleX(1);
+  }
+
+  100% {
+    top: 0%;
+  }
 }
 
-.loader::after,
-.loader::before {
-    content: '';
-    box-sizing: border-box;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    border: 3px solid;
-    border-color: transparent transparent var( --color-primary-tint-5) var( --color-primary-tint-5);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    box-sizing: border-box;
-    animation: rotationBack 0.5s linear infinite;
-    transform-origin: center center;
+.circle:nth-child(2) {
+  left: 45%;
+  animation-delay: .2s;
 }
 
-.loader::before {
-    width: 32px;
-    height: 32px;
-    border-color: var(--color-primary-tint-5) var( --color-primary-tint-5) transparent transparent;
-    animation: rotation 1.5s linear infinite;
+.circle:nth-child(3) {
+  left: auto;
+  right: 15%;
+  animation-delay: .3s;
 }
 
-@keyframes rotation {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+.shadow {
+  width: 20px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--color-primary-tint-5);
+  position: absolute;
+  top: 62px;
+  transform-origin: 50%;
+  z-index: -1;
+  left: 15%;
+  filter: blur(1px);
+  animation: shadow046 .5s alternate infinite ease;
 }
 
-@keyframes rotationBack {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(-360deg);
-    }
+@keyframes shadow046 {
+  0% {
+    transform: scaleX(1.5);
+  }
+
+  40% {
+    transform: scaleX(1);
+    opacity: .7;
+  }
+
+  100% {
+    transform: scaleX(.2);
+    opacity: .4;
+  }
+}
+
+.shadow:nth-child(4) {
+  left: 45%;
+  animation-delay: .2s
+}
+
+.shadow:nth-child(5) {
+  left: auto;
+  right: 15%;
+  animation-delay: .3s;
+}
+
+
+.load-container{
+  width: 100vw;
+  height: 100vh;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.hide-loader{
+  display: none;
+  visibility: hidden;
 }

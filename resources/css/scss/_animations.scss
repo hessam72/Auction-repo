@@ -7,6 +7,20 @@
     top: 0%;
   }
 }
+@keyframes gradient {
+  0% {
+      background-position: 0% 50%;
+  }
+
+  50% {
+      background-position: 100% 50%;
+  }
+
+  100% {
+      background-position: 0% 50%;
+  }
+}
+
 @keyframes upEntrance {
 	0% {
 		animation-timing-function: ease-in;
@@ -366,3 +380,54 @@
       transform: translateX(100%) rotate(120deg);
     }
   }
+
+  @keyframes focus-in-contract {
+			
+		0% {
+			letter-spacing:1em;
+			filter:blur(12px);
+			opacity:0;
+		}
+		100% {
+			filter:blur(0);
+			opacity:1;
+		}
+	}
+  @keyframes slit-in-horizontal {
+			
+		0% {
+			transform:translateZ(-800px) rotateX(90deg);
+			opacity:0;
+		}
+		50% {
+			transform:translateZ(-160px) rotateX(87deg);
+			opacity:1;
+		}
+		100% {
+			transform:translateZ(0) rotateX(0);
+		}
+	}
+  @keyframes puff-in-horizontal {
+			
+		0% {
+			transform:scaleX(2);
+			filter:blur(4px);
+			opacity:0;
+		}
+		100% {
+			transform:scaleX(1);
+			filter:blur(0);
+			opacity:1;
+		}
+	}
+  @keyframes slide-in-fwd-center {
+			
+		0% {
+			transform:translateZ(-1400px);
+			opacity:0;
+		}
+		100% {
+			transform:translateZ(0);
+			opacity:1;
+		}
+	}
