@@ -280,6 +280,9 @@ export default {
   },
   methods: {
     sticky_navbar() {
+      //only sticky on home page
+      if(this.$route.name != "home")return;
+      // if(this.$route.name)
         //only sticky on home page
         let menu = document.getElementById("site_nav");
         let offset = menu.offsetHeight;

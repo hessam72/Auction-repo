@@ -1,5 +1,6 @@
 export function init_elastic_slider() {
-    window.addEventListener("load", onWndLoad, false);
+    // window.addEventListener("load", onWndLoad, false);
+    onWndLoad();
 
     function onWndLoad() {
         var slider = document.querySelector(".slider");
@@ -19,10 +20,10 @@ export function init_elastic_slider() {
         var images = document.querySelectorAll("img");
 
         for (var i = 0; i < images.length; i++) {
-            images[i].onmousemove = function (e) {
+            images[i].onmousemove = function(e) {
                 e.preventDefault();
             };
-            images[i].ondragstart = function (e) {
+            images[i].ondragstart = function(e) {
                 return false;
             };
         }
@@ -41,6 +42,7 @@ export function init_elastic_slider() {
 
             attachEvents(sliders[sliders.length - 1]);
         }
+
         function attachEvents(elem) {
             curSlide = elem;
 
@@ -48,6 +50,7 @@ export function init_elastic_slider() {
             curSlide.addEventListener("touchstart", slideMouseDown, false);
         }
         init();
+
         function slideMouseDown(e) {
             if (e.touches) {
                 initX = e.touches[0].clientX;
@@ -148,7 +151,7 @@ export function init_elastic_slider() {
                 prevSlide = curSlide;
                 attachEvents(sliders[sliders.length - 2]);
                 slideMouseUp();
-                setTimeout(function () {
+                setTimeout(function() {
                     slider.insertBefore(prevSlide, slider.firstChild);
 
                     prevSlide.style.transition = "none";
@@ -159,6 +162,7 @@ export function init_elastic_slider() {
                 return;
             }
         }
+
         function slideMouseUp() {
             transX = 0;
             rotZ = 0;
@@ -230,7 +234,7 @@ export function init_elastic_slider() {
         }
 
         //for manual slide change
-        $("#next_slide").click(function () {
+        $("#next_slide").click(function() {
             document.removeEventListener("mousemove", slideMouseMove, false);
             document.removeEventListener("touchmove", slideMouseMove, false);
             curSlide.style.transition = "ease 0.2s";
@@ -238,7 +242,7 @@ export function init_elastic_slider() {
             prevSlide = curSlide;
             attachEvents(sliders[sliders.length - 2]);
             slideMouseUp();
-            setTimeout(function () {
+            setTimeout(function() {
                 slider.insertBefore(prevSlide, slider.firstChild);
 
                 prevSlide.style.transition = "none";

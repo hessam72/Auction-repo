@@ -2,14 +2,26 @@
   <OnClickOutside @trigger="close('outside')">
     <div id="menu" class="search-section-container temp-sticky">
       <div class="filter-container">
-        <nav id="sidenav-6"
+        <nav
+          id="sidenav-6"
           class="fixed left-0 top-0 z-[1035] h-screen w-60 -translate-x-full overflow-hidden bg-white shadow-[0_4px_12px_0_rgba(0,0,0,0.07),_0_2px_4px_rgba(0,0,0,0.05)] data-[te-sidenav-hidden='false']:translate-x-0 dark:bg-zinc-800"
-          data-te-sidenav-init data-te-sidenav-hidden="false" data-te-sidenav-accordion="true">
-          <ul class="relative m-0 list-none px-[0.2rem]" data-te-sidenav-menu-ref>
+          data-te-sidenav-init
+          data-te-sidenav-hidden="false"
+          data-te-sidenav-accordion="true"
+        >
+          <ul
+            class="relative m-0 list-none px-[0.2rem]"
+            data-te-sidenav-menu-ref
+          >
             <li class="relative">
-              <a style="color: #fff;" class="filter-header flex h-12 cursor-pointer items-center truncate rounded-[5px] px-6 py-4 text-[0.875rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
-                data-te-sidenav-link-ref>
-                <span class="mr-4 [&>svg]:h-4 [&>svg]:w-4 [&>svg]:text-gray-400 dark:[&>svg]:text-gray-300">
+              <a
+                style="color: #fff"
+                class="filter-header flex h-12 cursor-pointer items-center truncate rounded-[5px] px-6 py-4 text-[0.875rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
+                data-te-sidenav-link-ref
+              >
+                <span
+                  class="mr-4 [&>svg]:h-4 [&>svg]:w-4 [&>svg]:text-gray-400 dark:[&>svg]:text-gray-300"
+                >
                   <ion-icon name="options"></ion-icon>
                 </span>
                 <span>Filters</span>
@@ -17,7 +29,10 @@
             </li>
           </ul>
           <hr class="my-4" />
-          <ul class="relative m-0 list-none px-[0.2rem]" data-te-sidenav-menu-ref>
+          <ul
+            class="relative m-0 list-none px-[0.2rem]"
+            data-te-sidenav-menu-ref
+          >
             <li class="relative">
               <div class="filter_item category flex flex-col justify-start">
                 <div class="filter-item-header">
@@ -38,16 +53,33 @@
             </li>
           </ul>
           <hr class="my-4" />
-          <ul class="relative m-0 list-none px-[0.2rem]" data-te-sidenav-menu-ref>
+          <ul
+            class="relative m-0 list-none px-[0.2rem]"
+            data-te-sidenav-menu-ref
+          >
             <li class="relative">
-              <div class="filter_item range-container flex flex-col justify-start">
+              <div
+                class="filter_item range-container flex flex-col justify-start"
+              >
                 <div class="filter-item-header">
                   <ion-icon name="cash"></ion-icon>
                   <p>Price range</p>
                 </div>
                 <span class="multi-range">
-                  <input type="range" min="0" max="100" v-model="min" id="lower" />
-                  <input type="range" min="0" max="100" v-model="max" id="upper" />
+                  <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    v-model="min"
+                    id="lower"
+                  />
+                  <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    v-model="max"
+                    id="upper"
+                  />
                 </span>
                 <div class="range-label">
                   <p>${{ min }}</p>
@@ -57,60 +89,39 @@
             </li>
           </ul>
           <hr class="my-4" />
-          <ul class="relative m-0 list-none px-[0.2rem]" data-te-sidenav-menu-ref>
+          <ul
+            class="relative m-0 list-none px-[0.2rem]"
+            data-te-sidenav-menu-ref
+          >
             <li class="relative">
               <div class="filter_item flex flex-col justify-start">
                 <div class="filter-item-header">
                   <ion-icon name="switch"></ion-icon>
                   <p>Sort By</p>
                 </div>
-                <!-- <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
-                  <input
-                    class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
-                    type="radio" name="flexRadioDefault" id="radioDefault01" />
-                  <label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" for="radioDefault01">
-                    Latest
-                  </label>
-                </div>
-                <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
-                  <input
-                    class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
-                    type="radio" name="flexRadioDefault" id="radioDefault01" />
-                  <label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" for="radioDefault01">
-                    Most Popular
-                  </label>
-                </div>
-                <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
-                  <input
-                    class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
-                    type="radio" name="flexRadioDefault" id="radioDefault01" />
-                  <label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" for="radioDefault01">
-                    Live
-                  </label>
-                </div>
-                <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
-                  <input
-                    class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
-                    type="radio" name="flexRadioDefault" id="radioDefault01" />
-                  <label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" for="radioDefault01">
-                    Starting Soon
-                  </label>
-                </div> -->
+
                 <radio-btn></radio-btn>
               </div>
             </li>
           </ul>
 
-          <ul class="filter-btn-container relative m-0 list-none px-[0.2rem]" data-te-sidenav-menu-ref>
+          <ul
+            class="filter-btn-container relative m-0 list-none px-[0.2rem]"
+            data-te-sidenav-menu-ref
+          >
             <button class="filter-btn">Apply Filters</button>
           </ul>
         </nav>
         <!-- Sidenav -->
 
-       
-
         <!-- new btn -->
-        <button class="filter-btn"  data-te-sidenav-toggle-ref data-te-target="#sidenav-6" aria-controls="#sidenav-6" aria-haspopup="true">
+        <button
+          class="filter-btn"
+          data-te-sidenav-toggle-ref
+          data-te-target="#sidenav-6"
+          aria-controls="#sidenav-6"
+          aria-haspopup="true"
+        >
           <span class="filter-icon">
             <svg viewBox="0 0 175 80" width="40" height="40">
               <rect width="80" height="15" fill="#333" rx="10"></rect>
@@ -121,18 +132,25 @@
           <span class="filter-text">Filter</span>
         </button>
       </div>
-     
-      <div class="s-container">
-        <input checked="" class="checkbox" type="checkbox"> 
-        <div class="mainbox">
-            <div class="iconContainer">
-                <svg viewBox="0 0 512 512" height="1em" xmlns="http://www.w3.org/2000/svg" class="search_icon"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path></svg>
-            </div>
-         <input class="search_input" placeholder="search" type="text">
-        </div>
-    </div>
 
-      
+      <div class="s-container">
+        <input checked="" class="checkbox" type="checkbox" />
+        <div class="mainbox">
+          <div class="iconContainer">
+            <svg
+              viewBox="0 0 512 512"
+              height="1em"
+              xmlns="http://www.w3.org/2000/svg"
+              class="search_icon"
+            >
+              <path
+                d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"
+              ></path>
+            </svg>
+          </div>
+          <input class="search_input" placeholder="search" type="text" />
+        </div>
+      </div>
     </div>
   </OnClickOutside>
 </template>
@@ -146,23 +164,14 @@ import { init_dropdown } from "@/modules/utilities/dropdown.js";
 import { init_sticky_nav } from "@/modules/utilities/sticky.js";
 import { init_range_selector } from "@/modules/utilities/range_selector.js";
 
-function close() {
-  document.getElementById("sidenav-6").style.transform = "translateX(-100%)";
-}
-
 onMounted(() => {
-
-  close();
+  // close();
   //select dropdown jquery
   init_dropdown();
 
   // sticky filters
   init_sticky_nav();
- 
-  
-  
-  
-    
+
   // close nav on click outside
 
   initTE({ Select });
@@ -183,15 +192,21 @@ export default {
     };
   },
   mounted() {
-console.log(9)
+    console.log(9);
   },
   methods: {
+    close() {
+      if (this.$route.name != "auctions") return;
+
+      document.getElementById("sidenav-6").style.transform =
+        "translateX(-100%)";
+    },
     open_filters() {
       // document.getElementById('backdrop').style.display = "block";
     },
   },
-  components:{
-    radioBtn
+  components: {
+    radioBtn,
   },
   emits: [],
   props: [],
@@ -214,16 +229,16 @@ console.log(9)
 
 .mainbox {
   position: relative;
-    width: 310px;
-    height: 50px;
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 160px;
-    background-color: rgb(251, 251, 251);
-    transition: all 0.3s ease;
-    padding: 0.3rem 0.45rem;
+  width: 310px;
+  height: 50px;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 160px;
+  background-color: rgb(251, 251, 251);
+  transition: all 0.3s ease;
+  padding: 0.3rem 0.45rem;
 }
 
 .checkbox:focus {
@@ -273,9 +288,10 @@ console.log(9)
   font-size: 1em;
   color: rgb(29, 29, 29);
   transition: all 0.3s ease;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
-.search-input:focus{
+.search-input:focus {
   // border: 1px solid red !important;
 }
 
@@ -297,9 +313,6 @@ console.log(9)
 }
 
 // **************
-
-
-
 
 .backdrop {
   display: none;
@@ -405,7 +418,7 @@ input[type="range"]::-webkit-slider-thumb::before {
   position: absolute;
   top: 13px;
   left: 100%;
-  
+
   height: 2px;
 }
 
@@ -440,15 +453,16 @@ input[type="range"]::-webkit-slider-thumb::before {
   transform: translateX(-150%);
   box-shadow: rgb(0, 0, 0) 0px 1px 7px;
   border-right: 4px solid #806cb2;
-  background-color: rgba(40, 24, 76, 0.95);
+  background-color: var(--color-primary);
   backdrop-filter: blur(2px);
-  padding-bottom: .5rem;
+  padding-bottom: 0.5rem;
   width: 20% !important;
   height: auto;
   position: fixed;
   transition: all 0.3s linear 0s;
   transform: translateX(0%);
   padding-bottom: 4rem;
+  transform: translateX(-100%);
 }
 
 .filter_item {
@@ -484,10 +498,10 @@ input[type="range"]::-webkit-slider-thumb::before {
   background-color: var(--color-primary-tint-6);
 }
 
-.filter-title {}
+.filter-title {
+}
 
 .filter-btn-container {
-
   text-align: center;
   margin-top: 10rem;
 
@@ -531,10 +545,8 @@ input[type="range"]::-webkit-slider-thumb::before {
 
 .search-input:focus,
 .search:focus {
-
   outline: none !important;
   border: none !important;
-
 }
 // filter btn
 .filter-btn {
@@ -549,7 +561,7 @@ input[type="range"]::-webkit-slider-thumb::before {
   display: flex;
   align-items: center;
   background: #eee;
-    color: #333;
+  color: #333;
 }
 
 .filter-btn:hover {
