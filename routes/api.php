@@ -35,6 +35,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(ApiController::class)->prefix('/auth')->group(function () {
     Route::post('/login', 'login');
+    Route::post('/register', 'register');
     Route::post('/logout', 'logout');
 });
 

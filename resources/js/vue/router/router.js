@@ -15,7 +15,7 @@ import buy_it_now from "../pages/user/buy_it_now.vue";
 import wins_and_shipping from "../pages/user/wins&shipping.vue";
 import profile from "../pages/user/profile.vue";
 
-import auth from "../pages/auth/login.vue";
+import auth from "../pages/auth/login_singup.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -63,7 +63,6 @@ const router = createRouter({
                     path: "",
                     name: "profile",
                     component: profile,
-                    meta: { needUserAuth: true },
 
                 },
                 {
@@ -103,14 +102,9 @@ const router = createRouter({
             path: "/vue/v1/auth",
             name: "auth",
             component: auth,
-            // meta: { isGuest: true },
+            meta: { isGuest: true },
         },
-        // {
-        //     path: "/vue/v1/login",
-        //     name: "login",
-        //     component: loginPage,
-        //     // meta: { isGuest: true },
-        // },
+        
     ],
     scrollBehavior(to, from, savedPosition) {
         // always scroll to top
@@ -138,21 +132,15 @@ router.beforeEach(function(to, from, next) {
     //user must not be authenticated
     if (to.meta.isGuest) {
         if (
-            store.getters.UserAuthToken === null &&
-            store.getters.RoomAuthToken === null
+            store.getters.UserAuthToken === null 
         ) {
             next();
             return;
         } else if (store.getters.UserAuthToken != null) {
             //redirect to user profile
-            next({ name: "user-wheelofluck" });
+            next({ name: "user-index" });
             return;
-        } else if (store.getters.RoomAuthToken != null) {
-            //redirect to user profile
-
-            next({ name: "collector-booked-plans" });
-            return;
-        }
+        } 
     }
 
     

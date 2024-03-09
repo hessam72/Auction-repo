@@ -3,31 +3,65 @@
     <div class="auth-container">
         <div class="forms-container">
             <div class="signin-signup">
-                <form action="#" class="sign-in-form">
+                <form @submit.prevent="login()" class="sign-in-form">
                     <h2 class="title">Sign in</h2>
                     <div class="input-field">
-                      <ion-icon class="icon" name="person"></ion-icon>
-                        <input type="text" placeholder="Username" />
+                        <ion-icon class="icon" name="person"></ion-icon>
+                        <input
+                            v-model="login_email"
+                            type="email"
+                            placeholder="Email"
+                            required
+                        />
                     </div>
                     <div class="input-field">
                         <ion-icon class="icon" name="key"></ion-icon>
-                        <input type="password" placeholder="Password" />
+                        <input
+                            v-model="login_password"
+                            type="password"
+                            placeholder="Password"
+                        />
                     </div>
                     <input type="submit" value="Login" class="btn solid" />
                 </form>
-                <form action="#" class="sign-up-form">
+                <form @submit.prevent="register()" class="sign-up-form">
                     <h2 class="title">Sign up</h2>
                     <div class="input-field">
-                       <ion-icon class="icon" name="person"></ion-icon>
-                        <input type="text" placeholder="Username" />
+                        <ion-icon class="icon" name="person"></ion-icon>
+                        <input
+                            v-model="username"
+                            type="text"
+                            placeholder="Username"
+                            required
+                        />
                     </div>
                     <div class="input-field">
                         <ion-icon class="icon" name="at"></ion-icon>
-                        <input type="email" placeholder="Email" />
+                        <input
+                            v-model="register_email"
+                            type="email"
+                            placeholder="Email"
+                            required
+                        />
                     </div>
                     <div class="input-field">
                         <ion-icon class="icon" name="key"></ion-icon>
-                        <input type="password" placeholder="Password" />
+                        <input
+                            v-model="register_password"
+                            type="password"
+                            placeholder="Password"
+                            required
+                        />
+                    </div>
+                    <div class="input-field">
+                        <ion-icon class="icon" name="key"></ion-icon>
+                        <input
+                            type="password"
+                            placeholder="Confirm Password"
+                            v-model="confirm_pass"
+                            id="confirm_password"
+                            required
+                        />
                     </div>
                     <input type="submit" class="btn" value="Sign up" />
                 </form>
@@ -39,28 +73,35 @@
                 <div class="a-content">
                     <h3>New Here ?</h3>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam repellendus debitis asperiores
-                        laudantium,
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit. Veniam repellendus debitis asperiores laudantium,
                     </p>
                     <button class="btn transparent" id="sign-up-btn">
                         Sign up
                     </button>
                 </div>
-                <img src="https://i.ibb.co/6HXL6q1/Privacy-policy-rafiki.png" class="image" alt="" />
+                <img
+                    src="https://i.ibb.co/6HXL6q1/Privacy-policy-rafiki.png"
+                    class="image"
+                    alt=""
+                />
             </div>
             <div class="panel right-panel">
                 <div class="a-content">
                     <h3>Already a Member ?</h3>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam repellendus debitis asperiores
-                        laudantium,
-
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit. Veniam repellendus debitis asperiores laudantium,
                     </p>
                     <button class="btn transparent" id="sign-in-btn">
                         Sign in
                     </button>
                 </div>
-                <img src="https://i.ibb.co/nP8H853/Mobile-login-rafiki.png" class="image" alt="" />
+                <img
+                    src="https://i.ibb.co/nP8H853/Mobile-login-rafiki.png"
+                    class="image"
+                    alt=""
+                />
             </div>
         </div>
     </div>
@@ -68,25 +109,93 @@
 
 <script>
 import navBarSection from "../../components/global/navbar.vue";
-
+import { mapGetters, mapActions } from "vuex";
+import { init_login_singup_styles } from "@/modules/utilities/login_singup.js";
 export default {
     components: {
         navBarSection,
     },
+    data() {
+        return {
+            loginUrl: "auth/login",
+            registerUrl: "auth/register",
+            username: null,
+            login_email: null,
+            login_password: null,
+            register_email: null,
+            register_password: null,
+            confirm_pass: null,
+        };
+    },
+    computed: {
+        ...mapGetters(["baseUrl"]),
+    },
+    methods: {
+        ...mapActions(["loginUser", "setUser"]),
+        redirect() {
+            if (this.$route.query.redirect) {
+                this.$router.push(this.$route.query.redirect);
+            } else {
+                this.$router.push({ name: "user-index" });
+            }
+        },
+        login() {
+            const body = {
+                email: this.login_email,
+                password: this.login_password,
+            };
+
+            axios
+                .post(this.baseUrl + this.loginUrl, body)
+                .then((response) => {
+                   
+                    var token = "Bearer " + response.data.token;
+                    this.loginUser(token);
+                    this.setUser(response.data.user);
+                    this.redirect();
+                })
+                .catch(function (error) {
+                    console.log("error");
+                    console.log(error);
+                })
+                .finally(function () {
+                    // always executed
+                });
+        },
+        register() {
+            if (this.register_password != this.confirm_pass) {
+                var confirm_password =
+                    document.getElementById("confirm_password");
+                confirm_password.setCustomValidity("Passwords Don't Match");
+                return;
+            }
+            const body = {
+                username: this.username,
+                email: this.register_email,
+                password: this.register_password,
+            };
+
+            axios
+                .post(this.baseUrl + this.registerUrl, body)
+                .then((response) => {
+                    console.log("response");
+                    console.log(response);
+                    var token = "Bearer " + response.data.token;
+                    this.loginUser(token);
+                    this.setUser(response.data.user);
+                    this.redirect();
+                })
+                .catch(function (error) {
+                    console.log("error");
+                    console.log(error);
+                })
+                .finally(function () {
+                    // always executed
+                });
+        },
+    },
     mounted() {
-        const sign_in_btn = document.querySelector("#sign-in-btn");
-        const sign_up_btn = document.querySelector("#sign-up-btn");
-        const container = document.querySelector(".auth-container");
-
-        sign_up_btn.addEventListener("click", () => {
-
-            container.classList.add("sign-up-mode");
-        });
-
-        sign_in_btn.addEventListener("click", () => {
-
-            container.classList.remove("sign-up-mode");
-        });
+        init_login_singup_styles();
     },
 };
 </script>
@@ -103,7 +212,11 @@ input {
     position: relative;
     width: 100%;
     background-color: #fff;
-    background:linear-gradient(90deg, rgb(177, 194, 219) 0%, rgb(232, 232, 232) 41%);
+    background: linear-gradient(
+        90deg,
+        rgb(177, 194, 219) 0%,
+        rgb(232, 232, 232) 41%
+    );
     min-height: 100vh;
     overflow: hidden;
 }
@@ -191,8 +304,6 @@ form.sign-in-form {
     font-weight: 500;
 }
 
-
-
 .btn {
     width: 150px;
     background-color: #372065;
@@ -207,7 +318,6 @@ form.sign-in-form {
     cursor: pointer;
     transition: 0.5s;
 }
-
 
 .btn {
     color: white;
@@ -231,13 +341,17 @@ form.sign-in-form {
     width: 100%;
     left: -100%;
     height: 100%;
-    background: linear-gradient(220deg, transparent, rgba(200, 200, 200, 0.967), transparent);
+    background: linear-gradient(
+        220deg,
+        transparent,
+        rgba(200, 200, 200, 0.967),
+        transparent
+    );
     transition: all 350ms;
 }
 
 .btn:hover::before {
     left: 100%;
-
 }
 
 .panels-container {
@@ -259,7 +373,11 @@ form.sign-in-form {
     right: 48%;
     transform: translateY(-50%);
     background: rgb(55, 32, 96);
-    background: linear-gradient(0deg, var(--color-primary) 0%, rgb(55 32 96 / 64%) 100%);
+    background: linear-gradient(
+        0deg,
+        var(--color-primary) 0%,
+        rgb(55 32 96 / 64%) 100%
+    );
     transition: 1.8s ease-in-out;
     border-radius: 50%;
     z-index: 6;
@@ -368,7 +486,7 @@ form.sign-in-form {
 .auth-container.sign-up-mode .right-panel {
     pointer-events: all;
 }
-.icon{
+.icon {
     font-size: 2rem;
     margin: auto;
     color: #372065;

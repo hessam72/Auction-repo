@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class ApiController extends Controller
@@ -26,19 +28,43 @@ class ApiController extends Controller
             ], 400);
         }
         return response([
-            'status' => 'success'
+            'status' => 'success',
+            'token'=>$token,
+            'user'=>Auth::user()
         ])
             ->header('Authorization', $token);
 
-        // if (Auth::attempt($credentials)) {
-        //     $request->session()->regenerate();
+       
+    }
+    public function register(Request $request){
+      $credentials=  $request->validate([
+            'username' => 'required|string|max:255',
+            'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
+            'password' => ['required', Password::defaults()],
+            // 'password' => ['required', 'confirmed', Password::defaults()],
+        ]);
 
-        //     return 'you loged in';
-        // }
+        $user = User::create([
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
 
-        // return back()->withErrors([
-        //     'email' => 'The provided credentials do not match our records.',
-        // ])->onlyInput('email');
+        if (!$token = JWTAuth::attempt($credentials)) {
+            return response([
+                'status' => 'error',
+                'error' => 'invalid.credentials',
+                'msg' => 'Invalid Credentials.'
+            ], 400);
+        }
+        return response([
+            'status' => 'success',
+            'token'=>$token,
+            'user'=>Auth::user()
+        ])
+            ->header('Authorization', $token);
+
+
     }
 
     public function logout(Request $request)
