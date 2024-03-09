@@ -21,13 +21,15 @@ class AuctionController extends Controller
     use Upload;
     public function index(Request $request)
     {
-        $count = 10;
-         if($request->has('per_page')){
-           $count = $request->per_page;
+        $skip = 0;
+        $take=10;
+         if($request->has('skip') && $request->has('take')){
+           $skip = $request->skip;
+           $take = $request->take;
          }
 
 
-        return AuctionResource::collection(Auction::paginate($count));
+        return AuctionResource::collection(Auction::skip($skip)->take($take)->get());
         // return AuctionResource::collection(Auction::paginate($count)->load('product'));
         // $data = Auction::paginate($count)->load('product');
         // return ['all' => AuctionResource::collection($data)->response()->getData(true) ,

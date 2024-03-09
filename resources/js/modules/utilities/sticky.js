@@ -3,7 +3,7 @@ export function init_sticky_nav() {
     let menu = document.getElementById("menu");
     let offset = menu.offsetHeight;
     document.onscroll = function() {
-        console.log('scrowll')
+       
         if (window.scrollY > offset + 400) {
             menu.classList.add("sticky");
             menu.classList.remove("temp-sticky");
@@ -13,7 +13,7 @@ export function init_sticky_nav() {
         }
     };
     window.onscroll = function() {
-        console.log('scrowll')
+     
         if (window.scrollY > offset + 400) {
             menu.classList.add("sticky");
             menu.classList.remove("temp-sticky");

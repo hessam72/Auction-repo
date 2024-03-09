@@ -6,11 +6,11 @@
                 <form action="#" class="sign-in-form">
                     <h2 class="title">Sign in</h2>
                     <div class="input-field">
-                        <i class="fas fa-user"></i>
+                      <ion-icon class="icon" name="person"></ion-icon>
                         <input type="text" placeholder="Username" />
                     </div>
                     <div class="input-field">
-                        <i class="fas fa-lock"></i>
+                        <ion-icon class="icon" name="key"></ion-icon>
                         <input type="password" placeholder="Password" />
                     </div>
                     <input type="submit" value="Login" class="btn solid" />
@@ -18,15 +18,15 @@
                 <form action="#" class="sign-up-form">
                     <h2 class="title">Sign up</h2>
                     <div class="input-field">
-                        <i class="fas fa-user"></i>
+                       <ion-icon class="icon" name="person"></ion-icon>
                         <input type="text" placeholder="Username" />
                     </div>
                     <div class="input-field">
-                        <i class="fas fa-envelope"></i>
+                        <ion-icon class="icon" name="at"></ion-icon>
                         <input type="email" placeholder="Email" />
                     </div>
                     <div class="input-field">
-                        <i class="fas fa-lock"></i>
+                        <ion-icon class="icon" name="key"></ion-icon>
                         <input type="password" placeholder="Password" />
                     </div>
                     <input type="submit" class="btn" value="Sign up" />
@@ -259,7 +259,7 @@ form.sign-in-form {
     right: 48%;
     transform: translateY(-50%);
     background: rgb(55, 32, 96);
-    background: linear-gradient(0deg, rgba(55, 32, 96, 1) 0%, rgba(55, 32, 96, 0.6531206232492996) 100%);
+    background: linear-gradient(0deg, var(--color-primary) 0%, rgb(55 32 96 / 64%) 100%);
     transition: 1.8s ease-in-out;
     border-radius: 50%;
     z-index: 6;
@@ -367,6 +367,11 @@ form.sign-in-form {
 
 .auth-container.sign-up-mode .right-panel {
     pointer-events: all;
+}
+.icon{
+    font-size: 2rem;
+    margin: auto;
+    color: #372065;
 }
 
 @media (max-width: 870px) {

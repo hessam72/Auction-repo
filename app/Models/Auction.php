@@ -98,6 +98,10 @@ class Auction extends Model
 	{
 		return $this->belongsTo(User::class, 'final_winner_id');
 	}
+	public function current_winner()
+	{
+		return $this->belongsTo(User::class, 'current_winner_id');
+	}
 
 	public function product()
 	{

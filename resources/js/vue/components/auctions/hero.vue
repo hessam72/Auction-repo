@@ -62,10 +62,10 @@
             <!-- <count-down :time="2 *3 * 60 * 60 * 1000"></count-down> -->
         </div>
     </div>
-    <link
+    <!-- <link
         href="https://fonts.googleapis.com/css?family=Monoton"
         rel="stylesheet"
-    />
+    /> -->
 </template>
 
 <script>

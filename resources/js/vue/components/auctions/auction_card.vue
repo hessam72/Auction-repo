@@ -2,26 +2,44 @@
     <div class="item-container relative">
         <div v-if="no_new_bidders" class="no-new-bidders">no new bidders</div>
         <div class="bookmark-container">
-            <ion-icon :class="[is_bookmarked ? 'bookmarked' : '', 'icon-bg']" name="bookmark"></ion-icon>
+            <ion-icon
+                :class="[is_bookmarked ? 'bookmarked' : '', 'icon-bg']"
+                name="bookmark"
+            ></ion-icon>
         </div>
         <div class="rounded-t-3xl overflow-hidden">
             <div class="auction-img">
                 <p class="card-title">{{ title }}</p>
-                <img class="w-full" :src="image" alt="Sunset in the mountains" />
+                <img
+                    v-if="image"
+                    class="w-full"
+                    :src="'/storage/' + image.image"
+                    alt="Sunset in the mountains"
+                />
+                <img
+                    v-else="image"
+                    class="w-full"
+                    :src="'/storage/images/default/default_auction_pic.png'"
+                    alt="Sunset in the mountains"
+                />
             </div>
             <div class="content flex flex-col gap-2.5 py-5 px-7">
-                <div v-if="status === 1" class="header flex flex-col gap-1">
+                <div v-if="status === 100" class="header flex flex-col gap-1">
                     <p class="live-price">${{ live_price }}</p>
                     <p class="current-winner">{{ current_winner_username }}</p>
                 </div>
-                <div v-else-if="status === 2" class="header flex flex-col gap-1">
+                <div
+                    v-else-if="status === 1"
+                    class="header flex flex-col gap-1"
+                >
                     <p class="starting_time">{{ start_time }}</p>
-                    <p class="current-winner">
-                        Bid during last 9 seconds.
-                    </p>
+                    <p class="current-winner">Bid during last 9 seconds.</p>
                 </div>
-                <div class="auction-timer">
-                    <vue-countdown :time="time" v-slot="{ hours, minutes, seconds }">
+                <div v-if="status === 100" class="auction-timer">
+                    <vue-countdown
+                        :time="convertDateToMilliSeconds(timer)"
+                        v-slot="{ hours, minutes, seconds }"
+                    >
                         <div class="count-down">
                             <div class="number">{{ hours }}</div>
                             <div class="seperator">:</div>
@@ -31,31 +49,52 @@
                         </div>
                     </vue-countdown>
                 </div>
-                <router-link v-if="status === 1" :to="{ name: 'auction-index', params: { id: auction_id } }"> <button 
-                        class="bid-now-btn rounded-full relative border hover:border-violet-600 duration-500 group cursor-pointer text-sky-50  overflow-hidden h-14   bg-violet-950 p-2 flex justify-center items-center font-extrabold w-full">
-                        <div
-                            class="absolute z-10 w-48 h-48 rounded-full group-hover:scale-150 transition-all  duration-500 ease-in-out bg-violet-900 delay-150 group-hover:delay-75">
+                <div v-else-if="status === 1" class="auction-timer">
+                    <vue-countdown
+                        :time="convertDateToMilliSeconds(start_time)"
+                        v-slot="{ hours, minutes, seconds }"
+                    >
+                        <div class="count-down">
+                            <div class="number">{{ hours }}</div>
+                            <div class="seperator">:</div>
+                            <div class="number">{{ minutes }}</div>
+                            <div class="seperator">:</div>
+                            <div class="number">{{ seconds }}</div>
                         </div>
+                    </vue-countdown>
+                </div>
+                <router-link
+                    v-if="status === 100"
+                    :to="{ name: 'auction-index', params: { id: auction_id } }"
+                >
+                    <button
+                        class="bid-now-btn rounded-full relative border hover:border-violet-600 duration-500 group cursor-pointer text-sky-50 overflow-hidden h-14 bg-violet-950 p-2 flex justify-center items-center font-extrabold w-full"
+                    >
                         <div
-                            class="absolute z-10 w-40 h-40 rounded-full group-hover:scale-150 transition-all  duration-500 ease-in-out bg-violet-800 delay-150 group-hover:delay-100">
-                        </div>
+                            class="absolute z-10 w-48 h-48 rounded-full group-hover:scale-150 transition-all duration-500 ease-in-out bg-violet-900 delay-150 group-hover:delay-75"
+                        ></div>
                         <div
-                            class="absolute z-10 w-32 h-32 rounded-full group-hover:scale-150 transition-all  duration-500 ease-in-out bg-violet-700 delay-150 group-hover:delay-150">
-                        </div>
+                            class="absolute z-10 w-40 h-40 rounded-full group-hover:scale-150 transition-all duration-500 ease-in-out bg-violet-800 delay-150 group-hover:delay-100"
+                        ></div>
                         <div
-                            class="absolute z-10 w-24 h-24 rounded-full group-hover:scale-150 transition-all  duration-500 ease-in-out bg-violet-600 delay-150 group-hover:delay-200">
-                        </div>
+                            class="absolute z-10 w-32 h-32 rounded-full group-hover:scale-150 transition-all duration-500 ease-in-out bg-violet-700 delay-150 group-hover:delay-150"
+                        ></div>
                         <div
-                            class="absolute z-10 w-16 h-16 rounded-full group-hover:scale-150 transition-all  duration-500 ease-in-out bg-violet-500 delay-150 group-hover:delay-300">
-                        </div>
+                            class="absolute z-10 w-24 h-24 rounded-full group-hover:scale-150 transition-all duration-500 ease-in-out bg-violet-600 delay-150 group-hover:delay-200"
+                        ></div>
+                        <div
+                            class="absolute z-10 w-16 h-16 rounded-full group-hover:scale-150 transition-all duration-500 ease-in-out bg-violet-500 delay-150 group-hover:delay-300"
+                        ></div>
                         <p class="z-10">BID NOW</p>
-                    </button></router-link>
-
-
+                    </button></router-link
+                >
 
                 <!-- <button v-if="status === 1" class="btn-primary w-full">Bid Now</button> -->
-                <button v-else-if="status === 2" class="w-full startingsoon-btn">
-                    Starting Soon
+                <button
+                    v-else-if="status === 1"
+                    class="w-full startingsoon-btn"
+                >
+                    Starting Soon {{ status }}
                 </button>
                 <button class="btn-secoundary">
                     Buy it Now for ${{ buy_now_price }}
@@ -63,51 +102,53 @@
             </div>
         </div>
     </div>
-
-
 </template>
 
 <script>
-import { param } from 'jquery';
-
+import { param } from "jquery";
+import {
+    translateAuctionStatus,
+    convertDateToMilliSeconds,
+} from "@/modules/utilities.js";
 export default {
+    methods: {
+        translateAuctionStatus,
+        convertDateToMilliSeconds,
+    },
     props: {
-        time: Number,
+        timer:{},
+        start_time: {},
         buy_now_price: Number,
         auction_id: {
             type: String,
-            default: "99999999"
+            default: "99999999",
         },
         current_winner_username: {
             type: String,
-            default: null
-        }, start_time: {
-            type: String,
-            default: null
+            default: null,
         },
+        
         live_price: {
             type: Number,
-            default: 0
+            default: 0,
         },
         title: String,
-        image: String,
+        image: {},
         is_bookmarked: {
             type: Boolean,
-            default: false
+            default: false,
         },
-        // status 1=>live / 2=>start soon / 3=> no new bidders
+        // status 1=>active  // 0=>deactive // 3=>finished // 100=>running //  200=> no new bidders
         status: {
             type: Number,
-            default: 1
+            default: 1,
         },
         no_new_bidders: {
             type: Boolean,
-            default: false
-        }
-
-
-    }
-}
+            default: false,
+        },
+    },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -127,11 +168,12 @@ export default {
     .content {
         border-bottom-right-radius: 30px;
         border-bottom-left-radius: 30px;
-        background: linear-gradient(0deg,
-                var(--color-primary-tint-1),
-                rgb(255, 255, 255) 95%);
+        background: linear-gradient(
+            0deg,
+            var(--color-primary-tint-1),
+            rgb(255, 255, 255) 95%
+        );
     }
-
 }
 
 .bookmark-container {
@@ -157,7 +199,6 @@ export default {
         right: 0;
     }
 }
-
 
 .no-new-bidders {
     position: absolute;
@@ -275,6 +316,6 @@ export default {
     margin: auto;
     height: 4rem;
     font-size: 1.2rem;
-    filter: grayscale(.55);
+    filter: grayscale(0.55);
 }
 </style>

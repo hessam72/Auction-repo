@@ -15,7 +15,7 @@ import buy_it_now from "../pages/user/buy_it_now.vue";
 import wins_and_shipping from "../pages/user/wins&shipping.vue";
 import profile from "../pages/user/profile.vue";
 
-import auth from "../pages/auth/login_singup.vue";
+import auth from "../pages/auth/login.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -58,11 +58,13 @@ const router = createRouter({
             path: "/vue/v1/user",
             name: "user-index",
             component: UserIndex,
-            // meta: { isGuest: true },
+            meta: { needUserAuth: true },
             children: [{
                     path: "",
                     name: "profile",
                     component: profile,
+                    meta: { needUserAuth: true },
+
                 },
                 {
                     path: "bookmarks",
@@ -118,6 +120,41 @@ const router = createRouter({
 // sessionStorage.clear();
 
 router.beforeEach(function(to, from, next) {
+    // document.title = translatePageName(to.name);
+
+    // authenticating user
+    if (to.meta.needUserAuth && store.getters.UserAuthToken === null) {
+        // save url user tried to visit for redirect
+        // store.dispatch("setHistoryUrl", {
+        //     path: to.fullPath,
+        // });
+        // this.$router.push({ name: 'login', query: { redirect: to.fullPath } });
+        next({ name: "auth", query: { redirect: to.fullPath } });
+        return;
+    }
+
+   
+
+    //user must not be authenticated
+    if (to.meta.isGuest) {
+        if (
+            store.getters.UserAuthToken === null &&
+            store.getters.RoomAuthToken === null
+        ) {
+            next();
+            return;
+        } else if (store.getters.UserAuthToken != null) {
+            //redirect to user profile
+            next({ name: "user-wheelofluck" });
+            return;
+        } else if (store.getters.RoomAuthToken != null) {
+            //redirect to user profile
+
+            next({ name: "collector-booked-plans" });
+            return;
+        }
+    }
+
     
     next();
 });

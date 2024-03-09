@@ -13,8 +13,7 @@
     
     <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/beerslider/dist/BeerSlider.css">
-{{-- <script src="https://unpkg.com/feather-icons"></script> --}}
+{{-- <link rel="stylesheet" href="https://unpkg.com/beerslider/dist/BeerSlider.css"> --}}
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -36,7 +35,7 @@
    
     <script src="/assets/vue/js/loading.js"></script>
     
-    <script src="https://unpkg.com/beerslider/dist/BeerSlider.js"></script> 
+    {{-- <script src="https://unpkg.com/beerslider/dist/BeerSlider.js"></script>  --}}
  <script>
 // 	if (window.addEventListener) window.addEventListener('DOMMouseScroll', wheel, false);
 // window.onmousewheel = document.onmousewheel = wheel;
