@@ -159,7 +159,7 @@ export default {
     // animation-fill-mode:forwards ;
     // -webkit-animation-fill-mode:forwards ;
 
-    animation: slideFromLeft 0.7s cubic-bezier(0.87, 0, 0.13, 1) 2s 1 normal
+    animation: slideFromLeft 0.7s cubic-bezier(0.87, 0, 0.13, 1) 1s 1 normal
         both;
 }
 
@@ -179,7 +179,7 @@ export default {
     text-shadow: 0 1px 8px #ffffff80;
     letter-spacing: 1.1px;
     opacity: 0;
-    animation: slideFromRight 0.7s cubic-bezier(0.85, 0, 0.15, 1) 2.6s 1 normal
+    animation: slideFromRight 0.7s cubic-bezier(0.85, 0, 0.15, 1) 1.6s 1 normal
         both;
 }
 

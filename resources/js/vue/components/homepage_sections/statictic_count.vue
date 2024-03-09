@@ -26,7 +26,7 @@
 
 			<div class="col-lg-3 stats">
 				<ion-icon class="fa" name="cart"></ion-icon>
-				<div class="counting" data-count="999">0</div>
+				<div class="counting" data-count="421">0</div>
 				<h5>Products</h5>
 			</div>
 
@@ -55,7 +55,7 @@ $('.counting').each(function() {
 
   {
 
-    duration: 4000,
+    duration: 5000,
     easing:'linear',
     step: function() {
       $this.text(Math.floor(this.countNum));

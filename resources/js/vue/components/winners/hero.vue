@@ -27,10 +27,10 @@
       <div class="pat2" data-beer-src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/wild-sea-grayscale.png"></div>
     </div>
   </div>
-  <h1>
+  <!-- <h1>
     Befor & After    
   </h1>
-  <p>showing how much cost of buying product in original price vs win them in auction</p>
+  <p>showing how much cost of buying product in original price vs win them in auction</p> -->
 </header>
 </template>
 
@@ -50,7 +50,7 @@ export default {
 .beer-slider {
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 120%;
 }
 
 header {
@@ -64,10 +64,21 @@ header {
   font-family: Montserrat;
 }
 .pat1 {
-  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/wild-sea.png);
+  // background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/wild-sea.png);
+  background-image: url(http://localhost:8000/storage/images/befor&after/b&a.png);
+  filter: grayscale(1);
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size:cover;
 }
 .pat2 {
-  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/wild-sea-grayscale.png);
+  // background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/wild-sea-grayscale.png);
+  background-image: url(http://localhost:8000/storage/images/befor&after/b&a2.png);
+background-position: top;
+background-repeat: no-repeat;
+background-size:cover;
+
+
 }
 
 .beer-handle {
