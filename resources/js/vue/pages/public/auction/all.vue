@@ -19,10 +19,8 @@ export default {
     return {
       auctions: [],
       localUrl: "auctions",
-      rawAuctionsUrl: "auctions/raw",
       searchUrl: "auctions/search",
       filterUrl: "auctions/filter",
-      pusher_data: "no data yet...",
       links: null,
       meta: null,
       is_loading:false,

@@ -15,13 +15,10 @@ export default {
         setAuctions(state, data) {
             state.auctions = data;
 
-            console.log("state.auction all________final");
-            console.log(state.auctions);
+         
         },
         addAuction(state, data) {
-            console.log("add ****************");
-            console.log(data);
-            console.log(state.auctions);
+           
 
             if (state.auctions[0].id === null) {
                 var x = [data];
@@ -37,8 +34,7 @@ export default {
                 }
             }
 
-            console.log("state.auction sing;e________final");
-            console.log(state.auctions);
+          
         },
 
         setSingleAuction(state, data) {

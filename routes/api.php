@@ -35,6 +35,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(ApiController::class)->prefix('/auth')->group(function () {
     Route::post('/login', 'login');
+    Route::post('/register', 'register');
     Route::post('/logout', 'logout');
 });
 
@@ -51,7 +52,7 @@ Route::controller(AuctionController::class)->group(function () {
 });
 
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware('jwt.auth')->get('/user', function (Request $request) {
     return $request->user();
 });
 

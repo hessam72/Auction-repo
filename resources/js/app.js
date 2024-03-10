@@ -22,6 +22,9 @@ var $ = jQuery;
 window.$ = $;
 const app = createApp(App);
 axios.defaults.withCredentials = true;
+
+axios.defaults.baseURL = 'http://localhost:8000/api/';
+
 app.use(router);
 app.use(Countdown);
 

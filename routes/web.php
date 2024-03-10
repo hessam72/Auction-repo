@@ -116,7 +116,9 @@ Route::get('/vue/v1/{any?}', function () {
 
 Route::get('/test', function () {
 
+$auc=Auction::first();
 
+dd($auc->current_winner);
 
    // fetch daily challenges
    $users = User::where('status' , 1)->get();

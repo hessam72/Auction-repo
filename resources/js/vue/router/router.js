@@ -58,11 +58,12 @@ const router = createRouter({
             path: "/vue/v1/user",
             name: "user-index",
             component: UserIndex,
-            // meta: { isGuest: true },
+            meta: { needUserAuth: true },
             children: [{
                     path: "",
                     name: "profile",
                     component: profile,
+
                 },
                 {
                     path: "bookmarks",
@@ -101,14 +102,9 @@ const router = createRouter({
             path: "/vue/v1/auth",
             name: "auth",
             component: auth,
-            // meta: { isGuest: true },
+            meta: { isGuest: true },
         },
-        // {
-        //     path: "/vue/v1/login",
-        //     name: "login",
-        //     component: loginPage,
-        //     // meta: { isGuest: true },
-        // },
+        
     ],
     scrollBehavior(to, from, savedPosition) {
         // always scroll to top
@@ -118,6 +114,35 @@ const router = createRouter({
 // sessionStorage.clear();
 
 router.beforeEach(function(to, from, next) {
+    // document.title = translatePageName(to.name);
+
+    // authenticating user
+    if (to.meta.needUserAuth && store.getters.UserAuthToken === null) {
+        // save url user tried to visit for redirect
+        // store.dispatch("setHistoryUrl", {
+        //     path: to.fullPath,
+        // });
+        // this.$router.push({ name: 'login', query: { redirect: to.fullPath } });
+        next({ name: "auth", query: { redirect: to.fullPath } });
+        return;
+    }
+
+   
+
+    //user must not be authenticated
+    if (to.meta.isGuest) {
+        if (
+            store.getters.UserAuthToken === null 
+        ) {
+            next();
+            return;
+        } else if (store.getters.UserAuthToken != null) {
+            //redirect to user profile
+            next({ name: "user-index" });
+            return;
+        } 
+    }
+
     
     next();
 });

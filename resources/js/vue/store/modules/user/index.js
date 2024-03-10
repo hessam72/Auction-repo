@@ -4,6 +4,7 @@ export default {
             user: {
 
             },
+            
         };
     },
     //setting state
