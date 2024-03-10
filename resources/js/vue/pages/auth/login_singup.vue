@@ -136,7 +136,7 @@ export default {
             if (this.$route.query.redirect) {
                 this.$router.push(this.$route.query.redirect);
             } else {
-                this.$router.push({ name: "user-index" });
+                this.$router.push({ name: "profile" });
             }
         },
         login() {
@@ -153,6 +153,7 @@ export default {
                     this.loginUser(token);
                     this.setUser(response.data.user);
                     this.redirect();
+                    
                 })
                 .catch(function (error) {
                     console.log("error");

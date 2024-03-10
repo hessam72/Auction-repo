@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('username')->nullable();;
             $table->text('bio')->nullable();
+            $table->date('birth_date')->nullable();
             $table->string('email');
             $table->integer('status')->default(1)->comment('1=active 0=deactive');
             $table->text('profile_pic')->nullable();

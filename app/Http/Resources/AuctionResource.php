@@ -30,7 +30,7 @@ class AuctionResource extends JsonResource
             "product" => new ProductResource($this->product),
 
             "bidding_queues" => new BiddingQueueResource($this->next_bidding_queue),
-
+            // 'posts' => PostResource::collection($this->whenLoaded('posts')),
 
         ];
     }
