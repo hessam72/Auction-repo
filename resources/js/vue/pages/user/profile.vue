@@ -60,7 +60,6 @@
                     <label>Birth Date</label>
                     <div class="date-container">
                         <VueDatePicker
-                       
                             v-model="user.birth_date"
                             :enable-time-picker="false"
                             placeholder="Select Your BirthDate"
@@ -70,14 +69,28 @@
                     <!-- <input type="text" placeholder="" v-model="user.birth_date" /> -->
                 </div>
                 <div class="edit-row under_line">
+                    <label>State</label>
+                    <VueMultiselect
+      v-model="selected"
+      :options="options">
+    </VueMultiselect>
+
+                </div>
+               
+                <div class="edit-row under_line">
                     <label>Password</label
                     ><input type="password" placeholder="*************" />
                 </div>
                 <div class="edit-row under_line">
-                    <label>Bio</label><textarea v-model="this.user.bio"></textarea>
+                    <label>Bio</label
+                    ><textarea v-model="this.user.bio"></textarea>
                 </div>
                 <div class="edit-row">
-                    <button @click="updateUser() , loadbtn()"  class="spin" id="spin">
+                    <button
+                        @click="updateUser(), loadbtn()"
+                        class="spin"
+                        id="spin"
+                    >
                         <span>Submit</span>
                         <span>
                             <svg viewBox="0 0 24 24">
@@ -87,23 +100,28 @@
                             </svg>
                         </span>
                     </button>
-                 
                 </div>
             </div>
         </div>
     </div>
     <loading :is_loading="is_loading"></loading>
-</template>
+    
 
+</template>
+<style src="vue-multiselect/dist/vue-multiselect.css"></style>
 <script>
 import { init_submit_btn } from "@/modules/utilities/submit_btn.js";
 import { convertSecondsToTime } from "@/modules/utilities/convertor.js";
 import { mapGetters, mapActions } from "vuex";
+import VueMultiselect from 'vue-multiselect'
+
 import VueDatePicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
 export default {
     data() {
         return {
+            selected: null,
+      options: ['list', 'of', 'options'],
             date: null,
             is_loading: false,
             userUrl: "user/fetch",
@@ -116,6 +134,7 @@ export default {
     },
     components: {
         VueDatePicker,
+        VueMultiselect
     },
     methods: {
         ...mapActions(["loginUser", "setUser"]),
@@ -137,6 +156,7 @@ export default {
                     "highest_bidders",
                     "winners",
                     "user_shiped_products",
+                    "city"
                 ],
             };
 
@@ -171,7 +191,7 @@ export default {
                 // password:this.user.
                 bio: this.user.bio,
             };
-console.log(body)
+
             axios({
                 method: "put",
                 url: this.baseUrl + this.updateUrl,
@@ -188,15 +208,14 @@ console.log(body)
                 })
                 .finally(() => {});
         },
-        loadbtn(){
+        loadbtn() {
             init_submit_btn();
-        }
+        },
     },
     created() {
         this.fetchData();
     },
     mounted() {
-       
        
     },
 };
@@ -215,7 +234,14 @@ console.log(body)
 
     transition: all 0.3s ease;
 }
-
+.select-main{
+    width: 92%;
+    color: #555;
+    float: left;
+    position: relative;
+    left: -0.7rem;
+    margin-bottom: 1rem;
+}
 .header-container {
     // background-color:var(--color-primary-tint-4) ;
     padding: 2rem;

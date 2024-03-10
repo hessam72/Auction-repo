@@ -48,4 +48,8 @@ class City extends Model
 	{
 		return $this->hasMany(UserShipedProduct::class);
 	}
+	public function residents()
+	{
+		return $this->hasMany(User::class);
+	}
 }

@@ -32,6 +32,7 @@ class UserResource extends JsonResource
             'highest_bidders' => new HighestBidderResource($this->whenLoaded('highest_bidders')),
             // 'user_shiped_products'=>new UserShipedProduct($this->whenLoaded('user_shiped_products')),
             'winners' => new WinnerResource($this->whenLoaded('winners')),
+            'city' => new WinnerResource($this->whenLoaded('city')),
 
 
 
