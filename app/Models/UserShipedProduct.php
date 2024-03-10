@@ -35,7 +35,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class UserShipedProduct extends Model
 {
 	protected $table = 'user_shiped_products';
-use HasFactory;
+	use HasFactory;
 	protected $casts = [
 		'user_id' => 'int',
 		'status' => 'int',

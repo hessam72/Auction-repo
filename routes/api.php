@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\WinnerController;
 use App\Http\Controllers\Auth\ApiController;
 use App\Http\Controllers\Api\AuctionController;
 use App\Http\Controllers\Api\BiddingController;
+use App\Http\Controllers\Api\UserController;
 use App\Models\Auction;
 use App\Models\BidBuddy;
 use App\Models\BiddingHistory;
@@ -52,18 +53,16 @@ Route::controller(AuctionController::class)->group(function () {
 });
 
 
-Route::middleware('jwt.auth')->get('/user', function (Request $request) {
-    return $request->user();
+
+//user info request
+Route::middleware('jwt.auth')->controller(UserController::class)->prefix('/user')->group(function () {
+    Route::post('/fetch', 'index');
+    Route::put('/update', 'update');
 });
 
 
 Route::get('/categories-list', 'App\Http\Controllers\Admin\CategoryController@sendJsonResponse');
-Route::get('/test', function () {
 
-
-
-    dd(Carbon::now());
-});
 
 
 

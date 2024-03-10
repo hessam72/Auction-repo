@@ -115,6 +115,17 @@ Route::get('/vue/v1/{any?}', function () {
 
 
 Route::get('/test', function () {
+    $user = User::find(2);
+    dd($user->user_shiped_products);
+
+
+
+
+
+
+
+
+
 
 $auc=Auction::first();
 

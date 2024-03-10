@@ -17,7 +17,6 @@ export default {
     //calling mutations
     actions: {
         loginUser(context, payload) {
-            console.log("inside login");
             context.commit("setUserAuthToken", payload);
         },
         logoutUser(context) {

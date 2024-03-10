@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\UserShipedProduct;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -22,12 +23,24 @@ class UserResource extends JsonResource
             "bio" => $this->bio,
             "profile_pic" => $this->profile_pic,
             "bid_amount" => $this->bid_amount,
-            'bookmarks'=>new BookMarkResource($this->bookmarks),
-            'bidding_histories'=>new BiddingHistoryResource($this->bidding_histories),
+            'bookmarks' => new BookMarkResource($this->whenLoaded('bookmarks')),
+            'bidding_histories' => new BiddingHistoryResource($this->whenLoaded('bidding_histories')),
+            'tickets' => new TicketResource($this->whenLoaded('tickets')),
+            'transactions' => new TransactionResource($this->whenLoaded('transactions')),
+            'challenges' => new ChallengeResource($this->whenLoaded('challenges')),
+            'redeem_codes' => new RedeemCodeResource($this->whenLoaded('redeem_codes')),
+            'highest_bidders' => new HighestBidderResource($this->whenLoaded('highest_bidders')),
+            // 'user_shiped_products'=>new UserShipedProduct($this->whenLoaded('user_shiped_products')),
+            'winners' => new WinnerResource($this->whenLoaded('winners')),
 
 
-           
-            
+
+
+            // 'posts' => PostResource::collection($this->whenLoaded('posts')),
+
+
+
+
         ];
     }
 }
