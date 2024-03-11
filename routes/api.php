@@ -16,6 +16,7 @@ use App\Http\Controllers\Api\BiddingController;
 use App\Http\Controllers\Api\ChallengeController;
 use App\Http\Controllers\Api\GeoController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\UserShipedProductController;
 use App\Models\Auction;
 use App\Models\BidBuddy;
 use App\Models\BiddingHistory;
@@ -67,6 +68,9 @@ Route::middleware('jwt.auth')->group(function () {
     });
      Route::controller(ChallengeController::class)->prefix('/challenge')->group(function () {
         Route::post('/user', 'user_challenges');
+    });  
+    Route::controller(UserShipedProductController::class)->prefix('/shiped_product')->group(function () {
+        Route::post('/all', 'all');
     });
     Route::controller(BookmarkController::class)->prefix('/bookmark')->group(function () {
       

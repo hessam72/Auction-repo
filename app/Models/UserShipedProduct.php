@@ -52,7 +52,8 @@ class UserShipedProduct extends Model
 		'postal_code',
 		'product_id',
 		'state_id',
-		'city_id'
+		'city_id',
+		'price'
 	];
 
 	public function city()
