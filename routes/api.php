@@ -13,6 +13,8 @@ use App\Http\Controllers\Api\WinnerController;
 use App\Http\Controllers\Auth\ApiController;
 use App\Http\Controllers\Api\AuctionController;
 use App\Http\Controllers\Api\BiddingController;
+use App\Http\Controllers\Api\ChallengeController;
+use App\Http\Controllers\Api\GeoController;
 use App\Http\Controllers\Api\UserController;
 use App\Models\Auction;
 use App\Models\BidBuddy;
@@ -54,10 +56,27 @@ Route::controller(AuctionController::class)->group(function () {
 
 
 
-//user info request
-Route::middleware('jwt.auth')->controller(UserController::class)->prefix('/user')->group(function () {
-    Route::post('/fetch', 'index');
-    Route::put('/update', 'update');
+
+Route::middleware('jwt.auth')->group(function () {
+    Route::controller(UserController::class)->prefix('/user')->group(function () {
+        Route::post('/fetch', 'index');
+        Route::put('/update', 'update');
+    });
+    Route::controller(GeoController::class)->prefix('/geo')->group(function () {
+        Route::post('/all', 'all');
+    });
+     Route::controller(ChallengeController::class)->prefix('/challenge')->group(function () {
+        Route::post('/user', 'user_challenges');
+    });
+    Route::controller(BookmarkController::class)->prefix('/bookmark')->group(function () {
+      
+        Route::post('/user_bookmark', 'userBookmark');
+        Route::post('/toggle', 'toggleBookmark');
+
+
+
+        Route::delete('/delete', 'destroyBookmark');  Route::post('/store', 'storeBookmark');
+    });
 });
 
 
@@ -75,11 +94,7 @@ Route::controller(BiddingController::class)->prefix('/auction')->group(function 
     Route::post('/bidding/storeBidBuddyBid', 'storeBidBuddyBid');
 });
 
-Route::controller(BookmarkController::class)->prefix('/bookmark')->group(function () {
-    Route::post('/store', 'storeBookmark');
-    Route::post('/user_bookmark', 'userBookmark');
-    Route::delete('/delete', 'destroyBookmark');
-});
+
 Route::controller(SpecialOfferController::class)->prefix('/special_offer')->group(function () {
 
 
@@ -101,5 +116,4 @@ Route::controller(BiddersController::class)->prefix('/bidders')->group(function 
 
 
     Route::post('/auction', 'biddersInAuction');
-    
 });

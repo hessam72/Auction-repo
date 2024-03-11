@@ -4,10 +4,14 @@
         <div class="main-container">
             <!-- <div v-show="show_backdrop" class="backdrop">.</div> -->
             <auction-card
+            @refreshData="$emit('fetchData')"
+
                 v-for="(item, index) in JSON.parse(
                     JSON.stringify(this.auctions)
                 )"
+
                 :key="index"
+                :auction_id="item.id"
                 :start_time="item.start_time"
                 :timer="item.timer"
                 :buy_now_price="item.product.price"
@@ -41,7 +45,7 @@ import "v3-infinite-loading/lib/style.css"; //required if you're not going to ov
 
 <script>
 import AuctionCard from "./auction_card.vue";
-
+import {check_bookmark_status} from "@/modules/utilities/auctionUtils.js"
 import searchSection from "./searchSection.vue";
 import auctions from "../../store/modules/auctions";
 export default {
@@ -59,13 +63,7 @@ export default {
         };
     },
     methods: {
-        check_bookmark_status(auction_bookmarks, auth_user_id) {
-            var bookmarked = false;
-            auction_bookmarks.forEach(function (item, index) {
-                if (item.user_id === auth_user_id) bookmarked = true;
-            });
-            return bookmarked;
-        },
+        check_bookmark_status,
         loadData($state) {
             //calling the api
             

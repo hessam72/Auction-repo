@@ -35,6 +35,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->birth_date = $request->birth_date;
         $user->bio = $request->bio;
+        $user->city_id = $request->city_id;
         $user->save();
         return 'user updated';
     }

@@ -2,11 +2,21 @@
     <page-title :title="'Challenges'"></page-title>
 
     <div class="challenges">
-        <div class="flip-card">
+        <div v-for="(item, index) in challenges" :key="index" class="flip-card">
             <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <p class="title">Place 50 Bids</p>
-
+                <div class="flip-card-front relative">
+                    <!--//bidding -->
+                    <p v-if="item.type === 1" class="title">
+                        Place {{ item.number_to_win }} Bids
+                    </p>
+                    <!--//win auction -->
+                    <p v-else-if="item.type === 2" class="title">
+                        Win {{ item.number_to_win }} Auction
+                    </p>
+                    <p>in</p>
+                    <p class="cat-label">
+                       {{ item.category_name }} category
+                    </p>
                     <div class="challenge-prize">
                         <div id="content">
                             <aside class="ribbon">
@@ -16,14 +26,70 @@
                                         letter-spacing: 1.2px;
                                     "
                                 >
-                                    Win 150 Bids
+                                    Win {{ item.reward_amount }}
+                                    <p
+                                        style="display: inline"
+                                        v-if="item.reward_type === 1"
+                                    >
+                                        Bids
+                                    </p>
+                                    <p
+                                        style="display: inline"
+                                        v-else-if="item.reward_type === 2"
+                                    >
+                                        Hours As HB
+                                    </p>
                                 </h2>
                             </aside>
                         </div>
                     </div>
-
+                    <!-- daily (* 1000 to convert to milisec) -->
                     <vue-countdown
-                        :time="2 * 15 * 60 * 60 * 1000"
+                        v-if="item.time_type === 1"
+                        :time="secToEndOfDay() * 1000"
+                        v-slot="{ days, hours, minutes, seconds }"
+                    >
+                        <div id="countdown">
+                            <div id="tiles">
+                                <span>{{ days }}</span>
+                                <span>{{ hours }}</span>
+                                <span> {{ minutes }}</span>
+                                <span> {{ seconds }}</span>
+                            </div>
+                            <div class="labels">
+                                <li>Days</li>
+                                <li>Hours</li>
+                                <li>Mins</li>
+                                <li>Secs</li>
+                            </div>
+                        </div>
+                    </vue-countdown>
+                    <!-- weekly -->
+                    <vue-countdown
+                        v-if="item.time_type === 2"
+                        :time="secToEndOfWeek()"
+                        v-slot="{ days, hours, minutes, seconds }"
+                    >
+                        <div id="countdown">
+                            <div id="tiles">
+                                <span>{{ days }}</span>
+                                <span>{{ hours }}</span>
+                                <span> {{ minutes }}</span>
+                                <span> {{ seconds }}</span>
+                            </div>
+                            <div class="labels">
+                                <li>Days</li>
+                                <li>Hours</li>
+                                <li>Mins</li>
+                                <li>Secs</li>
+                            </div>
+                        </div>
+                    </vue-countdown>
+
+                    <!-- monthly -->
+                    <vue-countdown
+                        v-if="item.time_type === 3"
+                        :time="secToEndOfMonth()"
                         v-slot="{ days, hours, minutes, seconds }"
                     >
                         <div id="countdown">
@@ -45,150 +111,76 @@
                 <div class="flip-card-back">
                     <p class="title">How To Win</p>
                     <p>
-                        Lorem, ipsum dolor sit amet consectetur adipisicing
-                        elit. Vel consequatur beatae dignissimos similique autem
-                        rerum pariatur dicta eligendi! Qui.
+                        {{ item.description }}
                     </p>
                     <div class="progress flex justify-between items-center">
                         <p>remaining:</p>
-                        <p>140/500</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <p class="title">Win 1 Auction</p>
-
-                    <div class="challenge-prize">
-                        <div id="content">
-                            <aside class="ribbon">
-                                <h2
-                                    style="
-                                        font-size: 1.3rem;
-                                        letter-spacing: 1.2px;
-                                    "
-                                >
-                                    Win 200 Bids
-                                </h2>
-                            </aside>
-                        </div>
-                    </div>
-
-                    <vue-countdown
-                        :time="2 * 15 * 60 * 60 * 1000"
-                        v-slot="{ days, hours, minutes, seconds }"
-                    >
-                        <div id="countdown">
-                            <div id="tiles">
-                                <span>{{ days }}</span>
-                                <span>{{ hours }}</span>
-                                <span> {{ minutes }}</span>
-                                <span> {{ seconds }}</span>
-                            </div>
-                            <div class="labels">
-                                <li>Days</li>
-                                <li>Hours</li>
-                                <li>Mins</li>
-                                <li>Secs</li>
-                            </div>
-                        </div>
-                    </vue-countdown>
-                </div>
-                <div class="flip-card-back">
-                    <p class="title">How To Win</p>
-                    <p>
-                        Lorem, ipsum dolor sit amet consectetur adipisicing
-                        elit. Vel consequatur beatae dignissimos similique autem
-                        rerum pariatur dicta eligendi! Qui.
-                    </p>
-                    <div class="progress flex justify-between items-center">
-                        <p>remaining:</p>
-                        <p>140/500</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <p class="title">Place 150 Bids</p>
-
-                    <div class="challenge-prize">
-                        <div id="content">
-                            <aside class="ribbon">
-                                <h2
-                                    style="
-                                        font-size: 1.3rem;
-                                        letter-spacing: 1.2px;
-                                    "
-                                >
-                                    Win 250 Bids
-                                </h2>
-                            </aside>
-                        </div>
-                    </div>
-
-                    <vue-countdown
-                        :time="1 * 1 * 60 * 60 * 1000"
-                        v-slot="{ days, hours, minutes, seconds }"
-                    >
-                        <div id="countdown">
-                            <div id="tiles">
-                                <span>{{ days }}</span>
-                                <span>{{ hours }}</span>
-                                <span> {{ minutes }}</span>
-                                <span> {{ seconds }}</span>
-                            </div>
-                            <div class="labels">
-                                <li>Days</li>
-                                <li>Hours</li>
-                                <li>Mins</li>
-                                <li>Secs</li>
-                            </div>
-                        </div>
-                    </vue-countdown>
-                </div>
-                <div class="flip-card-back">
-                    <p class="title">How To Win</p>
-                    <p>
-                        Lorem, ipsum dolor sit amet consectetur adipisicing
-                        elit. Vel consequatur beatae dignissimos similique autem
-                        rerum pariatur dicta eligendi! Qui.
-                    </p>
-                    <div class="progress flex justify-between items-center">
-                        <p>remaining:</p>
-                        <p>140/500</p>
+                        <p>{{ item.progress }}/{{ item.number_to_win }}</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- <inline-loading :is_loading_more></inline-loading> -->
+    <!-- <inline-loading :is_loading_more></inline-loading>
 
-    <!-- <InfiniteLoading @infinite="loadData" /> -->
+    <InfiniteLoading @infinite="loadData" /> -->
+    <loading :is_loading="is_loading"></loading>
 </template>
 
-<script setup>
-import InfiniteLoading from "v3-infinite-loading";
-import "v3-infinite-loading/lib/style.css"; //required if you're not going to override default slots
-</script>
-
 <script>
+import {
+    convertSecondsToTime,
+    secToEndOfMonth,
+    secToEndOfWeek,
+    secToEndOfDay,
+} from "@/modules/utilities/convertor.js";
+import { mapGetters, mapActions } from "vuex";
+import InfiniteLoading from "v3-infinite-loading";
+import "v3-infinite-loading/lib/style.css";
 export default {
     data() {
         return {
+            challenges: [],
+            is_loading: false,
             is_loading_more: false,
-            show_more: false,
-            show_more2: false,
+            challengeUrl: "challenge/user",
         };
     },
     mounted() {},
+    computed: {
+        ...mapGetters(["baseUrl", "UserAuthToken", "user"]),
+    },
     methods: {
+        ...mapActions([]),
+        convertSecondsToTime,
+        secToEndOfMonth,
+        secToEndOfWeek,
+        secToEndOfDay,
+        fetchData() {
+            this.is_loading = true;
+            let config = {
+                Authorization: this.UserAuthToken,
+            };
+
+            axios({
+                method: "post",
+                url: this.baseUrl + this.challengeUrl,
+
+                headers: config,
+            })
+                .then((response) => {
+                    console.log(response.data.data);
+                    this.challenges = response.data.data;
+                })
+                .catch((error) => {
+                    console.log("error");
+                    console.log(error);
+                })
+                .finally(() => {
+                    this.is_loading = false;
+                });
+        },
         loadData($state) {
-            //calling the api
-            // alert('load more');
             this.is_loading_more = true;
             setTimeout(() => {
                 this.is_loading_more = false;
@@ -198,6 +190,13 @@ export default {
                 this.show_more = true;
             }, 2000);
         },
+    },
+    created() {
+      
+        this.fetchData();
+    },
+    components: {
+        InfiniteLoading,
     },
 };
 </script>

@@ -70,13 +70,30 @@
                 </div>
                 <div class="edit-row under_line">
                     <label>State</label>
-                    <VueMultiselect
-      v-model="selected"
-      :options="options">
-    </VueMultiselect>
-
+                    <div class="selectbox-container">
+                        <VueMultiselect
+                            @select="setCityOptions"
+                            label="name"
+                            placeholder="Select Your State"
+                            v-model="user.city.state"
+                            :options="states"
+                        >
+                        </VueMultiselect>
+                    </div>
                 </div>
-               
+                <div class="edit-row under_line">
+                    <label>City</label>
+                    <div class="selectbox-container">
+                        <VueMultiselect
+                            label="name"
+                            placeholder="Select State First"
+                            v-model="user.city"
+                            :options="citySelectOptions"
+                        >
+                        </VueMultiselect>
+                    </div>
+                </div>
+
                 <div class="edit-row under_line">
                     <label>Password</label
                     ><input type="password" placeholder="*************" />
@@ -105,15 +122,13 @@
         </div>
     </div>
     <loading :is_loading="is_loading"></loading>
-    
-
 </template>
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>
 <script>
 import { init_submit_btn } from "@/modules/utilities/submit_btn.js";
 import { convertSecondsToTime } from "@/modules/utilities/convertor.js";
 import { mapGetters, mapActions } from "vuex";
-import VueMultiselect from 'vue-multiselect'
+import VueMultiselect from "vue-multiselect";
 
 import VueDatePicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
@@ -121,12 +136,20 @@ export default {
     data() {
         return {
             selected: null,
-      options: ['list', 'of', 'options'],
+            // options: ["list", "of", "options"],
+            citySelectOptions: [
+                {
+                    value: "first",
+                    name: "please select state first",
+                },
+            ],
             date: null,
             is_loading: false,
             userUrl: "user/fetch",
             updateUrl: "user/update",
+            geoUrl: "geo/all",
             user: null,
+            states: [],
         };
     },
     computed: {
@@ -134,7 +157,7 @@ export default {
     },
     components: {
         VueDatePicker,
-        VueMultiselect
+        VueMultiselect,
     },
     methods: {
         ...mapActions(["loginUser", "setUser"]),
@@ -156,7 +179,7 @@ export default {
                     "highest_bidders",
                     "winners",
                     "user_shiped_products",
-                    "city"
+                    "city.state",
                 ],
             };
 
@@ -170,6 +193,7 @@ export default {
                 .then((response) => {
                     console.log(response.data.data);
                     this.user = response.data.data;
+                    // this.selected_state = this.user.city.state;
                 })
                 .catch((error) => {
                     console.log("error");
@@ -187,6 +211,7 @@ export default {
                 username: this.user.username,
                 email: this.user.email,
                 birth_date: this.user.birth_date,
+                city_id: this.user.city.id,
 
                 // password:this.user.
                 bio: this.user.bio,
@@ -208,16 +233,53 @@ export default {
                 })
                 .finally(() => {});
         },
+        fetchGeo() {
+            // this.is_loading = true;
+            let config = {
+                Authorization: this.UserAuthToken,
+            };
+
+            const body = {};
+
+            axios({
+                method: "post",
+                url: this.baseUrl + this.geoUrl,
+                data: body,
+                headers: config,
+            })
+                // .get(this.baseUrl + this.userUrl, body , config)
+                .then((response) => {
+                    console.log(response.data.data);
+                    this.states = response.data.data;
+                    this.setCityOptions();
+                })
+                .catch((error) => {
+                    console.log("error");
+                    console.log(error);
+                })
+                .finally(() => {
+                    this.is_loading = false;
+                });
+        },
+        setCityOptions() {
+       
+            this.states.forEach( (item)=> {
+                
+                if(item.id === this.user.city.state.id){
+                    this.citySelectOptions=item.cities;
+                }
+            });
+  
+        },
         loadbtn() {
             init_submit_btn();
         },
     },
     created() {
         this.fetchData();
+        this.fetchGeo();
     },
-    mounted() {
-       
-    },
+    mounted() {},
 };
 </script>
 
@@ -234,13 +296,8 @@ export default {
 
     transition: all 0.3s ease;
 }
-.select-main{
-    width: 92%;
-    color: #555;
-    float: left;
-    position: relative;
-    left: -0.7rem;
-    margin-bottom: 1rem;
+.selectbox-container {
+    width: 75%;
 }
 .header-container {
     // background-color:var(--color-primary-tint-4) ;
