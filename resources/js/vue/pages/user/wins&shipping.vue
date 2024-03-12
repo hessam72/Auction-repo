@@ -52,7 +52,8 @@
                     data-te-tab-active
                 >
                     <h2 class="tab-header">Won Products</h2>
-                    <div id="wins_table"></div>
+                    <!-- wins table -->
+                    <wins-table></wins-table>
                 </div>
                 <div
                     class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
@@ -61,7 +62,8 @@
                     aria-labelledby="pills-profile-tab04"
                 >
                     <h2 class="tab-header">Shiped Products</h2>
-                    <div id="shiped_table"></div>
+                    <!-- shipping table -->
+                    <ships-table></ships-table>
                 </div>
             </div>
         </div>
@@ -73,188 +75,37 @@
 import { Datatable } from "tw-elements";
 import { Tab, initTE } from "tw-elements";
 import { mapGetters, mapActions } from "vuex";
-import { convertDBTimeToDate , merge,arrangeData } from "@/modules/utilities/convertor.js";
+import {
+    convertDBTimeToDate,
+    merge,
+    arrangeData,
+} from "@/modules/utilities/convertor.js";
+import winsTable from "../../components/user/wins&shipping/wins.vue";
+import shipsTable from "../../components/user/wins&shipping/shipping.vue";
 export default {
     data() {
         return {
-            fetchShipedUrl: "shiped_product/all",
-            shipedProducts: [],
-            mergedShipedProducts: [],
             is_loading: false,
         };
     },
     mounted() {
         initTE({ Tab });
 
-        // wins product configurations
-        const customDatatable = document.getElementById("wins_table");
-        const setActions = () => {
-            // document.querySelectorAll(".call-btn").forEach((btn) => {
-            //     btn.addEventListener("click", () => {
-            //         console.log(
-            //             `call ${btn.attributes["data-te-number"].value}`
-            //         );
-            //     });
-            // });
-            // document.querySelectorAll(".message-btn").forEach((btn) => {
-            //     btn.addEventListener("click", () => {
-            //         console.log(
-            //             `send a message to ${btn.attributes["data-te-email"].value}`
-            //         );
-            //     });
-            // });
-        };
-        customDatatable.addEventListener("render.te.datatable", setActions);
-        const data = [
-            {
-                id: 57,
-                product: "Tiger Nixon",
-                price: "$1200",
-                bids: "231",
-            },
-        ];
-        new Datatable(
-            customDatatable,
-            {
-                columns: [
-                    { label: "Product", field: "product" },
-                    { label: "Final Price", field: "price" },
-                    { label: "Bids Placed", field: "bids" },
-
-                    { label: "Checkout", field: "contact", sort: false },
-                ],
-                rows: data.map((row) => {
-                    return {
-                        ...row,
-                        contact: `
-            <button style="cursor:pointer;" 
-              type="button"
-             
-              data-te-ripple-init
-              data-te-ripple-color="dark"
-              data-te-number=${row.id}
-              class="wins-btn call-btn inline-block rounded-full border border-primary p-1.5 mr-1 uppercase leading-normal shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
-              <ion-icon  name="cart"></ion-icon>
-            </button>
-           `,
-                    };
-                }),
-            },
-            { hover: true }
-        );
-        // customDatatable.removeClass();
-
-        // shipedDatatable.removeClass();
     },
     computed: {
         ...mapGetters(["baseUrl", "UserAuthToken"]),
     },
     methods: {
-        clicked() {
-            alert("hello");
-        },
+      
         convertDBTimeToDate,
         merge,
         arrangeData,
-        fetchShipedProducts() {
-            this.is_loading = true;
-            let config = {
-                Authorization: this.UserAuthToken,
-            };
-            axios({
-                method: "post",
-                url: this.baseUrl + this.fetchShipedUrl,
-
-                headers: config,
-            })
-                .then((response) => {
-                  
-                    this.shipedProducts = response.data.data;
-                    this.mergedShipedProducts =this.arrangeData(this.shipedProducts);
-                    console.dir(this.mergedShipedProducts);
-                    this.setUpshipedDataTable();
-                })
-                .catch((error) => {
-                    console.log("error");
-                    console.log(error);
-                })
-                .finally(() => {
-                    this.is_loading = false;
-                });
-        },
-       
-       
-
-        setUpshipedDataTable() {
-            // shiped product configurations
-            const shipedDatatable = document.getElementById("shiped_table");
-            const setDelActions = () => {
-                document.querySelectorAll(".call-btn").forEach((btn) => {
-                    btn.addEventListener("click", () => {
-                        this.clicked();
-                        console.log(btn.attributes["data-te-number"].value);
-                    });
-                });
-
-                document.querySelectorAll(".message-btn").forEach((btn) => {
-                    btn.addEventListener("click", () => {
-                        console.log(
-                            `send a message to ${btn.attributes["data-te-email"].value}`
-                        );
-                    });
-                });
-            };
-            shipedDatatable.addEventListener(
-                "render.te.datatable",
-                setDelActions
-            );
-            // const del_data = [
-            //     {
-            //         product: "Tiger Nixon",
-            //         price: "$1200",
-            //         date: "23 / 04 / 15",
-            //         status: "delivered",
-            //         address: "lorem impson dollar smit....",
-            //     },
-            //     {
-            //         product: "Sonya Frost",
-            //         price: "$1300",
-            //         date: "23 / 04 / 15",
-            //         status: "pending",
-            //         address: "lorem impson dollar smit....",
-            //     },
-            //     {
-            //         product: "Tatyana Fitzpatrick",
-            //         price: "$1270",
-            //         date: "23 / 04 / 15",
-            //         status: "delivered",
-            //         address: "lorem impson dollar smit....",
-            //     },
-            // ];
-            new Datatable(
-                shipedDatatable,
-                {
-                    columns: [
-                        { label: "Product", field: "product.title" },
-                        { label: "Price", field: "price" },
-                        { label: "date", field: "created_at" },
-                        { label: "address", field: "address" },
-                        { label: "status", field: "status" },
-                        { label: "city", field: "city.name" },
-                    ],
-                    rows: this.mergedShipedProducts.map((row) => {
-                        return {
-                            ...row,
-                        };
-                    }),
-                },
-                { hover: true }
-            );
-        },
     },
-    created() {
-        this.fetchShipedProducts();
+    components: {
+        winsTable,
+        shipsTable,
     },
+    created() {},
 };
 </script>
 

@@ -13,10 +13,13 @@ use App\Http\Controllers\Api\WinnerController;
 use App\Http\Controllers\Auth\ApiController;
 use App\Http\Controllers\Api\AuctionController;
 use App\Http\Controllers\Api\BiddingController;
+use App\Http\Controllers\Api\BuyItNowOfferController;
 use App\Http\Controllers\Api\ChallengeController;
 use App\Http\Controllers\Api\GeoController;
+use App\Http\Controllers\Api\TicketController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\UserShipedProductController;
+use App\Http\Controllers\Api\UserWinsController;
 use App\Models\Auction;
 use App\Models\BidBuddy;
 use App\Models\BiddingHistory;
@@ -72,13 +75,19 @@ Route::middleware('jwt.auth')->group(function () {
     Route::controller(UserShipedProductController::class)->prefix('/shiped_product')->group(function () {
         Route::post('/all', 'all');
     });
+     Route::controller(UserWinsController::class)->prefix('/winners')->group(function () {
+        Route::post('/user/all', 'user_wins');
+    }); 
+     Route::controller(BuyItNowOfferController::class)->prefix('/buy_offers')->group(function () {
+        Route::post('/user/all', 'all');
+    }); 
+     Route::controller(TicketController::class)->prefix('/tickets')->group(function () {
+        Route::post('/user/all', 'user_tickets');
+    });
     Route::controller(BookmarkController::class)->prefix('/bookmark')->group(function () {
       
         Route::post('/user_bookmark', 'userBookmark');
         Route::post('/toggle', 'toggleBookmark');
-
-
-
         Route::delete('/delete', 'destroyBookmark');  Route::post('/store', 'storeBookmark');
     });
 });

@@ -23,7 +23,7 @@ class UserResource extends JsonResource
             "bio" => $this->bio,
             "profile_pic" => $this->profile_pic,
             "bid_amount" => $this->bid_amount,
-            'bookmarks' => new BookMarkResource($this->whenLoaded('bookmarks')),
+            'bookmarks' =>  BookMarkResource::collection($this->whenLoaded('bookmarks')),
             'bidding_histories' => new BiddingHistoryResource($this->whenLoaded('bidding_histories')),
             'tickets' => new TicketResource($this->whenLoaded('tickets')),
             'transactions' => new TransactionResource($this->whenLoaded('transactions')),
