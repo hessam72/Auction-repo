@@ -83,6 +83,9 @@ Route::middleware('jwt.auth')->group(function () {
     }); 
      Route::controller(TicketController::class)->prefix('/tickets')->group(function () {
         Route::post('/user/all', 'user_tickets');
+        Route::post('/info', 'getInfo'); 
+        Route::post('/store', 'store');
+        Route::put('/update', 'update');
     });
     Route::controller(BookmarkController::class)->prefix('/bookmark')->group(function () {
       

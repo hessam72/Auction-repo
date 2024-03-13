@@ -51,6 +51,18 @@ export function convertDBTimeToDate(time) {
     var convertedDate = mm + "/" + dd + "/" + yyyy;
     return convertedDate;
 }
+export function convertDBTimeToTime(time) {
+   
+   
+    var date = new Date(time);
+   
+    
+    var hh = date.getHours();
+    var mm = date.getMinutes();
+    var ss = date.getSeconds();
+    var convertedDate = hh + ":" + mm + ":" + ss;
+    return convertedDate;
+}
 export function  merge(source, target = {}, ...parents) {
     for (let [key, value] of Object.entries(source)) {
         const path = (parents || []).concat(key);

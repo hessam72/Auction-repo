@@ -2,7 +2,7 @@
     <page-title :title="'Support'"></page-title>
 
     <div class="support-head">
-        <button @click="open = true" class="new-btn">New Ticket</button>
+        <button @click="openCreateTicket()" class="new-btn">New Ticket</button>
     </div>
     <div class="support-main-container flex">
         <div class="tickets-group flex flex-col items-start justify-start">
@@ -43,6 +43,7 @@
                     data-te-ripple-init
                     data-te-ripple-color="light"
                     class="ticket-item flex justify-between items-center"
+                    @click="showDetails(item)"
                 >
                     <p>#{{ index + 1 }}</p>
                     <p>{{ item.subject }}</p>
@@ -54,7 +55,7 @@
                 v-else-if="show_tab === 2"
                 class="tickets-list flex flex-col items-start justify-start"
             >
-            <div
+                <div
                     v-for="(item, index) in answered"
                     :key="index"
                     data-te-offcanvas-toggle
@@ -68,15 +69,13 @@
                     <p>{{ item.subject }}</p>
                     <p class="one_line_text">{{ item.content }}</p>
                 </div>
-
-                
             </div>
             <!-- closed -->
             <div
                 v-else-if="show_tab === 3"
                 class="tickets-list flex flex-col items-start justify-start"
             >
-            <div
+                <div
                     v-for="(item, index) in closed"
                     :key="index"
                     data-te-offcanvas-toggle
@@ -95,101 +94,102 @@
     </div>
 
     <!-- details modal  -->
-    <div
-        class="ticket-detail invisible fixed bottom-0 right-0 top-0 z-[1045] flex w-96 max-w-full translate-x-full flex-col border-none bg-white bg-clip-padding text-neutral-700 shadow-sm outline-none transition duration-300 ease-in-out dark:bg-neutral-800 dark:text-neutral-200 [&[data-te-offcanvas-show]]:transform-none"
-        tabindex="-1"
-        id="offcanvasRight"
-        aria-labelledby="offcanvasRightLabel"
-        data-te-offcanvas-init
-    >
-        <div class="ticket-header flex items-center justify-between p-4">
-            <button @click="open = true" class="ticket-group-btn reply">
-                Reply
-            </button>
-            <div class="flex items-center justify-between gap-10">
-                <h3>Status: pending</h3>
-                <!-- close btn -->
-                <button
-                    type="button"
-                    class="box-content rounded-none border-none opacity-50 hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
-                    data-te-offcanvas-dismiss
-                >
-                    <span
-                        class="w-[1em] focus:opacity-100 disabled:pointer-events-none disabled:select-none disabled:opacity-25 [&.disabled]:pointer-events-none [&.disabled]:select-none [&.disabled]:opacity-25"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                            class="h-6 w-6"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M6 18L18 6M6 6l12 12"
-                            />
-                        </svg>
-                    </span>
-                </button>
-            </div>
-        </div>
+    <!-- toggle class is translate-x-full -->
+    <OnClickOutside @trigger="">
         <div
-            class="ticket-body offcanvas-body flex flex-col gap-10 overflow-y-auto p-4"
+            :class="[
+                show_details ? '' : 'translate-x-full',
+                `ticket-detail invisible fixed bottom-0 right-0 top-0 z-[1045]
+         flex w-96 max-w-full  flex-col border-none
+          bg-white bg-clip-padding text-neutral-700 shadow-sm outline-none 
+          transition duration-300 ease-in-out dark:bg-neutral-800 dark:text-neutral-200
+           [&[data-te-offcanvas-show]]:transform-none`,
+            ]"
+            tabindex="-1"
+            id="offcanvasRight"
+            aria-labelledby="offcanvasRightLabel"
+            data-te-offcanvas-init
         >
-            <div class="ticket-message">
-                <div class="m-header flex items-center gap-4">
-                    <img
-                        class="rounded-lg-3"
-                        :src="'/storage/images/user_profiles/150-25.jpg'"
-                    />
-                    <div class="m-info flex flex-col gap-4">
-                        <h2>Sara</h2>
-                        <p>23 / 04 / 30 | 19:03</p>
-                    </div>
-                </div>
-                <div class="m-content flex flex-col gap-5">
-                    <h2>How To Win</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Aspernatur aperiam quasi similique ipsum fuga quos quae
-                        officia dolorem! Animi voluptatem fugiat hic quod soluta
-                        deserunt id quos atque ex numquam.
-                    </p>
+            <div class="ticket-header flex items-center justify-between p-4">
+                <button
+                    @click="openCreateTicket(true)"
+                    class="ticket-group-btn reply"
+                >
+                    Reply
+                </button>
+                <div class="flex items-center justify-between gap-10">
+                    <h3>Status: pending</h3>
+                    <!-- close btn -->
+                    <button
+                        @click="toggleDetails()"
+                        type="button"
+                        class="box-content rounded-none border-none opacity-50 hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
+                        data-te-offcanvas-dismiss
+                    >
+                        <span
+                            class="w-[1em] focus:opacity-100 disabled:pointer-events-none disabled:select-none disabled:opacity-25 [&.disabled]:pointer-events-none [&.disabled]:select-none [&.disabled]:opacity-25"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke-width="1.5"
+                                stroke="currentColor"
+                                class="h-6 w-6"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M6 18L18 6M6 6l12 12"
+                                />
+                            </svg>
+                        </span>
+                    </button>
                 </div>
             </div>
-
-            <div class="ticket-message">
+            <div
+                class="ticket-body offcanvas-body flex flex-col gap-10 overflow-y-auto p-4"
+            >
+                <!-- user ticket -->
                 <div
-                    style="direction: rtl"
-                    class="m-header flex items-center gap-4"
+                    v-for="(item, index) in ticket_details"
+                    :key="index"
+                    class="ticket-message"
                 >
-                    <img
-                        class="rounded-lg-3"
-                        :src="'/storage/images/user_profiles/150-9.jpg'"
-                    />
-                    <div class="m-info flex flex-col gap-4">
-                        <h2>Admin</h2>
-                        <p>23 / 04 / 30 | 19:03</p>
+                    <div
+                        :class="[
+                            item.status === 100 ? 'admin_msg' : '',
+                            'm-header flex items-center gap-4',
+                        ]"
+                    >
+                        <img class="rounded-lg-3" :src="user.profile_pic" />
+                        <div class="m-info flex flex-col gap-4">
+                            <h2 v-if="item.status != 100">
+                                {{ user.username }}
+                            </h2>
+                            <h2 v-else>Admin</h2>
+                            <p class="ticket-time">
+                                <ion-icon name="calendar"></ion-icon>
+                                {{ convertDBTimeToDate(item.created_at) }}
+                                <ion-icon name="time"></ion-icon>
+                                {{ convertDBTimeToTime(item.created_at) }}
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <div class="m-content flex flex-col gap-5">
-                    <h2>It's Easy</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Aspernatur aperiam quasi similique ipsum fuga quos quae
-                        officia dolorem! Animi voluptatemo fficia dolorem! Animi
-                        voluptatem fugiat hic quod soluta deserunt id quos atque
-                        ex numquam.
-                    </p>
+                    <div class="m-content flex flex-col gap-5">
+                        <h2>{{ item.subject }}</h2>
+                        <p>
+                            {{ item.content }}
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </OnClickOutside>
 
     <!-- create ticket dialog -->
-    <TransitionRoot as="template" :show="open">
+    <TransitionRoot as="template" :show="create_modal">
+       
         <Dialog as="div" class="relative z-10" @close="open = false">
             <TransitionChild
                 as="template"
@@ -245,16 +245,26 @@
                                         class="w-full mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"
                                     >
                                         <DialogTitle
+                                            v-if="!is_reply"
                                             as="h3"
                                             class="text-base font-semibold leading-6 text-gray-900"
                                             >Submit New Ticket
                                         </DialogTitle>
+                                        <DialogTitle
+                                            v-else
+                                            as="h3"
+                                            class="text-base font-semibold leading-6 text-gray-900"
+                                            >Submit Your Reply
+                                        </DialogTitle>
+                                        
                                         <div class="mt-6 w-full">
                                             <div
+                                                v-if="!is_reply"
                                                 class="relative mb-3 w-full"
                                                 data-te-input-wrapper-init
                                             >
                                                 <input
+                                                    v-model="newTicketSubject"
                                                     type="text"
                                                     class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                                                     id="exampleFormControlInputText"
@@ -270,15 +280,44 @@
                                                     >Subject
                                                 </label>
                                             </div>
+                                            <!-- its a reply -->
+                                            <div
+                                                v-else
+                                                class="relative mb-3 w-full"
+                                                data-te-input-wrapper-init
+                                            >
+                                                <input
+                                                
+                                                    v-model="
+                                                        current_open_ticket.subject
+                                                    "
+                                                    type="text"
+                                                    class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                                                    id="exampleFormControlInputText"
+                                                    placeholder="Example label"
+                                                    disabled
+                                                />
+                                                <!-- <label
+                                                    style="
+                                                        z-index: 1;
+                                                        background: #fff;
+                                                    "
+                                                    for="exampleFormControlInputText"
+                                                    class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+                                                    >Subject
+                                                </label> -->
+                                            </div>
                                             <div
                                                 class="relative mb-3"
                                                 data-te-input-wrapper-init
                                             >
                                                 <textarea
+                                                    v-model="newTicketDesc"
                                                     class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                                                     id="exampleFormControlTextarea1"
                                                     rows="4"
                                                     placeholder="Your message"
+                                                    required
                                                 ></textarea>
                                                 <label
                                                     style="
@@ -290,6 +329,28 @@
                                                     >Description
                                                 </label>
                                             </div>
+                                            <div
+                                                class="relative mb-3"
+                                                data-te-input-wrapper-init
+                                            >
+                                                <div class="mb-3">
+                                                    <label
+                                                        for="formFile"
+                                                        class="mb-2 inline-block text-neutral-500 dark:text-neutral-400"
+                                                        >Upload File</label
+                                                    >
+                                                    <input
+                                                        @change="
+                                                            onFileChanged(
+                                                                $event
+                                                            )
+                                                        "
+                                                        class="relative m-0 block w-full min-w-0 flex-auto cursor-pointer rounded border border-solid border-secondary-500 bg-transparent bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-surface transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:me-3 file:cursor-pointer file:overflow-hidden file:rounded-none file:border-0 file:border-e file:border-solid file:border-inherit file:bg-transparent file:px-3 file:py-[0.32rem] file:text-surface focus:border-primary focus:text-gray-700 focus:shadow-inset focus:outline-none dark:border-white/70 dark:text-white file:dark:text-white"
+                                                        type="file"
+                                                        id="formFile"
+                                                    />
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -298,16 +359,18 @@
                                 class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6"
                             >
                                 <button
+                                    @click="
+                                        store_ticket(), (create_modal = false)
+                                    "
                                     type="button"
                                     class="inline-flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-violet-500 sm:ml-3 sm:w-auto"
-                                    @click="open = false"
                                 >
                                     Submit
                                 </button>
                                 <button
                                     type="button"
                                     class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
-                                    @click="open = false"
+                                    @click="create_modal = false"
                                     ref="cancelButtonRef"
                                 >
                                     Cancel
@@ -322,7 +385,13 @@
 </template>
 
 <script>
+import {
+    convertDBTimeToDate,
+    convertDBTimeToTime,
+} from "@/modules/utilities/convertor.js";
 import { mapGetters, mapActions } from "vuex";
+import { OnClickOutside } from "@vueuse/components";
+
 import {
     Dialog,
     DialogPanel,
@@ -336,16 +405,38 @@ export default {
         return {
             is_loading: false,
             is_loading_more: false,
-            open: false,
+            create_modal: false,
+            inputFile: null,
+            newTicketSubject: null,
+            newTicketDesc: null,
+            inputFile: null,
             fetchrl: "tickets/user/all",
+            storeUrl: "tickets/store",
+            fetchInfoUrl: "tickets/info",
             tickets: [],
             pending: [],
             answered: [],
             closed: [],
+            ticket_details: [],
             show_tab: 1,
+            show_details: false,
+            is_reply: false,
+            current_open_ticket: null,
         };
     },
     methods: {
+        convertDBTimeToDate,
+        convertDBTimeToTime,
+        openCreateTicket(is_reply) {
+            console.log(this.current_open_ticket)
+            if (is_reply) this.is_reply = true;
+            this.create_modal = true;
+        },
+        toggleDetails() {
+            // $('#offcanvasRight').toggleClass('translate-x-full');
+
+            this.show_details = !this.show_details;
+        },
         fetchData() {
             let config = {
                 Authorization: this.UserAuthToken,
@@ -384,6 +475,92 @@ export default {
             this.answered = answered;
             this.closed = closed;
         },
+        onFileChanged(event) {
+            this.inputFile = event.target.files[0];
+            console.log(this.inputFile);
+        },
+        store_ticket() {
+            this.is_loading = true;
+            let myFile = this.inputFile;
+            const formData = new FormData();
+            formData.append("attachment", myFile);
+
+            formData.append("content", this.newTicketDesc);
+          
+
+            if (this.is_reply) {
+                // sending reply
+                formData.append("subject", this.current_open_ticket.subject);
+                formData.append("reply_to_id", this.current_open_ticket.id);
+            }else{
+                // new ticket
+                formData.append("subject", this.newTicketSubject);
+            }
+
+            let config = {
+                Authorization: this.UserAuthToken,
+                "Content-Type": "multipart/form-data",
+            };
+
+            axios({
+                method: "post",
+                url: this.baseUrl + this.storeUrl,
+                data: formData,
+                headers: config,
+            })
+                // .get(this.baseUrl + this.userUrl, body , config)
+                .then((response) => {
+                    console.log(response);
+                    this.newTicketSubject = null;
+                    this.newTicketDesc = null;
+                    this.inputFile = null;
+                    this.current_open_ticket=null;
+                    this.is_reply=false;
+                    this.create_modal=false;
+                    this.show_details=false;
+                    this.fetchData();
+                })
+                .catch((error) => {
+                    console.log("error");
+                    console.log(error);
+                })
+                .finally(() => {
+                    this.is_loading = false;
+                });
+        },
+        showDetails(ticket) {
+            this.ticket_details = [];
+            let config = {
+                Authorization: this.UserAuthToken,
+            };
+            let body = {
+                ticket_id: ticket.id,
+            };
+
+            axios({
+                method: "post",
+                url: this.baseUrl + this.fetchInfoUrl,
+                data: body,
+                headers: config,
+            })
+                .then((response) => {
+                    console.log(response.data.data);
+                    this.ticket_details = response.data.data;
+                    if (this.ticket_details.length === 0) {
+                        alert("no record found");
+                        return;
+                    }
+                    this.current_open_ticket = ticket;
+                    this.show_details = true;
+                })
+                .catch((error) => {
+                    console.log("error");
+                    console.log(error);
+                })
+                .finally(() => {
+                    this.is_loading = false;
+                });
+        },
     },
     mounted() {
         initTE({ Offcanvas, Ripple, Input });
@@ -397,6 +574,7 @@ export default {
         DialogTitle,
         TransitionChild,
         TransitionRoot,
+        OnClickOutside,
     },
     created() {
         this.fetchData();
@@ -405,6 +583,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.admin_msg {
+    direction: rtl !important;
+}
 .support-head {
     padding: 2rem;
     border-bottom: 1px solid #666;
@@ -454,6 +635,8 @@ export default {
     width: 75%;
     padding: 2rem;
     gap: 2rem;
+    max-height: 40rem;
+    overflow-y: scroll;
 }
 
 .ticket-item {
@@ -593,4 +776,15 @@ export default {
 .ticket-item:hover {
     color: #3da35d;
 }
+.ticket-time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 1.1rem;
+    ion-icon {
+        font-size: 1.3rem;
+    }
+}
+// https://www.bootdey.com/snippets/view/animated-chat-window#html messaging template
 </style>

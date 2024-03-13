@@ -95,7 +95,7 @@ class AuctionController extends Controller
 
 
 
-
+// upload image
     public function test(Request $request)
     {
 
