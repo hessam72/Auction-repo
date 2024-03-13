@@ -35,7 +35,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class UserShipedProduct extends Model
 {
 	protected $table = 'user_shiped_products';
-use HasFactory;
+	use HasFactory;
 	protected $casts = [
 		'user_id' => 'int',
 		'status' => 'int',
@@ -52,7 +52,8 @@ use HasFactory;
 		'postal_code',
 		'product_id',
 		'state_id',
-		'city_id'
+		'city_id',
+		'price'
 	];
 
 	public function city()

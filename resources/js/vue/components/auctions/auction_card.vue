@@ -1,7 +1,7 @@
 <template>
     <div class="item-container relative">
         <div v-if="no_new_bidders" class="no-new-bidders">no new bidders</div>
-        <div class="bookmark-container">
+        <div @click="toggleBookmark()" class="bookmark-container">
             <ion-icon
                 :class="[is_bookmarked ? 'bookmarked' : '', 'icon-bg']"
                 name="bookmark"
@@ -105,29 +105,63 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 import { param } from "jquery";
 import {
     translateAuctionStatus,
     convertDateToMilliSeconds,
 } from "@/modules/utilities.js";
 export default {
+    data() {
+        return {
+            updateBookmarkUrl: "bookmark/toggle",
+        };
+    },
+    computed: {
+        ...mapGetters(["baseUrl", "UserAuthToken"]),
+    },
+
     methods: {
         translateAuctionStatus,
         convertDateToMilliSeconds,
+        toggleBookmark() {
+            let config = {
+                Authorization: this.UserAuthToken,
+            };
+            const body = {
+                auction_id: this.auction_id,
+            };
+
+            axios({
+                method: "post",
+                url: this.baseUrl + this.updateBookmarkUrl,
+                data: body,
+                headers: config,
+            })
+                // .get(this.baseUrl + this.userUrl, body , config)
+                .then((response) => {
+                    console.log(response);
+                    this.$emit("refreshData");
+                })
+                .catch((error) => {
+                    console.log("error");
+                    console.log(error);
+                })
+                .finally(() => {});
+        },
     },
     props: {
-        timer:{},
+        timer: {},
         start_time: {},
         buy_now_price: Number,
         auction_id: {
             type: String,
-            default: "99999999",
         },
         current_winner_username: {
             type: String,
             default: null,
         },
-        
+
         live_price: {
             type: Number,
             default: 0,
@@ -148,6 +182,7 @@ export default {
             default: false,
         },
     },
+    emits: ["refreshData"],
 };
 </script>
 

@@ -6,7 +6,8 @@
         v-if="auctions.length > 0"
         :auctions="JSON.parse(JSON.stringify(this.auctions))"
         :is_loading_more="inline_loading"
-        @loadMore="loadMore"
+        @loadMore="fetchAuctions"
+        @fetchData="loadMore"
     ></main-section>
     <fixed-buttons></fixed-buttons>
 </template>

@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\SpecialOfferController;
 use App\Http\Controllers\Admin\StateController;
 use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Resources\UserResource;
 use App\Models\Auction;
 use App\Models\BiddingHistory;
 use App\Models\Challenge;
@@ -116,59 +117,82 @@ Route::get('/vue/v1/{any?}', function () {
 
 Route::get('/test', function () {
 
-$auc=Auction::first();
 
-dd($auc->current_winner);
 
-   // fetch daily challenges
-   $users = User::where('status' , 1)->get();
-   $past_week = Carbon::now()->subMinutes(43200);
 
-   foreach ($users as $user) {
-       foreach ($user->challenges as $user_challenge) {
-           // check user progress in specific challenge
-           if ($user_challenge->pivot->status === 1 && $user_challenge->time_type === 3) {
-               //challenge is active and is daily
-             
-               // check for the type of challenge
-               // 1 = bidding  - 2= winning auction (both in spec category)
-               if ($user_challenge->type === 1) {
-                   //bidding
 
-                   //count user bids in past 24h
 
-                   // count of bidding in specific category
+    $user = User::find(2);
+    $x = new UserResource($user->load([
+        "bookmarks",
+        "bidding_histories",
+        "tickets",
+        "city.state"
+    ]));
+    dd($x);
 
-                   $count = BiddingHistory::where('created_at', '>=', $past_week)
-                       ->where('category_id', $user_challenge->category_id)->count();
-                   if ($count >= $user_challenge->number_to_win) {
-                       // user has won the chalenge
-                       //rewarding bid to user
-                       $user->bid_amount = $user->bid_amount + $user_challenge->reward->amount;
-                       $user->save();
-                       //update user challeng to won 
-                       $user->challenges()->updateExistingPivot($user_challenge->id, ['status' => 3]);
-                   }
-               } elseif ($user_challenge->type === 2) {
-                   //auction winning
-                  dd('auction win check');
-                   $product_ids = [];
-                   foreach ($user_challenge->category->products as $product) {
-                       $product_ids[] = $product->id;
-                   }
 
-                   //check user wins in past 24h in specific product ids array
-                   $count = Winner::where('user_id', $user->id)->where('created_at', '>=', $past_week)
-                       ->whereIn('product_id', $product_ids)->count();
 
-                   if ($count >= $user_challenge->number_to_win) {
-                       $user->bid_amount = $user->bid_amount + $user_challenge->reward->amount;
-                       $user->save();
-                       //update user challeng to won 
-                       $user->challenges()->updateExistingPivot($user_challenge->id, ['status' => 3]);
-                   }
-               }
-           }
-       }
-   }
+
+
+
+
+
+
+
+    $auc = Auction::first();
+
+    dd($auc->current_winner);
+
+    // fetch daily challenges
+    $users = User::where('status', 1)->get();
+    $past_week = Carbon::now()->subMinutes(43200);
+
+    foreach ($users as $user) {
+        foreach ($user->challenges as $user_challenge) {
+            // check user progress in specific challenge
+            if ($user_challenge->pivot->status === 1 && $user_challenge->time_type === 3) {
+                //challenge is active and is daily
+
+                // check for the type of challenge
+                // 1 = bidding  - 2= winning auction (both in spec category)
+                if ($user_challenge->type === 1) {
+                    //bidding
+
+                    //count user bids in past 24h
+
+                    // count of bidding in specific category
+
+                    $count = BiddingHistory::where('created_at', '>=', $past_week)
+                        ->where('category_id', $user_challenge->category_id)->count();
+                    if ($count >= $user_challenge->number_to_win) {
+                        // user has won the chalenge
+                        //rewarding bid to user
+                        $user->bid_amount = $user->bid_amount + $user_challenge->reward->amount;
+                        $user->save();
+                        //update user challeng to won 
+                        $user->challenges()->updateExistingPivot($user_challenge->id, ['status' => 3]);
+                    }
+                } elseif ($user_challenge->type === 2) {
+                    //auction winning
+                    dd('auction win check');
+                    $product_ids = [];
+                    foreach ($user_challenge->category->products as $product) {
+                        $product_ids[] = $product->id;
+                    }
+
+                    //check user wins in past 24h in specific product ids array
+                    $count = Winner::where('user_id', $user->id)->where('created_at', '>=', $past_week)
+                        ->whereIn('product_id', $product_ids)->count();
+
+                    if ($count >= $user_challenge->number_to_win) {
+                        $user->bid_amount = $user->bid_amount + $user_challenge->reward->amount;
+                        $user->save();
+                        //update user challeng to won 
+                        $user->challenges()->updateExistingPivot($user_challenge->id, ['status' => 3]);
+                    }
+                }
+            }
+        }
+    }
 });

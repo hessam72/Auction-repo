@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('status')->comment('deivered or not');
             $table->text('address');
             $table->integer('postal_code');
+            $table->integer('price')->default(0);
 
             $table->foreignId('product_id')->constrained();
             $table->foreignId('state_id')->constrained();

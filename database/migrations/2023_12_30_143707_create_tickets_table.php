@@ -22,8 +22,8 @@ return new class extends Migration
             $table->string('subject');
             $table->text('content')->nullable();
             $table->string('attachment')->nullable();
-            $table->integer('status')->default(1)->comment('1=open 0=closed');
-            $table->integer('reply_to_id')->nullable()->index('reply_to_id');
+            $table->integer('status')->default(1)->comment('1=pending 100=answered 0=closed');
+            $table->integer('reply_to_id')->default(0)->index('reply_to_id');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });

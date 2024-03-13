@@ -1,13 +1,19 @@
 <template>
   <Transition>
-    <div id="load" class="screen">
+    <div v-if="is_loading" id="load" class="screen">
       <span class="loader"></span>
     </div>
   </Transition>
 </template>
 
 <script>
-export default {};
+export default {
+  props:{
+    is_loading:{
+      default:false,
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -32,6 +38,9 @@ export default {};
   background: #0000006e;
   display: flex;
   align-items: center;
+  backdrop-filter: blur(2.5px);
+    z-index: 9999999999999;
+
 }
 
 .loader {
@@ -41,7 +50,7 @@ export default {};
   display: inline-block;
   position: relative;
   border: 3px solid;
-  border-color: #000000 #140000 transparent transparent;
+  border-color: #0000 var(--color-primary-tint-7) transparent transparent;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
   margin: auto;
@@ -58,7 +67,7 @@ export default {};
   bottom: 0;
   margin: auto;
   border: 3px solid;
-  border-color: transparent transparent #ff3d00 #ff3d00;
+  border-color: transparent transparent var(--color-primary-tint-7) var(--color-primary-tint-7);
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -70,7 +79,7 @@ export default {};
 .loader::before {
   width: 32px;
   height: 32px;
-  border-color: #fff #fff transparent transparent;
+  border-color: var(--color-primary-tint-7) var(--color-primary-tint-7)  transparent transparent;
   animation: rotation 1.5s linear infinite;
 }
 

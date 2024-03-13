@@ -155,15 +155,21 @@ class User extends  Authenticatable implements JWTSubject
 			->withPivot('id');
 	}
 
-	public function products()
+	public function user_shiped_products()
 	{
-		return $this->belongsToMany(Product::class, 'user_shiped_products')
-			->withPivot('id', 'status', 'address', 'postal_code', 'state_id', 'city_id')
-			->withTimestamps();
+		return $this->hasMany(UserShipedProduct::class);
+		// return $this->belongsToMany(Product::class, 'user_shiped_products')
+		// 	->withPivot('id', 'status', 'address', 'postal_code', 'state_id', 'city_id')
+		// 	->withTimestamps();
 	}
 
 	public function winners()
 	{
 		return $this->hasMany(Winner::class);
 	}
+	public function city()
+	{
+		return $this->belongsTo(City::class);
+	}
+	
 }

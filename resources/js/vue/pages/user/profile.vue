@@ -1,7 +1,7 @@
 <template>
-         <!-- <page-title :title="'Profile'" ></page-title> -->
+    <!-- <page-title :title="'Profile'" ></page-title> -->
 
-    <div class="center-container flex flex-col">
+    <div v-if="user" class="center-container flex flex-col">
         <div class="header-container flex justify-around items-center">
             <div class="header-section flex">
                 <div class="icon">
@@ -9,21 +9,28 @@
                 </div>
                 <div class="content-section flex flex-col">
                     <p>Total Bids Placed</p>
-                    <p>7431</p>
+                    <p>{{ user.bidding_histories.length }}</p>
                 </div>
             </div>
             <div class="header-section flex">
                 <div class="icon"><ion-icon name="trophy"></ion-icon></div>
                 <div class="content-section flex flex-col">
                     <p>Auction Wins</p>
-                    <p>14</p>
+                    <p>{{ user.winners.length }}</p>
                 </div>
             </div>
             <div class="header-section flex">
                 <div class="icon"><ion-icon name="alarm"></ion-icon></div>
                 <div class="content-section flex flex-col">
                     <p>Heighest Bidder</p>
-                    <p>04 : 32 : 19</p>
+                    <p v-if="user.highest_bidders">
+                        {{
+                            convertSecondsToTime(
+                                user.highest_bidders.time_spent
+                            )
+                        }}
+                    </p>
+                    <p v-else>00 : 00 : 00</p>
                 </div>
             </div>
         </div>
@@ -34,57 +41,245 @@
             </div>
             <div class="edit-form">
                 <div class="edit-row under_line">
-                    <label>UserName</label><input type="text" placeholder="username" />
+                    <label>UserName</label
+                    ><input
+                        type="text"
+                        placeholder="username"
+                        v-model="user.username"
+                    />
                 </div>
                 <div class="edit-row under_line">
-                    <label>Email</label><input type="email" placeholder="email@yahoo.com" />
+                    <label>Email</label
+                    ><input
+                        type="email"
+                        placeholder="email@yahoo.com"
+                        v-model="user.email"
+                    />
                 </div>
                 <div class="edit-row under_line">
-                    <label>Birth Date</label><input type="text" placeholder="username" />
+                    <label>Birth Date</label>
+                    <div class="date-container">
+                        <VueDatePicker
+                            v-model="user.birth_date"
+                            :enable-time-picker="false"
+                            placeholder="Select Your BirthDate"
+                        ></VueDatePicker>
+                    </div>
+
+                    <!-- <input type="text" placeholder="" v-model="user.birth_date" /> -->
                 </div>
                 <div class="edit-row under_line">
-                    <label>Password</label><input type="text" placeholder="username" />
+                    <label>State</label>
+                    <div class="selectbox-container">
+                        <VueMultiselect
+                            @select="setCityOptions"
+                            label="name"
+                            placeholder="Select Your State"
+                            v-model="user.city.state"
+                            :options="states"
+                        >
+                        </VueMultiselect>
+                    </div>
                 </div>
                 <div class="edit-row under_line">
-                    <label>Bio</label><textarea></textarea>
+                    <label>City</label>
+                    <div class="selectbox-container">
+                        <VueMultiselect
+                            label="name"
+                            placeholder="Select State First"
+                            v-model="user.city"
+                            :options="citySelectOptions"
+                        >
+                        </VueMultiselect>
+                    </div>
+                </div>
+
+                <div class="edit-row under_line">
+                    <label>Password</label
+                    ><input type="password" placeholder="*************" />
+                </div>
+                <div class="edit-row under_line">
+                    <label>Bio</label
+                    ><textarea v-model="this.user.bio"></textarea>
                 </div>
                 <div class="edit-row">
-                    <button class="spin" id="spin">
+                    <button
+                        @click="updateUser(), loadbtn()"
+                        class="spin"
+                        id="spin"
+                    >
                         <span>Submit</span>
                         <span>
                             <svg viewBox="0 0 24 24">
-                                <path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z" />
+                                <path
+                                    d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"
+                                />
                             </svg>
                         </span>
                     </button>
-
                 </div>
             </div>
         </div>
     </div>
+    <loading :is_loading="is_loading"></loading>
 </template>
-
+<style src="vue-multiselect/dist/vue-multiselect.css"></style>
 <script>
+import { init_submit_btn } from "@/modules/utilities/submit_btn.js";
+import { convertSecondsToTime } from "@/modules/utilities/convertor.js";
+import { mapGetters, mapActions } from "vuex";
+import VueMultiselect from "vue-multiselect";
+
+import VueDatePicker from "@vuepic/vue-datepicker";
+import "@vuepic/vue-datepicker/dist/main.css";
 export default {
-    mounted() {
-        $("button").click(function () {
-
-            var target = $(this);
-            if (target.hasClass("done")) {
-                // Do nothing
-
-            } else {
-                target.addClass("processing");
-                setTimeout(function () {
-                    target.removeClass("processing");
-                    target.addClass("done");
-                }, 2200);
-                setTimeout(function () {
-                    target.removeClass("done");
-                }, 4000);
-            }
-        });
+    data() {
+        return {
+            selected: null,
+            // options: ["list", "of", "options"],
+            citySelectOptions: [
+                {
+                    value: "first",
+                    name: "please select state first",
+                },
+            ],
+            date: null,
+            is_loading: false,
+            userUrl: "user/fetch",
+            updateUrl: "user/update",
+            geoUrl: "geo/all",
+            user: null,
+            states: [],
+        };
     },
+    computed: {
+        ...mapGetters(["baseUrl", "UserAuthToken"]),
+    },
+    components: {
+        VueDatePicker,
+        VueMultiselect,
+    },
+    methods: {
+        ...mapActions(["loginUser", "setUser"]),
+        convertSecondsToTime,
+        fetchData() {
+            this.is_loading = true;
+            let config = {
+                Authorization: this.UserAuthToken,
+            };
+
+            const body = {
+                load: [
+                    "bookmarks",
+                    "bidding_histories",
+                    "tickets",
+                    "transactions",
+                    "challenges",
+                    "redeem_codes",
+                    "highest_bidders",
+                    "winners",
+                    "user_shiped_products",
+                    "city.state",
+                ],
+            };
+
+            axios({
+                method: "post",
+                url: this.baseUrl + this.userUrl,
+                data: body,
+                headers: config,
+            })
+                // .get(this.baseUrl + this.userUrl, body , config)
+                .then((response) => {
+                    console.log(response.data.data);
+                    this.user = response.data.data;
+                    // this.selected_state = this.user.city.state;
+                })
+                .catch((error) => {
+                    console.log("error");
+                    console.log(error);
+                })
+                .finally(() => {
+                    this.is_loading = false;
+                });
+        },
+        updateUser() {
+            let config = {
+                Authorization: this.UserAuthToken,
+            };
+            const body = {
+                username: this.user.username,
+                email: this.user.email,
+                birth_date: this.user.birth_date,
+                city_id: this.user.city.id,
+
+                // password:this.user.
+                bio: this.user.bio,
+            };
+
+            axios({
+                method: "put",
+                url: this.baseUrl + this.updateUrl,
+                data: body,
+                headers: config,
+            })
+                // .get(this.baseUrl + this.userUrl, body , config)
+                .then((response) => {
+                    console.log(response);
+                })
+                .catch((error) => {
+                    console.log("error");
+                    console.log(error);
+                })
+                .finally(() => {});
+        },
+        fetchGeo() {
+            // this.is_loading = true;
+            let config = {
+                Authorization: this.UserAuthToken,
+            };
+
+            const body = {};
+
+            axios({
+                method: "post",
+                url: this.baseUrl + this.geoUrl,
+                data: body,
+                headers: config,
+            })
+                // .get(this.baseUrl + this.userUrl, body , config)
+                .then((response) => {
+                    console.log(response.data.data);
+                    this.states = response.data.data;
+                    this.setCityOptions();
+                })
+                .catch((error) => {
+                    console.log("error");
+                    console.log(error);
+                })
+                .finally(() => {
+                    this.is_loading = false;
+                });
+        },
+        setCityOptions() {
+       
+            this.states.forEach( (item)=> {
+                
+                if(item.id === this.user.city.state.id){
+                    this.citySelectOptions=item.cities;
+                }
+            });
+  
+        },
+        loadbtn() {
+            init_submit_btn();
+        },
+    },
+    created() {
+        this.fetchData();
+        this.fetchGeo();
+    },
+    mounted() {},
 };
 </script>
 
@@ -95,20 +290,20 @@ export default {
     border: none;
     margin-top: 0.8rem;
     border-radius: 50px;
-    background: linear-gradient(-45deg, #492B89, #782B89, #2B3D89, #2B8978);
+    background: linear-gradient(-45deg, #492b89, #782b89, #2b3d89, #2b8978);
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
-   
-    transition: all .3s ease;
 
+    transition: all 0.3s ease;
 }
-
+.selectbox-container {
+    width: 75%;
+}
 .header-container {
     // background-color:var(--color-primary-tint-4) ;
     padding: 2rem;
-  box-shadow: 1px 1px 6px #aaa;
-  color: var(--color-primary-tint-5);
-
+    box-shadow: 1px 1px 6px #aaa;
+    color: var(--color-primary-tint-5);
 }
 
 .header-section {
@@ -117,17 +312,15 @@ export default {
     font-size: 1.5rem;
     font-weight: 500;
 
-
     .icon {
-        border-right: 3px solid  var(--color-primary-tint-5);
+        border-right: 3px solid var(--color-primary-tint-5);
         padding-right: 1rem;
-
     }
 
     ion-icon {
         font-size: 5.5rem;
-  filter: drop-shadow(5px 5px 5px var(--color-secondary-tint-2));
-  color: var(--color-primary-tint-5);
+        filter: drop-shadow(5px 5px 5px var(--color-secondary-tint-2));
+        color: var(--color-primary-tint-5);
     }
 }
 
@@ -145,7 +338,6 @@ export default {
     align-items: center;
     gap: 2rem;
 
-
     .edit-row {
         display: flex;
         align-items: start;
@@ -154,8 +346,6 @@ export default {
         position: relative;
 
         flex-direction: row;
-
-
 
         // submit style
 
@@ -171,8 +361,6 @@ export default {
         }
 
         $color: #1ecd97;
-
-
 
         button {
             position: relative;
@@ -266,12 +454,7 @@ export default {
             }
         }
 
-
         // **********
-
-
-
-
 
         label {
             font-size: 1.3rem;
@@ -286,7 +469,7 @@ export default {
             border-radius: 10px;
             width: 75%;
             padding: 1rem;
-            
+            font-size: 1.2rem;
         }
 
         textarea {
@@ -294,11 +477,9 @@ export default {
             border-radius: 10px;
             width: 75%;
             background: #fff;
+            font-size: 1.2rem;
         }
-
-
     }
-
 
     .under_line::after {
         content: "";
@@ -314,12 +495,12 @@ export default {
 
     .under_line:hover::after {
         transform: scale(1);
-    }  
+    }
 }
 
 input[type="text"]::placeholder,
-input[type="email"]::placeholder{
-    font-size: 1.1rem;
+input[type="email"]::placeholder {
+    font-size: 1.2rem;
 }
 
 input[type="text"],
@@ -334,7 +515,6 @@ textarea {
     margin-bottom: 30px;
     color: #474747;
     font: 12px Century Gothic;
-
 }
 
 input[type="text"]:focus,
@@ -345,12 +525,11 @@ textarea:focus {
     -moz-box-shadow: 21px 18px 7px 1px rgba(173, 173, 173, 0.82);
     box-shadow: 21px 18px 7px 1px rgba(173, 173, 173, 0.82);
     transform: scale(1.05);
-    -webkit-transition: ease .6s;
-    -moz-transition: ease .6s;
-    -o-transition: ease .6s;
-    -ms-transition: ease .6s;
-    transition: ease .6s;
-
+    -webkit-transition: ease 0.6s;
+    -moz-transition: ease 0.6s;
+    -o-transition: ease 0.6s;
+    -ms-transition: ease 0.6s;
+    transition: ease 0.6s;
 }
 // input[type="text"]:focus,
 // input[type="email"]:focus,
@@ -363,5 +542,8 @@ textarea {
     height: 200px;
 
     width: 97%;
+}
+.date-container {
+    width: 75%;
 }
 </style>

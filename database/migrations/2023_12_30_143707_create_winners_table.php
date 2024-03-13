@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('product_id')->constrained();
 
             $table->integer('win_price');
+            $table->integer('bids_placed');
             $table->timestamp('created_at')->useCurrent();
         });
     }

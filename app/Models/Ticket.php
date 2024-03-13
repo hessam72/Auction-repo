@@ -58,4 +58,13 @@ class Ticket extends Model
 	{
 		return $this->belongsTo(User::class);
 	}
+	public function parent()
+	{
+		return $this->belongsTo(self::class, 'reply_to_id');
+	}
+	public function children()
+	{
+		return $this->hasMany(self::class, 'reply_to_id')->orderBy('created_at' , 'asc');
+	}
+
 }

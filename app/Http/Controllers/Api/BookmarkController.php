@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\BookMarkResource;
 use App\Models\Bookmark;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookmarkController extends Controller
 {
@@ -37,7 +38,36 @@ class BookmarkController extends Controller
             ], 403);
         }
     }
+    public function toggleBookmark(Request $request)
+    {
 
+        $request->validate([
+
+            'auction_id' =>  'required',
+
+        ]);
+
+        //check if user allready bookmarked auction
+        $is_bookmarked = Bookmark::where('user_id', Auth::user()->id)->where('auction_id', $request->auction_id)->first();
+        if ($is_bookmarked === null) {
+            //create new bookmark
+            Bookmark::create([
+                'auction_id' =>  $request->auction_id,
+                'user_id' =>  Auth::user()->id,
+            ]);
+            return response()->json([
+                'success' => 'bookmark created',
+
+            ], 200);
+        } else {
+            // remove bookmark
+            Bookmark::where('auction_id', $request->auction_id)->where('user_id', Auth::user()->id)->delete();
+            return response()->json([
+                'success' => 'bookmark deleted',
+
+            ], 200);
+        }
+    }
     public function destroyBookmark(Request $request)
     {
         $request->validate([
@@ -66,12 +96,10 @@ class BookmarkController extends Controller
     }
     public function userBookmark(Request $request)
     {
-        $request->validate([
-            'user_id' =>  'required',
-        ]);
 
-        $data = Bookmark::where('user_id', $request->user_id)->get();
 
-        return BookMarkResource::collection($data);
+        $data = Bookmark::where('user_id', Auth::user()->id)->get();
+
+        return BookMarkResource::collection($data->load('auction.product'));
     }
 }

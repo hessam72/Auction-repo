@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('buy_it_now_offers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->constrained();
+            $table->foreignId('user_id')->constrained();
 
             $table->integer('spent_bids')->default(0);
             $table->timestamp('time_limit')->useCurrentOnUpdate()->useCurrent();

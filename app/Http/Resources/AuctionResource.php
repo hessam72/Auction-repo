@@ -25,12 +25,11 @@ class AuctionResource extends JsonResource
             "min_price" => $this->min_price,
             "status" => $this->status,
             "final_winner_id" => $this->final_winner_id,
-            "bookmarks" => new BookMarkResource($this->bookmarks),
+            "bookmarks" =>  BookMarkResource::collection($this->bookmarks),
             "created_at" => $this->created_at,
             "product" => new ProductResource($this->product),
 
             "bidding_queues" => new BiddingQueueResource($this->next_bidding_queue),
-            // 'posts' => PostResource::collection($this->whenLoaded('posts')),
 
         ];
     }

@@ -13,6 +13,13 @@ use App\Http\Controllers\Api\WinnerController;
 use App\Http\Controllers\Auth\ApiController;
 use App\Http\Controllers\Api\AuctionController;
 use App\Http\Controllers\Api\BiddingController;
+use App\Http\Controllers\Api\BuyItNowOfferController;
+use App\Http\Controllers\Api\ChallengeController;
+use App\Http\Controllers\Api\GeoController;
+use App\Http\Controllers\Api\TicketController;
+use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\UserShipedProductController;
+use App\Http\Controllers\Api\UserWinsController;
 use App\Models\Auction;
 use App\Models\BidBuddy;
 use App\Models\BiddingHistory;
@@ -52,18 +59,45 @@ Route::controller(AuctionController::class)->group(function () {
 });
 
 
-Route::middleware('jwt.auth')->get('/user', function (Request $request) {
-    return $request->user();
+
+
+Route::middleware('jwt.auth')->group(function () {
+    Route::controller(UserController::class)->prefix('/user')->group(function () {
+        Route::post('/fetch', 'index');
+        Route::put('/update', 'update');
+    });
+    Route::controller(GeoController::class)->prefix('/geo')->group(function () {
+        Route::post('/all', 'all');
+    });
+     Route::controller(ChallengeController::class)->prefix('/challenge')->group(function () {
+        Route::post('/user', 'user_challenges');
+    });  
+    Route::controller(UserShipedProductController::class)->prefix('/shiped_product')->group(function () {
+        Route::post('/all', 'all');
+    });
+     Route::controller(UserWinsController::class)->prefix('/winners')->group(function () {
+        Route::post('/user/all', 'user_wins');
+    }); 
+     Route::controller(BuyItNowOfferController::class)->prefix('/buy_offers')->group(function () {
+        Route::post('/user/all', 'all');
+    }); 
+     Route::controller(TicketController::class)->prefix('/tickets')->group(function () {
+        Route::post('/user/all', 'user_tickets');
+        Route::post('/info', 'getInfo'); 
+        Route::post('/store', 'store');
+        Route::put('/update', 'update');
+    });
+    Route::controller(BookmarkController::class)->prefix('/bookmark')->group(function () {
+      
+        Route::post('/user_bookmark', 'userBookmark');
+        Route::post('/toggle', 'toggleBookmark');
+        Route::delete('/delete', 'destroyBookmark');  Route::post('/store', 'storeBookmark');
+    });
 });
 
 
 Route::get('/categories-list', 'App\Http\Controllers\Admin\CategoryController@sendJsonResponse');
-Route::get('/test', function () {
 
-
-
-    dd(Carbon::now());
-});
 
 
 
@@ -76,11 +110,7 @@ Route::controller(BiddingController::class)->prefix('/auction')->group(function 
     Route::post('/bidding/storeBidBuddyBid', 'storeBidBuddyBid');
 });
 
-Route::controller(BookmarkController::class)->prefix('/bookmark')->group(function () {
-    Route::post('/store', 'storeBookmark');
-    Route::post('/user_bookmark', 'userBookmark');
-    Route::delete('/delete', 'destroyBookmark');
-});
+
 Route::controller(SpecialOfferController::class)->prefix('/special_offer')->group(function () {
 
 
@@ -102,5 +132,4 @@ Route::controller(BiddersController::class)->prefix('/bidders')->group(function 
 
 
     Route::post('/auction', 'biddersInAuction');
-    
 });

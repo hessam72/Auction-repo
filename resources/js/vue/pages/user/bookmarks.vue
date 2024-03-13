@@ -1,90 +1,24 @@
 <template>
-     <page-title :title="'Bookmarks'" ></page-title>
+    <page-title :title="'Bookmarks'"></page-title>
     <div class="bookmarks-container">
-       
         <auction-card
-            :time="7 * 60 * 60 * 1000"
-            :buy_now_price="1300"
-            :current_winner_username="'ali_ggory'"
-            :live_price="54.3"
-            :title="'macbook pro m1'"
-            :image="'/storage/images/product_images/macbook-1.jpeg'"
-            :is_bookmarked="true"
-            :status="1"
-        ></auction-card>
-        <auction-card
-            :time="7 * 3 * 60 * 1000"
-            :buy_now_price="750"
-            :start_time="'Today at 5:58 PM'"
-            :title="'iphone 13 pink'"
-            :image="'/storage/images/product_images/iphone-3.jpg'"
-            :status="2"
-        ></auction-card>
-
-        <auction-card
-            :time="7 * 60 * 20 * 1000"
-            :buy_now_price="2300"
-            :current_winner_username="'sara_joens'"
-            :live_price="35.3"
-            :title="'macbook air m2'"
-            :image="'/storage/images/product_images/macbook-2.jpg'"
-            :is_bookmarked="false"
-            :status="1"
-            :no_new_bidders="true"
-        ></auction-card>
-        <auction-card
-            :time="7 * 60 * 60 * 1000"
-            :buy_now_price="1300"
-            :current_winner_username="'ali_ggory'"
-            :live_price="54.3"
-            :title="'macbook pro m1'"
-            :image="'/storage/images/product_images/macbook-1.jpeg'"
-            :is_bookmarked="true"
-            :status="1"
-        ></auction-card>
-
-        <auction-card
-            :time="7 * 60 * 20 * 1000"
-            :buy_now_price="2300"
-            :current_winner_username="'sara_joens'"
-            :live_price="35.3"
-            :title="'macbook air m2'"
-            :image="'/storage/images/product_images/macbook-2.jpg'"
-            :is_bookmarked="false"
-            :status="1"
-            :no_new_bidders="true"
-        ></auction-card>
-        <auction-card
-            :time="7 * 3 * 60 * 1000"
-            :buy_now_price="750"
-            :start_time="'Today at 5:58 PM'"
-            :title="'iphone 13 pink'"
-            :image="'/storage/images/product_images/iphone-3.jpg'"
-            :status="2"
-        ></auction-card>
-        <auction-card 
-        v-if="show_more"
-            :time="7 * 60 * 60 * 1000"
-            :buy_now_price="1300"
-            :current_winner_username="'ali_ggory'"
-            :live_price="54.3"
-            :title="'macbook pro m1'"
-            :image="'/storage/images/product_images/macbook-1.jpeg'"
-            :is_bookmarked="true"
-            :status="1"
-        ></auction-card>
-        <auction-card 
-        v-if="show_more"
-            :time="7 * 60 * 20 * 1000"
-            :buy_now_price="2300"
-            :current_winner_username="'sara_joens'"
-            :live_price="35.3"
-            :title="'macbook air m2'"
-            :image="'/storage/images/product_images/macbook-2.jpg'"
-            :is_bookmarked="false"
-            :status="1"
-            :no_new_bidders="true"
-        ></auction-card>
+        @refreshData="fetchData"
+            v-for="(item, index) in this.bookmarks"
+            :key="index"
+            :auction_id="item.auction.id"
+            :start_time="item.auction.start_time"
+            :timer="item.auction.timer"
+            :buy_now_price="item.auction.product.price"
+            :current_winner_username="item.auction.current_winner.username"
+            :live_price="item.auction.current_price"
+            :title="item.auction.product.title"
+            :image="item.auction.product.galleries[0]"
+            :is_bookmarked="
+                check_bookmark_status(item.auction.bookmarks, user.id)
+            "
+            :status="item.auction.status"
+        >
+        </auction-card>
     </div>
     <inline-loading :is_loading_more></inline-loading>
     <InfiniteLoading @infinite="loadData" />
@@ -92,33 +26,60 @@
 
 <script setup>
 import InfiniteLoading from "v3-infinite-loading";
+
 import "v3-infinite-loading/lib/style.css"; //required if you're not going to override default slots
 </script>
 
 <script>
+import { check_bookmark_status } from "@/modules/utilities/auctionUtils.js";
+import { mapGetters, mapActions } from "vuex";
 import AuctionCard from "../../components/auctions/auction_card.vue";
 export default {
     data() {
         return {
+            is_loading: false,
             is_loading_more: false,
-            show_more: false,
-            show_more2: false,
+
+            fetchrl: "bookmark/user_bookmark",
+            bookmarks: [],
         };
     },
     methods: {
+        check_bookmark_status,
+        fetchData() {
+            let config = {
+                Authorization: this.UserAuthToken,
+            };
+
+            axios({
+                method: "post",
+                url: this.baseUrl + this.fetchrl,
+                headers: config,
+            })
+                .then((response) => {
+                    console.log(response.data.data);
+                    this.bookmarks = response.data.data;
+                })
+                .catch((error) => {
+                    console.log("error");
+                    console.log(error);
+                })
+                .finally(() => {});
+        },
         loadData($state) {
             //calling the api
             // alert('load more');
             this.is_loading_more = true;
             setTimeout(() => {
                 this.is_loading_more = false;
-                if (this.show_more) {
-                    this.show_more2 = true;
-                }
-                this.show_more = true;
-                
             }, 2000);
         },
+    },
+    computed: {
+        ...mapGetters(["baseUrl", "UserAuthToken", "user"]),
+    },
+    created() {
+        this.fetchData();
     },
     components: {
         AuctionCard,

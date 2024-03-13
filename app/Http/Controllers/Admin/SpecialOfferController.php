@@ -54,7 +54,7 @@ class SpecialOfferController extends Controller
 
         if ($request->has('banner')) {
 
-            $path = $this->UploadFile($request->banner, 'images/special_offers_banner'); //use the method in the trait
+            $path = $this->UploadFile($request->banner, '/images/special_offers_banner'); //use the method in the trait
 
 
         } else {
