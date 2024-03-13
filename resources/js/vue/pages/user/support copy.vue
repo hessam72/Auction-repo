@@ -110,10 +110,80 @@
             aria-labelledby="offcanvasRightLabel"
             data-te-offcanvas-init
         >
-           
-
-            <ticket-chats></ticket-chats>
-          
+            <div class="ticket-header flex items-center justify-between p-4">
+                <button
+                    @click="openCreateTicket(true)"
+                    class="ticket-group-btn reply"
+                >
+                    Reply
+                </button>
+                <div class="flex items-center justify-between gap-10">
+                    <h3>Status: pending</h3>
+                    <!-- close btn -->
+                    <button
+                        @click="toggleDetails()"
+                        type="button"
+                        class="box-content rounded-none border-none opacity-50 hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
+                        data-te-offcanvas-dismiss
+                    >
+                        <span
+                            class="w-[1em] focus:opacity-100 disabled:pointer-events-none disabled:select-none disabled:opacity-25 [&.disabled]:pointer-events-none [&.disabled]:select-none [&.disabled]:opacity-25"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke-width="1.5"
+                                stroke="currentColor"
+                                class="h-6 w-6"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M6 18L18 6M6 6l12 12"
+                                />
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div
+                class="ticket-body offcanvas-body flex flex-col gap-10 overflow-y-auto p-4"
+            >
+                <!-- user ticket -->
+                <div
+                    v-for="(item, index) in ticket_details"
+                    :key="index"
+                    class="ticket-message"
+                >
+                    <div
+                        :class="[
+                            item.status === 100 ? 'admin_msg' : '',
+                            'm-header flex items-center gap-4',
+                        ]"
+                    >
+                        <img class="rounded-lg-3" :src="user.profile_pic" />
+                        <div class="m-info flex flex-col gap-4">
+                            <h2 v-if="item.status != 100">
+                                {{ user.username }}
+                            </h2>
+                            <h2 v-else>Admin</h2>
+                            <p class="ticket-time">
+                                <ion-icon name="calendar"></ion-icon>
+                                {{ convertDBTimeToDate(item.created_at) }}
+                                <ion-icon name="time"></ion-icon>
+                                {{ convertDBTimeToTime(item.created_at) }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="m-content flex flex-col gap-5">
+                        <h2>{{ item.subject }}</h2>
+                        <p>
+                            {{ item.content }}
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </OnClickOutside>
 
@@ -321,7 +391,6 @@ import {
 } from "@/modules/utilities/convertor.js";
 import { mapGetters, mapActions } from "vuex";
 import { OnClickOutside } from "@vueuse/components";
-import ticketChats from "../../components/user/ticket_chats.vue";
 
 import {
     Dialog,
@@ -506,7 +575,6 @@ export default {
         TransitionChild,
         TransitionRoot,
         OnClickOutside,
-        ticketChats
     },
     created() {
         this.fetchData();
