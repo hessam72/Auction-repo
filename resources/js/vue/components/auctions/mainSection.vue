@@ -1,14 +1,12 @@
 <template>
     <div>
-        <search-section></search-section>
+        <search-section ></search-section>
         <div class="main-container">
             <!-- <div v-show="show_backdrop" class="backdrop">.</div> -->
             <auction-card
             @refreshData="$emit('fetchData')"
 
-                v-for="(item, index) in JSON.parse(
-                    JSON.stringify(this.auctions)
-                )"
+                v-for="(item, index) in this.auctions"
 
                 :key="index"
                 :auction_id="item.id"
@@ -51,6 +49,7 @@ import auctions from "../../store/modules/auctions";
 export default {
     props: {
         auctions: {},
+        categories:{},
         is_loading_more: {
             default: false,
         },

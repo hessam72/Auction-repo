@@ -111,11 +111,11 @@
         data-te-offcanvas-init
     >
         <!-- <OnClickOutside class="msg-container" @trigger="closeDetails"> -->
-            <ticket-chats
-                @close="closeDetails"
-                @storeMsg="store_ticket"
-                :tickets="ticket_details"
-            ></ticket-chats>
+        <ticket-chats
+            @close="closeDetails"
+            @storeMsg="store_ticket"
+            :tickets="ticket_details"
+        ></ticket-chats>
         <!-- </OnClickOutside> -->
     </div>
 
@@ -429,9 +429,8 @@ export default {
             // let myFile = this.inputFile;
 
             const formData = new FormData();
-            if(myFile != null){
-                            formData.append("attachment", myFile);
-
+            if (myFile != null) {
+                formData.append("attachment", myFile);
             }
 
             formData.append("content", content);
@@ -444,7 +443,7 @@ export default {
                 // new ticket
                 formData.append("subject", this.newTicketSubject);
             }
-           console.log(myFile)
+            console.log(myFile);
 
             let config = {
                 Authorization: this.UserAuthToken,
@@ -467,9 +466,9 @@ export default {
                     // this.is_reply = false;
                     this.create_modal = false;
                     // this.show_details=false;
-                    if(reply){
+                    if (reply) {
                         // fetch reply tickets
-                        this.showDetails(this.current_open_ticket)
+                        this.showDetails(this.current_open_ticket);
                     }
                     this.fetchData();
                 })
@@ -514,7 +513,6 @@ export default {
                     this.is_loading = false;
                 });
         },
-       
     },
     mounted() {
         initTE({ Offcanvas, Ripple, Input });

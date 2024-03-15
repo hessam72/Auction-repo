@@ -8,7 +8,7 @@ import App from "./vue/App.vue";
 import axios from 'axios';
 import router from "./vue/router/router.js";
 import store from "./vue/store/index.js";
-
+import mitt from 'mitt';
 //global components
 import loading from "./vue/components/utilities/loading.vue";
 import more_btn from "./vue/components/utilities/more_btn.vue";
@@ -20,7 +20,11 @@ import Countdown from 'vue3-flip-countdown'
 import jQuery from 'jquery';
 var $ = jQuery;
 window.$ = $;
+const emitter = mitt();
+
 const app = createApp(App);
+app.config.globalProperties.emitter = emitter;
+
 axios.defaults.withCredentials = true;
 
 axios.defaults.baseURL = 'http://localhost:8000/api/';

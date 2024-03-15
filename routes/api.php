@@ -14,6 +14,7 @@ use App\Http\Controllers\Auth\ApiController;
 use App\Http\Controllers\Api\AuctionController;
 use App\Http\Controllers\Api\BiddingController;
 use App\Http\Controllers\Api\BuyItNowOfferController;
+use App\Http\Controllers\Api\CategoryController as ApiCategoryController;
 use App\Http\Controllers\Api\ChallengeController;
 use App\Http\Controllers\Api\GeoController;
 use App\Http\Controllers\Api\TicketController;
@@ -47,15 +48,20 @@ Route::controller(ApiController::class)->prefix('/auth')->group(function () {
 });
 
 
-Route::middleware('auth:sanctum')->controller(AuctionController::class)->prefix('/auctions')->group(function () {
+Route::controller(AuctionController::class)->prefix('/auctions')->group(function () {
 
     Route::post('/search', 'search');
 
     Route::post('/filter', 'filter');
     Route::post('/test-image', 'test');
 });
+
 Route::controller(AuctionController::class)->group(function () {
     Route::get('/pusher', 'test_pusher');
+});
+
+Route::controller(ApiCategoryController::class)->prefix('/categories')->group(function () {
+    Route::get('/all', 'all');
 });
 
 
@@ -120,6 +126,7 @@ Route::controller(WinnerController::class)->prefix('/winners')->group(function (
 
 
     Route::post('/auction', 'index');
+    Route::post('/all', 'all');
     Route::post('/store', 'storeWinner');
 });
 Route::controller(CommentController::class)->prefix('/comments')->group(function () {

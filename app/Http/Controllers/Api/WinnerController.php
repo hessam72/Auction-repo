@@ -41,5 +41,17 @@ class WinnerController extends Controller
         ], 200);
       
     }
+    public function all(Request $request){
+
+        $skip = 0;
+        $take=10;
+         if($request->has('skip') && $request->has('take')){
+           $skip = $request->skip;
+           $take = $request->take;
+         }
+
+
+        return WinnerResource::collection(Winner::skip($skip)->take($take)->with('user' , 'product.product_galleries')->latest()->get());
+    }
     
 }

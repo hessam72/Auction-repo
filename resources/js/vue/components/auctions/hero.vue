@@ -1,22 +1,19 @@
 <template>
-    <div class="hero-container flex w-full relative">
+    <div v-if="special_offer" class="hero-container flex w-full relative">
         <div class="content w-full px-20 flex flex-col gap-7 py-14 z-20">
             <div class="hero-badge countdown">
-              
-                
-                  <vue3-flip-countdown
-                :countdownSize="'2.2rem'"
-                :labelSize="'.9rem'"
-                :deadline="'2024-4-12 00:40:00'"
-                :mainColor="'#eee'"
-                :secondFlipColor="'#eee'"
-                :mainFlipBackgroundColor="'#222'"
-                :secondFlipBackgroundColor="'#222'"
-                :labelColor="'#fff'"
-                
-            />
+                <vue3-flip-countdown
+                    :countdownSize="'2.2rem'"
+                    :labelSize="'.9rem'"
+                    :deadline="setExpDate(special_offer.expiration_date)"
+                    :mainColor="'#eee'"
+                    :secondFlipColor="'#eee'"
+                    :mainFlipBackgroundColor="'#222'"
+                    :secondFlipBackgroundColor="'#222'"
+                    :labelColor="'#fff'"
+                />
             </div>
-            <div data-tooltip="SAVE $38" class="button">
+            <div :data-tooltip="saving(special_offer)" class="button">
                 <div class="button-wrapper">
                     <div class="text">Buy Now</div>
                     <span class="icon">
@@ -41,7 +38,7 @@
             <div class="banner-content w-6/12">
                 <!-- <h1 class=" header text-5xl text-slate-200"> -->
 
-                <neon-header class="header"></neon-header>
+                <neon-header :special_offer class="header"></neon-header>
                 <!-- </h1> -->
 
                 <!-- <p class="sub-header text-1xl text-slate-200">
@@ -58,7 +55,7 @@
           </button>
         </div> -->
             </div>
-           
+
             <!-- <count-down :time="2 *3 * 60 * 60 * 1000"></count-down> -->
         </div>
     </div>
@@ -74,6 +71,7 @@ import "vueperslides/dist/vueperslides.css";
 import NeonHeader from "./neon_header.vue";
 import CountDown from "../utilities/count_down.vue";
 export default {
+    props: ["special_offer"],
     data: () => ({
         slides: [
             {
@@ -98,6 +96,34 @@ export default {
             // Other slides.
         ],
     }),
+    methods: {
+        setExpDate(date) {
+            var dd = new Date(date).toLocaleDateString();
+            var tt = new Date(date).toLocaleTimeString();
+            dd = dd.replace("/", "-");
+            dd = dd.replace("/", "-");
+            dd = dd.replace("/", "-");
+            tt = tt.replace("PM", "");
+            var new_time = dd + " " + tt;
+            console.log("*************************");
+            console.log(new_time);
+
+            return new_time;
+        },
+        saving(item) {
+            if (item.type === 1) {
+                // bid
+                var price = item.bid_package.price;
+                var discount = Math.round((100 * item.discount_amount) / price)
+                return 'saving '+'$'+discount;
+            } else {
+                // product
+                var price = item.product.price;
+                var discount = Math.round((100 * item.discount_amount) / price);
+                return 'saving '+'$'+discount;
+            }
+        },
+    },
     components: { VueperSlides, VueperSlide, NeonHeader, CountDown },
 };
 </script>
@@ -149,7 +175,6 @@ export default {
 }
 
 .countdown {
-
     width: 20rem;
     top: 7.5rem;
     right: 0rem;
@@ -217,7 +242,6 @@ export default {
     font-weight: 800;
     text-shadow: 0 0.5px 7px #333;
     line-height: 1.3;
-   
 }
 
 .sub-header {
@@ -257,7 +281,7 @@ export default {
 .button::before {
     position: absolute;
     content: attr(data-tooltip);
-    width: var(--tooltip-width);
+    width: 150px;
     height: var(--tooltip-height);
     background-color: #555;
     font-size: 0.9rem;
@@ -265,7 +289,7 @@ export default {
     border-radius: 0.25em;
     line-height: var(--tooltip-height);
     bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) + 10px);
-    left: calc(50% - var(--tooltip-width) / 2);
+    left: calc(50% - 150px / 2);
 }
 
 .button::after {

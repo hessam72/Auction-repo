@@ -29,6 +29,7 @@
         "beerslider": "^1.0.3",
         "jquery": "^3.7.1",
         "laravel-echo": "^1.15.3",
+        "mitt": "^3.0.1",
         "pusher-js": "^8.4.0-rc2",
         "tw-elements": "^1.1.0",
         "v3-infinite-loading": "^1.3.1",

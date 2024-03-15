@@ -7,364 +7,154 @@
             <h1 class="test_color">Our Latest Winners</h1>
         </div>
         <div class="box-container winners-list-container">
-            <div class="box">
+            <div v-for="(item, index) in winners" :key="index" class="box">
                 <span></span>
                 <div class="content winner flex gap-10">
                     <div class="product flex justify-center items-center">
                         <div class="image">
-                            <img :src="'/storage/images/product_images/trans-macbook-2.png'" />
+                            <img
+                                :src="
+                                    '/storage/' +
+                                    item.product.product_galleries[0].image
+                                "
+                            />
                         </div>
                         <div class="product-info flex flex-col">
-                            <h2>product name</h2>
-                            <p>Lorem nihil dicta quod eum delectus libero accusantium quis commodi maiores fugiat,
-                                cumque
-                                laudantium dolor perferendis officia?</p>
-                            <p>ended 2 days ago</p>
+                            <h2>{{ item.product.title }}</h2>
+                            <p>{{ item.product.short_desc }}</p>
+                            <p>
+                                ended {{ calDaysPassed(item.created_at) }} days
+                                ago
+                            </p>
                         </div>
                     </div>
-                    <div class="winner-info flex gap-10 ">
-                        <div class="user flex flex-col justify-center items-center gap-5">
-                            <img class="rounded-full" :src="'/storage/images/user_profiles/150-4.jpg'" />
-                            <p>Sara Doe</p>
+                    <div class="winner-info flex gap-10">
+                        <div
+                            class="user flex flex-col justify-center items-center gap-5"
+                        >
+                            <img
+                                class="rounded-full"
+                                :src="'/storage/' + item.user.profile_pic"
+                            />
+                            <p>{{ item.user.username }}</p>
                         </div>
-                        <div class="win-info flex flex-col justify-center items-left">
+                        <div
+                            class="win-info flex flex-col justify-center items-left"
+                        >
                             <div class="win-row flex">
                                 <p>Final Price</p>
-                                <p>$540</p>
+                                <p>${{ item.win_price }}</p>
                             </div>
                             <div class="win-row flex">
                                 <p>Total Bids</p>
-                                <p>73</p>
+                                <p>{{ item.bids_placed }}</p>
                             </div>
                             <div class="win-row flex">
                                 <p>Buy it Now Price</p>
-                                <p>$1250</p>
+                                <p>${{ item.product.price }}</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="box">
-                <span></span>
-                <div class="content winner flex gap-10">
-                    <div class="product flex justify-center items-center">
-                        <div class="image">
-                            <img :src="'/storage/images/product_images/trans-macbook-2.png'" />
-                        </div>
-                        <div class="product-info flex flex-col">
-                            <h2>product name</h2>
-                            <p>Lorem nihil dicta quod eum delectus libero accusantium quis commodi maiores fugiat,
-                                cumque
-                                laudantium dolor perferendis officia?</p>
-                            <p>ended 2 days ago</p>
-                        </div>
-                    </div>
-                    <div class="winner-info flex gap-10 ">
-                        <div class="user flex flex-col justify-center items-center gap-5">
-                            <img class="rounded-full" :src="'/storage/images/user_profiles/150-3.jpg'" />
-                            <p>Sara Doe</p>
-                        </div>
-                        <div class="win-info flex flex-col justify-center items-left">
-                            <div class="win-row flex">
-                                <p>Final Price</p>
-                                <p>$540</p>
-                            </div>
-                            <div class="win-row flex">
-                                <p>Total Bids</p>
-                                <p>73</p>
-                            </div>
-                            <div class="win-row flex">
-                                <p>Buy it Now Price</p>
-                                <p>$1250</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="box">
-                <span></span>
-                <div class="content winner flex gap-10">
-                    <div class="product flex justify-center items-center">
-                        <div class="image">
-                            <img :src="'/storage/images/product_images/trans-iphone-2.png'" />
-                        </div>
-                        <div class="product-info flex flex-col">
-                            <h2>product name</h2>
-                            <p>Lorem nihil dicta quod eum delectus libero accusantium quis commodi maiores fugiat,
-                                cumque
-                                laudantium dolor perferendis officia?</p>
-                            <p>ended 2 days ago</p>
-                        </div>
-                    </div>
-                    <div class="winner-info flex gap-10 ">
-                        <div class="user flex flex-col justify-center items-center gap-5">
-                            <img class="rounded-full" :src="'/storage/images/user_profiles/150-7.jpg'" />
-                            <p>Sara Doe</p>
-                        </div>
-                        <div class="win-info flex flex-col justify-center items-left">
-                            <div class="win-row flex">
-                                <p>Final Price</p>
-                                <p>$540</p>
-                            </div>
-                            <div class="win-row flex">
-                                <p>Total Bids</p>
-                                <p>73</p>
-                            </div>
-                            <div class="win-row flex">
-                                <p>Buy it Now Price</p>
-                                <p>$1250</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="box">
-                <span></span>
-                <div class="content winner flex gap-10">
-                    <div class="product flex justify-center items-center">
-                        <div class="image">
-                            <img :src="'/storage/images/product_images/trans-ps5-2.png'" />
-                        </div>
-                        <div class="product-info flex flex-col">
-                            <h2>product name</h2>
-                            <p>Lorem nihil dicta quod eum delectus libero accusantium quis commodi maiores fugiat,
-                                cumque
-                                laudantium dolor perferendis officia?</p>
-                            <p>ended 2 days ago</p>
-                        </div>
-                    </div>
-                    <div class="winner-info flex gap-10 ">
-                        <div class="user flex flex-col justify-center items-center gap-5">
-                            <img class="rounded-full" :src="'/storage/images/user_profiles/150-2.jpg'" />
-                            <p>Sara Doe</p>
-                        </div>
-                        <div class="win-info flex flex-col justify-center items-left">
-                            <div class="win-row flex">
-                                <p>Final Price</p>
-                                <p>$540</p>
-                            </div>
-                            <div class="win-row flex">
-                                <p>Total Bids</p>
-                                <p>73</p>
-                            </div>
-                            <div class="win-row flex">
-                                <p>Buy it Now Price</p>
-                                <p>$1250</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="box" v-if="show_more">
-                <span></span>
-                <div class="content winner flex gap-10">
-                    <div class="product flex justify-center items-center">
-                        <div class="image">
-                            <img :src="'/storage/images/product_images/trans-iphone-2.png'" />
-                        </div>
-                        <div class="product-info flex flex-col">
-                            <h2>product name</h2>
-                            <p>Lorem nihil dicta quod eum delectus libero accusantium quis commodi maiores fugiat,
-                                cumque
-                                laudantium dolor perferendis officia?</p>
-                            <p>ended 2 days ago</p>
-                        </div>
-                    </div>
-                    <div class="winner-info flex gap-10 ">
-                        <div class="user flex flex-col justify-center items-center gap-5">
-                            <img class="rounded-full" :src="'/storage/images/user_profiles/150-11.jpg'" />
-                            <p>Sara Doe</p>
-                        </div>
-                        <div class="win-info flex flex-col justify-center items-left">
-                            <div class="win-row flex">
-                                <p>Final Price</p>
-                                <p>$540</p>
-                            </div>
-                            <div class="win-row flex">
-                                <p>Total Bids</p>
-                                <p>73</p>
-                            </div>
-                            <div class="win-row flex">
-                                <p>Buy it Now Price</p>
-                                <p>$1250</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="box" v-if="show_more">
-                <span></span>
-                <div class="content winner flex gap-10">
-                    <div class="product flex justify-center items-center">
-                        <div class="image">
-                            <img :src="'/storage/images/product_images/trans-ps5-2.png'" />
-                        </div>
-                        <div class="product-info flex flex-col">
-                            <h2>product name</h2>
-                            <p>Lorem nihil dicta quod eum delectus libero accusantium quis commodi maiores fugiat,
-                                cumque
-                                laudantium dolor perferendis officia?</p>
-                            <p>ended 2 days ago</p>
-                        </div>
-                    </div>
-                    <div class="winner-info flex gap-10 ">
-                        <div class="user flex flex-col justify-center items-center gap-5">
-                            <img class="rounded-full" :src="'/storage/images/user_profiles/150-8.jpg'" />
-                            <p>Sara Doe</p>
-                        </div>
-                        <div class="win-info flex flex-col justify-center items-left">
-                            <div class="win-row flex">
-                                <p>Final Price</p>
-                                <p>$540</p>
-                            </div>
-                            <div class="win-row flex">
-                                <p>Total Bids</p>
-                                <p>73</p>
-                            </div>
-                            <div class="win-row flex">
-                                <p>Buy it Now Price</p>
-                                <p>$1250</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="box" v-if="show_more2">
-                <span></span>
-                <div class="content winner flex gap-10">
-                    <div class="product flex justify-center items-center">
-                        <div class="image">
-                            <img :src="'/storage/images/product_images/trans-macbook-2.png'" />
-                        </div>
-                        <div class="product-info flex flex-col">
-                            <h2>product name</h2>
-                            <p>Lorem nihil dicta quod eum delectus libero accusantium quis commodi maiores fugiat,
-                                cumque
-                                laudantium dolor perferendis officia?</p>
-                            <p>ended 2 days ago</p>
-                        </div>
-                    </div>
-                    <div class="winner-info flex gap-10 ">
-                        <div class="user flex flex-col justify-center items-center gap-5">
-                            <img class="rounded-full" :src="'/storage/images/user_profiles/150-3.jpg'" />
-                            <p>Sara Doe</p>
-                        </div>
-                        <div class="win-info flex flex-col justify-center items-left">
-                            <div class="win-row flex">
-                                <p>Final Price</p>
-                                <p>$540</p>
-                            </div>
-                            <div class="win-row flex">
-                                <p>Total Bids</p>
-                                <p>73</p>
-                            </div>
-                            <div class="win-row flex">
-                                <p>Buy it Now Price</p>
-                                <p>$1250</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="box" v-if="show_more2">
-                <span></span>
-                <div class="content winner flex gap-10">
-                    <div class="product flex justify-center items-center">
-                        <div class="image">
-                            <img :src="'/storage/images/product_images/trans-iphone-2.png'" />
-                        </div>
-                        <div class="product-info flex flex-col">
-                            <h2>product name</h2>
-                            <p>Lorem nihil dicta quod eum delectus libero accusantium quis commodi maiores fugiat,
-                                cumque
-                                laudantium dolor perferendis officia?</p>
-                            <p>ended 2 days ago</p>
-                        </div>
-                    </div>
-                    <div class="winner-info flex gap-10 ">
-                        <div class="user flex flex-col justify-center items-center gap-5">
-                            <img class="rounded-full" :src="'/storage/images/user_profiles/150-7.jpg'" />
-                            <p>Sara Doe</p>
-                        </div>
-                        <div class="win-info flex flex-col justify-center items-left">
-                            <div class="win-row flex">
-                                <p>Final Price</p>
-                                <p>$540</p>
-                            </div>
-                            <div class="win-row flex">
-                                <p>Total Bids</p>
-                                <p>73</p>
-                            </div>
-                            <div class="win-row flex">
-                                <p>Buy it Now Price</p>
-                                <p>$1250</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>  
-            <inline-loading :is_loading_more></inline-loading>
 
+            <inline-loading :is_loading_more></inline-loading>
         </div>
 
-   <InfiniteLoading @infinite="loadData" />
+        <InfiniteLoading @infinite="loadMore" />
     </div>
-  
 
     <fixed-buttons></fixed-buttons>
 </template>
 <script setup>
 import InfiniteLoading from "v3-infinite-loading";
 import "v3-infinite-loading/lib/style.css"; //required if you're not going to override default slots
-
-
 </script>
 <script>
 import heroSection from "../../../components/winners/hero.vue";
 import singleNav from "../../../components/global/singleNav.vue";
 import breadCrumps from "../../../components/global/breadCrumps.vue";
-
+import { mapGetters, mapActions } from "vuex";
+import { calDaysPassed } from "@/modules/utilities/convertor.js";
 import fixedButtons from "../../../components/utilities/fixedButtons.vue";
 
 export default {
     data() {
         return {
-            show_more:false,
-            show_more2:false,
             is_loading_more: false,
 
             history: [
                 {
                     name: "Home",
-                    url: "/vue/v1"
+                    url: "/vue/v1",
                 },
-
             ],
-            current: "Winners"
-        }
+            current: "Winners",
+            winners: [],
+            localUrl: "winners/all",
+            is_loading: false,
+         
+            skip: 0,
+            take: 3,
+        };
     },
     methods: {
-        loadData($state) {
-          
-            //calling the api
-            // alert('load more');
+        loadMore() {
             this.is_loading_more = true;
-            setTimeout( ()=> {
-                this.is_loading_more = false;
-                if(this.show_more){
-                    this.show_more2=true;
-                }
-                this.show_more=true;
-            }, 2000);
-            return;
+            this.skip = this.winners.length;
 
+            this.fetchWinners(1);
         },
+
+        fetchWinners(loading_more = 0) {
+            if (!loading_more) this.is_loading = true;
+            var url = this.baseUrl + this.localUrl;
+            // if (this.$route.query.page) {
+            url = url + "?skip=" + this.skip + "&take=" + this.take;
+            // }
+            axios
+                .post(url)
+                .then((response) => {
+                    console.log(response.data.data);
+                    if (loading_more) {
+                        // attach to the end of existing array
+                        this.winners = this.winners.concat(response.data.data);
+                    } else {
+                        this.winners = response.data.data;
+                    }
+                    // console.log(JSON.parse(  JSON.stringify(this.auctions)));
+                })
+                .catch((error) => {
+                    throw error;
+                })
+                .finally(() => {
+                    // always executed
+
+                    this.is_loading = false;
+                    this.is_loading_more = false;
+                });
+        },
+    },
+    computed: {
+        ...mapGetters(["baseUrl"]),
     },
     components: {
         heroSection,
         fixedButtons,
         singleNav,
-        breadCrumps
+        breadCrumps,
+    },
+    watch: {
+        $route(to, from) {
+            // check to see if rout is correct
+            if (to.name != "winners") return;
+            //then
+            this.fetchWinners();
+            // react to route changes...
+        },
+    },
+    created() {
+        this.fetchWinners();
     },
 };
 </script>
@@ -413,7 +203,6 @@ export default {
     transform: skewX(15deg);
     transition: 0.5s;
     filter: blur(30px);
-
 }
 
 .box-container .box:hover:before,
@@ -421,13 +210,15 @@ export default {
     transform: skewX(0deg);
     left: 42%;
     width: 11%;
-
 }
 
 .box-container .box:before,
 .box-container .box:after {
-    background: linear-gradient(180deg, var(--color-primary-tint-4) 0%, var(--color-primary-tint-1) 100%);
-
+    background: linear-gradient(
+        180deg,
+        var(--color-primary-tint-4) 0%,
+        var(--color-primary-tint-1) 100%
+    );
 }
 
 // .box-container .box:nth-child(2):before,
@@ -452,7 +243,7 @@ export default {
 }
 
 .box-container .box span::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -464,7 +255,7 @@ export default {
     opacity: 0;
     transition: 0.1s;
     animation: animate 2s ease-in-out infinite;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08)
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
 }
 
 .box-container .box:hover span::before {
@@ -476,7 +267,7 @@ export default {
 }
 
 .box-container .box span::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     right: 0;
@@ -490,7 +281,6 @@ export default {
     animation: animate 2s ease-in-out infinite;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
     animation-delay: -1s;
-    
 }
 
 .box-container .box:hover span:after {
@@ -502,7 +292,6 @@ export default {
 }
 
 @keyframes animate {
-
     0%,
     100% {
         transform: translateY(10px);
@@ -524,7 +313,7 @@ export default {
     z-index: 1;
     transform: 0.5s;
     color: #565656;
-    transition: all .2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 
 .box-container .box:hover .content {
@@ -563,13 +352,6 @@ export default {
     box-shadow: 0 1px 15px rgba(1, 1, 1, 0.2);
 }
 
-
-
-
-
-
-
-
 // *********************
 
 .winners-container {
@@ -605,15 +387,16 @@ export default {
 }
 
 .product {
-    width: 40%;
+    width: 50%;
     // border-right: 1.5px solid #777;
-
+    display: flex;
+    gap: 2rem;
+    justify-content: left;
     .image {
-        width: 40rem;
+        max-width: 20rem;
         margin-right: 1rem;
         -webkit-filter: drop-shadow(5px 5px 5px #2f1d55);
         filter: drop-shadow(5px 5px 5px #2f1d55);
-
     }
 
     .product-info {
@@ -621,7 +404,6 @@ export default {
             font-size: 1.6rem;
             font-weight: 600;
             margin-bottom: 1.5rem;
-
         }
 
         p {
@@ -653,11 +435,10 @@ export default {
             justify-content: space-between;
             font-size: 1.2rem;
             font-weight: 500;
-
         }
     }
 }
-// @import '../../../../../css/scss/variables'; 
+// @import '../../../../../css/scss/variables';
 
 // .test_color{
 //     color:var(--primary-color) !important ;

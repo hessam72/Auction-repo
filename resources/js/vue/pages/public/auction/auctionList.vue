@@ -1,6 +1,6 @@
 <template>
     <nav-bar-section :is_single_nav="true"></nav-bar-section>
-    <hero-section></hero-section>
+    <hero-section :special_offer></hero-section>
 
     <main-section
         v-if="auctions.length > 0"
@@ -23,7 +23,13 @@ export default {
     data() {
         return {
             auctions: [],
+            categories: [],
+            special_offer: null,
             localUrl: "auctions",
+            spUrl: "special_offer",
+            searchUrl: "auctions/search",
+            filterUrl: "auctions/filter",
+           
             is_loading: false,
             inline_loading: false,
             skip: 0,
@@ -41,16 +47,16 @@ export default {
             "setSingleBiddingQueue",
         ]),
         loadMore() {
-          this.inline_loading =true;
+            this.inline_loading = true;
             this.skip = this.auctions.length;
-  //           setTimeout(() => {
-   
-  // }, 300);
+            //           setTimeout(() => {
+
+            // }, 300);
             this.fetchAuctions(1);
         },
 
         fetchAuctions(loading_more = 0) {
-            this.is_loading = true;
+            if (!loading_more) this.is_loading = true;
             var url = this.baseUrl + this.localUrl;
             // if (this.$route.query.page) {
             url = url + "?skip=" + this.skip + "&take=" + this.take;
@@ -79,9 +85,30 @@ export default {
                     // always executed
 
                     this.is_loading = false;
-                    this.inline_loading =false;
+                    this.inline_loading = false;
                 });
         },
+
+        fetchSpecialOffer() {
+            this.is_loading = true;
+            var url = this.baseUrl + this.spUrl;
+
+            axios
+                .get(url)
+                .then((response) => {
+                    this.special_offer = response.data.data;
+                    console.log(this.special_offer);
+                })
+                .catch((error) => {
+                    throw error;
+                })
+                .finally(() => {
+                    // always executed
+
+                    this.is_loading = false;
+                });
+        },
+
         // save in store
         saveAuctions() {
             let data = [];
@@ -99,9 +126,65 @@ export default {
             this.setAuctions(data);
             this.setBiddingQueues(queues);
         },
+
+        searchAuctions(val) {
+            const body = {
+                search: val,
+            };
+
+            axios({
+                method: "post",
+                url: this.baseUrl + this.searchUrl,
+                data: body,
+            })
+                // .get(this.baseUrl + this.userUrl, body , config)
+                .then((response) => {
+                    this.auctions = response.data.data;
+                })
+                .catch((error) => {
+                    console.log("error");
+                    console.log(error);
+                })
+                .finally(() => {});
+        },
+        filterAuctions(filters) {
+            const body = {
+                category_id: filters.category_id,
+                sort_by:filters.sortBy,
+                min:filters.min,
+                max:filters.max,
+            };
+
+            axios({
+                method: "post",
+                url: this.baseUrl + this.filterUrl,
+                data: body,
+            })
+                // .get(this.baseUrl + this.userUrl, body , config)
+                .then((response) => {
+                    console.log(response)
+                    this.auctions = response.data.data;
+                })
+                .catch((error) => {
+                    console.log("error");
+                    console.log(error);
+                })
+                .finally(() => {});
+
+        },
     },
     created() {
         this.fetchAuctions();
+        this.fetchSpecialOffer();
+    },
+    mounted() {
+        // receiving global emit
+        this.emitter.on("search-auctions", (value) => {
+            this.searchAuctions(value);
+        });
+        this.emitter.on("filter-auctions", (value) => {
+            this.filterAuctions(value);
+        });
     },
     watch: {
         $route(to, from) {

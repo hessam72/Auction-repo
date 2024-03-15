@@ -56,7 +56,6 @@ export function convertDBTimeToTime(time) {
    
     var date = new Date(time);
    
-    
     var hh = date.getHours();
     var mm = date.getMinutes();
     var ss = date.getSeconds();
@@ -82,4 +81,13 @@ export function  arrangeData(data){
   
     return arr;
   };
+
+  export function calDaysPassed(date){
+    const date1 = new Date(date);
+    const date2 = new Date();
+    const diffTime = Math.abs(date2 - date1);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+   
+    return diffDays;
+  }
 
