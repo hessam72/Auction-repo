@@ -95,31 +95,32 @@
 
     <!-- details modal  -->
     <!-- toggle class is translate-x-full -->
-    <OnClickOutside @trigger="">
-        <div
-            :class="[
-                show_details ? '' : 'translate-x-full',
-                `ticket-detail invisible fixed bottom-0 right-0 top-0 z-[1045]
+
+    <div
+        :class="[
+            show_details ? '' : 'translate-x-full',
+            `ticket-detail invisible fixed bottom-0 right-0 top-0 z-[1045]
          flex w-96 max-w-full  flex-col border-none
           bg-white bg-clip-padding text-neutral-700 shadow-sm outline-none 
           transition duration-300 ease-in-out dark:bg-neutral-800 dark:text-neutral-200
            [&[data-te-offcanvas-show]]:transform-none`,
-            ]"
-            tabindex="-1"
-            id="offcanvasRight"
-            aria-labelledby="offcanvasRightLabel"
-            data-te-offcanvas-init
-        >
-           
-
-            <ticket-chats></ticket-chats>
-          
-        </div>
-    </OnClickOutside>
+        ]"
+        tabindex="-1"
+        id="offcanvasRight"
+        aria-labelledby="offcanvasRightLabel"
+        data-te-offcanvas-init
+    >
+        <!-- <OnClickOutside class="msg-container" @trigger="closeDetails"> -->
+            <ticket-chats
+                @close="closeDetails"
+                @storeMsg="store_ticket"
+                :tickets="ticket_details"
+            ></ticket-chats>
+        <!-- </OnClickOutside> -->
+    </div>
 
     <!-- create ticket dialog -->
     <TransitionRoot as="template" :show="create_modal">
-       
         <Dialog as="div" class="relative z-10" @close="open = false">
             <TransitionChild
                 as="template"
@@ -186,7 +187,7 @@
                                             class="text-base font-semibold leading-6 text-gray-900"
                                             >Submit Your Reply
                                         </DialogTitle>
-                                        
+
                                         <div class="mt-6 w-full">
                                             <div
                                                 v-if="!is_reply"
@@ -217,7 +218,6 @@
                                                 data-te-input-wrapper-init
                                             >
                                                 <input
-                                                
                                                     v-model="
                                                         current_open_ticket.subject
                                                     "
@@ -359,7 +359,7 @@ export default {
         convertDBTimeToDate,
         convertDBTimeToTime,
         openCreateTicket(is_reply) {
-            console.log(this.current_open_ticket)
+            console.log(this.current_open_ticket);
             if (is_reply) this.is_reply = true;
             this.create_modal = true;
         },
@@ -367,6 +367,15 @@ export default {
             // $('#offcanvasRight').toggleClass('translate-x-full');
 
             this.show_details = !this.show_details;
+        },
+        closeDetails() {
+            this.newTicketSubject = null;
+            this.newTicketDesc = null;
+            this.inputFile = null;
+            this.current_open_ticket = null;
+            this.is_reply = false;
+            this.create_modal = false;
+            this.show_details = false;
         },
         fetchData() {
             let config = {
@@ -410,23 +419,32 @@ export default {
             this.inputFile = event.target.files[0];
             console.log(this.inputFile);
         },
-        store_ticket() {
+        // values in () is for sending reply from component
+        store_ticket(
+            content = this.newTicketDesc,
+            myFile = this.inputFile,
+            reply = this.is_reply
+        ) {
             this.is_loading = true;
-            let myFile = this.inputFile;
+            // let myFile = this.inputFile;
+
             const formData = new FormData();
-            formData.append("attachment", myFile);
+            if(myFile != null){
+                            formData.append("attachment", myFile);
 
-            formData.append("content", this.newTicketDesc);
-          
+            }
 
-            if (this.is_reply) {
+            formData.append("content", content);
+
+            if (reply) {
                 // sending reply
                 formData.append("subject", this.current_open_ticket.subject);
                 formData.append("reply_to_id", this.current_open_ticket.id);
-            }else{
+            } else {
                 // new ticket
                 formData.append("subject", this.newTicketSubject);
             }
+           console.log(myFile)
 
             let config = {
                 Authorization: this.UserAuthToken,
@@ -445,10 +463,14 @@ export default {
                     this.newTicketSubject = null;
                     this.newTicketDesc = null;
                     this.inputFile = null;
-                    this.current_open_ticket=null;
-                    this.is_reply=false;
-                    this.create_modal=false;
-                    this.show_details=false;
+                    // this.current_open_ticket = null;
+                    // this.is_reply = false;
+                    this.create_modal = false;
+                    // this.show_details=false;
+                    if(reply){
+                        // fetch reply tickets
+                        this.showDetails(this.current_open_ticket)
+                    }
                     this.fetchData();
                 })
                 .catch((error) => {
@@ -492,6 +514,7 @@ export default {
                     this.is_loading = false;
                 });
         },
+       
     },
     mounted() {
         initTE({ Offcanvas, Ripple, Input });
@@ -506,7 +529,7 @@ export default {
         TransitionChild,
         TransitionRoot,
         OnClickOutside,
-        ticketChats
+        ticketChats,
     },
     created() {
         this.fetchData();
@@ -522,7 +545,12 @@ export default {
     padding: 2rem;
     border-bottom: 1px solid #666;
 }
-
+.msg-container {
+    display: flex;
+    align-items: flex-end;
+    width: 50%;
+    justify-content: flex-end;
+}
 .new-btn,
 .ticket-group-btn {
     background-color: #fff;
@@ -587,14 +615,16 @@ export default {
 .ticket-detail {
     position: absolute;
     visibility: visible;
-    background-color: #fff;
     border-radius: 10px;
     color: #333;
-    width: 60%;
+    width: 100%;
     height: 95%;
     overflow-y: scroll;
-    padding: 2rem;
     transition: all 0.6s cubic-bezier(0.82, -0.41, 0, 1.43);
+    background: none;
+    backdrop-filter: blur(7px);
+    display: flex;
+    align-items: flex-end;
 }
 
 .ticket-header {
@@ -718,5 +748,4 @@ export default {
         font-size: 1.3rem;
     }
 }
-// https://www.bootdey.com/snippets/view/animated-chat-window#html messaging template
 </style>
