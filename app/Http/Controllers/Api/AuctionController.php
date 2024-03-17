@@ -8,6 +8,8 @@ use App\Events\UpdateAuctionState;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\AuctionResource;
 use App\Models\Auction;
+use App\Models\BiddingHistory;
+use App\Models\Comment;
 use App\Models\Product;
 use App\Traits\Upload;
 use Carbon\Carbon;
@@ -20,6 +22,27 @@ class AuctionController extends Controller
      * Display a listing of the resource.
      */
     use Upload;
+
+    public function auction_index(Request $request)
+    {
+        $auction = new AuctionResource(Auction::find($request->id)->first());
+        $side_auctions = AuctionResource::collection(Auction::where('start_time', '<', Carbon::now())->take(3)->get());
+
+        $participaints = BiddingHistory::where('auction_id', $request->id)->with('user')->orderBy('created_at' , 'desc')->get();
+        $comments=Comment::where('product_id' , $auction->product->id)->with('user')->orderBy('created_at' , 'desc')->get();
+        return response([
+            'auction' => $auction,
+            'side_auctions' => $side_auctions,
+            'participaints' => $participaints,
+            'comments' => $comments,
+
+
+        ]);
+      
+    }
+
+
+
     public function index(Request $request)
     {
         $skip = 0;
@@ -29,12 +52,13 @@ class AuctionController extends Controller
             $take = $request->take;
         }
 
+        // calling from homepage
+        if ($request->has('from_home')) {
+            $take = 4;
+        }
+
 
         return AuctionResource::collection(Auction::skip($skip)->take($take)->get());
-        // return AuctionResource::collection(Auction::paginate($count)->load('product'));
-        // $data = Auction::paginate($count)->load('product');
-        // return ['all' => AuctionResource::collection($data)->response()->getData(true) ,
-        //  'paginate'=>Auction::paginate($count)];
     }
 
     public function search(Request $request)
@@ -43,10 +67,17 @@ class AuctionController extends Controller
         // $request->validate([
         //     'search' =>  'required',
         // ]);
+        $skip = 0;
+        $take = 10;
+        if ($request->has('skip') && $request->has('take')) {
+            $skip = $request->skip;
+            $take = $request->take;
+        }
+
         $data = json_decode($request->getContent());
         $searchString = $data->search;
 
-        $result = Auction::search($searchString)->paginate();
+        $result = Auction::search($searchString)->skip($skip)->take($take)->get();
         return AuctionResource::collection($result->load('product'));
     }
 
@@ -121,11 +152,11 @@ class AuctionController extends Controller
         if ($live_only) {
             //filter live auctions only
             $result = Auction::whereIn('id', $auction_ids)->where('start_time', '<', Carbon::now())
-            ->orderBy($auctionOrderBy)->get();
+                ->orderBy($auctionOrderBy)->get();
         } elseif ($soon_only) {
             //filter starting soon auctions
             $result = Auction::whereIn('id', $auction_ids)->where('start_time', '>', Carbon::now())
-            ->orderBy($auctionOrderBy)->get();
+                ->orderBy($auctionOrderBy)->get();
         } else {
             $result = Auction::whereIn('id', $auction_ids)->orderBy($auctionOrderBy)->get();
         }

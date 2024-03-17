@@ -26,6 +26,7 @@ return new class extends Migration
             $table->foreignId('state_id')->constrained();
 
             $table->foreignId('city_id')->constrained();
+            $table->foreignId('transaction_id')->constrained();
 
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();

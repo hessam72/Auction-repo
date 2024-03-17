@@ -56,12 +56,9 @@
                                         <multiselect
                                             v-model="selected_cat"
                                             :options="cats"
-                                          
                                             placeholder="Select category"
                                             label="title"
-                                           
                                         ></multiselect>
-                                      
                                     </div>
                                 </div>
                             </div>
@@ -171,9 +168,17 @@
             </div>
 
             <div class="s-container">
-                <input checked="" class="checkbox" type="checkbox" />
-                <div class="mainbox">
-                    <div class="iconContainer">
+                <!--  -->
+                <input
+                  @click="search_checkbox_toggle"
+                    v-model="search_checkbox"
+                    checked=""
+                    class="checkbox"
+                    type="checkbox"
+                    id="checkbox"
+                />
+                <div id="mainbox" class="mainbox">
+                    <div id="iconContainer" class="iconContainer">
                         <svg
                             viewBox="0 0 512 512"
                             height="1em"
@@ -189,6 +194,7 @@
                         @keyup.enter="search"
                         v-model="search_input"
                         class="search_input"
+                        id="search_input"
                         placeholder="search"
                         type="text"
                     />
@@ -241,7 +247,7 @@ export default {
             cats: [],
             catUrl: "categories/all",
             selected_cat: {},
-          
+            search_checkbox: true,
         };
     },
     computed: {
@@ -249,7 +255,20 @@ export default {
     },
     mounted() {},
     methods: {
-       
+        search_checkbox_toggle(){
+            // false means user click on search icon when input is expanded
+            if(!this.search_checkbox && this.search_input != null){
+                // search should excute
+                this.search();
+                // stop search from minimizing
+
+            }
+        //   $('#checkbox').toggleClass('ckeckbox_checked');
+        //   $('#mainbox').toggleClass('mainbox_checked');
+        //   $('#iconContainer').toggleClass('iconContainer_checked');
+        //   $('#search_input').toggleClass('search_input_checked');
+           
+        },
         selectCat(val) {
             alert("fffff");
             console.log(val);
@@ -340,10 +359,27 @@ export default {
     padding: 0.3rem 0.45rem;
 }
 
-.checkbox:focus {
-    border: none;
-    outline: none;
-}
+// for manually managing toggle 
+// .checkbox:focus {
+//     border: none;
+//     outline: none;
+// }
+// .ckeckbox_checked{
+//     right: 10px !important;
+// }
+// .mainbox_checked{
+//     width: 50px !important;
+// }
+// .search_input_checked{
+//     width: 0 !important;
+//     height: 0px !important;
+// }
+// .iconContainer_checked{
+//     padding-right: 8px !important;
+// }
+
+
+
 
 .checkbox:checked {
     right: 10px;

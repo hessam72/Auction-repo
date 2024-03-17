@@ -424,6 +424,8 @@ export default {
         img {
             box-shadow: 0 2px 10px #666;
             border: 1px solid #eee;
+            width: 10rem;
+    height: 10rem;
         }
     }
 

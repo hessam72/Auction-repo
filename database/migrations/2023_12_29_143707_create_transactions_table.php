@@ -18,6 +18,9 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
 
             $table->integer('amount');
+            $table->integer('order_id')->comment('auto generated id for tracking');
+
+            $table->integer('status')->comment('1=> new and pending / 100 => sucsess full payment / 400 => failed payment');
             $table->timestamp('created_at')->useCurrent();
         });
     }

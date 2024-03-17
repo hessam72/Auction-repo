@@ -6,7 +6,7 @@
         </span>
         <div class="divider"></div>
     </div>
-    <div class="section-container">
+    <div v-if="packages.length === 3" class="section-container">
         <div class="buy-header-container">
             <h2 style="display: inline" class="section-title">Buy</h2>
             <h2 class="section-title" style="display: inline; color: var(--color-secondary)">
@@ -17,6 +17,9 @@
         <section class="section">
             <div class="container">
                 <div class="row">
+<!-- bid packages are sorted by price  -->
+
+
                     <div class="col-md-4 p-md-0">
                         <!-- BEGIN TABLE -->
                         <div class="table-default table1 grad1">
@@ -24,14 +27,14 @@
                             <div class="table__header">
                                 <h2 class="table__header--title">Basic</h2>
                                 <p data-price="120" class="table__header--price">
-                                    <span>$</span> 120
+                                    <span>$</span> {{ packages[2].price }}
                                 </p>
                             </div>
                             <!-- END TABLE HEADER -->
                             <div class="table__content">
                                 <!-- BEGIN TABLE LIST -->
                                 <ul class="table__content--list">
-                                    <li>Limited Times Marketing</li>
+                                    <li>Contain {{ packages[2].bid_amount }} Bids</li>
                                     <li>500 Anylytics Campaings</li>
                                     <li>250,000 crawled Page</li>
                                     <li class="muted">Unlimited Updates</li>
@@ -60,6 +63,8 @@
                         </div>
                         <!-- END TABLE -->
                     </div>
+                    <!-- main -->
+                    <!-- first package is most expensive and main one -->
                     <div class="col-md-4 p-md-0">
                         <!-- BEGIN TABLE -->
                         <div style="position: relative" class="table-default table1 recommended grad2">
@@ -68,16 +73,16 @@
                                 <p>Best Seller</p>
                             </div>
                             <div class="table__header">
-                                <h2 class="table__header--title">Standard</h2>
+                                <h2 class="table__header--title">Premium</h2>
                                 <p data-price="250" class="table__header--price">
-                                    <span>$</span> 250
+                                    <span>$</span> {{ packages[0].price }}
                                 </p>
                             </div>
                             <!-- END TABLE HEADER -->
                             <div class="table__content">
                                 <!-- BEGIN TABLE LIST -->
                                 <ul class="table__content--list">
-                                    <li>Limited Times Marketing</li>
+                                    <li>Contain {{ packages[0].bid_amount }} Bids</li>
                                     <li>500 Anylytics Campaings</li>
                                     <li>250,000 crawled Page</li>
                                     <li>Unlimited Updates</li>
@@ -109,16 +114,16 @@
                         <div class="table-default table1 grad3">
                             <!-- BEGIN TABLE HEADER -->
                             <div class="table__header">
-                                <h2 class="table__header--title">Premium</h2>
+                                <h2 class="table__header--title">Standard</h2>
                                 <p data-price="520" class="table__header--price">
-                                    <span>$</span> 520
+                                    <span>$</span> {{ packages[1].price }}
                                 </p>
                             </div>
                             <!-- END TABLE HEADER -->
                             <div class="table__content">
                                 <!-- BEGIN TABLE LIST -->
                                 <ul class="table__content--list">
-                                    <li>Limited Times Marketing</li>
+                                    <li>Contain {{ packages[1].bid_amount }} Bids</li>
                                     <li>500 Anylytics Campaings</li>
                                     <li>250,000 crawled Page</li>
                                     <li>Unlimited Updates</li>
@@ -152,7 +157,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+    props:["packages"],
+};
 </script>
 
 <style lang="scss" scoped>

@@ -1,9 +1,9 @@
 <template>
     <nav-bar-section :is_single_nav="true"></nav-bar-section>
     <hero-section :special_offer></hero-section>
-
+  <!-- v-if="auctions.length > 0" -->
     <main-section
-        v-if="auctions.length > 0"
+      
         :auctions="JSON.parse(JSON.stringify(this.auctions))"
         :is_loading_more="inline_loading"
         @loadMore="fetchAuctions"
@@ -56,6 +56,7 @@ export default {
         },
 
         fetchAuctions(loading_more = 0) {
+            
             if (!loading_more) this.is_loading = true;
             var url = this.baseUrl + this.localUrl;
             // if (this.$route.query.page) {

@@ -39,19 +39,22 @@ class WinnerController extends Controller
             'success' => 'winner added successfully',
 
         ], 200);
-      
     }
-    public function all(Request $request){
+    public function all(Request $request)
+    {
 
         $skip = 0;
-        $take=10;
-         if($request->has('skip') && $request->has('take')){
-           $skip = $request->skip;
-           $take = $request->take;
-         }
+        $take = 10;
+        if ($request->has('skip') && $request->has('take')) {
+            $skip = $request->skip;
+            $take = $request->take;
+        }
+        // calling from homepage
+        if ($request->has('from_home')) {
+            $take = 4;
+        }
 
 
-        return WinnerResource::collection(Winner::skip($skip)->take($take)->with('user' , 'product.product_galleries')->latest()->get());
+        return WinnerResource::collection(Winner::skip($skip)->take($take)->with('user', 'product.product_galleries')->latest()->get());
     }
-    
 }

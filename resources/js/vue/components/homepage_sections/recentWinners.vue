@@ -13,15 +13,15 @@
         </h2>
 
         <div class="reviews-container flex gap-2.5">
-            <div class="container w-4/12">
+            <div v-for="(item , index) in winners" :key="index" class="container w-4/12">
                 <div class="card bg-1">
                     <div class="imgBx">
                         <img
-                            :src="'/storage/images/product_images/trans-ps5-2.png'"
+                            :src="'/storage/'+item.product.product_galleries[0].image"
                         />
                     </div>
                     <div class="contentBx">
-                        <h2>PlayStation 5</h2><h3 class="o-price">Original Price: $1799</h3>
+                        <h2>{{ item.product.title }}</h2><h3 class="o-price">Original Price: ${{ item.product.price }}</h3>
 
                         <div class="size">
                            
@@ -29,14 +29,14 @@
                                 <div class="border-wrap">
                                     <img
                                         class="user_img"
-                                        :src="'/storage/images/user_profiles/150-9.jpg'"
+                                        :src="'/storage/' + item.user.profile_pic"
                                     />
                                 </div>
                             </div>
                             <div class="winner-info">
-                                <h3>Winner: Sara Jones</h3>
-                               <h3>Total Bids Placed: 97</h3>
-                                <h3>Win Price: $1000</h3>
+                                <h3>Winner: {{ item.user.username }}</h3>
+                               <h3>Total Bids Placed: {{item.bids_placed}}</h3>
+                                <h3>Win Price: ${{ item.win_price }}</h3>
                             </div>
                         </div>
                         <!-- <div class="color">
@@ -47,87 +47,7 @@
                 </div>
             </div>
 
-            <div class="container w-4/12">
-                <div class="card bg-1">
-                    <div class="imgBx">
-                        <img
-                            :src="'/storage/images/product_images/trans-glasses.png'"
-                        />
-                    </div>
-                    <div class="contentBx">
-                        <h2>Sun Glasses</h2><h3 class="o-price">Original Price: $1799</h3>
-                        <div class="size">
-                            <div class="pic-container">
-                                <div class="border-wrap">
-                                    <img
-                                        class="user_img"
-                                        :src="'/storage/images/user_profiles/150-7.jpg'"
-                                    />
-                                </div>
-                            </div>
-                            <div class="winner-info">
-                                <h3>Winner: Kate sinor</h3>
-                              <h3>Total Bids Placed: 48</h3>
-                                <h3>Win Price: $100</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container w-4/12">
-                <div class="card bg-1">
-                    <div class="imgBx">
-                        <img
-                            :src="'/storage/images/product_images/trans-macbook-2.png'"
-                        />
-                    </div>
-                    <div class="contentBx">
-                        <h2>Macbook pro</h2><h3 class="o-price">Original Price: $2300</h3>
-                        <div class="size">
-                            <div class="pic-container">
-                                <div class="border-wrap">
-                                    <img
-                                        class="user_img"
-                                        :src="'/storage/images/user_profiles/150-3.jpg'"
-                                    />
-                                </div>
-                            </div>
-                            <div class="winner-info">
-                                <h3>Winner: Kim James</h3>
-                                <h3>Total Bids Placed: 65</h3>
-                                <h3>Win Price: $700</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container w-4/12">
-                <div class="card bg-1">
-                    <div class="imgBx">
-                        <img
-                            :src="'/storage/images/product_images/trans-iphone-2.png'"
-                        />
-                    </div>
-                    <div class="contentBx">
-                        <h2>Iphone 11</h2><h3 class="o-price">Original Price: $750</h3>
-                        <div class="size">
-                            <div class="pic-container">
-                                <div class="border-wrap">
-                                    <img
-                                        class="user_img"
-                                        :src="'/storage/images/user_profiles/150-11.jpg'"
-                                    />
-                                </div>
-                            </div>
-                            <div class="winner-info">
-                                <h3>Winner: Flora timony</h3>
-                              <h3>Total Bids Placed: 65</h3>
-                                <h3>Win Price: $2300</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          
         </div>
     </div>
     <!-- <div class="more-container"> <router-link :to="{name:'winners'}">
@@ -139,7 +59,10 @@
 </template>
 
 <script>
-export default {};
+export default {
+    props:['winners'],
+    
+};
 </script>
 
 <style lang="scss" scoped>

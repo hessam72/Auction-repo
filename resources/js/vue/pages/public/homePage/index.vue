@@ -3,12 +3,12 @@
         <nav-bar-section :is_single_nav="false"></nav-bar-section>
 
         <hero-section></hero-section>
-        <statictic-count></statictic-count>
-        <live-auctions></live-auctions>
+        <statictic-count :statistics></statictic-count>
+        <live-auctions :auctions></live-auctions>
         <reviews-section></reviews-section>
-        <recent-winners></recent-winners>
+        <recent-winners :winners></recent-winners>
         <faq-section></faq-section>
-        <pricing-plans></pricing-plans>
+        <pricing-plans :packages></pricing-plans>
         <fixed-buttons></fixed-buttons>
     </div>
 </template>
@@ -24,59 +24,115 @@ import pricingPlans from "../../../components/homepage_sections/pricingPlans.vue
 import fixedButtons from "../../../components/utilities/fixedButtons.vue";
 import navBarSection from "../../../components/global/navbar.vue";
 
+import { init_home_scroll } from "@/modules/utilities/homepage_scroll.js";
+import { mapGetters } from "vuex";
+
 export default {
-    mounted() {
-        $(() => {
-            window.onscroll = function () {
-                let menu = document.getElementById("site_nav");
-                let offset = menu.offsetHeight;
-                window.onscroll = function () {
-                    // if (window.scrollY > offset + 262) {
-                    if (window.scrollY > offset + 100) {
-                        // page scrolled down off the item
+    data() {
+        return {
+            auctions: [],
+            winners: [],
+            packages: [],
+            statistics: {},
+            auctionsUrl: "auctions",
+            winnersUrl: "winners/all",
+            bidPackageUrl: "bid_packages/all",
+            statisticsUrl: "statistics/home",
+            is_loading: false,
+        };
+    },
+    methods: {
+        fetchAuctions() {
+            this.is_loading = true;
+            var url = this.baseUrl + this.auctionsUrl;
 
-                        menu.classList.add("sticky");
-                    } else if (window.scrollY < offset + 270) {
-                        // page scrolled up to init position
+            url = url + "?from_home=1";
+            axios
+                .get(url)
+                .then((response) => {
+                    this.auctions = response.data.data;
+                    console.log(this.auctions);
+                })
+                .catch((error) => {
+                    throw error.response.data.message;
+                })
+                .finally(() => {
+                    // always executed
 
-                        menu.classList.remove("sticky");
-                    }
-                };
-            };
-           
-
-            //Click Logo To Scroll To Top
-            $("#logo").on("click", () => {
-                $("html,body").animate(
-                    {
-                        scrollTop: 0,
-                    },
-                    500
-                );
-            });
-
-            //Smooth Scrolling Using Navigation Menu
-            $('a[href*="#"]').on("click", function (e) {
-                $("html,body").animate(
-                    {
-                        scrollTop: $($(this).attr("href")).offset().top-50,
-                    },
-                    900
-                );
-                e.preventDefault();
-            });
-
-            //Toggle Menu
-            $("#menu-toggle").on("click", () => {
-                $("#menu-toggle").toggleClass("closeMenu");
-                $("ul").toggleClass("showMenu");
-
-                $("li").on("click", () => {
-                    $("ul").removeClass("showMenu");
-                    $("#menu-toggle").removeClass("closeMenu");
+                    this.is_loading = false;
                 });
-            });
-        });
+        },
+        fetchLatestWinners() {
+            this.is_loading = true;
+            var url = this.baseUrl + this.winnersUrl;
+
+            url = url + "?from_home=1";
+            axios
+                .post(url)
+                .then((response) => {
+                    this.winners = response.data.data;
+                    console.log(this.winners);
+                })
+                .catch((error) => {
+                    throw error.response.data.message;
+                })
+                .finally(() => {
+                    // always executed
+
+                    this.is_loading = false;
+                });
+        },
+        fetchThreeBidPackage() {
+            this.is_loading = true;
+            var url = this.baseUrl + this.bidPackageUrl;
+
+            url = url + "?from_home=1";
+            axios
+                .post(url)
+                .then((response) => {
+                    this.packages = response.data.data;
+                    console.log(this.packages);
+                })
+                .catch((error) => {
+                    throw error.response.data.message;
+                })
+                .finally(() => {
+                    // always executed
+
+                    this.is_loading = false;
+                });
+        },
+        fetchStatistics() {
+            this.is_loading = true;
+            var url = this.baseUrl + this.statisticsUrl;
+
+            axios
+                .post(url)
+                .then((response) => {
+                    this.statistics = response.data;
+                    console.log(this.statistics);
+                })
+                .catch((error) => {
+                    throw error;
+                })
+                .finally(() => {
+                    // always executed
+
+                    this.is_loading = false;
+                });
+        },
+    },
+    mounted() {
+        init_home_scroll();
+    },
+    created() {
+        this.fetchAuctions();
+        this.fetchLatestWinners();
+        this.fetchThreeBidPackage();
+        this.fetchStatistics();
+    },
+    computed: {
+        ...mapGetters(["baseUrl"]),
     },
     watch: {
         $route(to, from) {

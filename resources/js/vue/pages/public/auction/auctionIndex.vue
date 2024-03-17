@@ -7,41 +7,53 @@
                 <div class="gallery-container">
                     <div class="header flex flex-col">
                         <h2>Product Name</h2>
-                        <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi ab reprehenderit, eos perspiciatis
-                            repellendu</h3>
+                        <h3>
+                            Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Nisi ab reprehenderit, eos perspiciatis
+                            repellendu
+                        </h3>
                         <p>buy it now for $750</p>
                     </div>
                     <div class="gallery">
                         <div class="slider">
-                            <div class="slide"><img
-                                    src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=3398&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+                            <div class="slide">
+                                <img
+                                    src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=3398&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                />
                                 <!-- <p>rutrum tellus a tempus :)</p> -->
                             </div>
 
-                            <div class="slide"><img
-                                    src="https://images.unsplash.com/photo-1583394838336-acd977736f90?q=80&w=3419&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+                            <div class="slide">
+                                <img
+                                    src="https://images.unsplash.com/photo-1583394838336-acd977736f90?q=80&w=3419&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                />
                                 <!-- <p>litora torquent per conubia</p> -->
                             </div>
-                            <div class="slide"><img
-                                    src="https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+                            <div class="slide">
+                                <img
+                                    src="https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                />
                                 <!-- <p>sed consectetur faucibus</p> -->
                             </div>
-                            <div class="slide"><img
-                                    src="https://images.unsplash.com/photo-1560343090-f0409e92791a?q=80&w=3024&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+                            <div class="slide">
+                                <img
+                                    src="https://images.unsplash.com/photo-1560343090-f0409e92791a?q=80&w=3024&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                />
                                 <!-- <p>eleifend tempus justo</p> -->
                             </div>
-
                         </div>
                         <button id="next_slide">
                             <ion-icon name="fastforward"></ion-icon>
                         </button>
                     </div>
-
                 </div>
                 <div class="kernel-container flex flex-col">
                     <div class="tags flex">
                         <div class="icon-container">
-                            <ion-icon class="not-saved" name="bookmark"></ion-icon>
+                            <ion-icon
+                                class="not-saved"
+                                name="bookmark"
+                            ></ion-icon>
                             <p>Save Auction</p>
                         </div>
                         <div class="icon-container">
@@ -58,52 +70,136 @@
                             <div class="size">
                                 <div class="pic-container">
                                     <div class="border-wrap">
-                                        <img class="user_img" :src="'/storage/images/user_profiles/150-11.jpg'" />
+                                        <img
+                                            class="user_img"
+                                            :src="'/storage/images/user_profiles/150-11.jpg'"
+                                        />
                                     </div>
                                 </div>
                                 <div class="winner-info">
                                     <h3>Flora timony</h3>
                                     <h4>Current Heighest bidder</h4>
-                                    <h4><ion-icon name="pin"></ion-icon>
-                                        florida</h4>
+                                    <h4>
+                                        <ion-icon name="pin"></ion-icon> florida
+                                    </h4>
                                 </div>
                             </div>
                         </div>
                         <div class="history-section">
                             <div class="flex flex-col">
                                 <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                                    <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-                                        <div class="tabel-container overflow-hidden">
-                                            <table class="min-w-full text-left text-sm font-light">
-                                                <thead style="background-color: #2e1a58cc;"
-                                                    class="tabel-header border-b bg-neutral-500 font-medium dark:border-neutral-500 ">
+                                    <div
+                                        class="inline-block min-w-full py-2 sm:px-6 lg:px-8"
+                                    >
+                                        <div
+                                            class="tabel-container overflow-hidden"
+                                        >
+                                            <table
+                                                class="min-w-full text-left text-sm font-light"
+                                            >
+                                                <thead
+                                                    style="
+                                                        background-color: #2e1a58cc;
+                                                    "
+                                                    class="tabel-header border-b bg-neutral-500 font-medium dark:border-neutral-500"
+                                                >
                                                     <tr>
-
-                                                        <th scope="col" class="px-6 py-4">Bid</th>
-                                                        <th scope="col" class="px-6 py-4">User</th>
-                                                        <th scope="col" class="px-6 py-4">Time</th>
+                                                        <th
+                                                            scope="col"
+                                                            class="px-6 py-4"
+                                                        >
+                                                            Bid
+                                                        </th>
+                                                        <th
+                                                            scope="col"
+                                                            class="px-6 py-4"
+                                                        >
+                                                            User
+                                                        </th>
+                                                        <th
+                                                            scope="col"
+                                                            class="px-6 py-4"
+                                                        >
+                                                            Time
+                                                        </th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr class="tabel-row bg-neutral-100 dark:border-neutral-500 ">
-                                                        <td class="whitespace-nowrap ">Otto</td>
-                                                        <td class="whitespace-nowrap ">Mark</td>
-                                                        <td class="whitespace-nowrap ">@mdo</td>
+                                                    <tr
+                                                        class="tabel-row bg-neutral-100 dark:border-neutral-500"
+                                                    >
+                                                        <td
+                                                            class="whitespace-nowrap"
+                                                        >
+                                                            Otto
+                                                        </td>
+                                                        <td
+                                                            class="whitespace-nowrap"
+                                                        >
+                                                            Mark
+                                                        </td>
+                                                        <td
+                                                            class="whitespace-nowrap"
+                                                        >
+                                                            @mdo
+                                                        </td>
                                                     </tr>
-                                                    <tr class="tabel-row bg-white dark:border-neutral-500 ">
-                                                        <td class="whitespace-nowrap ">Jacob</td>
-                                                        <td class="whitespace-nowrap ">Thornton</td>
-                                                        <td class="whitespace-nowrap ">@fat</td>
+                                                    <tr
+                                                        class="tabel-row bg-white dark:border-neutral-500"
+                                                    >
+                                                        <td
+                                                            class="whitespace-nowrap"
+                                                        >
+                                                            Jacob
+                                                        </td>
+                                                        <td
+                                                            class="whitespace-nowrap"
+                                                        >
+                                                            Thornton
+                                                        </td>
+                                                        <td
+                                                            class="whitespace-nowrap"
+                                                        >
+                                                            @fat
+                                                        </td>
                                                     </tr>
-                                                    <tr class="tabel-row bg-neutral-100 dark:border-neutral-500 ">
-                                                        <td class="whitespace-nowrap ">Mark</td>
-                                                        <td class="whitespace-nowrap ">Otto</td>
-                                                        <td class="whitespace-nowrap ">@mdo</td>
+                                                    <tr
+                                                        class="tabel-row bg-neutral-100 dark:border-neutral-500"
+                                                    >
+                                                        <td
+                                                            class="whitespace-nowrap"
+                                                        >
+                                                            Mark
+                                                        </td>
+                                                        <td
+                                                            class="whitespace-nowrap"
+                                                        >
+                                                            Otto
+                                                        </td>
+                                                        <td
+                                                            class="whitespace-nowrap"
+                                                        >
+                                                            @mdo
+                                                        </td>
                                                     </tr>
-                                                    <tr class="tabel-row bg-white dark:border-neutral-500 ">
-                                                        <td class="whitespace-nowrap ">Jacob</td>
-                                                        <td class="whitespace-nowrap ">Thornton</td>
-                                                        <td class="whitespace-nowrap ">@fat</td>
+                                                    <tr
+                                                        class="tabel-row bg-white dark:border-neutral-500"
+                                                    >
+                                                        <td
+                                                            class="whitespace-nowrap"
+                                                        >
+                                                            Jacob
+                                                        </td>
+                                                        <td
+                                                            class="whitespace-nowrap"
+                                                        >
+                                                            Thornton
+                                                        </td>
+                                                        <td
+                                                            class="whitespace-nowrap"
+                                                        >
+                                                            @fat
+                                                        </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -115,7 +211,10 @@
                         <div class="timer-section">
                             <h3>Time Left</h3>
                             <div class="auction-timer">
-                                <vue-countdown :time="3 * 60 * 60 * 1000" v-slot="{ hours, minutes, seconds }">
+                                <vue-countdown
+                                    :time="3 * 60 * 60 * 1000"
+                                    v-slot="{ hours, minutes, seconds }"
+                                >
                                     <div class="count-down">
                                         <div class="number">{{ hours }}</div>
                                         <div class="seperator">:</div>
@@ -126,21 +225,27 @@
                                 </vue-countdown>
                             </div>
                         </div>
-                        <div class="btn-container flex justify-between items-center">
+                        <div
+                            class="btn-container flex justify-between items-center"
+                        >
                             <button class="bid-now">Bid Now</button>
-                            <button class="launch-buddy">Lunch Bid Buddy</button>
+                            <button class="launch-buddy">
+                                Lunch Bid Buddy
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- users -->
             <users-section></users-section>
-           <product-content></product-content>
-           <reviews-section></reviews-section>
+            <product-content></product-content>
+            <reviews-section></reviews-section>
         </div>
-      <side-section></side-section>
+        <side-section></side-section>
     </div>
     <fixed-buttons></fixed-buttons>
+    <loading :is_loading="is_loading"></loading>
+
 </template>
 <script>
 import singleNav from "../../../components/global/singleNav.vue";
@@ -157,15 +262,21 @@ export default {
             history: [
                 {
                     name: "Home",
-                    url: "/vue/v1"
+                    url: "/vue/v1",
                 },
                 {
                     name: "Auctions",
-                    url: "/vue/v1/auctions"
-                }
+                    url: "/vue/v1/auctions",
+                },
             ],
-            current: "Index"
-        }
+            current: "Index",
+            fetchUrl: "auctions/index",
+            auction: null,
+            side_auctions: [],
+            participaints: [],
+            comments: [],
+            is_loading:false,
+        };
     },
     components: {
         fixedButtons,
@@ -174,15 +285,56 @@ export default {
         usersSection,
         productContent,
         reviewsSection,
-        sideSection
+        sideSection,
+    },
+    methods: {
+        fetchData() {
+            this.is_loading = true;
+            var url = this.fetchUrl;
+            var body = {
+                id: this.$route.params.id,
+            };
+            axios({
+                method: "post",
+                url: url,
+                data: body,
+            })
+                .then((response) => {
+                    console.log(response.data);
+
+                    this.auction = response.data.auction;
+                    this.side_auctions = response.data.side_auctions;
+                    this.participaints = response.data.participaints;
+                    this.comments = response.data.comments;
+                })
+                .catch((error) => {
+                    console.log("error");
+                    console.log(error);
+                })
+                .finally(() => {
+                    this.is_loading=false;
+                });
+        },
     },
     mounted() {
         // Elastic Slider (c) 2014 // Taron Mehrabyan // Ruben Sargsyan
         init_elastic_slider();
-
     },
-}
+    created() {
+        // alert(this.$route.params.id)
+        this.fetchData();
+    },
+    watch: {
+        $route(to, from) {
+            // check to see if rout is correct
+            if (to.name != "auction-index") return;
 
+            //then
+            this.fetchData();
+            // react to route changes...
+        },
+    },
+};
 </script>
 <style lang="scss" scoped>
 .index-container {
@@ -192,7 +344,6 @@ export default {
 
 .main-section {
     width: 75%;
-
 }
 
 .first-section {
@@ -220,13 +371,12 @@ export default {
             box-shadow: 0 2px 8px #333;
             border-radius: 50px;
             display: flex;
-            transition: all .5s ease;
+            transition: all 0.5s ease;
             color: #261749;
             z-index: 3;
 
             ion-icon {
                 font-size: 2.5rem;
-
             }
         }
 
@@ -250,13 +400,11 @@ export default {
             font-weight: 700;
             letter-spacing: 1.2px;
             margin-bottom: 1.5rem;
-
         }
 
         h3 {
-
             font-size: 1.3rem;
-            letter-spacing: .5px;
+            letter-spacing: 0.5px;
             font-weight: 500;
         }
     }
@@ -279,25 +427,24 @@ export default {
         .icon-container {
             ion-icon {
                 font-size: 2.7rem;
-
             }
 
             .not-saved {
                 color: #aaa;
                 cursor: pointer;
-                transition: all .3s ease;
+                transition: all 0.3s ease;
             }
         }
     }
 
     .kernel {
         margin-top: 1.5rem;
-    box-shadow: 0 2px 20px #3b2670;
-    padding: 0 2rem;
-    border-radius: 20px;
-    border: 1px solid #fff;
-    background-color: #e3e3e3a3;
-    z-index: 9;
+        box-shadow: 0 2px 20px #3b2670;
+        padding: 0 2rem;
+        border-radius: 20px;
+        border: 1px solid #fff;
+        background-color: #e3e3e3a3;
+        z-index: 9;
         .k-header {
             padding: 1.5rem 0.5rem;
             font-size: 1.8rem;
@@ -313,18 +460,21 @@ export default {
     }
 }
 
-.auction-kernel-container {}
+.auction-kernel-container {
+}
 
+.participaints {
+}
 
-.participaints {}
+.product-info-container {
+}
 
-.product-info-container {}
-
-.reviews-container {}
+.reviews-container {
+}
 
 .tabel-row {
     td {
-        padding: .4rem;
+        padding: 0.4rem;
         padding-left: 1.3rem;
     }
 }
@@ -342,8 +492,6 @@ export default {
         }
     }
 }
-
-
 
 .size {
     display: flex;
@@ -366,14 +514,10 @@ export default {
     h4 {
         color: #444;
         margin-right: 10px;
-        letter-spacing: .7px;
+        letter-spacing: 0.7px;
         font-size: 1rem;
         font-weight: 500;
     }
-
-
-
-
 }
 
 .pic-container {
@@ -402,7 +546,6 @@ export default {
     }
 
     .border-wrap {
-
         background: linear-gradient(to right, rgb(99 80 215), rgb(236 236 236));
 
         border-radius: 100px;
@@ -480,7 +623,6 @@ export default {
     }
 }
 
-
 .history-section {
     border-bottom: 1px solid #888;
     padding-bottom: 1rem;
@@ -515,6 +657,4 @@ export default {
         }
     }
 }
-
-
 </style>

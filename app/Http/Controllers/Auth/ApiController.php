@@ -30,7 +30,8 @@ class ApiController extends Controller
         return response([
             'status' => 'success',
             'token'=>$token,
-            'user'=>Auth::user()
+            'user'=>Auth::user(),
+            'city'=>Auth::user()->city
         ])
             ->header('Authorization', $token);
 

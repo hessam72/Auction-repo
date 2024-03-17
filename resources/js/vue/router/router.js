@@ -13,6 +13,7 @@ import support from "../pages/user/support.vue";
 import buy_it_now from "../pages/user/buy_it_now.vue";
 import wins_and_shipping from "../pages/user/wins&shipping.vue";
 import profile from "../pages/user/profile.vue";
+import bidPackages from "../pages/user/bid_packages.vue";
 
 import auth from "../pages/auth/login_singup.vue";
 
@@ -68,6 +69,11 @@ const router = createRouter({
                     path: "bookmarks",
                     name: "bookmarks",
                     component: bookmarks,
+                }, 
+                {
+                    path: "bid_packages",
+                    name: "bid_packages",
+                    component: bidPackages,
                 },
                 {
                     path: "challenges",

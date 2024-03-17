@@ -1,8 +1,4 @@
-export async function sendPost(
-    url = "",
-    data = {},
-    headers = {}
-) {
+export async function sendPost(url = "", data = {}, headers = {}) {
     // Default options are marked with *
 
     try {
@@ -10,15 +6,14 @@ export async function sendPost(
             method: "POST", // *GET, POST, PUT, DELETE, etc.
 
             headers: headers,
-
-            body: JSON.stringify(data), // body data type must match "Content-Type" header
+            mode: 'no-cors',
+            // body: JSON.stringify(data),
+            body: data,
         });
         if (response.ok) {
-
-            return response.json(); // parses JSON response into native JavaScript objects
-            // return response // parses JSON response into native JavaScript objects
+            return response;
         } else {
-            console.log(response)
+            console.log(response);
             const error = {
                 status: response.status,
                 ok: response.ok,
@@ -34,11 +29,7 @@ export async function sendPost(
     }
 }
 
-export async function sendFormData(
-    url = "",
-    data = {},
-    headers = {}
-) {
+export async function sendFormData(url = "", data = {}, headers = {}) {
     // Default options are marked with *
 
     try {
@@ -70,11 +61,7 @@ export async function sendFormData(
         // return (error);
     }
 }
-export async function updateFormData(
-    url = "",
-    data = {},
-    headers = {}
-) {
+export async function updateFormData(url = "", data = {}, headers = {}) {
     // Default options are marked with *
 
     try {
@@ -145,13 +132,13 @@ export async function sendGet(
     try {
         const response = await fetch(url, {
             method: "GET", // *GET, POST, PUT, DELETE, etc.
-
+            mode: 'no-cors',
             headers: headers,
 
             // body: JSON.stringify(data), // body data type must match "Content-Type" header
         });
         if (response.ok) {
-            console.log(response)
+            console.log(response);
             return response.json(); // parses JSON response into native JavaScript objects
         } else {
             console.log("inside try error");
