@@ -1,45 +1,26 @@
 <template>
     <single-nav></single-nav>
+    
     <bread-crumps v-bind:history="history" :current="current"></bread-crumps>
     <div class="index-container flex">
         <div class="main-section">
             <div class="first-section flex">
                 <div class="gallery-container">
                     <div class="header flex flex-col">
-                        <h2>Product Name</h2>
+                        <h2>{{ product.title }}</h2>
                         <h3>
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Nisi ab reprehenderit, eos perspiciatis
-                            repellendu
+                            {{ product.short_desc }}
                         </h3>
-                        <p>buy it now for $750</p>
+                        <p>buy it now for ${{ product.price }}</p>
                     </div>
                     <div class="gallery">
                         <div class="slider">
-                            <div class="slide">
-                                <img
-                                    src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=3398&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                />
+                            <div
+                                v-for="(item, index) in product.galleries"
+                                class="slide"
+                            >
+                                <img :src="'/storage/' + item.image" />
                                 <!-- <p>rutrum tellus a tempus :)</p> -->
-                            </div>
-
-                            <div class="slide">
-                                <img
-                                    src="https://images.unsplash.com/photo-1583394838336-acd977736f90?q=80&w=3419&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                />
-                                <!-- <p>litora torquent per conubia</p> -->
-                            </div>
-                            <div class="slide">
-                                <img
-                                    src="https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                />
-                                <!-- <p>sed consectetur faucibus</p> -->
-                            </div>
-                            <div class="slide">
-                                <img
-                                    src="https://images.unsplash.com/photo-1560343090-f0409e92791a?q=80&w=3024&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                />
-                                <!-- <p>eleifend tempus justo</p> -->
                             </div>
                         </div>
                         <button id="next_slide">
@@ -49,22 +30,38 @@
                 </div>
                 <div class="kernel-container flex flex-col">
                     <div class="tags flex">
-                        <div class="icon-container">
+                        <div
+                            @click="toggleBookmark()"
+                            v-if="
+                                check_bookmark_status(auction.bookmarks, user)
+                            "
+                            class="icon-container"
+                        >
+                            <ion-icon class="saved" name="bookmark"></ion-icon>
+                            <p>Remove Bookmark</p>
+                        </div>
+                        <div
+                            @click="toggleBookmark()"
+                            v-else
+                            class="icon-container"
+                        >
                             <ion-icon
                                 class="not-saved"
                                 name="bookmark"
                             ></ion-icon>
-                            <p>Save Auction</p>
+                            <p>Bookmark Auction</p>
                         </div>
                         <div class="icon-container">
                             <ion-icon name="lock"></ion-icon>
-                            <p>$5 No Jumper Limit</p>
+                            <p>
+                                ${{ auction.no_jumper_limit }} No Jumper Limit
+                            </p>
                         </div>
                     </div>
                     <div class="kernel">
                         <div class="k-header flex justify-between items-center">
                             <h2>Current Bid</h2>
-                            <h2 class="price">$54.21</h2>
+                            <h2 class="price">${{ auction.current_price }}</h2>
                         </div>
                         <div class="current-winner-section">
                             <div class="size">
@@ -72,15 +69,19 @@
                                     <div class="border-wrap">
                                         <img
                                             class="user_img"
-                                            :src="'/storage/images/user_profiles/150-11.jpg'"
+                                            :src="
+                                                '/storage/' +
+                                                current_winner.profile_pic
+                                            "
                                         />
                                     </div>
                                 </div>
                                 <div class="winner-info">
-                                    <h3>Flora timony</h3>
+                                    <h3>{{ current_winner.username }}</h3>
                                     <h4>Current Heighest bidder</h4>
                                     <h4>
-                                        <ion-icon name="pin"></ion-icon> florida
+                                        <ion-icon name="pin"></ion-icon>
+                                        {{ current_winner.city.name }}
                                     </h4>
                                 </div>
                             </div>
@@ -126,79 +127,32 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr
+                                                        v-for="(
+                                                            item, index
+                                                        ) in participaints"
                                                         class="tabel-row bg-neutral-100 dark:border-neutral-500"
                                                     >
                                                         <td
                                                             class="whitespace-nowrap"
                                                         >
-                                                            Otto
+                                                            ${{
+                                                                item.bid_price
+                                                            }}
                                                         </td>
                                                         <td
                                                             class="whitespace-nowrap"
                                                         >
-                                                            Mark
+                                                            {{
+                                                                item.user
+                                                                    .username
+                                                            }}
                                                         </td>
                                                         <td
                                                             class="whitespace-nowrap"
                                                         >
-                                                            @mdo
-                                                        </td>
-                                                    </tr>
-                                                    <tr
-                                                        class="tabel-row bg-white dark:border-neutral-500"
-                                                    >
-                                                        <td
-                                                            class="whitespace-nowrap"
-                                                        >
-                                                            Jacob
-                                                        </td>
-                                                        <td
-                                                            class="whitespace-nowrap"
-                                                        >
-                                                            Thornton
-                                                        </td>
-                                                        <td
-                                                            class="whitespace-nowrap"
-                                                        >
-                                                            @fat
-                                                        </td>
-                                                    </tr>
-                                                    <tr
-                                                        class="tabel-row bg-neutral-100 dark:border-neutral-500"
-                                                    >
-                                                        <td
-                                                            class="whitespace-nowrap"
-                                                        >
-                                                            Mark
-                                                        </td>
-                                                        <td
-                                                            class="whitespace-nowrap"
-                                                        >
-                                                            Otto
-                                                        </td>
-                                                        <td
-                                                            class="whitespace-nowrap"
-                                                        >
-                                                            @mdo
-                                                        </td>
-                                                    </tr>
-                                                    <tr
-                                                        class="tabel-row bg-white dark:border-neutral-500"
-                                                    >
-                                                        <td
-                                                            class="whitespace-nowrap"
-                                                        >
-                                                            Jacob
-                                                        </td>
-                                                        <td
-                                                            class="whitespace-nowrap"
-                                                        >
-                                                            Thornton
-                                                        </td>
-                                                        <td
-                                                            class="whitespace-nowrap"
-                                                        >
-                                                            @fat
+                                                            {{
+                                                                item.created_at
+                                                            }}
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -237,15 +191,14 @@
                 </div>
             </div>
             <!-- users -->
-            <users-section></users-section>
-            <product-content></product-content>
-            <reviews-section></reviews-section>
+            <users-section :participaints :winners></users-section>
+            <product-content :product></product-content>
+            <reviews-section :product_id="product.id"></reviews-section>
         </div>
-        <side-section></side-section>
+        <side-section :auctions="side_auctions"></side-section>
     </div>
     <fixed-buttons></fixed-buttons>
     <loading :is_loading="is_loading"></loading>
-
 </template>
 <script>
 import singleNav from "../../../components/global/singleNav.vue";
@@ -256,6 +209,10 @@ import reviewsSection from "../../../components/auctions/index/reviews.vue";
 import breadCrumps from "../../../components/global/breadCrumps.vue";
 import { init_elastic_slider } from "@/modules/utilities/elastic_slider.js";
 import fixedButtons from "../../../components/utilities/fixedButtons.vue";
+import { check_bookmark_status } from "@/modules/utilities/auctionUtils.js";
+import { mapGetters } from "vuex";
+import { QuillEditor } from "@vueup/vue-quill";
+import "@vueup/vue-quill/dist/vue-quill.snow.css";
 export default {
     data() {
         return {
@@ -269,14 +226,30 @@ export default {
                     url: "/vue/v1/auctions",
                 },
             ],
+            updateBookmarkUrl: "bookmark/toggle",
             current: "Index",
             fetchUrl: "auctions/index",
             auction: null,
+            product: null,
+
+            current_winner: null,
             side_auctions: [],
             participaints: [],
-            comments: [],
-            is_loading:false,
+            winners: [],
+            // comments: [],
+            is_loading: false,
+            text: null,
+            richText: {
+                ops: [
+                    { insert: "Gandalf", attributes: { bold: true } },
+                    { insert: " the " },
+                    { insert: "Grey", attributes: { color: "#cccccc" } },
+                ],
+            },
         };
+    },
+    computed: {
+        ...mapGetters(["baseUrl", "user", "UserAuthToken"]),
     },
     components: {
         fixedButtons,
@@ -286,8 +259,43 @@ export default {
         productContent,
         reviewsSection,
         sideSection,
+        QuillEditor,
     },
     methods: {
+        check_bookmark_status,
+        generateRichText(data) {
+            var d = JSON.parse(data);
+
+            var contents = [];
+            for (var i = 0; i < d.ops.length; i++) {
+                if (d.ops[i].insert === null) {
+                    // continue;
+                    contents.push({
+                        insert: "\n",
+                        attributes: d.ops[i].attributes,
+                    });
+                } else if (d.ops[i].attributes === undefined) {
+                    contents.push({
+                        insert: d.ops[i].insert,
+                    });
+                } else if (
+                    d.ops[i].insert === null ||
+                    d.ops[i].attributes === undefined
+                ) {
+                    contents.push({
+                        insert: "\n",
+                    });
+                } else {
+                    contents.push({
+                        insert: d.ops[i].insert,
+                        attributes: d.ops[i].attributes,
+                    });
+                }
+            }
+            console.log("contents");
+            console.log(contents);
+            this.text = contents;
+        },
         fetchData() {
             this.is_loading = true;
             var url = this.fetchUrl;
@@ -303,17 +311,46 @@ export default {
                     console.log(response.data);
 
                     this.auction = response.data.auction;
+                    this.product = this.auction.product;
+                    this.generateRichText(this.product.description);
+                    this.current_winner = this.auction.current_winner;
                     this.side_auctions = response.data.side_auctions;
                     this.participaints = response.data.participaints;
-                    this.comments = response.data.comments;
+                    this.winners = response.data.winners;
+                    // this.comments = response.data.comments;
                 })
                 .catch((error) => {
                     console.log("error");
                     console.log(error);
                 })
                 .finally(() => {
-                    this.is_loading=false;
+                    this.is_loading = false;
                 });
+        },
+        toggleBookmark() {
+            let config = {
+                Authorization: this.UserAuthToken,
+            };
+            const body = {
+                auction_id: this.auction.id,
+            };
+
+            axios({
+                method: "post",
+                url: this.baseUrl + this.updateBookmarkUrl,
+                data: body,
+                headers: config,
+            })
+                // .get(this.baseUrl + this.userUrl, body , config)
+                .then((response) => {
+                    console.log(response);
+                    this.fetchData();
+                })
+                .catch((error) => {
+                    console.log("error");
+                    console.log(error);
+                })
+                .finally(() => {});
         },
     },
     mounted() {
@@ -423,10 +460,11 @@ export default {
         color: #35334c;
         font-size: 1rem;
         font-weight: 500;
-
+        cursor: pointer;
         .icon-container {
             ion-icon {
                 font-size: 2.7rem;
+                cursor: pointer;
             }
 
             .not-saved {

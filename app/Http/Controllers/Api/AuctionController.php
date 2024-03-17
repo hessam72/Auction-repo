@@ -7,10 +7,12 @@ use App\Events\TestEvent;
 use App\Events\UpdateAuctionState;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\AuctionResource;
+use App\Http\Resources\WinnerResource;
 use App\Models\Auction;
 use App\Models\BiddingHistory;
 use App\Models\Comment;
 use App\Models\Product;
+use App\Models\Winner;
 use App\Traits\Upload;
 use Carbon\Carbon;
 use Illuminate\Contracts\Database\Eloquent\Builder;
@@ -28,17 +30,43 @@ class AuctionController extends Controller
         $auction = new AuctionResource(Auction::find($request->id)->first());
         $side_auctions = AuctionResource::collection(Auction::where('start_time', '<', Carbon::now())->take(3)->get());
 
-        $participaints = BiddingHistory::where('auction_id', $request->id)->with('user')->orderBy('created_at' , 'desc')->get();
-        $comments=Comment::where('product_id' , $auction->product->id)->with('user')->orderBy('created_at' , 'desc')->get();
+        $participaints = BiddingHistory::where('auction_id', $request->id)->with('user.city')->orderBy('created_at', 'desc')->get();
+        $winners = Winner::where('product_id', $auction->product->id)->with('user')->latest()->get();
+
+        $comments = Comment::where('product_id', $auction->product->id)->with('user')->orderBy('created_at', 'desc')->get();
         return response([
             'auction' => $auction,
             'side_auctions' => $side_auctions,
             'participaints' => $participaints,
-            'comments' => $comments,
+            'winners' => $winners,
+            // 'comments' => $comments,
 
 
         ]);
-      
+    }
+    public function auction_comments(Request $request){
+
+        $skip = 0;
+        $take = 10;
+        if ($request->has('skip') && $request->has('take')) {
+            $skip = $request->skip;
+            $take = $request->take;
+        }
+
+
+        $comments = Comment::where('product_id', $request->id)->skip($skip)->take($take)->with('user.city')->orderBy('created_at', 'desc')->get();
+       
+       
+       $total_count=Comment::where('product_id', $request->id)->count();
+       $total_score=Comment::where('product_id', $request->id)->avg('total_socre');
+       
+       
+        return response([
+            "comments"=>$comments,
+            "total_count"=>$total_count,
+            "total_score"=>$total_score
+        ]);
+
     }
 
 

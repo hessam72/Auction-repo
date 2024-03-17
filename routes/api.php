@@ -53,6 +53,7 @@ Route::controller(ApiController::class)->prefix('/auth')->group(function () {
 Route::controller(AuctionController::class)->prefix('/auctions')->group(function () {
 
     Route::post('/search', 'search');
+    Route::post('/auction_comments', 'auction_comments');
     Route::post('/index', 'auction_index');
 
     Route::post('/filter', 'filter');

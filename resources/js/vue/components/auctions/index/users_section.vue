@@ -13,36 +13,12 @@
             </tr>
           </thead>
 
-          <tr>
-            <td>Sara Jones</td>
-            <td>341</td>
-            <td>$2300</td>
+          <tr v-for="(item , index) in winners">
+            <td>{{item.user.username}}</td>
+            <td>{{ item.bids_placed }}</td>
+            <td>${{ item.win_price }}</td>
           </tr>
-          <tr>
-            <td>Sara Jones</td>
-            <td>341</td>
-            <td>$2300</td>
-          </tr>
-          <tr>
-            <td>Sara Jones</td>
-            <td>341</td>
-            <td>$2300</td>
-          </tr>
-          <tr>
-            <td>Sara Jones</td>
-            <td>341</td>
-            <td>$2300</td>
-          </tr>
-          <tr>
-            <td>Sara Jones</td>
-            <td>341</td>
-            <td>$2300</td>
-          </tr>
-          <tr>
-            <td>Sara Jones</td>
-            <td>341</td>
-            <td>$2300</td>
-          </tr>
+         
         </table>
       </div>
     </div>
@@ -53,125 +29,24 @@
       <div class="participaints-table">
         <div class="participaints-tabel-container w-full">
           <table class="w-full" border="0">
-            <tr>
+            <tr v-for="(item , index) in participaints">
               <div class="size">
                 <div class="pic-container">
                   <div class="border-wrap">
                     <img
                       class="user_img"
-                      :src="'/storage/images/user_profiles/150-4.jpg'"
+                      :src="'/storage/'+item.user.profile_pic"
                     />
                   </div>
                 </div>
                 <div class="winner-info">
-                  <h3>Flora timony</h3>
+                  <h3>{{ item.user.username }}</h3>
                   <h4>Current Heighest bidder</h4>
-                  <h4><ion-icon name="pin"></ion-icon> florida</h4>
+                  <h4><ion-icon name="pin"></ion-icon> {{ item.user.city.name }}</h4>
                 </div>
               </div>
             </tr>
-            <tr>
-              <div class="size">
-                <div class="pic-container">
-                  <div class="border-wrap">
-                    <img
-                      class="user_img"
-                      :src="'/storage/images/user_profiles/150-11.jpg'"
-                    />
-                  </div>
-                </div>
-                <div class="winner-info">
-                  <h3>Flora timony</h3>
-                  <h4>Current Heighest bidder</h4>
-                  <h4><ion-icon name="pin"></ion-icon> florida</h4>
-                </div>
-              </div>
-            </tr>
-            <tr>
-              <div class="size">
-                <div class="pic-container">
-                  <div class="border-wrap">
-                    <img
-                      class="user_img"
-                      :src="'/storage/images/user_profiles/150-8.jpg'"
-                    />
-                  </div>
-                </div>
-                <div class="winner-info">
-                  <h3>Flora timony</h3>
-                  <h4>Current Heighest bidder</h4>
-                  <h4><ion-icon name="pin"></ion-icon> florida</h4>
-                </div>
-              </div>
-            </tr>
-            <tr>
-              <div class="size">
-                <div class="pic-container">
-                  <div class="border-wrap">
-                    <img
-                      class="user_img"
-                      :src="'/storage/images/user_profiles/150-1.jpg'"
-                    />
-                  </div>
-                </div>
-                <div class="winner-info">
-                  <h3>Flora timony</h3>
-                  <h4>Current Heighest bidder</h4>
-                  <h4><ion-icon name="pin"></ion-icon> florida</h4>
-                </div>
-              </div>
-            </tr>
-            <tr>
-              <div class="size">
-                <div class="pic-container">
-                  <div class="border-wrap">
-                    <img
-                      class="user_img"
-                      :src="'/storage/images/user_profiles/150-3.jpg'"
-                    />
-                  </div>
-                </div>
-                <div class="winner-info">
-                  <h3>Flora timony</h3>
-                  <h4>Current Heighest bidder</h4>
-                  <h4><ion-icon name="pin"></ion-icon> florida</h4>
-                </div>
-              </div>
-            </tr>
-            <tr>
-              <div class="size">
-                <div class="pic-container">
-                  <div class="border-wrap">
-                    <img
-                      class="user_img"
-                      :src="'/storage/images/user_profiles/150-10.jpg'"
-                    />
-                  </div>
-                </div>
-                <div class="winner-info">
-                  <h3>Flora timony</h3>
-                  <h4>Current Heighest bidder</h4>
-                  <h4><ion-icon name="pin"></ion-icon> florida</h4>
-                </div>
-              </div>
-            </tr>
-            <tr>
-              <div class="size">
-                <div class="pic-container">
-                  <div class="border-wrap">
-                    <img
-                      class="user_img"
-                      :src="'/storage/images/user_profiles/150-8.jpg'"
-                    />
-                  </div>
-                </div>
-                <div class="winner-info">
-                  <h3>Flora timony</h3>
-                  <h4>Current Heighest bidder</h4>
-                  <h4><ion-icon name="pin"></ion-icon> florida</h4>
-                </div>
-              </div>
-            </tr>
+           
           </table>
         </div>
       </div>
@@ -179,6 +54,14 @@
   </div>
 </template>
 <script>
+export default{
+data() {
+  return {
+    
+  }
+},
+props:["participaints" , "winners"],
+}
 </script>
 <style scoped lang="scss">
 .auction-users-container {

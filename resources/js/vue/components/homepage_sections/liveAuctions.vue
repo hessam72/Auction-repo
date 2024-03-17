@@ -22,7 +22,7 @@
                 :live_price="item.current_price"
                 :title="item.product.title"
                 :image="item.product.galleries[0]"
-                :is_bookmarked="check_bookmark_status(item.bookmarks, 2)"
+                :is_bookmarked="check_bookmark_status(item.bookmarks, user)"
                 :status="item.status"
             >
             </auction-card>
@@ -42,11 +42,13 @@
 <script>
 import AuctionCard from "../auctions/auction_card.vue";
 import {check_bookmark_status} from "@/modules/utilities/auctionUtils.js"
-
+import { mapGetters } from "vuex";
 export default {
     props: ["auctions"],
     methods:{
         check_bookmark_status,
+    }, computed: {
+        ...mapGetters(["user"]),
     },
     components: {
         AuctionCard,
