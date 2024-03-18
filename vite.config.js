@@ -38,5 +38,14 @@ export default defineConfig({
     define: {
         global: {},
     },
+    // proxy: {
+    //     'https://api.nowpayments.io': {
+    //          target: '/v1',
+    //          changeOrigin: true,
+    //          secure: false,      
+    //          ws: true,
+    //      }
+    // },
+   
     
 });

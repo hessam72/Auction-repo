@@ -142,7 +142,7 @@ export async function sendGet(
             return response.json(); // parses JSON response into native JavaScript objects
         } else {
             console.log("inside try error");
-            // console.log(response.status);
+            console.log(response);
             throw response.status;
         }
     } catch (error) {

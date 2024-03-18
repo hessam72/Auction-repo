@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 <div class="ptable-footer">
-                    <div @click="buyPackage" class="ptable-action">
+                    <div @click="buyPackage(item)" class="ptable-action">
                         <a>Buy Now</a>
                     </div>
                 </div>
@@ -64,6 +64,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import { sendGet, sendPost } from "../../../modules/api";
+import { generatePaymentLink } from "@/modules/utilities/CryptoPayment.js";
 // import { generatePaymentLink } from "@/modules/utilities/CryptoPayment.js";
 export default {
     data() {
@@ -72,30 +73,69 @@ export default {
             is_loading_more: false,
 
             fetchrl: "bid_packages/all",
+            saveTransactionUrl: "transaction/store",
             packages: [],
         };
     },
     methods: {
         // generatePaymentLink,
-        buyPackage(id, desc, price) {
-            //get bid package id and generate link
-            const body = {
-                email: "tahamidev@gmail.com",
-                password: "Seyed123",
-            };
-            sendPost(
-                "https://api.nowpayments.io/v1/auth", //url
-                body, //body
-                { "Content-Type": "application/json" } //headers
-            )
-                .then((data) => {
-                   
-                  console.log(data)
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
+        buyPackage(item) {
+            var pay_price = item.price;
+            // calculate price with discount
+            if (item.discount > 0) {
+                pay_price = item.price - (item.discount / 100) * item.price;
+            }
+
+            var pay_desc = item.bid_amount + " bid Package for: $" + pay_price;
+            generatePaymentLink(
+                pay_price,
+                pay_desc,
+                this.nowPayUrl,
+                this.nowPayKey,
+                this.$route.path
+            ).then((data) => {
+                console.log("data from then");
+                // payment data generated
+                //saving new transicton
+                this.createNewTransiction(data, item);
+                console.log(data);
+            });
         },
+
+        createNewTransiction(pay_data, item) {
+            let config = {
+                Authorization: this.UserAuthToken,
+            };
+            let body = {
+                amount: pay_data.price_amount,
+                order_id: pay_data.order_id,
+                item_type: 1, // bid package
+                item_id: item.id,
+                payment_description: pay_data.order_description,
+                payment_id: pay_data.id,
+                status: 1, // new payment
+            };
+          
+            axios({
+                method: "post",
+                url: this.baseUrl + this.saveTransactionUrl,
+                data:body,
+                headers:config
+            })
+                .then((response) => {
+                    console.log(response);
+                    
+                   // redirect to pay
+                  
+                   window.open("https://nowpayments.io/payment/?iid="+pay_data.id);
+                })
+                .catch((error) => {
+                    console.log("error create transac");
+                    console.log(error);
+                })
+                .finally(() => {});
+        },
+
         fetchData() {
             axios({
                 method: "post",
@@ -111,6 +151,7 @@ export default {
                 })
                 .finally(() => {});
         },
+
         calDiscount(price, discount) {
             var p = (discount / 100) * price;
 
@@ -118,7 +159,13 @@ export default {
         },
     },
     computed: {
-        ...mapGetters(["baseUrl", "UserAuthToken", "user"]),
+        ...mapGetters([
+            "baseUrl",
+            "nowPayKey",
+            "nowPayUrl",
+            "UserAuthToken",
+            "user",
+        ]),
     },
     created() {
         this.fetchData();

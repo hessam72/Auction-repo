@@ -1,7 +1,6 @@
 import { createStore } from "vuex";
 import createPersistedState from "vuex-persistedstate";
 
-
 import authentication from "./modules/auth/index.js";
 import user from "./modules/user/index.js";
 import auctions from "./modules/auctions/index.js";
@@ -26,6 +25,8 @@ const store = createStore({
         return {
             //data
             baseUrl: "http://localhost:8000/api/",
+            nowPayUrl: "https://api.nowpayments.io/v1/",
+            nowPayKey: "GW4J958-SERM1JD-QHCBDTB-4VJ6Z8N",
         };
     },
     mutations: {},
@@ -36,6 +37,11 @@ const store = createStore({
     getters: {
         baseUrl(state) {
             return state.baseUrl; // if needed to use getters
+        },
+        nowPayKey(state) {
+            return state.nowPayKey; // if needed to use getters
+        }, nowPayUrl(state) {
+            return state.nowPayUrl; // if needed to use getters
         },
     },
 });

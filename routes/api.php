@@ -20,6 +20,7 @@ use App\Http\Controllers\Api\ChallengeController;
 use App\Http\Controllers\Api\GeoController;
 use App\Http\Controllers\Api\StatisticsController;
 use App\Http\Controllers\Api\TicketController;
+use App\Http\Controllers\Api\TransactionController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\UserShipedProductController;
 use App\Http\Controllers\Api\UserWinsController;
@@ -67,6 +68,7 @@ Route::controller(AuctionController::class)->group(function () {
 Route::controller(ApiCategoryController::class)->prefix('/categories')->group(function () {
     Route::get('/all', 'all');
 });
+
 Route::controller(BidPackageController::class)->prefix('/bid_packages')->group(function () {
     Route::post('/all', 'all');
 });
@@ -74,7 +76,10 @@ Route::controller(StatisticsController::class)->prefix('/statistics')->group(fun
     Route::post('/home', 'home_statistics');
 });
 
-
+Route::controller(TransactionController::class)->prefix('/transaction')->group(function () {
+    Route::middleware('jwt.auth')->post('/store', 'store');
+    Route::post('/saveSuccessfullPay', 'saveSuccessfullPay');
+});
 
 
 Route::middleware('jwt.auth')->group(function () {
