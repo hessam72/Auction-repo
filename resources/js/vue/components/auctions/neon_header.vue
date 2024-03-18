@@ -1,12 +1,13 @@
 <template>
     <div class="logo">
-  <span class="hrs">%20 off</span>
-  <span class="open">300 bids package</span>
+  <span class="hrs">%{{ special_offer.discount_amount }} off</span>
+  <span v-if="special_offer.type ===1" class="open">{{ special_offer.bid_package.bid_amount }} bids package</span>
+  <span v-else-if="special_offer.type ===2" class="open">{{special_offer.product.title}}</span>
 </div>
 </template>
 <script>
 export default {
-    
+    props:['special_offer'],
 }
 </script>
 <style scoped lang="scss">

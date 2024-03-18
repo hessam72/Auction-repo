@@ -7,9 +7,14 @@ use App\Events\TestEvent;
 use App\Events\UpdateAuctionState;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\AuctionResource;
+use App\Http\Resources\WinnerResource;
 use App\Models\Auction;
+use App\Models\BiddingHistory;
+use App\Models\Comment;
 use App\Models\Product;
+use App\Models\Winner;
 use App\Traits\Upload;
+use Carbon\Carbon;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
@@ -19,21 +24,69 @@ class AuctionController extends Controller
      * Display a listing of the resource.
      */
     use Upload;
+
+    public function auction_index(Request $request)
+    {
+        $auction = new AuctionResource(Auction::find($request->id)->first());
+        $side_auctions = AuctionResource::collection(Auction::where('start_time', '<', Carbon::now())->take(3)->get());
+
+        $participaints = BiddingHistory::where('auction_id', $request->id)->with('user.city')->orderBy('created_at', 'desc')->get();
+        $winners = Winner::where('product_id', $auction->product->id)->with('user')->latest()->get();
+
+        $comments = Comment::where('product_id', $auction->product->id)->with('user')->orderBy('created_at', 'desc')->get();
+        return response([
+            'auction' => $auction,
+            'side_auctions' => $side_auctions,
+            'participaints' => $participaints,
+            'winners' => $winners,
+            // 'comments' => $comments,
+
+
+        ]);
+    }
+    public function auction_comments(Request $request){
+
+        $skip = 0;
+        $take = 10;
+        if ($request->has('skip') && $request->has('take')) {
+            $skip = $request->skip;
+            $take = $request->take;
+        }
+
+
+        $comments = Comment::where('product_id', $request->id)->skip($skip)->take($take)->with('user.city')->orderBy('created_at', 'desc')->get();
+       
+       
+       $total_count=Comment::where('product_id', $request->id)->count();
+       $total_score=Comment::where('product_id', $request->id)->avg('total_socre');
+       
+       
+        return response([
+            "comments"=>$comments,
+            "total_count"=>$total_count,
+            "total_score"=>$total_score
+        ]);
+
+    }
+
+
+
     public function index(Request $request)
     {
         $skip = 0;
-        $take=10;
-         if($request->has('skip') && $request->has('take')){
-           $skip = $request->skip;
-           $take = $request->take;
-         }
+        $take = 10;
+        if ($request->has('skip') && $request->has('take')) {
+            $skip = $request->skip;
+            $take = $request->take;
+        }
+
+        // calling from homepage
+        if ($request->has('from_home')) {
+            $take = 4;
+        }
 
 
         return AuctionResource::collection(Auction::skip($skip)->take($take)->get());
-        // return AuctionResource::collection(Auction::paginate($count)->load('product'));
-        // $data = Auction::paginate($count)->load('product');
-        // return ['all' => AuctionResource::collection($data)->response()->getData(true) ,
-        //  'paginate'=>Auction::paginate($count)];
     }
 
     public function search(Request $request)
@@ -42,30 +95,99 @@ class AuctionController extends Controller
         // $request->validate([
         //     'search' =>  'required',
         // ]);
+        $skip = 0;
+        $take = 10;
+        if ($request->has('skip') && $request->has('take')) {
+            $skip = $request->skip;
+            $take = $request->take;
+        }
+
         $data = json_decode($request->getContent());
         $searchString = $data->search;
 
-        $result = Auction::search($searchString)->paginate();
+        $result = Auction::search($searchString)->skip($skip)->take($take)->get();
         return AuctionResource::collection($result->load('product'));
     }
 
 
     public function filter(Request $request)
     {
-        $data = json_decode($request->getContent());
-        // category_id
-        $category_id = $data->filter_id;
 
-        $products = Product::filterByCategory($category_id)->get();
-        $auction_ids = [];
+        // category_id
+
+        // sort_by
+        // min_price
+        // max_price
+
+        $category_id = $request->category_id;
+
+
+        //sort by 
+        // latest
+        // most_popular
+        // live
+        // starting_soon
+        $auctionOrderBy = "created_at";
+        $productOrderBy = "created_at";
+        $live_only = false;
+        $soon_only = false;
+        switch ($request->sort_by) {
+            case "latest":
+                //auction created at
+
+                break;
+            case "most_popular":
+                //order by product sales count
+                $productOrderBy = "sales_count";
+                break;
+            case "live":
+                // auction start_time < now
+                $live_only = true;
+                break;
+            case "starting_soon":
+                // auction start_time > now
+                //    sort by start_time
+                $soon_only = true;
+                break;
+        }
+
+
+        if ($category_id === null) {
+            $products = Product::orderBy($productOrderBy)->get();
+        } else {
+            $products = Product::orderBy($productOrderBy)->filterByCategory($category_id)->get();
+        }
+
+
+        //filter by min and max price 
+        $filter_price_products = [];
+
         foreach ($products as $product) {
+
+            if ($product->price >= (int)$request->min && $product->price <= (int)$request->max) {
+                $filter_price_products[] = $product;
+            }
+        }
+
+        $auction_ids = [];
+        foreach ($filter_price_products as $product) {
             foreach ($product->auctions as $auction) {
                 // retrive id
                 $auction_ids[] = $auction->id;
             }
         }
 
-        $result = Auction::whereIn('id', $auction_ids)->get();
+        if ($live_only) {
+            //filter live auctions only
+            $result = Auction::whereIn('id', $auction_ids)->where('start_time', '<', Carbon::now())
+                ->orderBy($auctionOrderBy)->get();
+        } elseif ($soon_only) {
+            //filter starting soon auctions
+            $result = Auction::whereIn('id', $auction_ids)->where('start_time', '>', Carbon::now())
+                ->orderBy($auctionOrderBy)->get();
+        } else {
+            $result = Auction::whereIn('id', $auction_ids)->orderBy($auctionOrderBy)->get();
+        }
 
         return AuctionResource::collection($result->load('product'));
     }
@@ -95,7 +217,7 @@ class AuctionController extends Controller
 
 
 
-// upload image
+    // upload image
     public function test(Request $request)
     {
 

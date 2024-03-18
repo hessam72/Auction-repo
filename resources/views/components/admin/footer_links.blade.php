@@ -171,6 +171,7 @@
 
 
         $('#example').DataTable();
+
         const editProductDesc = new Quill('#update-product-form', {
             bounds: '#update-product-form',
 
@@ -223,6 +224,8 @@
 
             }).done(function(data) {
                 var d = JSON.parse(data)
+                console.log('data from ajax')
+                console.log(data)
                 var contents = [];
                 for (var i = 0; i < d.ops.length; i++) {
                     // console.log('-----------------------------------');

@@ -89,4 +89,38 @@ class SpecialOffer extends Model
 
 		$item->save();
 	}
+
+
+	public function bidPackage()
+	{
+		return $this->belongsTo(BidPackage::class, 'item_id');
+	}
+	public function product()
+	{
+		return $this->belongsTo(Product::class, 'item_id');
+	}
+	public function scopeItem()
+	{
+		if ($this->type === 1) {
+			// bid
+			
+		} elseif ($this->type === 2) {
+			// product
+			
+		}
+		// if($this->type)
+	}
+
+	// public function scopeItem($query)
+	// {
+
+	// 	return $query
+	// 		->when($this->type === 1, function ($q) {
+	// 			return $q->with('bidPackage');
+	// 		})
+	// 		->when($this->type === 2, function ($q) {
+	// 			return $q->with('product');
+	// 		});
+
+	// }
 }

@@ -139,7 +139,7 @@
                                 <span class="sr-only">Open user menu</span>
                                 <img
                                     class="h-8 w-8 rounded-full"
-                                    :src="'/storage/images/user_profiles/150-9.jpg'"
+                                    :src="'/storage/'+user.profile_pic"
                                     alt=""
                                 />
                             </MenuButton>

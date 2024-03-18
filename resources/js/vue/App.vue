@@ -1,39 +1,40 @@
 <template>
-  <div class="mother-container">
-  
-  <router-view class="main-container" v-slot="{ Component }">
-    <keep-alive>
-      <component :is="Component" />
-    </keep-alive>
-  </router-view>
-  <div id="footer">
-  <footer-section></footer-section></div>
-  </div>
+    <div class="mother-container">
+        <router-view class="main-container" v-slot="{ Component }">
+            <keep-alive>
+                <component :is="Component" />
+            </keep-alive>
+        </router-view>
+        <div id="footer">
+            <footer-section></footer-section>
+        </div>
+    </div>
 </template>
 
 <script>
 import footerSection from "./components/global/footer.vue";
 export default {
-  components: {
-  
-    footerSection,
-  },
-  watch:{
-  '$route' (to, from){
-    var footer = document.getElementById("footer");
-    if(to.name === "auth"){
-      // hide footer
-     
-      footer.classList.add("hide");
-    }else{
-      footer.classList.remove("hide");
-    }
-   
-  }
-},
-mounted() {
-  
-},
+    components: {
+        footerSection,
+    },
+    watch: {
+        $route(to, from) {
+            var footer = document.getElementById("footer");
+            if (
+                to.name === "auth" ||
+                to.name === "success_payment" ||
+                to.name === "fail_payment" ||
+                to.name === "partially_paid"
+            ) {
+                // hide footer
+
+                footer.classList.add("hide");
+            } else {
+                footer.classList.remove("hide");
+            }
+        },
+    },
+    mounted() {},
 };
 </script>
 
@@ -41,13 +42,11 @@ mounted() {
 @import url("../../css/scss/main.scss");
 @import url("../../css/var/variables.css");
 
-
-
-.hide{
-  display: none;
+.hide {
+    display: none;
 }
 
-.mother-container{
-  position:relative;
+.mother-container {
+    position: relative;
 }
 </style>

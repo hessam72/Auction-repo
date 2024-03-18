@@ -14,7 +14,7 @@
             :title="item.auction.product.title"
             :image="item.auction.product.galleries[0]"
             :is_bookmarked="
-                check_bookmark_status(item.auction.bookmarks, user.id)
+                check_bookmark_status(item.auction.bookmarks, user)
             "
             :status="item.auction.status"
         >

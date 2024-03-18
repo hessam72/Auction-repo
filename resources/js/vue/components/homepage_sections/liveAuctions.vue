@@ -9,68 +9,50 @@
     <div class="section-container">
         <h2 class="section-title">Featured Auctions</h2>
         <div class="auction-container">
-           
-            <auction-card
-            :time="7 * 60 * 60 * 1000"
-            :buy_now_price="1300"
-            :current_winner_username="'ali_ggory'"
-            :live_price="54.3"
-            :title="'macbook pro m1'"
-            :image="'/storage/images/product_images/macbook-1.jpeg'"
-            :is_bookmarked="true"
-            :status="1"
-        ></auction-card>
-        <auction-card
-            :time="7 * 3 * 60 * 1000"
-            :buy_now_price="750"
-            :start_time="'Today at 5:58 PM'"
-            :title="'iphone 13 pink'"
-            :image="'/storage/images/product_images/iphone-3.jpg'"
-            :status="2"
-        ></auction-card>
+            <!-- only four -->
 
-        <auction-card
-            :time="7 * 60 * 20 * 1000"
-            :buy_now_price="2300"
-            :current_winner_username="'sara_joens'"
-            :live_price="35.3"
-            :title="'macbook air m2'"
-            :image="'/storage/images/product_images/macbook-2.jpg'"
-            :is_bookmarked="false"
-            :status="1"
-            :no_new_bidders="true"
-        ></auction-card>
-        <auction-card
-            :time="3 * 60 * 20 * 1000"
-            :buy_now_price="2450"
-            :current_winner_username="'ashley_joens'"
-            :live_price="15.34"
-            :title="'playstation 5'"
-            :image="'/storage/images/product_images/ps5-2.png'"
-            :is_bookmarked="false"
-            :status="1"
-            :no_new_bidders="false"
-        ></auction-card>
+            <auction-card
+                v-for="(item, index) in this.auctions"
+                :key="index"
+                :auction_id="item.id"
+                :start_time="item.start_time"
+                :timer="item.timer"
+                :buy_now_price="item.product.price"
+                :current_winner_username="item.current_winner.username"
+                :live_price="item.current_price"
+                :title="item.product.title"
+                :image="item.product.galleries[0]"
+                :is_bookmarked="check_bookmark_status(item.bookmarks, user)"
+                :status="item.status"
+            >
+            </auction-card>
         </div>
         <!-- <div class="more-container">
             <router-link :to="{name:'auctions'}"> -->
-            <!-- <button class="more-btn">
+        <!-- <button class="more-btn">
                 View All <ion-icon name="share-alt"></ion-icon>
             </button> -->
-           <more-btn :url_name="'auctions'"></more-btn>
+        <more-btn :url_name="'auctions'"></more-btn>
 
-            <!-- </router-link>
+        <!-- </router-link>
         </div> -->
     </div>
 </template>
 
 <script>
 import AuctionCard from "../auctions/auction_card.vue";
-
+import {check_bookmark_status} from "@/modules/utilities/auctionUtils.js"
+import { mapGetters } from "vuex";
 export default {
-    components:{
-        AuctionCard
-    }
+    props: ["auctions"],
+    methods:{
+        check_bookmark_status,
+    }, computed: {
+        ...mapGetters(["user"]),
+    },
+    components: {
+        AuctionCard,
+    },
 };
 </script>
 
@@ -89,9 +71,5 @@ export default {
     display: flex;
     gap: 3rem;
     justify-content: space-between;
-
 }
-
-
-
 </style>

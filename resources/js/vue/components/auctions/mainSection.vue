@@ -1,14 +1,12 @@
 <template>
     <div>
-        <search-section></search-section>
+        <search-section ></search-section>
         <div class="main-container">
             <!-- <div v-show="show_backdrop" class="backdrop">.</div> -->
             <auction-card
             @refreshData="$emit('fetchData')"
 
-                v-for="(item, index) in JSON.parse(
-                    JSON.stringify(this.auctions)
-                )"
+                v-for="(item, index) in this.auctions"
 
                 :key="index"
                 :auction_id="item.id"
@@ -19,7 +17,7 @@
                 :live_price="item.current_price"
                 :title="item.product.title"
                 :image="item.product.galleries[0]"
-                :is_bookmarked="check_bookmark_status(item.bookmarks, 2)"
+                :is_bookmarked="check_bookmark_status(item.bookmarks, user)"
                 :status="item.status"
             >
             </auction-card>
@@ -47,10 +45,11 @@ import "v3-infinite-loading/lib/style.css"; //required if you're not going to ov
 import AuctionCard from "./auction_card.vue";
 import {check_bookmark_status} from "@/modules/utilities/auctionUtils.js"
 import searchSection from "./searchSection.vue";
-import auctions from "../../store/modules/auctions";
+import auctions from "../../store/modules/auctions";import { mapGetters } from "vuex";
 export default {
     props: {
         auctions: {},
+        categories:{},
         is_loading_more: {
             default: false,
         },
@@ -61,6 +60,8 @@ export default {
             show_more: false,
             show_more2: false,
         };
+    }, computed: {
+        ...mapGetters(["user"]),
     },
     methods: {
         check_bookmark_status,

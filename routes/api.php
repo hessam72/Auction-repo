@@ -13,10 +13,14 @@ use App\Http\Controllers\Api\WinnerController;
 use App\Http\Controllers\Auth\ApiController;
 use App\Http\Controllers\Api\AuctionController;
 use App\Http\Controllers\Api\BiddingController;
+use App\Http\Controllers\Api\BidPackageController;
 use App\Http\Controllers\Api\BuyItNowOfferController;
+use App\Http\Controllers\Api\CategoryController as ApiCategoryController;
 use App\Http\Controllers\Api\ChallengeController;
 use App\Http\Controllers\Api\GeoController;
+use App\Http\Controllers\Api\StatisticsController;
 use App\Http\Controllers\Api\TicketController;
+use App\Http\Controllers\Api\TransactionController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\UserShipedProductController;
 use App\Http\Controllers\Api\UserWinsController;
@@ -47,24 +51,42 @@ Route::controller(ApiController::class)->prefix('/auth')->group(function () {
 });
 
 
-Route::middleware('auth:sanctum')->controller(AuctionController::class)->prefix('/auctions')->group(function () {
+Route::controller(AuctionController::class)->prefix('/auctions')->group(function () {
 
     Route::post('/search', 'search');
+    Route::post('/auction_comments', 'auction_comments');
+    Route::post('/index', 'auction_index');
 
     Route::post('/filter', 'filter');
     Route::post('/test-image', 'test');
 });
+
 Route::controller(AuctionController::class)->group(function () {
     Route::get('/pusher', 'test_pusher');
 });
 
+Route::controller(ApiCategoryController::class)->prefix('/categories')->group(function () {
+    Route::get('/all', 'all');
+});
 
+Route::controller(BidPackageController::class)->prefix('/bid_packages')->group(function () {
+    Route::post('/all', 'all');
+});
+Route::controller(StatisticsController::class)->prefix('/statistics')->group(function () {
+    Route::post('/home', 'home_statistics');
+});
+
+Route::controller(TransactionController::class)->prefix('/transaction')->group(function () {
+    Route::middleware('jwt.auth')->post('/store', 'store');
+    Route::post('/saveSuccessfullPay', 'saveSuccessfullPay');
+});
 
 
 Route::middleware('jwt.auth')->group(function () {
     Route::controller(UserController::class)->prefix('/user')->group(function () {
         Route::post('/fetch', 'index');
         Route::put('/update', 'update');
+        Route::post('/change-avatar', 'setAvatar');
     });
     Route::controller(GeoController::class)->prefix('/geo')->group(function () {
         Route::post('/all', 'all');
@@ -120,6 +142,7 @@ Route::controller(WinnerController::class)->prefix('/winners')->group(function (
 
 
     Route::post('/auction', 'index');
+    Route::post('/all', 'all');
     Route::post('/store', 'storeWinner');
 });
 Route::controller(CommentController::class)->prefix('/comments')->group(function () {

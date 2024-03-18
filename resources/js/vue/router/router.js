@@ -13,15 +13,38 @@ import support from "../pages/user/support.vue";
 import buy_it_now from "../pages/user/buy_it_now.vue";
 import wins_and_shipping from "../pages/user/wins&shipping.vue";
 import profile from "../pages/user/profile.vue";
+import bidPackages from "../pages/user/bid_packages.vue";
 
 import auth from "../pages/auth/login_singup.vue";
 
+import success_payment from "../pages/payment/success.vue";
+import fail_payment from "../pages/payment/fail.vue";
+import partially_paid from "../pages/payment/partially_paid.vue";
+
 const router = createRouter({
     history: createWebHistory(),
-    
+
     routes: [
         // public routes
 
+        {
+            path: "/vue/v1/success_payment",
+            name: "success_payment",
+            component: success_payment,
+            
+        },
+        {
+            path: "/vue/v1/fail_payment",
+            name: "fail_payment",
+            component: fail_payment,
+            
+        },
+        {
+            path: "/vue/v1/partially_paid",
+            name: "partially_paid",
+            component: partially_paid,
+            
+        },
         {
             path: "/vue/v1/auctions",
             name: "auctions",
@@ -58,16 +81,21 @@ const router = createRouter({
             name: "user-index",
             component: UserIndex,
             meta: { needUserAuth: true },
-            children: [{
+            children: [
+                {
                     path: "",
                     name: "profile",
                     component: profile,
-
                 },
                 {
                     path: "bookmarks",
                     name: "bookmarks",
                     component: bookmarks,
+                },
+                {
+                    path: "bid_packages",
+                    name: "bid_packages",
+                    component: bidPackages,
                 },
                 {
                     path: "challenges",
@@ -84,7 +112,7 @@ const router = createRouter({
                     name: "support",
                     component: support,
                 },
-               
+
                 {
                     path: "wins&shipping",
                     name: "wins&shipping",
@@ -100,16 +128,15 @@ const router = createRouter({
             component: auth,
             meta: { isGuest: true },
         },
-        
     ],
     scrollBehavior(to, from, savedPosition) {
         // always scroll to top
-        return { top: 0 }
-      },
+        return { top: 0 };
+    },
 });
 // sessionStorage.clear();
 
-router.beforeEach(function(to, from, next) {
+router.beforeEach(function (to, from, next) {
     // document.title = translatePageName(to.name);
 
     // authenticating user
@@ -123,23 +150,18 @@ router.beforeEach(function(to, from, next) {
         return;
     }
 
-   
-
     //user must not be authenticated
     if (to.meta.isGuest) {
-        if (
-            store.getters.UserAuthToken === null 
-        ) {
+        if (store.getters.UserAuthToken === null) {
             next();
             return;
         } else if (store.getters.UserAuthToken != null) {
             //redirect to user profile
             next({ name: "user-index" });
             return;
-        } 
+        }
     }
 
-    
     next();
 });
 

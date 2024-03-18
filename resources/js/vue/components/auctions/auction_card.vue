@@ -155,7 +155,7 @@ export default {
         start_time: {},
         buy_now_price: Number,
         auction_id: {
-            type: String,
+            
         },
         current_winner_username: {
             type: String,
