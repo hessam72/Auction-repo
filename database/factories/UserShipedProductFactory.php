@@ -29,11 +29,13 @@ final class UserShipedProductFactory extends Factory
         return [
             'user_id' => \App\Models\User::factory(),
             'status' => fake()->randomNumber(),
+            // 'transaction_id' => fake()->randomNumber(),
             'address' => fake()->address,
             'postal_code' => fake()->randomNumber(),
             'product_id' => \App\Models\Product::factory(),
             'state_id' => \App\Models\State::factory(),
             'city_id' => \App\Models\City::factory(),
+            // 'category_id' => \App\Models\Category::factory(),
         ];
     }
 }

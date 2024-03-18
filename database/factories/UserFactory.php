@@ -31,6 +31,7 @@ final class UserFactory extends Factory
             'username' => fake()->userName,
             'bio' => fake()->optional()->text,
             'email' => fake()->safeEmail,
+            'city_id' => \App\Models\City::factory(),
             'status' => fake()->randomNumber(),
             'profile_pic' => fake()->optional()->text,
             'password' => bcrypt(fake()->password),
