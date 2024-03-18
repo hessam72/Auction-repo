@@ -76,6 +76,7 @@ Route::controller(StatisticsController::class)->prefix('/statistics')->group(fun
     Route::post('/home', 'home_statistics');
 });
 
+
 Route::controller(TransactionController::class)->prefix('/transaction')->group(function () {
     Route::middleware('jwt.auth')->post('/store', 'store');
     Route::post('/saveSuccessfullPay', 'saveSuccessfullPay');
@@ -96,6 +97,8 @@ Route::middleware('jwt.auth')->group(function () {
     });  
     Route::controller(UserShipedProductController::class)->prefix('/shiped_product')->group(function () {
         Route::post('/all', 'all');
+        Route::post('/store', 'store');
+
     });
      Route::controller(UserWinsController::class)->prefix('/winners')->group(function () {
         Route::post('/user/all', 'user_wins');

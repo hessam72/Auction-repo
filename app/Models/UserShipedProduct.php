@@ -53,6 +53,7 @@ class UserShipedProduct extends Model
 		'product_id',
 		'state_id',
 		'city_id',
+		'transaction_id',
 		'price'
 	];
 

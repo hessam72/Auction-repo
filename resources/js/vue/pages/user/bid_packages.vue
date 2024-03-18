@@ -123,7 +123,8 @@ export default {
                 headers:config
             })
                 .then((response) => {
-                    console.log(response);
+                    console.log('transac data');
+                    console.log(response.data);
                     
                    // redirect to pay
                   

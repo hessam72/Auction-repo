@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
 
-            $table->integer('status')->comment('deivered or not');
+            $table->integer('status')->comment('1=> waiting for payment / 100=>payment done and ready for shipping / 200=>shiped / 300=>partially paid / 400=>canceled');
             $table->text('address');
             $table->integer('postal_code');
             $table->integer('price')->default(0);
