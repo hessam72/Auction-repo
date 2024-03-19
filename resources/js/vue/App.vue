@@ -14,6 +14,7 @@
 <script>
 import footerSection from "./components/global/footer.vue";
 export default {
+    
     components: {
         footerSection,
     },

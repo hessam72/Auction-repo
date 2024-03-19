@@ -19,8 +19,9 @@ return new class extends Migration
 
             $table->integer('status')->comment('1=> waiting for payment / 100=>payment done and ready for shipping / 200=>shiped / 300=>partially paid / 400=>canceled');
             $table->text('address');
-            $table->integer('postal_code');
+            $table->bigInteger('postal_code');
             $table->integer('price')->default(0);
+            $table->integer('reward_bids')->default(0);
 
             $table->foreignId('product_id')->constrained();
             $table->foreignId('state_id')->constrained();

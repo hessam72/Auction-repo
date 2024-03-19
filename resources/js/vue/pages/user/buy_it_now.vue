@@ -174,7 +174,7 @@
                                             >
                                                 <input
                                                     v-model="postal_code"
-                                                    type="text"
+                                                    type="number"
                                                     class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                                                     id="exampleFormControlInputText"
                                                     placeholder="Example label"
@@ -220,12 +220,14 @@
             </div>
         </Dialog>
     </TransitionRoot>
+    <loading :is_loading="is_loading"></loading>
 </template>
 <script>
 import { Datatable } from "tw-elements";
 import { mapGetters, mapActions } from "vuex";
 import VueMultiselect from "vue-multiselect";
 import { generatePaymentLink } from "@/modules/utilities/CryptoPayment.js";
+import { useToast } from "vue-toastification";
 
 import {
     convertDBTimeToDate,
@@ -240,6 +242,12 @@ import {
     TransitionRoot,
 } from "@headlessui/vue";
 export default {
+    setup() {
+        // Get toast interface
+        const toast = useToast();
+
+        return { toast };
+    },
     data() {
         return {
             fetchDataUrl: "buy_offers/user/all",
@@ -324,7 +332,7 @@ export default {
                 });
         },
         openCreateTicket(offer_id) {
-            this.current_offer_id=offer_id;
+            this.current_offer_id = offer_id;
             this.create_modal = true;
         },
         fetchGeo() {
@@ -343,10 +351,8 @@ export default {
             })
                 // .get(this.baseUrl + this.userUrl, body , config)
                 .then((response) => {
-                    console.log(response.data.data);
                     this.states = response.data.data;
-                    console.log(this.states);
-                    this.setCityOptions();
+                    // this.setCityOptions();
                 })
                 .catch((error) => {
                     console.log("error");
@@ -360,13 +366,22 @@ export default {
             this.citySelectOptions = val.cities;
         },
         start_buying() {
+            if (
+                this.selected_city === null ||
+                this.address === null ||
+                this.postal_code === null
+            ) {
+                this.toast.error("Please Fill all of required Fields");
+                return;
+            }
+
             // generate payment link first
             // save transaction
             //then save shipping
             // then redirect to pay
             // *********************
             // get offer based on id
-
+            this.is_loading = true;
             const buy_offer = this.offers.find(
                 (o) => Number(o.id) === Number(this.current_offer_id)
             );
@@ -386,12 +401,18 @@ export default {
                 this.nowPayUrl,
                 this.nowPayKey,
                 this.$route.path
-            ).then((data) => {
-                // payment data generated
-                this.current_payment = data;
-                //saving new transicton
-                this.createNewTransiction(data, buy_offer);
-            });
+            )
+                .then((data) => {
+                    // payment data generated
+                    this.current_payment = data;
+                    //saving new transicton
+                    this.createNewTransiction(data, buy_offer);
+                })
+                .catch((error) => {
+                    this.is_loading = false;
+
+                    this.toast.error("network error ");
+                });
         },
         createNewTransiction(pay_data, item) {
             let config = {
@@ -400,8 +421,8 @@ export default {
             let body = {
                 amount: pay_data.price_amount,
                 order_id: pay_data.order_id,
-                item_type: 2, // product
-                item_id: item.product.id,
+                item_type: 2, // user shipped product id 
+                // item_id: this.current_offer.id,
                 payment_description: pay_data.order_description,
                 payment_id: pay_data.id,
                 status: 1, // new payment
@@ -415,13 +436,15 @@ export default {
             })
                 .then((response) => {
                     // now saving shipping data
-                    console.log("trans id is "+response.data.id)
+                    console.log("trans id is " + response.data.id);
                     this.saveShippingData(response.data.id);
                     // after redirect to pay
                 })
                 .catch((error) => {
                     console.log("error create transac");
                     console.log(error);
+                    this.is_loading = false;
+
                 })
                 .finally(() => {});
         },
@@ -431,7 +454,9 @@ export default {
                 Authorization: this.UserAuthToken,
             };
             var body1 = {
+                buy_now_offer_id: this.current_offer.id,
                 address: this.address,
+                reward_bids: this.current_offer.spent_bids,
                 postal_code: this.postal_code,
                 price: this.current_payment.price_amount,
                 product_id: this.current_offer.product.id,
@@ -439,9 +464,9 @@ export default {
                 city_id: this.selected_city.id,
                 transaction_id: transaction_id,
             };
-          console.log('body')
-          console.log(body1)
-          
+            console.log("body");
+            console.log(body1);
+
             axios({
                 method: "post",
                 url: this.baseUrl + this.storeShippingUrl,
@@ -449,20 +474,36 @@ export default {
                 headers: config,
             })
                 .then((response) => {
+                    const id =this.current_payment.id
+                    this.clearData();
+                    //for updating offers...
+                    this.fetchData();
+       
+
                     // then redirect to pay
-                    window.open(
-                        "https://nowpayments.io/payment/?iid=" +
-                            this.current_payment.id
-                    );
-                    this.current_offer = null;
-                    this.current_payment = null;
+                    window.location.href ="https://nowpayments.io/payment/?iid=" +id;
+
+                    // window.open(
+                    //     "https://nowpayments.io/payment/?iid=" +id
+                            
+                    // );
+                   
                 })
                 .catch((error) => {
                     console.log(error);
                 })
-                .finally(() => {});
+                .finally(() => {
+                    this.is_loading = false;
+                });
         },
-
+        clearData() {
+            this.current_offer = null;
+            this.current_payment = null;
+            this.selected_city = null;
+            this.selected_state = null;
+            this.address = null;
+            this.postal_code = null;
+        },
         formatData() {
             var arr = [];
 

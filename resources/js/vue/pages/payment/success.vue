@@ -96,12 +96,11 @@
         <div class="content">
             <div class="wrapper-1">
                 <div class="wrapper-2">
-                    <h1>Congratulations! </h1>
+                    <h1>Congratulations!</h1>
                     <p>Your Purchase Received</p>
                     <p>you can see it in transaction history in ypur panel</p>
                     <button @click="redirect" class="go-home">carry on</button>
                 </div>
-               
             </div>
         </div>
     </div>
@@ -115,50 +114,54 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import singleNav from "../../components/global/singleNav.vue";
+import { useToast } from "vue-toastification";
 export default {
+    setup() {
+        // Get toast interface
+        const toast = useToast();
+
+        return { toast };
+    },
     data() {
         return {
-            is_loading:false,
-            updateTransactionUrl:"transaction/saveSuccessfullPay",
+            is_loading: false,
+            updateTransactionUrl: "transaction/saveSuccessfullPay",
         };
     },
     methods: {
         updateTransactionStatus() {
-            this.is_loading=true;
-            var order_id=this.$route.query.order_id;
-           
+            this.is_loading = true;
+            var order_id = this.$route.query.order_id;
+
             let config = {
                 Authorization: this.UserAuthToken,
             };
             let body = {
                 order_id,
-                status:100,
+                status: 100,
             };
-          
+
             axios({
                 method: "post",
                 url: this.baseUrl + this.updateTransactionUrl,
-                data:body,
-                headers:config
+                data: body,
+                headers: config,
             })
                 .then((response) => {
                     console.log(response);
-                    
-                 
-                  
-                 
+                    this.toast.success("Thank you for your purchase");
                 })
                 .catch((error) => {
-                 
                     console.log(error);
+                    this.toast.error("Page has been expired");
                 })
                 .finally(() => {
-                    this.is_loading=false;
+                    this.is_loading = false;
                 });
         },
-        redirect(){
-            this.$router.push(this.$route.query.redirect || "/");
-        }
+        redirect() {
+            this.$router.push(this.$route.query.redirect || "/vue/v1/");
+        },
     },
     computed: {
         ...mapGetters(["baseUrl", "UserAuthToken", "user"]),
@@ -179,7 +182,7 @@ export default {
     justify-content: center;
     align-items: center;
 }
-.icon-container{
+.icon-container {
     position: absolute;
     left: 45%;
     top: 23%;
@@ -275,132 +278,136 @@ h1 {
     }
 }
 
-
 // icon styles
 :root {
     --color-blue: #0094ff;
     --color-white: #fff;
-    --curve: cubic-bezier(0.420, 0.000, 0.275, 1.155);
-  }
+    --curve: cubic-bezier(0.42, 0, 0.275, 1.155);
+}
 
-  @mixin size($size) {
+@mixin size($size) {
     width: $size;
     height: $size;
-  }
+}
 
-  *, *:before, *:after {
+*,
+*:before,
+*:after {
     box-sizing: border-box;
-  }
+}
 
-  body {
+body {
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #fff;
-  }
+}
 
-  .star {
+.star {
     position: absolute;
     animation: grow 3s infinite;
     fill: #0094ff;
     opacity: 0;
 
     &:nth-child(1) {
-      @include size(12px);
-      left: 12px;
-      top: 16px;
+        @include size(12px);
+        left: 12px;
+        top: 16px;
     }
 
     &:nth-child(2) {
-      @include size(18px);
-      left: 168px;
-      top: 84px;
+        @include size(18px);
+        left: 168px;
+        top: 84px;
     }
 
     &:nth-child(3) {
-      @include size(10px);
-      left: 32px;
-      top: 162px;
+        @include size(10px);
+        left: 32px;
+        top: 162px;
     }
 
     &:nth-child(4) {
-      @include size(20px);
-      left: 82px;
-      top: -12px;
+        @include size(20px);
+        left: 82px;
+        top: -12px;
     }
 
     &:nth-child(5) {
-      @include size(14px);
-      left: 125px;
-      top: 162px;
+        @include size(14px);
+        left: 125px;
+        top: 162px;
     }
 
     &:nth-child(6) {
-      @include size(10px);
-      left: 16px;
-      top: 16px;
+        @include size(10px);
+        left: 16px;
+        top: 16px;
     }
 
     @for $i from 1 through 6 {
-      &:nth-child(#{$i}) {
-        animation-delay: $i*( 3.0s/2 );
-      }
+        &:nth-child(#{$i}) {
+            animation-delay: $i * (3s/2);
+        }
     }
-  }
+}
 
-  .checkmark {
+.checkmark {
     position: relative;
     padding: 30px;
     animation: checkmark 5m var(--curve) both;
 
     &__check {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      z-index: 10;
-      transform: translate3d(-50%, -50%, 0);
-      fill: #fff;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 10;
+        transform: translate3d(-50%, -50%, 0);
+        fill: #fff;
     }
 
     &__background {
-      fill: #0094ff;
-      animation: rotate 35s linear both infinite;
+        fill: #0094ff;
+        animation: rotate 35s linear both infinite;
     }
-  }
+}
 
-
-  @keyframes rotate {
+@keyframes rotate {
     0% {
-      transform: rotate(0deg);
+        transform: rotate(0deg);
     }
 
     100% {
-      transform: rotate(360deg);
+        transform: rotate(360deg);
     }
-  }
+}
 
-  @keyframes grow {
-    0%, 100% {
-      transform: scale(0);
-      opacity: 0;
+@keyframes grow {
+    0%,
+    100% {
+        transform: scale(0);
+        opacity: 0;
     }
 
     50% {
-      transform: scale(1);
-      opacity: 1;
+        transform: scale(1);
+        opacity: 1;
     }
-  }
+}
 
-  @keyframes checkmark {
-    0%, 100% {
-      opacity: 0;
-      transform: scale(0);
+@keyframes checkmark {
+    0%,
+    100% {
+        opacity: 0;
+        transform: scale(0);
     }
 
-    10%, 50%, 90% {
-      opacity: 1;
-      transform: scale(1);
+    10%,
+    50%,
+    90% {
+        opacity: 1;
+        transform: scale(1);
     }
-  }
+}
 </style>

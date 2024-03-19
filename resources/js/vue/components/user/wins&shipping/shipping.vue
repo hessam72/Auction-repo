@@ -1,5 +1,5 @@
 <template>
-                    <div id="shiped_table"></div>
+    <div id="shiped_table"></div>
     <loading :is_loading="is_loading"></loading>
 </template>
 <script>
@@ -36,7 +36,7 @@ export default {
 
         fetchShipedProducts() {
             this.is_loading = true;
-            
+
             let config = {
                 Authorization: this.UserAuthToken,
             };
@@ -52,7 +52,7 @@ export default {
                         this.shipedProducts
                     );
                     console.dir(this.mergedShipedProducts);
-                    this.finalShipedProducts=this.formatShipedProducts();
+                    this.finalShipedProducts = this.formatShipedProducts();
 
                     this.setUpshipedDataTable();
                 })
@@ -68,12 +68,22 @@ export default {
         formatShipedProducts() {
             var arr = [];
 
+
+            // 1=> waiting for payment / 100=>payment done and ready for shipping /
+            //  200=>shiped / 300=>partially paid / 400=>canceled
+
             this.mergedShipedProducts.forEach((item, index) => {
                 item.date_value = this.convertDBTimeToDate(item.created_at);
-                if (item.status === 1) {
-                    item.status_value = `<p style="color:green;font-weight:600;">Delivered</p>`;
-                } else {
-                    item.status_value = `<p style="color:#b3b700;font-weight:600;">Pending</p>`;
+                if (item.status === 100) {
+                    item.status_value = `<p style="color:green;font-weight:600;">paid - ready for shipping</p>`;
+                } else if(item.status ===1) {
+                    item.status_value = `<p style="color:#b3b700;font-weight:600;">Pending for Payment</p>`;
+                }else if(item.status ===200) {
+                    item.status_value = `<p style="color:blue;font-weight:600;">Shiped</p>`;
+                }else if(item.status ===300) {
+                    item.status_value = `<p style="color:yellow;font-weight:600;">Partially Paid </p>`;
+                }else if(item.status ===400) {
+                    item.status_value = `<p style="color:red;font-weight:600;">canceled </p>`;
                 }
                 item.price_value = "$" + item.price;
 
