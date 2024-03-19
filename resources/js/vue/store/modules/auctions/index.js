@@ -14,7 +14,7 @@ export default {
     mutations: {
         setAuctions(state, data) {
             state.auctions = data;
-
+            
          
         },
         addAuction(state, data) {
@@ -45,6 +45,7 @@ export default {
             const new_item = {
                 id: data.data.id,
                 current_winner_id: data.data.current_winner_id,
+                current_winner_username: data.data.current_winner_username,
                 current_price: data.data.bid_price,
                 timer: data.data.timer, // +10 sec
             };

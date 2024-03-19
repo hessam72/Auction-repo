@@ -6,6 +6,7 @@ import AuctionList from "../pages/public/auction/auctionList.vue";
 import all_auctions_test from "../pages/public/auction/all.vue";
 import help from "../pages/public/help/index.vue";
 import AuctionIndex from "../pages/public/auction/AuctionIndex.vue";
+import AuctionIndex_test from "../pages/public/auction/index.vue";
 import winners from "../pages/public/winners/index.vue";
 import UserIndex from "../pages/user/index.vue";
 import bookmarks from "../pages/user/bookmarks.vue";
@@ -62,6 +63,12 @@ const router = createRouter({
             path: "/vue/v1/auction/:id",
             name: "auction-index",
             component: AuctionIndex,
+            // meta: { isGuest: true },
+        }, 
+        {
+            path: "/vue/v1/auction_test/:id",
+            name: "auction-index_test",
+            component: AuctionIndex_test,
             // meta: { isGuest: true },
         },
         {

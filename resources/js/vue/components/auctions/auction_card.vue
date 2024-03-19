@@ -25,8 +25,8 @@
             </div>
             <div class="content flex flex-col gap-2.5 py-5 px-7">
                 <div v-if="status === 100" class="header flex flex-col gap-1">
-                    <p class="live-price">${{ live_price }}</p>
-                    <p class="current-winner">{{ current_winner_username }}</p>
+                    <p class="mycolor live-price">${{ live_price }}</p>
+                    <p class="mycolor current-winner">{{ current_winner_username }}</p>
                 </div>
                 <div
                     v-else-if="status === 1"
@@ -35,6 +35,7 @@
                     <p class="starting_time">{{ start_time }}</p>
                     <p class="current-winner">Bid during last 9 seconds.</p>
                 </div>
+                <!-- if auction is live then using timer  -->
                 <div v-if="status === 100" class="auction-timer">
                     <vue-countdown
                         :time="convertDateToMilliSeconds(timer)"
@@ -49,7 +50,8 @@
                         </div>
                     </vue-countdown>
                 </div>
-                <div v-else-if="status === 1" class="auction-timer">
+                <!-- if its comming soon then using start time for countdown -->
+                <div v-else-if="status === 1" class="auction-timer mycolor">
                     <vue-countdown
                         :time="convertDateToMilliSeconds(start_time)"
                         v-slot="{ hours, minutes, seconds }"
@@ -140,7 +142,7 @@ export default {
             })
                 // .get(this.baseUrl + this.userUrl, body , config)
                 .then((response) => {
-                    console.log(response);
+                 
                     this.$emit("refreshData");
                 })
                 .catch((error) => {
@@ -158,7 +160,11 @@ export default {
             
         },
         current_winner_username: {
-            type: String,
+           
+            default: null,
+        },
+        current_winner_id: {
+           
             default: null,
         },
 
@@ -174,7 +180,7 @@ export default {
         },
         // status 1=>active  // 0=>deactive // 3=>finished // 100=>running //  200=> no new bidders
         status: {
-            type: Number,
+            
             default: 1,
         },
         no_new_bidders: {
@@ -210,7 +216,9 @@ export default {
         );
     }
 }
-
+.mycolor {
+  animation: mymove 1s;
+}
 .bookmark-container {
     position: relative;
     font-size: 2.7rem;

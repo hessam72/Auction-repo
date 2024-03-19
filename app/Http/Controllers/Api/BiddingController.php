@@ -36,7 +36,8 @@ class BiddingController extends Controller
             Auction::where('id', $data->auction_id)
                 ->update([
                     'current_price' => $new_price,
-                    'current_winner_id' => 2,
+                    // 'current_winner_id' => $data->user_id,
+                    'current_winner_id' => $data->user_id,
                     'timer' => Carbon::now()->addSeconds(10)
                 ]);
 
@@ -47,10 +48,10 @@ class BiddingController extends Controller
                 "bid_price" => $new_price
             ]);
 
-            User::where('id', 2)
-                ->update([
-                    'bid_amount' => DB::raw('bid_amount-1'),
-                ]);
+            $user=User::find($data->user_id);
+            $user->bid_amount = $user->bid_amount-1;
+            $user->save();
+              
 
             // fethcing next bid buddy in quee if any
             $nex_queue = BiddingQueue::where('status', 1)->where('auction_id', $data->auction_id)->oldest()->first();
@@ -64,7 +65,7 @@ class BiddingController extends Controller
                 $hb->save();
             } else {
                 HighestBidder::create([
-                    "user_id" => 2,
+                    "user_id" => $data->user_id,
                     "time_spent" => $add_time,
                 ]);
             }
@@ -73,7 +74,8 @@ class BiddingController extends Controller
             $data = array(
                 "id" => $data->auction_id,
                 "bid_price" => $new_price,
-                "current_winner_id" => 2,
+                "current_winner_id" => $data->user_id,
+                "current_winner_username" => $user->username,
                 "bidding_queues" => $nex_queue,
                 "timer" => Carbon::now()->addSeconds(10)
             );

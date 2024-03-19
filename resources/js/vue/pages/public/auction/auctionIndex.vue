@@ -1,6 +1,6 @@
 <template>
     <single-nav></single-nav>
-    
+
     <bread-crumps v-bind:history="history" :current="current"></bread-crumps>
     <div class="index-container flex">
         <div class="main-section">
@@ -61,7 +61,12 @@
                     <div class="kernel">
                         <div class="k-header flex justify-between items-center">
                             <h2>Current Bid</h2>
-                            <h2 class="price">${{ auction.current_price }}</h2>
+                            <!-- <h2 class="price">${{ auction.current_price }}</h2> -->
+                            <h2 class="price">
+                                ${{
+                                    findAuctionInStore(auction.id).current_price
+                                }}
+                            </h2>
                         </div>
                         <div class="current-winner-section">
                             <div class="size">
@@ -77,11 +82,17 @@
                                     </div>
                                 </div>
                                 <div class="winner-info">
-                                    <h3>{{ current_winner.username }}</h3>
+                                    <!-- <h3>{{ current_winner.username }}</h3> -->
+                                    <h3>
+                                        {{
+                                            findAuctionInStore(auction.id)
+                                                .current_winner_username
+                                        }}
+                                    </h3>
                                     <h4>Current Heighest bidder</h4>
                                     <h4>
                                         <ion-icon name="pin"></ion-icon>
-                                        {{ current_winner.city.name }}
+                                        <!-- {{ current_winner.city.name }} -->
                                     </h4>
                                 </div>
                             </div>
@@ -166,7 +177,7 @@
                             <h3>Time Left</h3>
                             <div class="auction-timer">
                                 <vue-countdown
-                                    :time="3 * 60 * 60 * 1000"
+                                    :time="findAuctionInStore(auction.id).timer"
                                     v-slot="{ hours, minutes, seconds }"
                                 >
                                     <div class="count-down">
@@ -176,13 +187,21 @@
                                         <div class="seperator">:</div>
                                         <div class="number">{{ seconds }}</div>
                                     </div>
+                                    <!-- to sent backend for calculating heighest bidder time -->
+                                    <!-- Timer: {{ remaining_seccounds =seconds +1}} how to do that with vue-countdown? -->
                                 </vue-countdown>
                             </div>
                         </div>
                         <div
                             class="btn-container flex justify-between items-center"
                         >
-                            <button class="bid-now">Bid Now</button>
+                            <button
+                                v-if="!disable_bidding"
+                                @click="submitBid()"
+                                class="bid-now"
+                            >
+                                Bid Now
+                            </button>
                             <button class="launch-buddy">
                                 Lunch Bid Buddy
                             </button>
@@ -210,10 +229,18 @@ import breadCrumps from "../../../components/global/breadCrumps.vue";
 import { init_elastic_slider } from "@/modules/utilities/elastic_slider.js";
 import fixedButtons from "../../../components/utilities/fixedButtons.vue";
 import { check_bookmark_status } from "@/modules/utilities/auctionUtils.js";
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import { QuillEditor } from "@vueup/vue-quill";
 import "@vueup/vue-quill/dist/vue-quill.snow.css";
+import { useToast } from "vue-toastification";
+
 export default {
+    setup() {
+        // Get toast interface
+        const toast = useToast();
+
+        return { toast };
+    },
     data() {
         return {
             history: [
@@ -231,7 +258,6 @@ export default {
             fetchUrl: "auctions/index",
             auction: null,
             product: null,
-
             current_winner: null,
             side_auctions: [],
             participaints: [],
@@ -246,10 +272,27 @@ export default {
                     { insert: "Grey", attributes: { color: "#cccccc" } },
                 ],
             },
+            message: "",
+            seconds: 0,
+            remaining_seccounds: 0,
+            bidBodyCount: 0,
+
+            disable_bidding: false,
+            //   localUrl: "auctions/",
+            bidUrl: "auction/bidding/create",
+            CreateBuddyUrl: "auction/bidding/storeBidBuddy",
+            submitbBidFromBuddyUrl: "auction/bidding/storeBidBuddyBid",
         };
     },
     computed: {
-        ...mapGetters(["baseUrl", "user", "UserAuthToken"]),
+        ...mapGetters([
+            "baseUrl",
+            "user",
+            "UserAuthToken",
+            "findBiddingQueue",
+            "storedAuctions",
+            "findAuction",
+        ]),
     },
     components: {
         fixedButtons,
@@ -263,6 +306,16 @@ export default {
     },
     methods: {
         check_bookmark_status,
+        ...mapActions([
+            "setSingleAuction",
+            "setSingleBiddingQueue",
+            "addAuction",
+            "addBiddingQueue",
+        ]),
+        findAuctionInStore(id) {
+            return this.findAuction(id);
+        },
+
         generateRichText(data) {
             var d = JSON.parse(data);
 
@@ -302,22 +355,33 @@ export default {
             var body = {
                 id: this.$route.params.id,
             };
+
             axios({
                 method: "post",
                 url: url,
                 data: body,
             })
                 .then((response) => {
-                    console.log(response.data);
-
                     this.auction = response.data.auction;
                     this.product = this.auction.product;
+
                     this.generateRichText(this.product.description);
                     this.current_winner = this.auction.current_winner;
                     this.side_auctions = response.data.side_auctions;
                     this.participaints = response.data.participaints;
                     this.winners = response.data.winners;
-                    // this.comments = response.data.comments;
+
+                    var store_data = {
+                        id: this.auction.id,
+                        current_winner_id: this.auction.current_winner_id,
+                        current_winner_username:
+                            this.auction.current_winner.username,
+                        current_price: this.auction.current_price,
+                        timer: this.auction.timer,
+                        status: this.auction.status,
+                    };
+                    this.addBiddingQueue(this.auction.bidding_queues);
+                    this.addAuction(store_data);
                 })
                 .catch((error) => {
                     console.log("error");
@@ -325,6 +389,89 @@ export default {
                 })
                 .finally(() => {
                     this.is_loading = false;
+                });
+        },
+        endAuction() {
+            let bidding_queue = this.findBiddingQueue(this.auction.id);
+
+            // check to see if there is bid buddy
+
+            if (bidding_queue != null) {
+                console.log("running bid");
+                this.runBidBudies(bidding_queue);
+            } else {
+                alert("we have a winner");
+            }
+        },
+        runBidBudies(bidding_queue) {
+            if (!bidding_queue)
+                bidding_queue = this.findBiddingQueue(this.auction.id);
+            if (bidding_queue.is_empthy) {
+                alert("your bot is done");
+                return;
+            }
+
+            axios
+                .post(this.baseUrl + this.submitbBidFromBuddyUrl, {
+                    bid_buddy_id: bidding_queue.bid_buddy_id,
+                    auction_id: bidding_queue.auction_id,
+                    bidding_queue_id: bidding_queue.id,
+                })
+                .then((response) => {
+                    console.log(response.data);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                .finally(function () {
+                    // always executed
+                });
+        },
+        submitBid() {
+            // sending user bid
+            // validate so only auth users can submit bids
+            if (this.user.id === undefined || this.user.id === null) {
+                this.toast.error("You must be loged in to Bid");
+                return;
+            }
+            const body = {
+                auction_id: this.auction.id,
+                remaining_time: this.remaining_seccounds,
+                user_id: this.user.id,
+            };
+            console.log("0000000");
+            console.log(body);
+
+            axios
+                .post(this.baseUrl + this.bidUrl, body, {
+                    Accept: "application/json",
+                })
+                .then((response) => {
+                    console.log(response.data);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                .finally(() => {
+                    // always executed
+                    this.is_loading = false;
+                });
+        },
+        submitBiBuddy() {
+            axios
+                .post(this.baseUrl + this.CreateBuddyUrl, {
+                    count: this.bidBodyCount,
+                    user_id: this.user.id,
+                    auction_id: this.auction.id,
+                })
+                .then((response) => {
+                    console.log(response.data);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                .finally(function () {
+                    // always executed
                 });
         },
         toggleBookmark() {
@@ -362,6 +509,10 @@ export default {
         this.fetchData();
     },
     watch: {
+        // sec is from old component
+        seconds(val) {
+            console.log("new seccound: " + val);
+        },
         $route(to, from) {
             // check to see if rout is correct
             if (to.name != "auction-index") return;

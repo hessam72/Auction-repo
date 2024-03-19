@@ -27,7 +27,9 @@ class AuctionController extends Controller
 
     public function auction_index(Request $request)
     {
-        $auction = new AuctionResource(Auction::find($request->id)->first());
+       
+        $auction = new AuctionResource(Auction::find($request->id));
+  
         $side_auctions = AuctionResource::collection(Auction::where('start_time', '<', Carbon::now())->take(3)->get());
 
         $participaints = BiddingHistory::where('auction_id', $request->id)->with('user.city')->orderBy('created_at', 'desc')->get();

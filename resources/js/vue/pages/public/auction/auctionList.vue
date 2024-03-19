@@ -3,8 +3,7 @@
     <hero-section :special_offer></hero-section>
   <!-- v-if="auctions.length > 0" -->
     <main-section
-      
-        :auctions="JSON.parse(JSON.stringify(this.auctions))"
+        :auctions="auctions"
         :is_loading_more="inline_loading"
         @loadMore="fetchAuctions"
         @fetchData="loadMore"
@@ -45,7 +44,22 @@ export default {
             "setSingleAuction",
             "setBiddingQueues",
             "setSingleBiddingQueue",
-        ]),
+        ]), 
+        connect() {
+            let vm = this;
+            window.Echo.channel("my-channel")
+                .listen(".my-event", (e) => {
+                    vm.upadteAnAuctionState(e);
+                    console.log('my-event running*******from new section**********')
+                    console.log(e)
+                })
+                .listen(".test-event", (e) => {
+                    return;
+                });
+        },
+        disconnect() {
+            window.Echo.leave("my-channel");
+        },
         loadMore() {
             this.inline_loading = true;
             this.skip = this.auctions.length;
@@ -54,7 +68,7 @@ export default {
             // }, 300);
             this.fetchAuctions(1);
         },
-
+       
         fetchAuctions(loading_more = 0) {
             
             if (!loading_more) this.is_loading = true;
@@ -98,7 +112,7 @@ export default {
                 .get(url)
                 .then((response) => {
                     this.special_offer = response.data.data;
-                    console.log(this.special_offer);
+                  
                 })
                 .catch((error) => {
                     throw error;
@@ -115,9 +129,11 @@ export default {
             let data = [];
             let queues = [];
             for (let i = 0; i < this.auctions.length; i++) {
+             
                 data.push({
                     id: this.auctions[i].id,
                     current_winner_id: this.auctions[i].current_winner_id,
+                    current_winner_username: this.auctions[i].current_winner.username,
                     current_price: this.auctions[i].current_price,
                     timer: this.auctions[i].timer,
                     status: this.auctions[i].status,
@@ -127,7 +143,22 @@ export default {
             this.setAuctions(data);
             this.setBiddingQueues(queues);
         },
+        upadteAnAuctionState(item) {
+            // add 10 seccound to now
+            var t = new Date();
+            t = t.setSeconds(t.getSeconds() + 10);
+            item.data.timer = t;
 
+            this.setSingleAuction(item);
+            var next_queue = item.data.bidding_queues;
+            if (item.data.bidding_queues === null) {
+                next_queue = {
+                    auction_id: item.data.id,
+                    is_empthy: true,
+                };
+            }
+            this.setSingleBiddingQueue(next_queue);
+        },
         searchAuctions(val) {
             const body = {
                 search: val,
@@ -163,7 +194,7 @@ export default {
             })
                 // .get(this.baseUrl + this.userUrl, body , config)
                 .then((response) => {
-                    console.log(response)
+                   
                     this.auctions = response.data.data;
                 })
                 .catch((error) => {
@@ -178,7 +209,12 @@ export default {
         this.fetchAuctions();
         this.fetchSpecialOffer();
     },
+    beforeDestroy() {
+        this.disconnect();
+    },
     mounted() {
+        this.connect();//connect to Pusher
+
         // receiving global emit
         this.emitter.on("search-auctions", (value) => {
             this.searchAuctions(value);
