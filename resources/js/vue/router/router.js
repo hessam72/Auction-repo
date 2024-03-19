@@ -3,6 +3,7 @@ import store from "../store/index.js";
 
 import homePage from "../pages/public/homePage/index.vue";
 import AuctionList from "../pages/public/auction/auctionList.vue";
+import all_auctions_test from "../pages/public/auction/all.vue";
 import help from "../pages/public/help/index.vue";
 import AuctionIndex from "../pages/public/auction/AuctionIndex.vue";
 import winners from "../pages/public/winners/index.vue";
@@ -49,6 +50,12 @@ const router = createRouter({
             path: "/vue/v1/auctions",
             name: "auctions",
             component: AuctionList,
+            // meta: { isGuest: true },
+        }, 
+        {
+            path: "/vue/v1/auctions_test",
+            name: "all_auctions_test",
+            component: all_auctions_test,
             // meta: { isGuest: true },
         },
         {

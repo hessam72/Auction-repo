@@ -38,10 +38,9 @@ use Illuminate\Support\Facades\Route;
 */
 // Auth::routes(['broadcasting'=>false]);
 
-// Route::get('/dashboard', function () {
-//     return view('admin.pages.dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
+Route::middleware('auth')->get('/dashboard', function () {
+    return view('admin.dashboard');
+}); 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
 
@@ -50,6 +49,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     // })->name('dashboard');
 
     Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+    }); 
+    Route::get('/admin', function () {
         return view('admin.dashboard');
     });
     Route::get('/', function () {

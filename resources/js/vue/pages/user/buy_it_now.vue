@@ -254,7 +254,6 @@ export default {
             offers: [],
             mergedOffers: [],
             finalOffers: [],
-            loaded: false,
             create_modal: false,
             address: null,
             selected_state: null,
@@ -331,7 +330,7 @@ export default {
                     this.is_loading = false;
                 });
         },
-        openCreateTicket(offer_id) {
+        openShippingModal(offer_id) {
             this.current_offer_id = offer_id;
             this.create_modal = true;
         },
@@ -498,6 +497,7 @@ export default {
         },
         clearData() {
             this.current_offer = null;
+            this.current_offer_id = null;
             this.current_payment = null;
             this.selected_city = null;
             this.selected_state = null;
@@ -619,7 +619,7 @@ export default {
         $("#buy_now_table").on("click", "button", function () {
             var id = $(this).attr("id");
 
-            self.openCreateTicket(id);
+            self.openShippingModal(id);
         });
     },
 };

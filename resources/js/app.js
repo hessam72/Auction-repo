@@ -28,9 +28,6 @@ const options = {
 };
 
 
-
-
-
 var $ = jQuery;
 window.$ = $;
 const emitter = mitt();

@@ -104,4 +104,53 @@ class TransactionController extends Controller
             'message' => $msg,
         ], 201);
     }
+    
+    
+    public function saveFailPay(Request $request)
+    {
+        $request->validate([
+            "order_id" => "required",
+
+        ]);
+        $transaction = Transaction::where('order_id', $request->order_id)->first();
+        $msg = "";
+        if ($transaction->status != 1) {
+            return Response::json([
+                'message' => "The Page Expired",
+            ], 400);
+        }
+        try {
+            DB::beginTransaction();
+
+            if ($transaction->item_type === 1) {
+                // bid package purchase
+
+                $transaction->status = 400;
+                $transaction->save();
+               
+            } elseif ($transaction->item_type === 2) {
+                // product purchase
+                
+                $user_shipped_product = UserShipedProduct::where('id' ,$transaction->item_id)->first();
+                
+               
+                $user_shipped_product->status = 1; //rolling back to ready for payment
+                $user_shipped_product->save();
+
+                $transaction->status = 400;
+                $transaction->save();
+            }
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            return Response::json([
+                'message' => $e,
+            ], 500);
+        }
+
+
+        return Response::json([
+            'message' => $msg,
+        ], 201);
+    }
 }

@@ -7,6 +7,7 @@ use App\Http\Resources\UserShipedProductResource;
 use App\Models\BuyItNowOffer;
 use App\Models\Transaction;
 use App\Models\UserShipedProduct;
+use App\Models\Winner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -66,6 +67,14 @@ class UserShipedProductController extends Controller
                 ]);
             }
 
+            // change win status
+            if($request->has('win_id')){
+                // request comes from buy it now offers not buying product nor paying a win
+                Winner::where('id' , $request->win_id)->update([
+                    'status' =>2 // waiting for payment
+                ]);
+            }
+
 
             DB::commit();
         } catch (\Exception $e) {
@@ -79,6 +88,23 @@ class UserShipedProductController extends Controller
 
         return Response::json([
             'message' => "shipping data stored successfully",
+        ], 201);
+    }
+    public function change_transaction(Request $request){
+        // change transaction id for new payment 
+
+        $request->validate([
+            "id" => "required",
+          
+            "transaction_id" => "required",
+        ]);
+
+
+        UserShipedProduct::where('id' , $request->id)->update([
+            'transaction_id' => $request->transaction_id
+        ]);
+        return Response::json([
+            'message' => "new payment added to shipping product successfully",
         ], 201);
     }
 }
