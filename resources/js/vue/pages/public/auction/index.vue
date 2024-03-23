@@ -199,7 +199,7 @@ export default {
         });
     },
     endAuction() {
-      console.log("Aution is about to be over");
+      console.log("Aution is about to be over test");
       let bidding_queue = this.findBiddingQueue(this.auction.id);
       console.log(bidding_queue);
 
@@ -209,7 +209,7 @@ export default {
         console.log("running bid");
         this.runBidBudies(bidding_queue);
       }else{
-        alert('we have a winner')
+        // alert('we have a winner')
       }
     },
     runBidBudies(bidding_queue) {

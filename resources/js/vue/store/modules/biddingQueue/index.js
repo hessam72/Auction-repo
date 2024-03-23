@@ -17,7 +17,6 @@ export default {
         setBiddingQueues(state, data) {
             state.BiddingQueues = data;
         },
-
         setSingleBiddingQueue(state, data) {
             try {
                 var index = state.BiddingQueues.findIndex(
@@ -29,8 +28,7 @@ export default {
         },
         addBiddingQueue(state, data) {
             //replace old bidding queue with new one
-            console.log("------------------------------------");
-            console.log(state.BiddingQueues);
+           
             if (!data) return;
 
             if (state.BiddingQueues.length === 0) {
@@ -67,6 +65,7 @@ export default {
             return state.BiddingQueues;
         },
         findBiddingQueue: (state) => (id) => {
+
             try {
                 return state.BiddingQueues.find((x) => x.auction_id === id);
             } catch (error) {

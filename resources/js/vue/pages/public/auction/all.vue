@@ -41,8 +41,7 @@ export default {
             window.Echo.channel("my-channel")
                 .listen(".my-event", (e) => {
                     vm.upadteAnAuctionState(e);
-                    console.log('my-event running*****************')
-                    console.log(e)
+                   
                 })
                 .listen(".test-event", (e) => {
                     return;

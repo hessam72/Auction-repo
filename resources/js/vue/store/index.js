@@ -1,5 +1,7 @@
 import { createStore } from "vuex";
 import createPersistedState from "vuex-persistedstate";
+import createMutationsSharer from "vuex-shared-mutations";
+import createMultiTabState from 'vuex-multi-tab-state';
 
 import authentication from "./modules/auth/index.js";
 import user from "./modules/user/index.js";
@@ -18,8 +20,8 @@ const store = createStore({
             paths: ["authentication", "user", "auctions", "biddingQueues"],
             storage: window.sessionStorage,
         }),
-        // createMutationsSharer({ predicate: ["setSingleAuction"] }),
-        // createMultiTabState(),
+        createMutationsSharer({ predicate: ["setSingleAuction"] }),
+        createMultiTabState(),
     ],
     state() {
         return {

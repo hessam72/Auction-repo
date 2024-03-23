@@ -43,6 +43,8 @@
         "vue3-flip-countdown": "^0.1.6",
         "vueperslides": "^3.5.1",
         "vuex": "^4.1.0",
-        "vuex-persistedstate": "^4.1.0"
+        "vuex-multi-tab-state": "^1.0.17",
+        "vuex-persistedstate": "^4.1.0",
+        "vuex-shared-mutations": "^1.0.2"
     }
 }

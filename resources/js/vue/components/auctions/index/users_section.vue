@@ -33,7 +33,8 @@
               <div class="size">
                 <div class="pic-container">
                   <div class="border-wrap">
-                    <img
+                   
+                    <img 
                       class="user_img"
                       :src="'/storage/'+item.user.profile_pic"
                     />

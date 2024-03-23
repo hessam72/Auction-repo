@@ -26,6 +26,8 @@ class BiddingController extends Controller
         // return $request->auction_id;
         //thease proces should be a transition
         //save in bidding histiory
+         // TODO: change back to use auth user id
+         $user_id=2;
         try {
             DB::beginTransaction();
             $auction = Auction::find($data->auction_id);
@@ -37,7 +39,7 @@ class BiddingController extends Controller
                 ->update([
                     'current_price' => $new_price,
                     // 'current_winner_id' => $data->user_id,
-                    'current_winner_id' => $data->user_id,
+                    'current_winner_id' => $user_id,
                     'timer' => Carbon::now()->addSeconds(10)
                 ]);
 
@@ -48,7 +50,10 @@ class BiddingController extends Controller
                 "bid_price" => $new_price
             ]);
 
-            $user=User::find($data->user_id);
+           
+           
+            $user=User::find($user_id);
+            // $user=User::find($data->user_id);
             $user->bid_amount = $user->bid_amount-1;
             $user->save();
               
@@ -65,7 +70,7 @@ class BiddingController extends Controller
                 $hb->save();
             } else {
                 HighestBidder::create([
-                    "user_id" => $data->user_id,
+                    "user_id" => $user_id,
                     "time_spent" => $add_time,
                 ]);
             }
@@ -74,7 +79,7 @@ class BiddingController extends Controller
             $data = array(
                 "id" => $data->auction_id,
                 "bid_price" => $new_price,
-                "current_winner_id" => $data->user_id,
+                "current_winner_id" => $user_id,
                 "current_winner_username" => $user->username,
                 "bidding_queues" => $nex_queue,
                 "timer" => Carbon::now()->addSeconds(10)

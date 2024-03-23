@@ -3,20 +3,22 @@
         <search-section></search-section>
         <div class="main-container">
             <!-- <div v-show="show_backdrop" class="backdrop">.</div> -->
-           timer:  {{findAuctionInStore(213).timer}}
-                
-             user:    {{findAuctionInStore(213).current_winner_username}}
-            live price:     {{findAuctionInStore(213).current_price}}
+
             <auction-card
                 @refreshData="$emit('fetchData')"
-                v-for="(item, index) in this.auctions"
+                
+                v-for="(item, index) in test_auctions"
                 :key="index"
                 :auction_id="item.id"
-                :start_time="item.start_time" 
+                :start_time="item.start_time"
                 :timer="findAuctionInStore(item.id).timer"
                 :buy_now_price="item.product.price"
-                :current_winner_id="findAuctionInStore(item.id).current_winner_id"
-                :current_winner_username="findAuctionInStore(item.id).current_winner_username"
+                :current_winner_id="
+                    findAuctionInStore(item.id).current_winner_id
+                "
+                :current_winner_username="
+                    findAuctionInStore(item.id).current_winner_username
+                "
                 :live_price="findAuctionInStore(item.id).current_price"
                 :title="item.product.title"
                 :image="item.product.galleries[0]"
@@ -54,8 +56,11 @@ import auctions from "../../store/modules/auctions";
 import { mapGetters } from "vuex";
 export default {
     props: {
-        auctions: {},
+        auctions: {
+            type: Object,
+        },
         categories: {},
+        test_auctions: {},
         is_loading_more: {
             default: false,
         },
@@ -64,6 +69,7 @@ export default {
         return {
             show_more: false,
             show_more2: false,
+            auctions_test: [],
         };
     },
     computed: {
@@ -72,9 +78,9 @@ export default {
     methods: {
         check_bookmark_status,
         findAuctionInStore(id) {
-       
             return this.findAuction(id);
         },
+
         loadData($state) {
             //calling the api
 
@@ -93,9 +99,11 @@ export default {
         AuctionCard,
     },
     mounted() {
-        //        console.log('this.auctions')
         //        console.log(JSON.parse(JSON.stringify(
         // this.auctions)))
+    },
+    created() {
+      
     },
 };
 </script>

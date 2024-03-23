@@ -65,3 +65,55 @@
    ErrorException 
 
  
+   ERROR  Command "app:my-test-command" is not defined. Did you mean one of these?  
+
+  ⇂ app:check-daily-challenges-command  
+  ⇂ app:check-monthly-challenges-command  
+  ⇂ app:check-progress-command  
+  ⇂ app:check-weekly-challenges-command  
+  ⇂ app:handling-bid-budies  
+
+
+   ERROR  Command "app:my-test-command" is not defined. Did you mean one of these?  
+
+  ⇂ app:check-daily-challenges-command  
+  ⇂ app:check-monthly-challenges-command  
+  ⇂ app:check-progress-command  
+  ⇂ app:check-weekly-challenges-command  
+  ⇂ app:handling-bid-budies  
+
+
+   ERROR  Command "app:my-test-command" is not defined. Did you mean one of these?  
+
+  ⇂ app:check-daily-challenges-command  
+  ⇂ app:check-monthly-challenges-command  
+  ⇂ app:check-progress-command  
+  ⇂ app:check-weekly-challenges-command  
+  ⇂ app:handling-bid-budies  
+
+
+   Illuminate\Broadcasting\BroadcastException 
+
+  Pusher error: cURL error 28: Connection timed out after 30006 milliseconds (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for https://api-ap1.pusher.com/apps/1749038/events?auth_key=34df9b19f2db1570947b&auth_timestamp=1711202781&auth_version=1.0&body_md5=5b464a61403a42e1a70d577a9a4aac32&auth_signature=9167aedda50eaeb708f7f66393eef38acc4f81c2efcfb4513fcc1eac064f0c6a.
+
+  at vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php:164
+    160▕             $channels->chunk(100)->each(function ($channels) use ($event, $payload, $parameters) {
+    161▕                 $this->pusher->trigger($channels->toArray(), $event, $payload, $parameters);
+    162▕             });
+    163▕         } catch (ApiErrorException $e) {
+  ➜ 164▕             throw new BroadcastException(
+    165▕                 sprintf('Pusher error: %s.', $e->getMessage())
+    166▕             );
+    167▕         }
+    168▕     }
+
+  i   Here are some links that might help solve this problem:  
+      https://laravel.com/docs/10.x/authentication
+
+      [2m+24 vendor frames [22m
+  25  app/Console/Commands/ManagingBidBudiesCommand.php:111
+      [2m+12 vendor frames [22m
+
+  38  artisan:35
+      Illuminate\Foundation\Console\Kernel::handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+

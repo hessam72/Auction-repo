@@ -98,9 +98,13 @@
                 </div>
             </div>
         </div>
-        <div class="btn-container">
+        <div v-if="comments.length != 0" class="btn-container">
             <button @click="fetchData(1)" class="load-more">Load More</button>
         </div>
+        <div v-else class="btn-container">
+<h3>No Reviews yet</h3>
+        </div>
+        
     </div>
     <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com -->
     <!-- <nav class="pagination" aria-label="Page navigation example">
@@ -147,6 +151,7 @@
     </nav> -->
 </template>
 <script>
+import { comment } from "postcss";
 import { mapGetters } from "vuex";
 
 export default {

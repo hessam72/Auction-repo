@@ -38,16 +38,18 @@ export default {
         },
 
         setSingleAuction(state, data) {
+            
             var index = state.auctions.findIndex(
-                (obj) => obj.id === data.data.id
+                (obj) => obj.id === data.id
             );
+
             console.log(state.auctions[index]);
             const new_item = {
-                id: data.data.id,
-                current_winner_id: data.data.current_winner_id,
-                current_winner_username: data.data.current_winner_username,
-                current_price: data.data.bid_price,
-                timer: data.data.timer, // +10 sec
+                id: data.id,
+                current_winner_id: data.current_winner_id,
+                current_winner_username: data.current_winner_username,
+                current_price: data.bid_price,
+                timer: data.timer, // +10 sec
             };
             state.auctions[index] = new_item;
         },

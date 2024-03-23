@@ -25,8 +25,12 @@
             </div>
             <div class="content flex flex-col gap-2.5 py-5 px-7">
                 <div v-if="status === 100" class="header flex flex-col gap-1">
-                    <p class="mycolor live-price">${{ live_price }}</p>
-                    <p class="mycolor current-winner">{{ current_winner_username }}</p>
+                    <p :key="live_price" class="mycolor live-price">
+                        ${{ live_price }}
+                    </p>
+                    <p :key="live_price" class="mycolor current-winner">
+                        {{ current_winner_username }}
+                    </p>
                 </div>
                 <div
                     v-else-if="status === 1"
@@ -36,8 +40,9 @@
                     <p class="current-winner">Bid during last 9 seconds.</p>
                 </div>
                 <!-- if auction is live then using timer  -->
-                <div v-if="status === 100" class="auction-timer">
+                <div v-if="status === 100" class="auction-timer ">
                     <vue-countdown
+                        @end="live_countDown_ended(auction_id)"
                         :time="convertDateToMilliSeconds(timer)"
                         v-slot="{ hours, minutes, seconds }"
                     >
@@ -51,7 +56,7 @@
                     </vue-countdown>
                 </div>
                 <!-- if its comming soon then using start time for countdown -->
-                <div v-else-if="status === 1" class="auction-timer mycolor">
+                <div v-else-if="status === 1" class="auction-timer">
                     <vue-countdown
                         :time="convertDateToMilliSeconds(start_time)"
                         v-slot="{ hours, minutes, seconds }"
@@ -142,7 +147,6 @@ export default {
             })
                 // .get(this.baseUrl + this.userUrl, body , config)
                 .then((response) => {
-                 
                     this.$emit("refreshData");
                 })
                 .catch((error) => {
@@ -151,20 +155,23 @@ export default {
                 })
                 .finally(() => {});
         },
+        live_countDown_ended(id) {
+            // TODO - now sending end auction emitt from two sources from index and card - commenting from card fornow
+            return;
+            console.log("emitting from auction card");
+
+            this.emitter.emit("live_timer_end", id);
+        },
     },
     props: {
         timer: {},
         start_time: {},
         buy_now_price: Number,
-        auction_id: {
-            
-        },
+        auction_id: {},
         current_winner_username: {
-           
             default: null,
         },
         current_winner_id: {
-           
             default: null,
         },
 
@@ -180,7 +187,6 @@ export default {
         },
         // status 1=>active  // 0=>deactive // 3=>finished // 100=>running //  200=> no new bidders
         status: {
-            
             default: 1,
         },
         no_new_bidders: {
@@ -217,8 +223,9 @@ export default {
     }
 }
 .mycolor {
-  animation: mymove 1s;
+    animation: flash_change 1s;
 }
+
 .bookmark-container {
     position: relative;
     font-size: 2.7rem;
@@ -329,6 +336,7 @@ export default {
 
 .header {
     .live-price {
+        border-radius: 20px;
         text-align: center;
         font-size: 2rem;
         color: rgb(93, 208, 28);
@@ -336,6 +344,7 @@ export default {
     }
 
     .starting_time {
+        border-radius: 20px;
         text-align: center;
         font-size: 1.6rem;
         color: #777;

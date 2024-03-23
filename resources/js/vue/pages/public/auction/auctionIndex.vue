@@ -1,8 +1,10 @@
 <template>
+    <div>
     <single-nav></single-nav>
 
     <bread-crumps v-bind:history="history" :current="current"></bread-crumps>
     <div class="index-container flex">
+      
         <div class="main-section">
             <div class="first-section flex">
                 <div class="gallery-container">
@@ -62,7 +64,7 @@
                         <div class="k-header flex justify-between items-center">
                             <h2>Current Bid</h2>
                             <!-- <h2 class="price">${{ auction.current_price }}</h2> -->
-                            <h2 class="price">
+                            <h2 :key="findAuctionInStore(auction.id).current_price" class="price mycolor">
                                 ${{
                                     findAuctionInStore(auction.id).current_price
                                 }}
@@ -83,7 +85,8 @@
                                 </div>
                                 <div class="winner-info">
                                     <!-- <h3>{{ current_winner.username }}</h3> -->
-                                    <h3>
+                                    <h3 :key="findAuctionInStore(auction.id)
+                                                .current_winner_username" class="mycolor">
                                         {{
                                             findAuctionInStore(auction.id)
                                                 .current_winner_username
@@ -101,8 +104,9 @@
                             <div class="flex flex-col">
                                 <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                                     <div
-                                        class="inline-block min-w-full py-2 sm:px-6 lg:px-8"
+                                        class="relative inline-block min-w-full py-2 sm:px-6 lg:px-8"
                                     >
+                                        <div class="tabel-mask">.</div>
                                         <div
                                             class="tabel-container overflow-hidden"
                                         >
@@ -140,7 +144,7 @@
                                                     <tr
                                                         v-for="(
                                                             item, index
-                                                        ) in participaints"
+                                                        ) in all_participaints"
                                                         class="tabel-row bg-neutral-100 dark:border-neutral-500"
                                                     >
                                                         <td
@@ -177,7 +181,8 @@
                             <h3>Time Left</h3>
                             <div class="auction-timer">
                                 <vue-countdown
-                                    :time="findAuctionInStore(auction.id).timer"
+                                @end="endAuction(auction.id)"
+                                    :time="convertDateToMilliSeconds(findAuctionInStore(auction.id).timer)"
                                     v-slot="{ hours, minutes, seconds }"
                                 >
                                     <div class="count-down">
@@ -218,6 +223,7 @@
     </div>
     <fixed-buttons></fixed-buttons>
     <loading :is_loading="is_loading"></loading>
+    </div>
 </template>
 <script>
 import singleNav from "../../../components/global/singleNav.vue";
@@ -233,7 +239,9 @@ import { mapGetters, mapActions } from "vuex";
 import { QuillEditor } from "@vueup/vue-quill";
 import "@vueup/vue-quill/dist/vue-quill.snow.css";
 import { useToast } from "vue-toastification";
-
+import {
+    convertDateToMilliSeconds,
+} from "@/modules/utilities.js";
 export default {
     setup() {
         // Get toast interface
@@ -261,6 +269,7 @@ export default {
             current_winner: null,
             side_auctions: [],
             participaints: [],
+            all_participaints: [],
             winners: [],
             // comments: [],
             is_loading: false,
@@ -306,16 +315,41 @@ export default {
     },
     methods: {
         check_bookmark_status,
+        convertDateToMilliSeconds,
+
         ...mapActions([
             "setSingleAuction",
             "setSingleBiddingQueue",
             "addAuction",
             "addBiddingQueue",
         ]),
+        connect() {
+            let vm = this;
+            window.Echo.channel("my-channel")
+                .listen(".my-event", (e) => {
+                    // vm.updateAuction(e.data);
+                    console.log('new auction data');
+                    console.log(e);
+                })
+                .listen(".test-event", (e) => {
+                    return;
+                });
+        },
+        disconnect() {
+            window.Echo.leave("my-channel");
+        },
         findAuctionInStore(id) {
             return this.findAuction(id);
         },
-
+        // updateAuction(data){
+        // //   console.log('incommming update')
+        // //   console.log(data)
+        // //     if(this.auction.id == data.id){
+        // //         // this is currect data
+               
+        // //         console.log(this.storedAuctions)
+        // //     }
+        // },
         generateRichText(data) {
             var d = JSON.parse(data);
 
@@ -369,6 +403,7 @@ export default {
                     this.current_winner = this.auction.current_winner;
                     this.side_auctions = response.data.side_auctions;
                     this.participaints = response.data.participaints;
+                    this.all_participaints = response.data.all_participaints;
                     this.winners = response.data.winners;
 
                     var store_data = {
@@ -391,18 +426,7 @@ export default {
                     this.is_loading = false;
                 });
         },
-        endAuction() {
-            let bidding_queue = this.findBiddingQueue(this.auction.id);
-
-            // check to see if there is bid buddy
-
-            if (bidding_queue != null) {
-                console.log("running bid");
-                this.runBidBudies(bidding_queue);
-            } else {
-                alert("we have a winner");
-            }
-        },
+      
         runBidBudies(bidding_queue) {
             if (!bidding_queue)
                 bidding_queue = this.findBiddingQueue(this.auction.id);
@@ -439,8 +463,6 @@ export default {
                 remaining_time: this.remaining_seccounds,
                 user_id: this.user.id,
             };
-            console.log("0000000");
-            console.log(body);
 
             axios
                 .post(this.baseUrl + this.bidUrl, body, {
@@ -454,7 +476,6 @@ export default {
                 })
                 .finally(() => {
                     // always executed
-                    this.is_loading = false;
                 });
         },
         submitBiBuddy() {
@@ -499,10 +520,67 @@ export default {
                 })
                 .finally(() => {});
         },
+        // edning auction event are now proccessing from both index and list page 
+        // TODO make end auction login in single file for all components
+
+        endAuction(id) {
+            return;
+            let bidding_queue = this.findBiddingQueue(id);
+            console.log(id);
+
+            // check to see if there is bid buddy
+            if (bidding_queue != null) {
+                console.log("running bid");
+                this.runBidBudies(bidding_queue, id);
+            } else {
+                console.log("we have a winner");
+            }
+        },
+        runBidBudies(bidding_queue, auction_id) {
+            
+            if (!bidding_queue)
+                bidding_queue = this.findBiddingQueue(auction_id);
+
+            if (bidding_queue.is_empthy) {
+                alert("your bot is done");
+                return;
+            }
+
+            axios
+                .post(this.baseUrl + this.submitbBidFromBuddyUrl, {
+                    bid_buddy_id: bidding_queue.bid_buddy_id,
+                    auction_id: bidding_queue.auction_id,
+                    bidding_queue_id: bidding_queue.id,
+                })
+                .then((response) => {
+                    console.log(response.data);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                .finally(function () {
+                    // always executed
+                });
+        },
+    //     live_countDown_ended(id){
+    //       console.log('emitting from auction index:' + id)
+    //       this.emitter.emit("live_timer_end", id);
+    //    }
+      
+    },
+    beforeDestroy() {
+        this.disconnect();
     },
     mounted() {
+        // this.connect(); //connect to Pusher
         // Elastic Slider (c) 2014 // Taron Mehrabyan // Ruben Sargsyan
         init_elastic_slider();
+     
+        // listening to event after pusher on auction list recieved new data
+        // this.emitter.on("update-live-auction", (value) => {
+        //     this.updateAuction(value);
+        // });
+       
     },
     created() {
         // alert(this.$route.params.id)
@@ -518,7 +596,7 @@ export default {
             if (to.name != "auction-index") return;
 
             //then
-            this.fetchData();
+            // this.fetchData();
             // react to route changes...
         },
     },
@@ -533,13 +611,26 @@ export default {
 .main-section {
     width: 75%;
 }
-
+.mycolor {
+    animation: flash_change 1s;
+}
 .first-section {
     margin-bottom: 3rem;
     padding-bottom: 3rem;
     border-bottom: 1.5px solid #777;
 }
-
+.tabel-mask {
+    height: 14rem;
+    position: absolute;
+    width: auto;
+    left: 2rem;
+    right: 2rem;
+    background: linear-gradient(
+        180deg,
+        rgba(93, 24, 249, 0.13351278011204482) 39%,
+        rgba(229, 229, 224, 1) 100%
+    );
+}
 .gallery-container {
     width: 50%;
     position: relative;
@@ -672,6 +763,8 @@ export default {
     border-radius: 10px;
     // width: 90%;
     margin: auto;
+    height: 14rem;
+    overflow: hidden;
 }
 
 .tabel-header {
