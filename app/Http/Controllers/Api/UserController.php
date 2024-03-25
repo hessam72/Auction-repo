@@ -30,7 +30,13 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
+        $request->validate([
+            'username' =>  'required',
+            'email' =>  'required|email',
+            'birth_date' =>  'required',
+            'city_id' =>  'required',
 
+        ]);
 
         $user = Auth::user();
         $user->username = $request->username;
@@ -39,18 +45,34 @@ class UserController extends Controller
         $user->bio = $request->bio;
         $user->city_id = $request->city_id;
         $user->save();
-        return 'user updated';
+        return new UserResource($user->load('city'));
+        
     }
     public function setAvatar(Request $request)
     {
 
-        $path = $this->UploadFile($request->file('avatar'), 'images/user_profiles'); //use the method in the trait
-        // $user = User::where('id', Auth::user()->id)->update([
-        //     'profile_pic' => $path
-        // ]);
-        $user = Auth::user();
-        $user->profile_pic = $path;
-        $user->save();
-        return new UserResource($user->load('city'));
+        $request->validate([
+
+            'avatar' => ['required', 'image', 'mimes:jpeg,png,jpg,webp', 'max:5048'],
+
+        ]);
+        try {
+            $path = $this->UploadFile($request->file('avatar'), 'images/user_profiles'); //use the method in the trait
+            // $user = User::where('id', Auth::user()->id)->update([
+            //     'profile_pic' => $path
+            // ]);
+            $user = Auth::user();
+            $user->profile_pic = $path;
+            $user->save();
+
+            return new UserResource($user->load('city'));
+
+        } catch (\Exception $e) {
+           
+            return response()->json([
+                'error' => "failed to upload avatar",
+
+            ], 403);
+        }
     }
 }

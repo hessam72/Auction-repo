@@ -16,15 +16,17 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->everyMinute()->appendOutputTo("scheduler-output.log");
         //auction main thread
-        $schedule->command('app:managing-bid-budies')
-        ->runInBackground()
-        ->everyTwoSeconds()
-        ->withoutOverlapping()
-        ->appendOutputTo("scheduler-output.log");
+        $schedule->command('app:managing-bid-budies-command')
+            ->runInBackground()
+            ->everyTwoSeconds()
+            ->withoutOverlapping()
+            ->appendOutputTo("scheduler-output.log");
+
+        //  is for buddy
 
         // $schedule->command('app:check-monthly-challenges-command')
         // ->runInBackground()
-        // ->everyFiveSeconds()
+        // ->everyTenMinutes()
         // ->appendOutputTo("scheduler-output.log");
         // check for highest bidder level and challenges progress every hour
 

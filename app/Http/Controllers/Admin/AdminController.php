@@ -5,8 +5,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Models\Auction;
+use App\Models\BiddingHistory;
+use App\Models\Product;
+use App\Models\Transaction;
 use App\Models\User;
+use App\Models\Winner;
 use App\Traits\Upload;
+use Carbon\Carbon;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -25,7 +31,125 @@ class AdminController extends Controller
     use Upload;
     public function index()
     {
-        return view('admin.dashboard');
+
+        $last_24hrs = Carbon::now()->subDay();
+        $last_month = Carbon::now()->subMonth();
+        $last_year = Carbon::now()->subYear();
+
+
+        // last_month_income  
+        $last_month_income = Transaction::where('status', 100)->where('created_at', '>', $last_month)->sum('amount');
+
+
+        //past year monthly income and singups
+        $past_year_monthly_income = []; // arrange by month in an array
+        $past_year_monthly_singups = [];
+        $past_year_monthly_auctions = [];
+        $past_year_monthly_products = []; 
+        $past_year_monthly_packages_salses = [];
+        $past_year_monthly_products_salses = [];
+
+
+        for ($i = 1; $i <= 12; $i++) {
+            $past_year_monthly_income[] = Transaction::where('status', 100)->whereMonth('created_at', $i)->sum('amount');
+            $past_year_monthly_packages_salses[] = Transaction::where('status', 100)->where('item_type' , 1)->whereMonth('created_at', $i)->sum('amount');
+            $past_year_monthly_products_salses[] = Transaction::where('status', 100)->where('item_type' , 2)->whereMonth('created_at', $i)->sum('amount');
+
+
+
+
+            $past_year_monthly_singups[] = User::whereMonth('created_at', $i)->count();
+            $past_year_monthly_auctions[] = Auction::whereMonth('created_at', $i)->count();
+            $past_year_monthly_products[] = Product::whereMonth('created_at', $i)->count();
+        }
+       
+        // convert to string to inject to in blade
+        $past_year_monthly_income = (implode(',', $past_year_monthly_income));
+        $past_year_monthly_singups = (implode(',', $past_year_monthly_singups));
+        $past_year_monthly_auctions = (implode(',', $past_year_monthly_auctions));
+        $past_year_monthly_products = (implode(',', $past_year_monthly_products));
+        $past_year_monthly_packages_salses = (implode(',', $past_year_monthly_packages_salses));
+        $past_year_monthly_products_salses = (implode(',', $past_year_monthly_products_salses));
+
+
+
+
+
+
+
+
+
+
+
+
+
+        $packages_total_sales = Transaction::where('item_type', 1)->sum('amount');
+        $products_total_sales = Transaction::where('item_type', 2)->sum('amount');
+
+
+
+        // yearly income 
+        $yearly_income = Transaction::where('status', 100)->where('created_at', '>', $last_year)->sum('amount');
+
+        // total income 
+        $total_income = Transaction::where('status', 100)->sum('amount');
+
+        // new monthly singups 
+        $new_singups = User::where('created_at', '>', $last_month)->count();
+        $total_users = User::count();
+
+
+        //bids placed dayily monthly yearly
+        $daily_bids = BiddingHistory::where('created_at', '>', $last_24hrs)->count();
+        $monthly_bids = BiddingHistory::where('created_at', '>', $last_month)->count();
+        $yearly_bids = BiddingHistory::where('created_at', '>', $last_year)->count();
+
+        //monthly winners + all time winners
+        $monthly_winners = Winner::where('created_at', '>', $last_month)->count();
+        $all_winners = Winner::count();
+
+
+        // new products this month
+        $monthly_products = Product::where('created_at', '>', $last_month)->count();
+
+        //all products
+        $all_products = Product::count();
+
+        // new auctions this month
+        $monthly_auctions = Auction::where('created_at', '>', $last_month)->count();
+        $live_auctions = Auction::where('status', 100)->count();
+        $all_auctions = Auction::count();
+
+
+
+
+
+
+        return view('admin.dashboard', compact(
+            'last_month_income',
+            'yearly_income',
+            'total_income',
+            'new_singups',
+            'daily_bids',
+            'monthly_bids',
+            'yearly_bids',
+            'monthly_winners',
+            'all_winners',
+            'monthly_products',
+            'all_products',
+            'monthly_auctions',
+            'live_auctions',
+            'total_users',
+            'all_auctions',
+            'packages_total_sales',
+            'products_total_sales',
+            'past_year_monthly_auctions',
+            'past_year_monthly_products',
+            'past_year_monthly_income',
+            'past_year_monthly_singups',
+            'past_year_monthly_packages_salses',
+'past_year_monthly_products_salses'
+        ));
     }
 
     public function profile()

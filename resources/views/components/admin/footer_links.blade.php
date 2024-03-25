@@ -366,4 +366,427 @@
         // alert('dsdsdssds')
         // $('#wizard-create-deal-form').submit();
     });
+
+
+
+
+
+
+    // dashboard analitics
+    var monthly_income_string=$('#chart_value_monthly_income').val();
+    var monthly_income = monthly_income_string.split(",").map(Number);
+
+      var monthly_singups_string=$('#chart_value_monthly_singups').val();
+    var monthly_singups = monthly_singups_string.split(",").map(Number);
+
+  var monthly_auctions_string=$('#chart_value_monthly_auctions').val();
+    var monthly_auctions = monthly_auctions_string.split(",").map(Number);
+
+  var monthly_products_string=$('#chart_value_monthly_products').val();
+    var monthly_products = monthly_products_string.split(",").map(Number);
+
+  var monthly_products_sales_string=$('#chart_value_monthly_products_sales').val();
+    var monthly_products_sales = monthly_products_sales_string.split(",").map(Number);
+
+  var monthly_packages_sales_string=$('#chart_value_monthly_packages_sales').val();
+    var monthly_packages_sales = monthly_packages_sales_string.split(",").map(Number);
+
+
+
+
+    let cardColor,
+        headingColor,
+        labelColor,
+        legendColor,
+        borderColor,
+        shadeColor;
+
+    if (isDarkStyle) {
+        cardColor = config.colors_dark.cardColor;
+        headingColor = config.colors_dark.headingColor;
+        labelColor = config.colors_dark.textMuted;
+        legendColor = config.colors_dark.bodyColor;
+        borderColor = config.colors_dark.borderColor;
+        shadeColor = "dark";
+    } else {
+        cardColor = config.colors.cardColor;
+        headingColor = config.colors.headingColor;
+        labelColor = config.colors.textMuted;
+        legendColor = config.colors.bodyColor;
+        borderColor = config.colors.borderColor;
+        shadeColor = "light";
+    }
+
+    Apex.chart = {
+        fontFamily: "inherit",
+        locales: [
+            {
+                name: "fa",
+                options: {
+                    months: [
+                        "ژانویه",
+                        "فوریه",
+                        "مارس",
+                        "آوریل",
+                        "می",
+                        "ژوئن",
+                        "جولای",
+                        "آگوست",
+                        "سپتامبر",
+                        "اکتبر",
+                        "نوامبر",
+                        "دسامبر",
+                    ],
+                    shortMonths: [
+                        "ژانویه",
+                        "فوریه",
+                        "مارس",
+                        "آوریل",
+                        "می",
+                        "ژوئن",
+                        "جولای",
+                        "آگوست",
+                        "سپتامبر",
+                        "اکتبر",
+                        "نوامبر",
+                        "دسامبر",
+                    ],
+                    days: [
+                        "یکشنبه",
+                        "دوشنبه",
+                        "سه‌شنبه",
+                        "چهارشنبه",
+                        "پنجشنبه",
+                        "جمعه",
+                        "شنبه",
+                    ],
+                    shortDays: ["ی", "د", "س", "چ", "پ", "ج", "ش"],
+                    toolbar: {
+                        exportToSVG: "دریافت SVG",
+                        exportToPNG: "دریافت PNG",
+                        menu: "فهرست",
+                        selection: "انتخاب",
+                        selectionZoom: "بزرگنمایی قسمت انتخاب شده",
+                        zoomIn: "بزرگ نمایی",
+                        zoomOut: "کوچک نمایی",
+                        pan: "جا به جایی",
+                        reset: "بازنشانی بزرگ نمایی",
+                    },
+                },
+            },
+        ],
+        defaultLocale: "fa",
+    };
+    
+
+
+
+
+
+   
+    const analyticsBarChartEl = document.querySelector("#analyticsBarChart"),
+        analyticsBarChartConfig = {
+            chart: {
+                height: 250,
+                type: "bar",
+                toolbar: {
+                    show: false,
+                },
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: false,
+                    columnWidth: "20%",
+                    borderRadius: 3,
+                    startingShape: "rounded",
+                },
+            },
+            dataLabels: {
+                enabled: false,
+            },
+            colors: ['#5a8dee' , '#ee8dee' ,'#5a833e'],
+            // income data 
+            series: [
+                {
+                    name: "حراجی جدید",
+                    data: monthly_auctions,
+                },
+                {
+                    name: "ثبت نامی جدید",
+                    data: monthly_singups,
+                }, 
+                {
+                    name: "محصولات جدید",
+                    data: monthly_products,
+                },
+            ],
+            grid: {
+                borderColor: borderColor,
+                padding: {
+                    bottom: -8,
+                },
+            },
+            xaxis: {
+                categories: [
+                        "ژانویه",
+                        "فوریه",
+                        "مارس",
+                        "آوریل",
+                        "می",
+                        "ژوئن",
+                        "جولای",
+                        "آگوست",
+                        "سپتامبر",
+                        "اکتبر",
+                        "نوامبر",
+                        "دسامبر",
+                    ],
+                axisBorder: {
+                    show: false,
+                },
+                axisTicks: {
+                    show: false,
+                },
+                labels: {
+                    style: {
+                        colors: labelColor,
+                    },
+                },
+            },
+            yaxis: {
+                min: 0,
+                max: 30,
+                tickAmount: 3,
+                labels: {
+                    style: {
+                        colors: labelColor,
+                    },
+                },
+            },
+            legend: {
+                show: false,
+            },
+            tooltip: {
+                y: {
+                    formatter: function (val) {
+                        return val + "";
+                    },
+                },
+            },
+        };
+    if (
+        typeof analyticsBarChartEl !== undefined &&
+        analyticsBarChartEl !== null
+    ) {
+        const analyticsBarChart = new ApexCharts(
+            analyticsBarChartEl,
+            analyticsBarChartConfig
+        );
+        analyticsBarChart.render();
+    }
+
+    // bar chart 2
+   
+    const analyticsBarChartEl_2 = document.querySelector("#analyticsBarChart_2"),
+        analyticsBarChartConfig_2 = {
+            chart: {
+                height: 250,
+                type: "bar",
+                toolbar: {
+                    show: false,
+                },
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: false,
+                    columnWidth: "20%",
+                    borderRadius: 3,
+                    startingShape: "rounded",
+                },
+            },
+            dataLabels: {
+                enabled: false,
+            },
+            colors: ['#5a8dee' , '#ee8dee' ],
+            // income data 
+            series: [
+                {
+                    name: "فروش بید",
+                    data: monthly_products_sales,
+                },
+                {
+                    name: "فروش محصول",
+                    data: monthly_packages_sales,
+                }, 
+               
+            ],
+            grid: {
+                borderColor: borderColor,
+                padding: {
+                    bottom: -8,
+                },
+            },
+            xaxis: {
+                categories: [
+                        "ژانویه",
+                        "فوریه",
+                        "مارس",
+                        "آوریل",
+                        "می",
+                        "ژوئن",
+                        "جولای",
+                        "آگوست",
+                        "سپتامبر",
+                        "اکتبر",
+                        "نوامبر",
+                        "دسامبر",
+                    ],
+                axisBorder: {
+                    show: false,
+                },
+                axisTicks: {
+                    show: false,
+                },
+                labels: {
+                    style: {
+                        colors: labelColor,
+                    },
+                },
+            },
+            yaxis: {
+                min: 0,
+                max: 1000,
+                tickAmount: 3,
+                labels: {
+                    style: {
+                        colors: labelColor,
+                    },
+                },
+            },
+            legend: {
+                show: false,
+            },
+            tooltip: {
+                y: {
+                    formatter: function (val) {
+                        return val + " دلار ";
+                    },
+                },
+            },
+        };
+    if (
+        typeof analyticsBarChartEl_2 !== undefined &&
+        analyticsBarChartEl_2 !== null
+    ) {
+        const analyticsBarChart_2 = new ApexCharts(
+            analyticsBarChartEl_2,
+            analyticsBarChartConfig_2
+        );
+        analyticsBarChart_2.render();
+    }
+
+ // Registrations Bar Chart new singups mini bar
+    // --------------------------------------------------------------------
+    const registrationsBarChartEl = document.querySelector(
+            "#registrationsBarChart"
+        ),
+        registrationsBarChartConfig = {
+            chart: {
+                height: 95,
+                width: 155,
+                type: "bar",
+                toolbar: {
+                    show: false,
+                },
+            },
+            plotOptions: {
+                bar: {
+                    barHeight: "80%",
+                    columnWidth: "50%",
+                    startingShape: "rounded",
+                    endingShape: "rounded",
+                    borderRadius: 2,
+                    distributed: true,
+                },
+            },
+            grid: {
+                show: false,
+                padding: {
+                    top: -20,
+                    bottom: -20,
+                    left: 0,
+                    right: 0,
+                },
+            },
+            colors: [
+                config.colors_label.warning,
+                config.colors_label.warning,
+                config.colors_label.warning,
+                config.colors_label.warning,
+                config.colors.warning,
+                config.colors_label.warning,
+                config.colors_label.warning,
+            ],
+            dataLabels: {
+                enabled: false,
+            },
+            series: [
+                {
+                    name: "ثبت نامی این ماه",
+                    data: monthly_singups,
+                },
+            ],
+            legend: {
+                show: false,
+            },
+            xaxis: {
+                categories: [
+                        "ژانویه",
+                        "فوریه",
+                        "مارس",
+                        "آوریل",
+                        "می",
+                        "ژوئن",
+                        "جولای",
+                        "آگوست",
+                        "سپتامبر",
+                        "اکتبر",
+                        "نوامبر",
+                        "دسامبر",
+                    ],
+                axisBorder: {
+                    show: false,
+                },
+                axisTicks: {
+                    show: false,
+                },
+                labels: {
+                    show: false,
+                },
+            },
+            yaxis: {
+                labels: {
+                    show: false,
+                },
+            },
+        };
+    if (
+        typeof registrationsBarChartEl !== undefined &&
+        registrationsBarChartEl !== null
+    ) {
+        const registrationsBarChart = new ApexCharts(
+            registrationsBarChartEl,
+            registrationsBarChartConfig
+        );
+        registrationsBarChart.render();
+    }
+
+
+
+    // Conversion - Bar Chart income charts
+    // --------------------------------------------------------------------
+    
+       
+   
+
 </script>

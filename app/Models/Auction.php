@@ -112,6 +112,11 @@ class Auction extends Model
 	{
 		return $this->hasMany(BidBuddy::class);
 	}
+	// bid buddy other that current winner
+	public function uniqe_bid_buddies()
+	{
+		return $this->hasMany(BidBuddy::class)->where('user_id' , '<>' ,$this->current_winner_id)->where('available_bids' , '>' , 0);
+	}
 
 	public function bidding_histories()
 	{
@@ -124,7 +129,8 @@ class Auction extends Model
 	}
 	public function next_bidding_queue()
 	{
-		// return $this->hasOne(BiddingQueue::class)->ofMany('status', 'min');
+		// TODO - this wont work
+ 		// return $this->hasOne(BiddingQueue::class)->ofMany('status', 'min');
 		return $this->hasOne(BiddingQueue::class)->where('status',1)->orderBy('created_at' , 'ASC');
 	}
 	

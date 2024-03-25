@@ -10,7 +10,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class AutoBiddingEvent
+class AutoBiddingEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -29,12 +29,11 @@ class AutoBiddingEvent
      *
      * @return array<int, \Illuminate\Broadcasting\Channel>
      */
-    public function broadcastOn(): array
+    public function broadcastOn()
     {
-        return [
-            new Channel('my-channel'),
-        ];
+        return ['my-channel'];
     }
+    
     public function broadcastAs()
     {
         return 'auto-bidding-event';

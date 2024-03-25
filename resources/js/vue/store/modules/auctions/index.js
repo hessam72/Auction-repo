@@ -42,8 +42,8 @@ export default {
             var index = state.auctions.findIndex(
                 (obj) => obj.id === data.id
             );
-
-            console.log(state.auctions[index]);
+                console.log('updating single auction')
+                console.log(data);
             const new_item = {
                 id: data.id,
                 current_winner_id: data.current_winner_id,

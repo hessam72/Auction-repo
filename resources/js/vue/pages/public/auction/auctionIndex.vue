@@ -1,228 +1,275 @@
 <template>
     <div>
-    <single-nav></single-nav>
+        <single-nav></single-nav>
 
-    <bread-crumps v-bind:history="history" :current="current"></bread-crumps>
-    <div class="index-container flex">
-      
-        <div class="main-section">
-            <div class="first-section flex">
-                <div class="gallery-container">
-                    <div class="header flex flex-col">
-                        <h2>{{ product.title }}</h2>
-                        <h3>
-                            {{ product.short_desc }}
-                        </h3>
-                        <p>buy it now for ${{ product.price }}</p>
+        <bread-crumps
+            v-bind:history="history"
+            :current="current"
+        ></bread-crumps>
+        <div class="index-container flex">
+            <div class="main-section">
+                <div class="first-section flex">
+                    <div class="gallery-container">
+                        <div class="header flex flex-col">
+                            <h2>{{ product.title }}</h2>
+                            <h3>
+                                {{ product.short_desc }}
+                            </h3>
+                            <p>buy it now for ${{ product.price }}</p>
+                        </div>
+                        <div class="gallery">
+                            <div class="slider">
+                                <div
+                                    v-for="(item, index) in product.galleries"
+                                    class="slide"
+                                >
+                                    <img :src="'/storage/' + item.image" />
+                                    <!-- <p>rutrum tellus a tempus :)</p> -->
+                                </div>
+                            </div>
+                            <button id="next_slide">
+                                <ion-icon name="fastforward"></ion-icon>
+                            </button>
+                        </div>
                     </div>
-                    <div class="gallery">
-                        <div class="slider">
+                    <div class="kernel-container flex flex-col">
+                        <div class="tags flex">
                             <div
-                                v-for="(item, index) in product.galleries"
-                                class="slide"
+                                @click="toggleBookmark()"
+                                v-if="
+                                    check_bookmark_status(
+                                        auction.bookmarks,
+                                        user
+                                    )
+                                "
+                                class="icon-container"
                             >
-                                <img :src="'/storage/' + item.image" />
-                                <!-- <p>rutrum tellus a tempus :)</p> -->
+                                <ion-icon
+                                    class="saved"
+                                    name="bookmark"
+                                ></ion-icon>
+                                <p>Remove Bookmark</p>
+                            </div>
+                            <div
+                                @click="toggleBookmark()"
+                                v-else
+                                class="icon-container"
+                            >
+                                <ion-icon
+                                    class="not-saved"
+                                    name="bookmark"
+                                ></ion-icon>
+                                <p>Bookmark Auction</p>
+                            </div>
+                            <div class="icon-container">
+                                <ion-icon name="lock"></ion-icon>
+                                <p>
+                                    ${{ auction.no_jumper_limit }} No Jumper
+                                    Limit
+                                </p>
                             </div>
                         </div>
-                        <button id="next_slide">
-                            <ion-icon name="fastforward"></ion-icon>
-                        </button>
-                    </div>
-                </div>
-                <div class="kernel-container flex flex-col">
-                    <div class="tags flex">
-                        <div
-                            @click="toggleBookmark()"
-                            v-if="
-                                check_bookmark_status(auction.bookmarks, user)
-                            "
-                            class="icon-container"
-                        >
-                            <ion-icon class="saved" name="bookmark"></ion-icon>
-                            <p>Remove Bookmark</p>
-                        </div>
-                        <div
-                            @click="toggleBookmark()"
-                            v-else
-                            class="icon-container"
-                        >
-                            <ion-icon
-                                class="not-saved"
-                                name="bookmark"
-                            ></ion-icon>
-                            <p>Bookmark Auction</p>
-                        </div>
-                        <div class="icon-container">
-                            <ion-icon name="lock"></ion-icon>
-                            <p>
-                                ${{ auction.no_jumper_limit }} No Jumper Limit
-                            </p>
-                        </div>
-                    </div>
-                    <div class="kernel">
-                        <div class="k-header flex justify-between items-center">
-                            <h2>Current Bid</h2>
-                            <!-- <h2 class="price">${{ auction.current_price }}</h2> -->
-                            <h2 :key="findAuctionInStore(auction.id).current_price" class="price mycolor">
-                                ${{
-                                    findAuctionInStore(auction.id).current_price
-                                }}
-                            </h2>
-                        </div>
-                        <div class="current-winner-section">
-                            <div class="size">
-                                <div class="pic-container">
-                                    <div class="border-wrap">
-                                        <img
-                                            class="user_img"
-                                            :src="
-                                                '/storage/' +
-                                                current_winner.profile_pic
+                        <div class="kernel">
+                            <div
+                                class="k-header flex justify-between items-center"
+                            >
+                                <h2>Current Bid</h2>
+                                <!-- <h2 class="price">${{ auction.current_price }}</h2> -->
+                                <h2
+                                    :key="
+                                        findAuctionInStore(auction.id)
+                                            .current_price
+                                    "
+                                    class="price mycolor"
+                                >
+                                    ${{
+                                        findAuctionInStore(auction.id)
+                                            .current_price
+                                    }}
+                                </h2>
+                            </div>
+                            <div class="current-winner-section">
+                                <div class="size">
+                                    <div class="pic-container">
+                                        <div class="border-wrap">
+                                            <img
+                                                class="user_img"
+                                                :src="
+                                                    '/storage/' +
+                                                    current_winner.profile_pic
+                                                "
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="winner-info">
+                                        <!-- <h3>{{ current_winner.username }}</h3> -->
+                                        <h3
+                                            :key="
+                                                findAuctionInStore(auction.id)
+                                                    .current_winner_username
                                             "
-                                        />
+                                            class="mycolor"
+                                        >
+                                            {{
+                                                findAuctionInStore(auction.id)
+                                                    .current_winner_username
+                                            }}
+                                        </h3>
+                                        <h4>Current Heighest bidder</h4>
+                                        <h4>
+                                            <ion-icon name="pin"></ion-icon>
+                                            <!-- {{ current_winner.city.name }} -->
+                                        </h4>
                                     </div>
                                 </div>
-                                <div class="winner-info">
-                                    <!-- <h3>{{ current_winner.username }}</h3> -->
-                                    <h3 :key="findAuctionInStore(auction.id)
-                                                .current_winner_username" class="mycolor">
-                                        {{
-                                            findAuctionInStore(auction.id)
-                                                .current_winner_username
-                                        }}
-                                    </h3>
-                                    <h4>Current Heighest bidder</h4>
-                                    <h4>
-                                        <ion-icon name="pin"></ion-icon>
-                                        <!-- {{ current_winner.city.name }} -->
-                                    </h4>
-                                </div>
                             </div>
-                        </div>
-                        <div class="history-section">
-                            <div class="flex flex-col">
-                                <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                            <div class="history-section">
+                                <div class="flex flex-col">
                                     <div
-                                        class="relative inline-block min-w-full py-2 sm:px-6 lg:px-8"
+                                        class="overflow-x-auto sm:-mx-6 lg:-mx-8"
                                     >
-                                        <div class="tabel-mask">.</div>
                                         <div
-                                            class="tabel-container overflow-hidden"
+                                            class="relative inline-block min-w-full py-2 sm:px-6 lg:px-8"
                                         >
-                                            <table
-                                                class="min-w-full text-left text-sm font-light"
+                                            <div class="tabel-mask">.</div>
+                                            <div
+                                                class="tabel-container overflow-hidden"
                                             >
-                                                <thead
-                                                    style="
-                                                        background-color: #2e1a58cc;
-                                                    "
-                                                    class="tabel-header border-b bg-neutral-500 font-medium dark:border-neutral-500"
+                                                <table
+                                                    class="min-w-full text-left text-sm font-light"
                                                 >
-                                                    <tr>
-                                                        <th
-                                                            scope="col"
-                                                            class="px-6 py-4"
-                                                        >
-                                                            Bid
-                                                        </th>
-                                                        <th
-                                                            scope="col"
-                                                            class="px-6 py-4"
-                                                        >
-                                                            User
-                                                        </th>
-                                                        <th
-                                                            scope="col"
-                                                            class="px-6 py-4"
-                                                        >
-                                                            Time
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr
-                                                        v-for="(
-                                                            item, index
-                                                        ) in all_participaints"
-                                                        class="tabel-row bg-neutral-100 dark:border-neutral-500"
+                                                    <thead
+                                                        style="
+                                                            background-color: #2e1a58cc;
+                                                        "
+                                                        class="tabel-header border-b bg-neutral-500 font-medium dark:border-neutral-500"
                                                     >
-                                                        <td
-                                                            class="whitespace-nowrap"
+                                                        <tr>
+                                                            <th
+                                                                scope="col"
+                                                                class="px-6 py-4"
+                                                            >
+                                                                Bid
+                                                            </th>
+                                                            <th
+                                                                scope="col"
+                                                                class="px-6 py-4"
+                                                            >
+                                                                User
+                                                            </th>
+                                                            <th
+                                                                scope="col"
+                                                                class="px-6 py-4"
+                                                            >
+                                                                Time
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr
+                                                            v-for="(
+                                                                item, index
+                                                            ) in all_participaints"
+                                                            class="tabel-row bg-neutral-100 dark:border-neutral-500"
                                                         >
-                                                            ${{
-                                                                item.bid_price
-                                                            }}
-                                                        </td>
-                                                        <td
-                                                            class="whitespace-nowrap"
-                                                        >
-                                                            {{
-                                                                item.user
-                                                                    .username
-                                                            }}
-                                                        </td>
-                                                        <td
-                                                            class="whitespace-nowrap"
-                                                        >
-                                                            {{
-                                                                item.created_at
-                                                            }}
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                                            <td
+                                                                class="whitespace-nowrap"
+                                                            >
+                                                                ${{
+                                                                    item.bid_price
+                                                                }}
+                                                            </td>
+                                                            <td
+                                                                class="whitespace-nowrap"
+                                                            >
+                                                                {{
+                                                                    item.user
+                                                                        .username
+                                                                }}
+                                                            </td>
+                                                            <td
+                                                                class="whitespace-nowrap"
+                                                            >
+                                                                {{
+                                                                    item.created_at
+                                                                }}
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="timer-section">
-                            <h3>Time Left</h3>
-                            <div class="auction-timer">
-                                <vue-countdown
-                                @end="endAuction(auction.id)"
-                                    :time="convertDateToMilliSeconds(findAuctionInStore(auction.id).timer)"
-                                    v-slot="{ hours, minutes, seconds }"
-                                >
-                                    <div class="count-down">
-                                        <div class="number">{{ hours }}</div>
-                                        <div class="seperator">:</div>
-                                        <div class="number">{{ minutes }}</div>
-                                        <div class="seperator">:</div>
-                                        <div class="number">{{ seconds }}</div>
-                                    </div>
-                                    <!-- to sent backend for calculating heighest bidder time -->
-                                    <!-- Timer: {{ remaining_seccounds =seconds +1}} how to do that with vue-countdown? -->
-                                </vue-countdown>
+                            <div class="timer-section">
+                                <h3>Time Left</h3>
+                                <div class="auction-timer">
+                                    <vue-countdown
+                                        @end="endAuction(auction.id)"
+                                        :time="
+                                            convertDateToMilliSeconds(
+                                                findAuctionInStore(auction.id)
+                                                    .timer
+                                            )
+                                        "
+                                        v-slot="{ hours, minutes, seconds }"
+                                    >
+                                        <div class="count-down">
+                                            <div class="number">
+                                                {{ hours }}
+                                            </div>
+                                            <div class="seperator">:</div>
+                                            <div class="number">
+                                                {{ minutes }}
+                                            </div>
+                                            <div class="seperator">:</div>
+                                            <div class="number">
+                                                {{ seconds }}
+                                            </div>
+                                        </div>
+                                        <!-- to sent backend for calculating heighest bidder time -->
+                                        <!-- Timer: {{ remaining_seccounds =seconds +1}} how to do that with vue-countdown? -->
+                                    </vue-countdown>
+                                </div>
                             </div>
-                        </div>
-                        <div
-                            class="btn-container flex justify-between items-center"
-                        >
-                            <button
-                                v-if="!disable_bidding"
-                                @click="submitBid()"
-                                class="bid-now"
+                            <div
+                                class="btn-container flex justify-between items-center"
                             >
-                                Bid Now
-                            </button>
-                            <button class="launch-buddy">
-                                Lunch Bid Buddy
-                            </button>
+                                <button
+                                    v-if="!disable_bidding"
+                                    @click="submitBid()"
+                                    class="bid-now"
+                                >
+                                    Bid
+                                </button>
+
+                                <div class="flex">
+                                    <button
+                                        @click="submitBiBuddy()"
+                                        class="launch-buddy"
+                                    >
+                                        Lunch Buddy
+                                    </button>
+                                    <input
+                                        type="number"
+                                        v-model="bidBodyCount"
+                                        required
+                                    />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <!-- users -->
+                <users-section :participaints :winners></users-section>
+                <product-content :product></product-content>
+                <reviews-section :product_id="product.id"></reviews-section>
             </div>
-            <!-- users -->
-            <users-section :participaints :winners></users-section>
-            <product-content :product></product-content>
-            <reviews-section :product_id="product.id"></reviews-section>
+            <side-section :auctions="side_auctions"></side-section>
         </div>
-        <side-section :auctions="side_auctions"></side-section>
-    </div>
-    <fixed-buttons></fixed-buttons>
-    <loading :is_loading="is_loading"></loading>
+        <fixed-buttons></fixed-buttons>
+        <loading :is_loading="is_loading"></loading>
     </div>
 </template>
 <script>
@@ -239,9 +286,7 @@ import { mapGetters, mapActions } from "vuex";
 import { QuillEditor } from "@vueup/vue-quill";
 import "@vueup/vue-quill/dist/vue-quill.snow.css";
 import { useToast } from "vue-toastification";
-import {
-    convertDateToMilliSeconds,
-} from "@/modules/utilities.js";
+import { convertDateToMilliSeconds } from "@/modules/utilities.js";
 export default {
     setup() {
         // Get toast interface
@@ -266,6 +311,7 @@ export default {
             fetchUrl: "auctions/index",
             auction: null,
             product: null,
+            bidBodyCount: 0,
             current_winner: null,
             side_auctions: [],
             participaints: [],
@@ -288,6 +334,7 @@ export default {
 
             disable_bidding: false,
             //   localUrl: "auctions/",
+
             bidUrl: "auction/bidding/create",
             CreateBuddyUrl: "auction/bidding/storeBidBuddy",
             submitbBidFromBuddyUrl: "auction/bidding/storeBidBuddyBid",
@@ -328,7 +375,7 @@ export default {
             window.Echo.channel("my-channel")
                 .listen(".my-event", (e) => {
                     // vm.updateAuction(e.data);
-                    console.log('new auction data');
+                    console.log("new auction data");
                     console.log(e);
                 })
                 .listen(".test-event", (e) => {
@@ -346,7 +393,7 @@ export default {
         // //   console.log(data)
         // //     if(this.auction.id == data.id){
         // //         // this is currect data
-               
+
         // //         console.log(this.storedAuctions)
         // //     }
         // },
@@ -426,31 +473,8 @@ export default {
                     this.is_loading = false;
                 });
         },
-      
-        runBidBudies(bidding_queue) {
-            if (!bidding_queue)
-                bidding_queue = this.findBiddingQueue(this.auction.id);
-            if (bidding_queue.is_empthy) {
-                alert("your bot is done");
-                return;
-            }
 
-            axios
-                .post(this.baseUrl + this.submitbBidFromBuddyUrl, {
-                    bid_buddy_id: bidding_queue.bid_buddy_id,
-                    auction_id: bidding_queue.auction_id,
-                    bidding_queue_id: bidding_queue.id,
-                })
-                .then((response) => {
-                    console.log(response.data);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
-                .finally(function () {
-                    // always executed
-                });
-        },
+        
         submitBid() {
             // sending user bid
             // validate so only auth users can submit bids
@@ -478,23 +502,7 @@ export default {
                     // always executed
                 });
         },
-        submitBiBuddy() {
-            axios
-                .post(this.baseUrl + this.CreateBuddyUrl, {
-                    count: this.bidBodyCount,
-                    user_id: this.user.id,
-                    auction_id: this.auction.id,
-                })
-                .then((response) => {
-                    console.log(response.data);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
-                .finally(function () {
-                    // always executed
-                });
-        },
+       
         toggleBookmark() {
             let config = {
                 Authorization: this.UserAuthToken,
@@ -520,7 +528,7 @@ export default {
                 })
                 .finally(() => {});
         },
-        // edning auction event are now proccessing from both index and list page 
+        // edning auction event are now proccessing from both index and list page
         // TODO make end auction login in single file for all components
 
         endAuction(id) {
@@ -537,7 +545,6 @@ export default {
             }
         },
         runBidBudies(bidding_queue, auction_id) {
-            
             if (!bidding_queue)
                 bidding_queue = this.findBiddingQueue(auction_id);
 
@@ -562,11 +569,39 @@ export default {
                     // always executed
                 });
         },
-    //     live_countDown_ended(id){
-    //       console.log('emitting from auction index:' + id)
-    //       this.emitter.emit("live_timer_end", id);
-    //    }
-      
+        submitBiBuddy() {
+            if (this.user.id === undefined || this.user.id === null) {
+                this.toast.error("You must be loged in to Activate BidBuddy");
+                return;
+            }
+            if(this.bidBodyCount <= 1){
+                this.toast.error("Insufficient Number Of Bids");
+                return;
+            }
+            axios
+                .post(this.baseUrl + this.CreateBuddyUrl, {
+                    count: this.bidBodyCount-1,// first bid will be excuted as direct bid and after that with buddy
+                    user_id: this.user.id,
+                    auction_id: this.auction.id,
+                })
+                .then((response) => {
+                    console.log(response.data);
+                    this.bidBodyCount=0;
+                    // after submitting buddy run one bid for user as direct bid to start bidding process
+                    this.submitBid();
+                })
+                .catch( (error)=> {
+                    console.log(error);
+                    this.toast.error(error.response.data.error);
+                })
+                .finally(()=> {
+                    // always executed
+                });
+        },
+        //     live_countDown_ended(id){
+        //       console.log('emitting from auction index:' + id)
+        //       this.emitter.emit("live_timer_end", id);
+        //    }
     },
     beforeDestroy() {
         this.disconnect();
@@ -575,12 +610,11 @@ export default {
         // this.connect(); //connect to Pusher
         // Elastic Slider (c) 2014 // Taron Mehrabyan // Ruben Sargsyan
         init_elastic_slider();
-     
+
         // listening to event after pusher on auction list recieved new data
         // this.emitter.on("update-live-auction", (value) => {
         //     this.updateAuction(value);
         // });
-       
     },
     created() {
         // alert(this.$route.params.id)
