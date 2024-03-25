@@ -1,26 +1,33 @@
 <template>
     <div>
-        <search-section ></search-section>
+        <search-section></search-section>
         <div class="main-container">
             <!-- <div v-show="show_backdrop" class="backdrop">.</div> -->
+
             <auction-card
-            @refreshData="$emit('fetchData')"
-
-                v-for="(item, index) in this.auctions"
-
+                @refreshData="$emit('fetchData')"
+                
+                v-for="(item, index) in test_auctions"
                 :key="index"
                 :auction_id="item.id"
                 :start_time="item.start_time"
-                :timer="item.timer"
+                :timer="findAuctionInStore(item.id).timer"
                 :buy_now_price="item.product.price"
-                :current_winner_username="item.current_winner.username"
-                :live_price="item.current_price"
+                :current_winner_id="
+                    findAuctionInStore(item.id).current_winner_id
+                "
+                :current_winner_username="
+                    findAuctionInStore(item.id).current_winner_username
+                "
+                :live_price="findAuctionInStore(item.id).current_price"
                 :title="item.product.title"
                 :image="item.product.galleries[0]"
                 :is_bookmarked="check_bookmark_status(item.bookmarks, user)"
                 :status="item.status"
             >
             </auction-card>
+            <!-- :current_winner_username="item.current_winner.username"
+                :live_price="item.current_price" :timer="item.timer"-->
         </div>
         <inline-loading
             style="
@@ -43,33 +50,41 @@ import "v3-infinite-loading/lib/style.css"; //required if you're not going to ov
 
 <script>
 import AuctionCard from "./auction_card.vue";
-import {check_bookmark_status} from "@/modules/utilities/auctionUtils.js"
+import { check_bookmark_status } from "@/modules/utilities/auctionUtils.js";
 import searchSection from "./searchSection.vue";
-import auctions from "../../store/modules/auctions";import { mapGetters } from "vuex";
+import auctions from "../../store/modules/auctions";
+import { mapGetters } from "vuex";
 export default {
     props: {
-        auctions: {},
-        categories:{},
+        auctions: {
+            type: Object,
+        },
+        categories: {},
+        test_auctions: {},
         is_loading_more: {
             default: false,
         },
     },
     data() {
         return {
-        
             show_more: false,
             show_more2: false,
+            auctions_test: [],
         };
-    }, computed: {
-        ...mapGetters(["user"]),
+    },
+    computed: {
+        ...mapGetters(["user", "baseUrl", "storedAuctions", "findAuction"]),
     },
     methods: {
         check_bookmark_status,
+        findAuctionInStore(id) {
+            return this.findAuction(id);
+        },
+
         loadData($state) {
             //calling the api
-            
 
-            this.$emit('loadMore'  );
+            this.$emit("loadMore");
             // setTimeout(() => {
             //     this.is_loading_more = false;
             //     if (this.show_more) {
@@ -84,9 +99,11 @@ export default {
         AuctionCard,
     },
     mounted() {
-        //        console.log('this.auctions')
         //        console.log(JSON.parse(JSON.stringify(
         // this.auctions)))
+    },
+    created() {
+      
     },
 };
 </script>

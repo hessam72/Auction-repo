@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('product_id')->constrained();
 
             $table->integer('win_price');
+            $table->integer('status')->default(1)->comment('1=> new - unpaid win / 2=>waiting payment / 100=>paid win / 300=>expire win');
             $table->integer('bids_placed');
             $table->timestamp('created_at')->useCurrent();
         });

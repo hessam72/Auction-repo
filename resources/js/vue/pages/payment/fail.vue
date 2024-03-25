@@ -99,23 +99,62 @@
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
+import { useToast } from "vue-toastification";
+
 import singleNav from "../../components/global/singleNav.vue";
 export default {
-    data() {
-        return {};
+    setup() {
+        // Get toast interface
+        const toast = useToast();
+
+        return { toast };
     },
-    methods: {},
+    data() {
+        return {
+            is_loading: false,
+            updateTransactionUrl: "transaction/saveFailPay",  
+        };
+    },
+    methods: {
+        updateTransactionStatus() {
+            this.is_loading = true;
+            var order_id = this.$route.query.order_id;
+
+            let config = {
+                Authorization: this.UserAuthToken,
+            };
+            let body = {
+                order_id,
+                status: 400, // fail pay status
+            };
+
+            axios({
+                method: "post",
+                url: this.baseUrl + this.updateTransactionUrl,
+                data: body,
+                headers: config,
+            })
+                .then((response) => {
+                    console.log(response);
+                    this.toast.error("your purchase was not Successfull Please try again");
+                })
+                .catch((error) => {
+                    console.log(error);
+                    this.toast.error("Page has been expired");
+                })
+                .finally(() => {
+                    this.is_loading = false;
+                });
+        },
+        redirect() {
+            this.$router.push(this.$route.query.redirect || "/vue/v1/");
+        },
+    },
     computed: {
         ...mapGetters(["baseUrl", "UserAuthToken", "user"]),
     },
-    created(){
-        //update transaction record
-
-
-        //then based on payment type { 
-//      1=> add bid amount to user wallet
-// 2=> update shiped product status table 
-        // }
+    created() {
+        this.updateTransactionStatus();
     },
     components: {
         singleNav,

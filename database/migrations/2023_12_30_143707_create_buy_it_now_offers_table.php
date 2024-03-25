@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
 
             $table->integer('spent_bids')->default(0);
+            $table->integer('status')->default(1)->comment('1=> available / 2=>used / 3=>expired');
             $table->timestamp('time_limit')->useCurrentOnUpdate()->useCurrent();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();

@@ -37,7 +37,8 @@ class Winner extends Model
 	protected $fillable = [
 		'user_id',
 		'product_id',
-		'win_price'
+		'win_price',
+		'status'
 	];
 
 	public function product()

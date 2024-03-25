@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class BuyItNowOfferController extends Controller
 {
     public function all(){
-        $user_offers=BuyItNowOffer::where('user_id' , Auth::user()->id)->with('product')->get();
+        $user_offers=BuyItNowOffer::where('user_id' , Auth::user()->id)->where('status' , 1)->with('product')->get();
         return new BuyItNowOfferResource($user_offers);
     }
 }

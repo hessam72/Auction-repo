@@ -1,7 +1,7 @@
 <template>
     <div class="reviews-container">
         <div class="header flex justify-between items-center">
-            <h2>Reviews ({{total_count}})</h2>
+            <h2>Reviews ({{ total_count }})</h2>
             <div class="total-score">
                 <star-rating
                     :round-start-rating="false"
@@ -36,7 +36,9 @@
                 </div>
             </div>
             <div class="content-container flex flex-col">
-                <div class="content flex flex-col justify-between items-start gap-4">
+                <div
+                    class="content flex flex-col justify-between items-start gap-4"
+                >
                     <h2>{{ item.title }}</h2>
                     <p>
                         {{ item.content }}
@@ -96,9 +98,13 @@
                 </div>
             </div>
         </div>
-        <div class="btn-container">
+        <div v-if="comments.length != 0" class="btn-container">
             <button @click="fetchData(1)" class="load-more">Load More</button>
         </div>
+        <div v-else class="btn-container">
+<h3>No Reviews yet</h3>
+        </div>
+        
     </div>
     <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com -->
     <!-- <nav class="pagination" aria-label="Page navigation example">
@@ -145,6 +151,7 @@
     </nav> -->
 </template>
 <script>
+import { comment } from "postcss";
 import { mapGetters } from "vuex";
 
 export default {
@@ -154,8 +161,8 @@ export default {
             take: 2,
             fetchUrl: "auctions/auction_comments",
             comments: [],
-            total_count:0,
-avg_total_score:0,
+            total_count: 0,
+            avg_total_score: 0,
         };
     },
 
@@ -185,12 +192,14 @@ avg_total_score:0,
                 data: body,
             })
                 .then((response) => {
-                  console.log(response.data)
-                  this.total_count=response.data.total_count;
-                  this.avg_total_score=response.data.total_score;
+                    console.log(response.data);
+                    this.total_count = response.data.total_count;
+                    this.avg_total_score = response.data.total_score;
                     if (more) {
                         // attach to the end of existing array
-                        this.comments = this.comments.concat(response.data.comments);
+                        this.comments = this.comments.concat(
+                            response.data.comments
+                        );
                     } else {
                         this.comments = response.data.comments;
                     }
@@ -309,10 +318,10 @@ avg_total_score:0,
     padding-right: 1.5rem;
     width: 75%;
     .content {
-      h2{
-        font-weight: 700;
-        font-size: 1.2rem;
-      }
+        h2 {
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
         background: none;
         border-bottom: 1px solid #aaa;
         padding-bottom: 1rem;

@@ -13,7 +13,7 @@ class UserWinsController extends Controller
     public function user_wins()
     {
         // $user_wins=Winner::where('user_id' , Auth::user()->id)->with('product.product_galleries')->get();
-        $user_wins=Winner::where('user_id' , Auth::user()->id)->with('product')->get();
+        $user_wins=Winner::where('user_id' , Auth::user()->id)->where('status' , 1)->with('product')->get();
         return new WinnerResource($user_wins);
     }
 }

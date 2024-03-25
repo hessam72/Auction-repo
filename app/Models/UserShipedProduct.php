@@ -53,7 +53,9 @@ class UserShipedProduct extends Model
 		'product_id',
 		'state_id',
 		'city_id',
-		'price'
+		'transaction_id',
+		'price',
+		'reward_bids'
 	];
 
 	public function city()

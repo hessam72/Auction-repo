@@ -27,24 +27,50 @@ class AuctionController extends Controller
 
     public function auction_index(Request $request)
     {
-        $auction = new AuctionResource(Auction::find($request->id)->first());
+
+        $auction = new AuctionResource(Auction::find($request->id));
+
         $side_auctions = AuctionResource::collection(Auction::where('start_time', '<', Carbon::now())->take(3)->get());
 
-        $participaints = BiddingHistory::where('auction_id', $request->id)->with('user.city')->orderBy('created_at', 'desc')->get();
+        $all_participaints = BiddingHistory::where('auction_id', $request->id)->with('user.city')->orderBy('created_at', 'desc')->get();
+        // $participaints = BiddingHistory::select('user_id')->groupBy('user_id')->get()->toArray() ;
+        $uniq_participaints = [];
+
+        if (count($all_participaints) > 0) {
+
+            // if there was any then:
+            $uniq_participaints[] = $all_participaints[0];
+            $is_uniqe=1;
+            foreach ($all_participaints as $p) {
+                foreach ($uniq_participaints as $uniq_p) {
+                    if ($uniq_p->user_id === $p->user_id) {
+                      $is_uniqe=0;
+                    } 
+                }
+                if($is_uniqe){
+                    $uniq_participaints []=$p;
+                }
+                $is_uniqe=1;
+            }
+        }
+
+
         $winners = Winner::where('product_id', $auction->product->id)->with('user')->latest()->get();
 
-        $comments = Comment::where('product_id', $auction->product->id)->with('user')->orderBy('created_at', 'desc')->get();
+        // $comments = Comment::where('product_id', $auction->product->id)->with('user')->orderBy('created_at', 'desc')->get();
         return response([
             'auction' => $auction,
             'side_auctions' => $side_auctions,
-            'participaints' => $participaints,
+            'participaints' => $uniq_participaints,
+            'all_participaints' => $all_participaints,
             'winners' => $winners,
             // 'comments' => $comments,
 
 
         ]);
     }
-    public function auction_comments(Request $request){
+    public function auction_comments(Request $request)
+    {
 
         $skip = 0;
         $take = 10;
@@ -55,18 +81,17 @@ class AuctionController extends Controller
 
 
         $comments = Comment::where('product_id', $request->id)->skip($skip)->take($take)->with('user.city')->orderBy('created_at', 'desc')->get();
-       
-       
-       $total_count=Comment::where('product_id', $request->id)->count();
-       $total_score=Comment::where('product_id', $request->id)->avg('total_socre');
-       
-       
-        return response([
-            "comments"=>$comments,
-            "total_count"=>$total_count,
-            "total_score"=>$total_score
-        ]);
 
+
+        $total_count = Comment::where('product_id', $request->id)->count();
+        $total_score = Comment::where('product_id', $request->id)->avg('total_socre');
+
+
+        return response([
+            "comments" => $comments,
+            "total_count" => $total_count,
+            "total_score" => $total_score
+        ]);
     }
 
 

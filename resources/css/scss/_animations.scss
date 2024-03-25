@@ -7,6 +7,14 @@
     top: 0%;
   }
 }
+@keyframes flash_change {
+  from {
+      background-color: #ecec02b4;
+  }
+  to {
+      background-color: rgba(255, 255, 0, 0);
+  }
+}
 @keyframes gradient {
   0% {
       background-position: 0% 50%;

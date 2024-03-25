@@ -18,6 +18,16 @@ import VueCountdown from '@chenfengyuan/vue-countdown';
 import StarRating from 'vue-star-rating';
 import Countdown from 'vue3-flip-countdown'
 import jQuery from 'jquery';
+
+import Toast from "vue-toastification";
+// Import the CSS or use your own!
+import "vue-toastification/dist/index.css";
+
+const options = {
+    // You can set your default options here
+};
+
+
 var $ = jQuery;
 window.$ = $;
 const emitter = mitt();
@@ -31,6 +41,7 @@ axios.defaults.baseURL = 'http://localhost:8000/api/';
 
 app.use(router);
 app.use(Countdown);
+app.use(Toast, options);
 
 router.app = app;
 app.use(store);
