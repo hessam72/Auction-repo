@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('ip_address');
             $table->string('browser')->nullable();
             $table->string('device')->nullable();
+            $table->string('page_address')->nullable();
 
             $table->string('user_agent');
 
