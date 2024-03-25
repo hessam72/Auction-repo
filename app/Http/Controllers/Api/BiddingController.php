@@ -109,16 +109,23 @@ class BiddingController extends Controller
         //check if user can create $count bid
         $user = User::find($request->user_id);
         if ($user->bid_amount < $request->count) {
-            return 'you dont have enough bid';
+            return response()->json([
+                'error' => 'you dont have enough bid',
+
+            ], 403);
         }
 
         // check if user allready  have a buddy on this auction
 
         $exist_bidBuddy = BidBuddy::where('user_id', $request->user_id)
-            ->where('auction_id', $request->auction_id)->where('status', 1)->first();
+            ->where('auction_id', $request->auction_id)->where('available_bids','>', 0)->first();
 
         if ($exist_bidBuddy) {
-            return 'you allready have an active Buddy on this auction';
+            return response()->json([
+                'error' => 'you allready have an active Buddy on this auction',
+
+            ], 403);
+          
         }
 
         try {
@@ -149,25 +156,7 @@ class BiddingController extends Controller
             DB::rollback();
             return $e;
         }
-        // **************submit new event
-
-        // $nex_buddy=BiddingQueue::where('status' , 1)->where('auction_id' , $request->auction_id)->oldest()->first();
-
-
-        // $data = array(
-        //     "id" => $request->auction_id,
-        //     "bid_price" => $new_price,
-        //     "current_winner_id" => 2,
-        //     "bidding_queues"=> array($nex_buddy),
-        //     "timer" => Carbon::now()->addSeconds(10)
-        // );
-
-        // // new event that broadcast to all the new bot creation
-        // broadcast(new MyEvent($data));
-
-
-
-
+      
         return $biddingQueue;
     }
     public function storeBidBuddyBid(Request $request)
@@ -183,7 +172,7 @@ class BiddingController extends Controller
 
         try {
             DB::beginTransaction();
-            // 
+           
 
             $auction = Auction::find($request->auction_id);
 

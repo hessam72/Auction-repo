@@ -65,21 +65,27 @@ export default {
                 .listen(".my-event", (e) => {
                     // listening for user direct submit bid
                     vm.upadteAnAuctionState(e.data);
-                    console.log(
-                        "my-event running*******from new section**********"
-                    );
+                   
                     console.log(e);
                 })
-                .listen(".test-event", (e) => {
+                .listen(".auto-bidding-event", (e) => {
                     // listening for bidbuddy submit bid
-
-                    console.log("test-event running");
-                    console.log(e.data);
+                    console.log('auto bidding is running')
                     // loop for updating every incomming bid budy's bid
                     for (let i = 0; i < e.data.length; i++) {
                        
                         vm.upadteAnAuctionState(e.data[i]);
                     }
+                }).listen(".win-event", (e) => {
+                    // listening for bidbuddy submit bid
+                    console.log('winner');
+                    console.log(e);
+                    
+                    vm.upadteAnAuctionState(e.data);
+                    
+                    console.log("******** we have a winner ***********");
+                    console.log(e);
+                   
                 });
         },
         disconnect() {
@@ -127,6 +133,7 @@ export default {
                     this.inline_loading = false;
                 });
         },
+        
 
         fetchSpecialOffer() {
             this.is_loading = true;

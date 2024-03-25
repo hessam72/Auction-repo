@@ -10,26 +10,23 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class UpdateAuctionState implements ShouldBroadcast
+class WinAlertEvent implements ShouldBroadcast
 {
-  use Dispatchable, InteractsWithSockets, SerializesModels;
-  public $message;
-  /**
-   * Create a new event instance.
-   */
-  public function __construct($message)
+    use Dispatchable, InteractsWithSockets, SerializesModels;
+
+    public $data;
+
+  public function __construct($data)
   {
-    $this->message = $message;
+      $this->data = $data;
   }
 
   public function broadcastOn()
   {
       return ['my-channel'];
   }
-  
-  
   public function broadcastAs()
   {
-    return 'update-auction-state';
+      return 'win-event';
   }
 }

@@ -129,10 +129,16 @@ import { init_submit_btn } from "@/modules/utilities/submit_btn.js";
 import { convertSecondsToTime } from "@/modules/utilities/convertor.js";
 import { mapGetters, mapActions } from "vuex";
 import VueMultiselect from "vue-multiselect";
-
+import { useToast } from "vue-toastification";
 import VueDatePicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
 export default {
+    setup() {
+        // Get toast interface
+        const toast = useToast();
+
+        return { toast };
+    },
     data() {
         return {
             selected: null,
@@ -225,11 +231,13 @@ export default {
             })
                 // .get(this.baseUrl + this.userUrl, body , config)
                 .then((response) => {
+                    //update user data
+                    this.setUser(response.data.data);
                     console.log(response);
                 })
                 .catch((error) => {
-                    console.log("error");
                     console.log(error);
+                    this.toast.error(error.response.data.message);
                 })
                 .finally(() => {});
         },
@@ -262,14 +270,11 @@ export default {
                 });
         },
         setCityOptions() {
-       
-            this.states.forEach( (item)=> {
-                
-                if(item.id === this.user.city.state.id){
-                    this.citySelectOptions=item.cities;
+            this.states.forEach((item) => {
+                if (item.id === this.user.city.state.id) {
+                    this.citySelectOptions = item.cities;
                 }
             });
-  
         },
         loadbtn() {
             init_submit_btn();

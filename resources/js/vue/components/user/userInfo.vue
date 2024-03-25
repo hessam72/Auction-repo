@@ -29,7 +29,7 @@
                             <ion-icon class="icon" name="gift"></ion-icon>
                             <span class="title">Challenges</span>
                         </router-link>
-                    </li>  
+                    </li>
                     <li>
                         <router-link
                             @click="close('outside')"
@@ -93,7 +93,7 @@
                 <div class="border-wrap">
                     <img
                         class="user_img"
-                        :src="'/storage/'+user.profile_pic"
+                        :src="'/storage/' + user.profile_pic"
                     />
                 </div>
             </div>
@@ -127,19 +127,25 @@
         </div>
     </div>
     <loading :is_loading="is_loading"></loading>
-
 </template>
 
 <script>
+import { useToast } from "vue-toastification";
 import { OnClickOutside } from "@vueuse/components";
 import { mapGetters, mapActions } from "vuex";
 import { convertDBTimeToDate } from "@/modules/utilities/convertor.js";
 export default {
+    setup() {
+        // Get toast interface
+        const toast = useToast();
+
+        return { toast };
+    },
     data() {
         return {
             file: null,
             storeUrl: "user/change-avatar",
-            is_loading:false,
+            is_loading: false,
         };
     },
     methods: {
@@ -178,11 +184,12 @@ export default {
                     console.log(response);
                     // update user avatar
                     this.setUser(response.data.data);
-                    this.file=null;
+                    this.file = null;
                 })
                 .catch((error) => {
                     console.log("error");
                     console.log(error);
+                    this.toast.error(error.response.data.message);
                 })
                 .finally(() => {
                     this.is_loading = false;
@@ -204,7 +211,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .change-avatar-btn {
-  position: absolute;
+    position: absolute;
     bottom: -1rem;
     width: 5rem;
     right: -1rem;
