@@ -1,4 +1,4 @@
-[{"id":4,"user_id":7,"auction_id":546,"available_bids":20,"status":1,"created_at":"2024-03-23 21:49:12"}]
+﻿[{"id":4,"user_id":7,"auction_id":546,"available_bids":20,"status":1,"created_at":"2024-03-23 21:49:12"}]
 [{"id":4,"user_id":7,"auction_id":546,"available_bids":20,"status":1,"created_at":"2024-03-23 21:49:12"}]
 [{"id":4,"user_id":7,"auction_id":546,"available_bids":20,"status":1,"created_at":"2024-03-23 21:49:12"}]
 [{"id":4,"user_id":7,"auction_id":546,"available_bids":20,"status":1,"created_at":"2024-03-23 21:49:12"}]
@@ -20,7 +20,7 @@
 [{"id":4,"user_id":7,"auction_id":546,"available_bids":20,"status":1,"created_at":"2024-03-23 21:49:12"}]
 
 
-
+https://github.com/shetabit/visitor
    Illuminate\Broadcasting\BroadcastException 
 
   Pusher error: cURL error 6: Could not resolve host: api-ap1.pusher.com (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) for https://api-ap1.pusher.com/apps/1749038/events?auth_key=34df9b19f2db1570947b&auth_timestamp=1711311328&auth_version=1.0&body_md5=c8a9f23bdb969b214134b693cd85a478&auth_signature=9e65b25290c727c345a735c853f4cb09181b501ee4d12c4372395d2a7f28970e.
