@@ -313,87 +313,87 @@
 
     // Referral - Line Chart
     // --------------------------------------------------------------------
-    const referralLineChartEl = document.querySelector("#referralLineChart"),
-        referralLineChartConfig = {
-            series: [
-                {
-                    name: "سری 1",
-                    data: [0, 2, 25, 100, 15, 149],
-                },
-            ],
-            chart: {
-                height: 100,
-                parentHeightOffset: 0,
-                parentWidthOffset: 0,
-                type: "line",
-                toolbar: {
-                    show: false,
-                },
-            },
-            markers: {
-                size: 6,
-                colors: "transparent",
-                strokeColors: "transparent",
-                strokeWidth: 4,
-                discrete: [
-                    {
-                        fillColor: cardColor,
-                        seriesIndex: 0,
-                        dataPointIndex: 5,
-                        strokeColor: config.colors.success,
-                        strokeWidth: 4,
-                        size: 6,
-                        radius: 2,
-                    },
-                ],
-                hover: {
-                    size: 7,
-                },
-            },
-            dataLabels: {
-                enabled: false,
-            },
-            stroke: {
-                width: 4,
-                curve: "smooth",
-            },
-            grid: {
-                show: false,
-                padding: {
-                    top: -25,
-                    bottom: -20,
-                },
-            },
-            colors: [config.colors.success],
-            xaxis: {
-                show: false,
-                axisBorder: {
-                    show: false,
-                },
-                axisTicks: {
-                    show: false,
-                },
-                labels: {
-                    show: false,
-                },
-            },
-            yaxis: {
-                labels: {
-                    show: false,
-                },
-            },
-        };
+    // const referralLineChartEl = document.querySelector("#referralLineChart"),
+    //     referralLineChartConfig = {
+    //         series: [
+    //             {
+    //                 name: "سری 1",
+    //                 data: [0, 2, 25, 100, 15, 149],
+    //             },
+    //         ],
+    //         chart: {
+    //             height: 100,
+    //             parentHeightOffset: 0,
+    //             parentWidthOffset: 0,
+    //             type: "line",
+    //             toolbar: {
+    //                 show: false,
+    //             },
+    //         },
+    //         markers: {
+    //             size: 6,
+    //             colors: "transparent",
+    //             strokeColors: "transparent",
+    //             strokeWidth: 4,
+    //             discrete: [
+    //                 {
+    //                     fillColor: cardColor,
+    //                     seriesIndex: 0,
+    //                     dataPointIndex: 5,
+    //                     strokeColor: config.colors.success,
+    //                     strokeWidth: 4,
+    //                     size: 6,
+    //                     radius: 2,
+    //                 },
+    //             ],
+    //             hover: {
+    //                 size: 7,
+    //             },
+    //         },
+    //         dataLabels: {
+    //             enabled: false,
+    //         },
+    //         stroke: {
+    //             width: 4,
+    //             curve: "smooth",
+    //         },
+    //         grid: {
+    //             show: false,
+    //             padding: {
+    //                 top: -25,
+    //                 bottom: -20,
+    //             },
+    //         },
+    //         colors: [config.colors.success],
+    //         xaxis: {
+    //             show: false,
+    //             axisBorder: {
+    //                 show: false,
+    //             },
+    //             axisTicks: {
+    //                 show: false,
+    //             },
+    //             labels: {
+    //                 show: false,
+    //             },
+    //         },
+    //         yaxis: {
+    //             labels: {
+    //                 show: false,
+    //             },
+    //         },
+    //     };
 
-    if (
-        typeof referralLineChartEl !== undefined &&
-        referralLineChartEl !== null
-    ) {
-        const referralLineChart = new ApexCharts(
-            referralLineChartEl,
-            referralLineChartConfig
-        );
-        referralLineChart.render();
-    }
+    // if (
+    //     typeof referralLineChartEl !== undefined &&
+    //     referralLineChartEl !== null
+    // ) {
+    //     const referralLineChart = new ApexCharts(
+    //         referralLineChartEl,
+    //         referralLineChartConfig
+    //     );
+    //     referralLineChart.render();
+    // }
 
     // // Conversion - Bar Chart
     // // --------------------------------------------------------------------
@@ -466,99 +466,99 @@
     //     conversionBarChart.render();
     // }
 
-    // Impression - Donut Chart
-    // --------------------------------------------------------------------
-    const impressionDonutChartEl = document.querySelector(
-            "#impressionDonutChart"
-        ),
-        impressionDonutChartConfig = {
-            chart: {
-                height: 185,
-                type: "donut",
-            },
-            dataLabels: {
-                enabled: false,
-            },
-            grid: {
-                padding: {
-                    bottom: -10,
-                },
-            },
-            series: [80, 30, 60],
-            labels: ["اجتماعی", "ایمیل", "جستجو"],
-            stroke: {
-                width: 0,
-                lineCap: "round",
-            },
-            colors: [
-                config.colors.primary,
-                config.colors.info,
-                config.colors.warning,
-            ],
-            plotOptions: {
-                pie: {
-                    donut: {
-                        size: "90%",
-                        labels: {
-                            show: true,
-                            name: {
-                                fontSize: "0.938rem",
-                                offsetY: 22,
-                            },
-                            value: {
-                                show: true,
-                                fontSize: "1.625rem",
-                                fontWeight: "500",
-                                color: headingColor,
-                                offsetY: -22,
-                                formatter: function (val) {
-                                    return val;
-                                },
-                            },
-                            total: {
-                                show: true,
-                                label: "بازدید",
-                                color: legendColor,
-                                formatter: function (w) {
-                                    return w.globals.seriesTotals.reduce(
-                                        function (a, b) {
-                                            return a + b;
-                                        },
-                                        0
-                                    );
-                                },
-                            },
-                        },
-                    },
-                },
-            },
-            legend: {
-                show: true,
-                position: "bottom",
-                offsetY: 8,
-                horizontalAlign: "center",
-                labels: {
-                    colors: legendColor,
-                    useSeriesColors: false,
-                },
-                markers: {
-                    width: 10,
-                    height: 10,
-                    offsetX: -3,
-                },
-            },
-        };
+    // // Impression - Donut Chart
+    // // --------------------------------------------------------------------
+    // const impressionDonutChartEl = document.querySelector(
+    //         "#impressionDonutChart"
+    //     ),
+    //     impressionDonutChartConfig = {
+    //         chart: {
+    //             height: 185,
+    //             type: "donut",
+    //         },
+    //         dataLabels: {
+    //             enabled: false,
+    //         },
+    //         grid: {
+    //             padding: {
+    //                 bottom: -10,
+    //             },
+    //         },
+    //         series: [80, 30, 60],
+    //         labels: ["اجتماعی", "ایمیل", "جستجو"],
+    //         stroke: {
+    //             width: 0,
+    //             lineCap: "round",
+    //         },
+    //         colors: [
+    //             config.colors.primary,
+    //             config.colors.info,
+    //             config.colors.warning,
+    //         ],
+    //         plotOptions: {
+    //             pie: {
+    //                 donut: {
+    //                     size: "90%",
+    //                     labels: {
+    //                         show: true,
+    //                         name: {
+    //                             fontSize: "0.938rem",
+    //                             offsetY: 22,
+    //                         },
+    //                         value: {
+    //                             show: true,
+    //                             fontSize: "1.625rem",
+    //                             fontWeight: "500",
+    //                             color: headingColor,
+    //                             offsetY: -22,
+    //                             formatter: function (val) {
+    //                                 return val;
+    //                             },
+    //                         },
+    //                         total: {
+    //                             show: true,
+    //                             label: "بازدید",
+    //                             color: legendColor,
+    //                             formatter: function (w) {
+    //                                 return w.globals.seriesTotals.reduce(
+    //                                     function (a, b) {
+    //                                         return a + b;
+    //                                     },
+    //                                     0
+    //                                 );
+    //                             },
+    //                         },
+    //                     },
+    //                 },
+    //             },
+    //         },
+    //         legend: {
+    //             show: true,
+    //             position: "bottom",
+    //             offsetY: 8,
+    //             horizontalAlign: "center",
+    //             labels: {
+    //                 colors: legendColor,
+    //                 useSeriesColors: false,
+    //             },
+    //             markers: {
+    //                 width: 10,
+    //                 height: 10,
+    //                 offsetX: -3,
+    //             },
+    //         },
+    //     };
 
-    if (
-        typeof impressionDonutChartEl !== undefined &&
-        impressionDonutChartEl !== null
-    ) {
-        const impressionDonutChart = new ApexCharts(
-            impressionDonutChartEl,
-            impressionDonutChartConfig
-        );
-        impressionDonutChart.render();
-    }
+    // if (
+    //     typeof impressionDonutChartEl !== undefined &&
+    //     impressionDonutChartEl !== null
+    // ) {
+    //     const impressionDonutChart = new ApexCharts(
+    //         impressionDonutChartEl,
+    //         impressionDonutChartConfig
+    //     );
+    //     impressionDonutChart.render();
+    // }
 
     // Conversion - Gradient Line Chart
     // --------------------------------------------------------------------

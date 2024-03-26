@@ -24,6 +24,7 @@ use App\Models\City;
 use App\Models\HighestBidderLevel;
 use App\Models\Product;
 use App\Models\Temprary;
+use App\Models\TrackVisit;
 use App\Models\User;
 use App\Models\Winner;
 use Carbon\Carbon;
@@ -116,12 +117,47 @@ Route::controller(ProductController::class)->group(function () {
 
 //vue development Routes
 
-Route::get('/vue/v1/{any?}', function () {
+Route::middleware('save.visitor')->get('/vue/v1/{any?}', function () {
     return view('app');
 })->where('any', '.*');
 
 
-Route::get('/test', function () {
+
+
+
+
+
+
+Route::middleware('save.visitor')->get('/test', function () {
+    // visitor()->visit();
+   
+    $uniqe_visits=TrackVisit::distinct('ip')->count();
+    
+    dd($uniqe_visits);
+
+
+
+
+
+dd(User::online()->get());
+    dd(visitor()->device(),
+    visitor()->platform(),
+    visitor()->browser(),
+  
+    visitor()->ip(),
+    visitor()->request(),
+    visitor()->useragent(),
+    visitor()->isOnline(),
+);
+
+
+
+
+
+
+
+
+
 
     $bids_placed = BiddingHistory::where('user_id' ,2 )->where('auction_id' , 546)->count();
     dd($bids_placed);

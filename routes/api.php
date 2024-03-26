@@ -24,6 +24,7 @@ use App\Http\Controllers\Api\TransactionController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\UserShipedProductController;
 use App\Http\Controllers\Api\UserWinsController;
+use App\Http\Controllers\Api\VisitorController;
 use App\Models\Auction;
 use App\Models\BidBuddy;
 use App\Models\BiddingHistory;
@@ -63,6 +64,9 @@ Route::controller(AuctionController::class)->prefix('/auctions')->group(function
 
 Route::controller(AuctionController::class)->group(function () {
     Route::get('/pusher', 'test_pusher');
+});
+Route::controller(VisitorController::class)->group(function () {
+    Route::post('/save_visit', 'store');
 });
 
 Route::controller(ApiCategoryController::class)->prefix('/categories')->group(function () {
@@ -145,19 +149,16 @@ Route::controller(SpecialOfferController::class)->prefix('/special_offer')->grou
 });
 Route::controller(WinnerController::class)->prefix('/winners')->group(function () {
 
-
     Route::post('/auction', 'index');
     Route::post('/all', 'all');
     Route::post('/store', 'storeWinner');
 });
 Route::controller(CommentController::class)->prefix('/comments')->group(function () {
 
-
     Route::post('/auction', 'auctionComments');
     Route::post('/store', 'storeComment');
 });
 Route::controller(BiddersController::class)->prefix('/bidders')->group(function () {
-
 
     Route::post('/auction', 'biddersInAuction');
 });

@@ -15,6 +15,7 @@ class TrackVisitors
      */
     public function handle(Request $request, Closure $next): Response
     {
+        visitor()->visit(); // save visitor info
         return $next($request);
     }
 }

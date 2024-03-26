@@ -45,6 +45,7 @@ app.use(Toast, options);
 
 router.app = app;
 app.use(store);
+router.app = app
 
 app.component(VueCountdown.name, VueCountdown);
 app.component("loading", loading);
