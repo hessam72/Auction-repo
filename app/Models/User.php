@@ -14,7 +14,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+use Shetabit\Visitor\Traits\Visitor;
 /**
  * Class User
  * 
@@ -50,6 +50,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends  Authenticatable implements JWTSubject
 {
 
+	use Visitor;
 	public function getJWTIdentifier()
     {
         return $this->getKey();

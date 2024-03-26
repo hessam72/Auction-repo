@@ -33,26 +33,23 @@ const router = createRouter({
             path: "/vue/v1/success_payment",
             name: "success_payment",
             component: success_payment,
-            
         },
         {
             path: "/vue/v1/fail_payment",
             name: "fail_payment",
             component: fail_payment,
-            
         },
         {
             path: "/vue/v1/partially_paid",
             name: "partially_paid",
             component: partially_paid,
-            
         },
         {
             path: "/vue/v1/auctions",
             name: "auctions",
             component: AuctionList,
             // meta: { isGuest: true },
-        }, 
+        },
         {
             path: "/vue/v1/auctions_test",
             name: "all_auctions_test",
@@ -64,7 +61,7 @@ const router = createRouter({
             name: "auction-index",
             component: AuctionIndex,
             // meta: { isGuest: true },
-        }, 
+        },
         {
             path: "/vue/v1/auction_test/:id",
             name: "auction-index_test",
@@ -151,6 +148,25 @@ const router = createRouter({
 // sessionStorage.clear();
 
 router.beforeEach(function (to, from, next) {
+    // save visitor
+
+    const body = {
+        url: to.fullPath,
+    };
+    axios({
+        method: "post",
+        url: "http://localhost:8000/api/save_visit",
+        data: body,
+    })
+        .then((response) => {
+            //    console.log(response)
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+
+
+
     // document.title = translatePageName(to.name);
 
     // authenticating user

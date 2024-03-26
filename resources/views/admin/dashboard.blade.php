@@ -18,6 +18,17 @@
 
 <input id="chart_value_monthly_packages_sales" style="display: none;" type="text" 
         readonly value="{{$past_year_monthly_products_salses}}" />
+        
+        
+        
+        <input id="chart_value_past_year_monthly_visits" style="display: none;" type="text" 
+        readonly value="{{$past_year_monthly_visits}}" />
+
+<input id="chart_value_past_month_all_visits" style="display: none;" type="text" 
+        readonly value="{{$past_month_all_visits}}" />
+
+<input id="chart_value_past_month_uniqe_visits" style="display: none;" type="text" 
+        readonly value="{{$past_month_uniqe_visits}}" />
 
         <div class="row">
             <!-- Website Analytics-->
@@ -143,8 +154,8 @@
                     <div class="col-sm-6 col-12 mb-4">
                         <div class="card h-100">
                             <div class="card-body text-center">
-                                <h2 class="mb-1">32,690</h2>
-                                <span class="text-muted">ارجاع 40%</span>
+                                <h2 class="mb-1">بازدید کل {{$total_visits}}</h2>
+                                <span class="text-muted">نرخ بازدید ماهیانه</span>
                                 <div id="referralLineChart"></div>
                             </div>
                         </div>
@@ -188,8 +199,8 @@
                                                             class="bx bx-user fs-4"></i></span>
                                                 </div>
                                                 <div class="card-info">
-                                                    <h5 class="card-title mb-0 me-2 primary-font">38,566</h5>
-                                                    <small class="text-muted">تبدیل</small>
+                                                    <h5 class="card-title mb-0 me-2 primary-font">{{$past_month_all_visits}}</h5>
+                                                    <small class="text-muted">بازدید ماه اخیر</small>
                                                 </div>
                                             </div>
                                             <div id="conversationChart"></div>
@@ -207,8 +218,8 @@
                                                             class="bx bx-dollar fs-4"></i></span>
                                                 </div>
                                                 <div class="card-info">
-                                                    <h5 class="card-title mb-0 me-2 primary-font">53,659</h5>
-                                                    <small class="text-muted">درآمد</small>
+                                                    <h5 class="card-title mb-0 me-2 primary-font">{{$past_day_visits}}</h5>
+                                                    <small class="text-muted">بازدید روزانه</small>
                                                 </div>
                                             </div>
                                             <div id="incomeChart"></div>
@@ -226,7 +237,7 @@
             <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-3 mb-4">
                 <div class="card h-100">
                     <div class="card-header">
-                        <h5 class="card-title mb-0">فعالیت</h5>
+                        <h5 class="card-title mb-0">سود</h5>
                     </div>
                     <div class="card-body">
                         <ul class="p-0 m-0">

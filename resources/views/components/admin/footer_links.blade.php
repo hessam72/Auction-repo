@@ -393,6 +393,17 @@
 
 
 
+  var past_year_monthly_visits_string=$('#chart_value_past_year_monthly_visits').val();
+    var past_year_monthly_visits = past_year_monthly_visits_string.split(",").map(Number);
+
+  var past_month_all_visits_string=$('#chart_value_past_month_all_visits').val();
+    var past_month_all_visits = past_month_all_visits_string.split(",").map(Number);
+
+  var past_month_uniqe_visits_string=$('#chart_value_past_month_uniqe_visits').val();
+    var past_month_uniqe_visits = past_month_uniqe_visits_string.split(",").map(Number);
+
+
+
 
     let cardColor,
         headingColor,
@@ -781,12 +792,204 @@
         registrationsBarChart.render();
     }
 
+            // labels: ["بازدید کل", "بازدید یکتا"],
 
 
-    // Conversion - Bar Chart income charts
+    // Conversion - Bar Chart income charts monthly visits
     // --------------------------------------------------------------------
-    
-       
+    const referralLineChartEl = document.querySelector("#referralLineChart"),
+        referralLineChartConfig = {
+            series: [
+                {
+                    name: "بازدید ماهیانه",
+                    data: past_year_monthly_visits,
+                },
+            ],
+            chart: {
+                height: 100,
+                parentHeightOffset: 0,
+                parentWidthOffset: 0,
+                type: "line",
+                toolbar: {
+                    show: false,
+                },
+            },
+            markers: {
+                size: 6,
+                colors: "transparent",
+                strokeColors: "transparent",
+                strokeWidth: 4,
+                discrete: [
+                    {
+                        fillColor: cardColor,
+                        seriesIndex: 0,
+                        dataPointIndex: 5,
+                        strokeColor: config.colors.success,
+                        strokeWidth: 4,
+                        size: 6,
+                        radius: 2,
+                    },
+                ],
+                hover: {
+                    size: 7,
+                },
+            },
+            dataLabels: {
+                enabled: false,
+            },
+            stroke: {
+                width: 4,
+                curve: "smooth",
+            },
+            grid: {
+                show: false,
+                padding: {
+                    top: -25,
+                    bottom: -20,
+                },
+            },
+            colors: [config.colors.success],
+            xaxis: {
+              
+                categories: [
+                        "ژانویه",
+                        "فوریه",
+                        "مارس",
+                        "آوریل",
+                        "می",
+                        "ژوئن",
+                        "جولای",
+                        "آگوست",
+                        "سپتامبر",
+                        "اکتبر",
+                        "نوامبر",
+                        "دسامبر",
+                    ],
+                show: false,
+                axisBorder: {
+                    show: false,
+                },
+                axisTicks: {
+                    show: false,
+                },
+                labels: {
+                    show: false,
+                },
+            },
+            yaxis: {
+                labels: {
+                    show: false,
+                },
+            },
+        };
+
+    if (
+        typeof referralLineChartEl !== undefined &&
+        referralLineChartEl !== null
+    ) {
+        const referralLineChart = new ApexCharts(
+            referralLineChartEl,
+            referralLineChartConfig
+        );
+        referralLineChart.render();
+    }
+
+
+    // --------------------- uniqe visit vs all visitsconst impressionDonutChartEl = document.querySelector(
+        // Impression - Donut Chart
+    // --------------------------------------------------------------------
+    const impressionDonutChartEl = document.querySelector(
+            "#impressionDonutChart"
+        ),
+        impressionDonutChartConfig = {
+            chart: {
+                height: 185,
+                type: "donut",
+            },
+            dataLabels: {
+                enabled: false,
+            },
+            grid: {
+                padding: {
+                    bottom: -10,
+                },
+            },
+            series: [past_month_all_visits,
+                        past_month_uniqe_visits],
+            labels: ["کل", "یکتا"],
+            stroke: {
+                width: 0,
+                lineCap: "round",
+            },
+            colors: [
+                config.colors.primary,
+                config.colors.info,
+            ],
+            plotOptions: {
+                pie: {
+                    donut: {
+                        size: "90%",
+                        labels: {
+                            show: true,
+                            name: {
+                                fontSize: "0.938rem",
+                                offsetY: 22,
+                            },
+                            value: {
+                                show: true,
+                                fontSize: "1.625rem",
+                                fontWeight: "500",
+                                color: headingColor,
+                                offsetY: -22,
+                                formatter: function (val) {
+                                    return val;
+                                },
+                            },
+                            total: {
+                                show: true,
+                                label: " بازدید ماه",
+                                color: legendColor,
+                                formatter: function (w) {
+                                    return w.globals.seriesTotals.reduce(
+                                        function (a, b) {
+                                            return a + b;
+                                        },
+                                        0
+                                    );
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+            legend: {
+                show: true,
+                position: "bottom",
+                offsetY: 8,
+                horizontalAlign: "center",
+                labels: {
+                    colors: legendColor,
+                    useSeriesColors: false,
+                },
+                markers: {
+                    width: 10,
+                    height: 10,
+                    offsetX: -3,
+                },
+            },
+        };
+
+    if (
+        typeof impressionDonutChartEl !== undefined &&
+        impressionDonutChartEl !== null
+    ) {
+        const impressionDonutChart = new ApexCharts(
+            impressionDonutChartEl,
+            impressionDonutChartConfig
+        );
+        impressionDonutChart.render();
+    }
+
    
 
 </script>

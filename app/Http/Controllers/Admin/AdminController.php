@@ -8,6 +8,7 @@ use App\Models\Admin;
 use App\Models\Auction;
 use App\Models\BiddingHistory;
 use App\Models\Product;
+use App\Models\TrackVisit;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Models\Winner;
@@ -48,6 +49,7 @@ class AdminController extends Controller
         $past_year_monthly_products = []; 
         $past_year_monthly_packages_salses = [];
         $past_year_monthly_products_salses = [];
+        $past_year_monthly_visits = [];
 
 
         for ($i = 1; $i <= 12; $i++) {
@@ -58,6 +60,7 @@ class AdminController extends Controller
 
 
 
+            $past_year_monthly_visits[] = TrackVisit::whereMonth('created_at', $i)->count();
             $past_year_monthly_singups[] = User::whereMonth('created_at', $i)->count();
             $past_year_monthly_auctions[] = Auction::whereMonth('created_at', $i)->count();
             $past_year_monthly_products[] = Product::whereMonth('created_at', $i)->count();
@@ -70,13 +73,20 @@ class AdminController extends Controller
         $past_year_monthly_products = (implode(',', $past_year_monthly_products));
         $past_year_monthly_packages_salses = (implode(',', $past_year_monthly_packages_salses));
         $past_year_monthly_products_salses = (implode(',', $past_year_monthly_products_salses));
+        $past_year_monthly_visits = (implode(',', $past_year_monthly_visits));
+
+
+        
 
 
 
+        //total visits 
+        $total_visits=TrackVisit::count();
 
-
-
-
+        //past month visits all and uniqe
+        $past_month_all_visits=TrackVisit::where('created_at', '>', $last_month)->count();
+        $past_day_visits=TrackVisit::where('created_at', '>', $last_24hrs)->count();
+        $past_month_uniqe_visits=TrackVisit::where('created_at', '>', $last_month)->distinct('ip')->count();
 
 
 
@@ -148,7 +158,13 @@ class AdminController extends Controller
             'past_year_monthly_income',
             'past_year_monthly_singups',
             'past_year_monthly_packages_salses',
-'past_year_monthly_products_salses'
+'past_year_monthly_products_salses',
+'past_year_monthly_visits',
+'past_month_all_visits',
+'past_month_uniqe_visits',
+'total_visits',
+'past_day_visits'
+
         ));
     }
 
