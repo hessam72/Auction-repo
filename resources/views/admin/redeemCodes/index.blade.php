@@ -17,7 +17,7 @@
                     <div class="modal-body">
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         <div class="text-center mb-4 mt-0 mt-md-n2">
-                            <h3 class="secondary-font">افزودن redeemCode جدید</h3>
+                            <h3 class="secondary-font">افزودن کد جدید</h3>
 
                         </div>
 

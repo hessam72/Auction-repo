@@ -2,33 +2,33 @@
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
 
-           {{--  for reading from js --}}
-           <input id="chart_value_monthly_income" style="display: none;" type="text" 
-           readonly value="{{$past_year_monthly_income}}" /> 
-           <input id="chart_value_monthly_singups" style="display: none;" type="text" 
-           readonly value="{{$past_year_monthly_singups}}" />
-        <input id="chart_value_monthly_auctions" style="display: none;" type="text" 
-        readonly value="{{$past_year_monthly_auctions}}" />
+        {{--  for reading from js --}}
+        <input id="chart_value_monthly_income" style="display: none;" type="text" readonly
+            value="{{ $past_year_monthly_income }}" />
+        <input id="chart_value_monthly_singups" style="display: none;" type="text" readonly
+            value="{{ $past_year_monthly_singups }}" />
+        <input id="chart_value_monthly_auctions" style="display: none;" type="text" readonly
+            value="{{ $past_year_monthly_auctions }}" />
 
-<input id="chart_value_monthly_products" style="display: none;" type="text" 
-        readonly value="{{$past_year_monthly_products}}" />
+        <input id="chart_value_monthly_products" style="display: none;" type="text" readonly
+            value="{{ $past_year_monthly_products }}" />
 
-<input id="chart_value_monthly_products_sales" style="display: none;" type="text" 
-        readonly value="{{$past_year_monthly_packages_salses}}" />
+        <input id="chart_value_monthly_products_sales" style="display: none;" type="text" readonly
+            value="{{ $past_year_monthly_packages_salses }}" />
 
-<input id="chart_value_monthly_packages_sales" style="display: none;" type="text" 
-        readonly value="{{$past_year_monthly_products_salses}}" />
-        
-        
-        
-        <input id="chart_value_past_year_monthly_visits" style="display: none;" type="text" 
-        readonly value="{{$past_year_monthly_visits}}" />
+        <input id="chart_value_monthly_packages_sales" style="display: none;" type="text" readonly
+            value="{{ $past_year_monthly_products_salses }}" />
 
-<input id="chart_value_past_month_all_visits" style="display: none;" type="text" 
-        readonly value="{{$past_month_all_visits}}" />
 
-<input id="chart_value_past_month_uniqe_visits" style="display: none;" type="text" 
-        readonly value="{{$past_month_uniqe_visits}}" />
+
+        <input id="chart_value_past_year_monthly_visits" style="display: none;" type="text" readonly
+            value="{{ $past_year_monthly_visits }}" />
+
+        <input id="chart_value_past_month_all_visits" style="display: none;" type="text" readonly
+            value="{{ $past_month_all_visits }}" />
+
+        <input id="chart_value_past_month_uniqe_visits" style="display: none;" type="text" readonly
+            value="{{ $past_month_uniqe_visits }}" />
 
         <div class="row">
             <!-- Website Analytics-->
@@ -55,7 +55,7 @@
                                 <span>کاربران</span>
                                 <div class="d-flex align-items-center mt-2">
                                     <div class="chart-report" data-color="success" data-series="35"></div>
-                                    <h3 class="mb-0">{{$total_users}}</h3>
+                                    <h3 class="mb-0">{{ $total_users }}</h3>
                                 </div>
                             </div>
                             <div class="sessions-analytics text-center me-2">
@@ -63,7 +63,7 @@
                                 <span>حراجی ها</span>
                                 <div class="d-flex align-items-center mt-2">
                                     <div class="chart-report" data-color="warning" data-series="76"></div>
-                                    <h3 class="mb-0">{{$all_auctions}}</h3>
+                                    <h3 class="mb-0">{{ $all_auctions }}</h3>
                                 </div>
                             </div>
                             <div class="bounce-rate-analytics text-center">
@@ -71,17 +71,17 @@
                                 <span>محصولات</span>
                                 <div class="d-flex align-items-center mt-2">
                                     <div class="chart-report" data-color="danger" data-series="65"></div>
-                                    <h3 class="mb-0">{{$all_products}}</h3>
+                                    <h3 class="mb-0">{{ $all_products }}</h3>
                                 </div>
                             </div>
                         </div>
                         {{--  for reading from js --}}
-                        <input id="chart_value_monthly_income" style="display: none;" type="text" 
-                        readonly value="{{$past_year_monthly_income}}" /> 
-                        <input id="chart_value_monthly_singups" style="display: none;" type="text" 
-                        readonly value="{{$past_year_monthly_singups}}" />
+                        <input id="chart_value_monthly_income" style="display: none;" type="text" readonly
+                            value="{{ $past_year_monthly_income }}" />
+                        <input id="chart_value_monthly_singups" style="display: none;" type="text" readonly
+                            value="{{ $past_year_monthly_singups }}" />
 
- 
+
 
 
 
@@ -90,8 +90,8 @@
                         <div id="analyticsBarChart"></div>
                     </div>
                 </div>
-            </div> 
-             <div class="col-lg-6 col-md-12 mb-4">
+            </div>
+            <div class="col-lg-6 col-md-12 mb-4">
                 <div class="card h-100">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h5 class="card-title mb-0">درآمد کل</h5>
@@ -114,7 +114,7 @@
                                 <span>فروش بید</span>
                                 <div class="d-flex align-items-center mt-2">
                                     <div class="chart-report" data-color="success" data-series="35"></div>
-                                    <h3 class="mb-0">{{$packages_total_sales}} دلار</h3>
+                                    <h3 class="mb-0">{{ $packages_total_sales }} دلار</h3>
                                 </div>
                             </div>
                             <div class="sessions-analytics text-center me-2">
@@ -122,7 +122,7 @@
                                 <span>فروش محصول</span>
                                 <div class="d-flex align-items-center mt-2">
                                     <div class="chart-report" data-color="warning" data-series="76"></div>
-                                    <h3 class="mb-0">{{$products_total_sales}} دلار</h3>
+                                    <h3 class="mb-0">{{ $products_total_sales }} دلار</h3>
                                 </div>
                             </div>
                             <div class="bounce-rate-analytics text-center">
@@ -130,13 +130,13 @@
                                 <span>درآمد کل</span>
                                 <div class="d-flex align-items-center mt-2">
                                     <div class="chart-report" data-color="danger" data-series="65"></div>
-                                    <h3 class="mb-0">{{$total_income}} دلار</h3>
+                                    <h3 class="mb-0">{{ $total_income }} دلار</h3>
                                 </div>
                             </div>
                         </div>
-                     
 
- 
+
+
 
 
 
@@ -154,7 +154,7 @@
                     <div class="col-sm-6 col-12 mb-4">
                         <div class="card h-100">
                             <div class="card-body text-center">
-                                <h2 class="mb-1">بازدید کل {{$total_visits}}</h2>
+                                <h2 class="mb-1">بازدید کل {{ $total_visits }}</h2>
                                 <span class="text-muted">نرخ بازدید ماهیانه</span>
                                 <div id="referralLineChart"></div>
                             </div>
@@ -171,7 +171,7 @@
                                         <i class="bx bx-chevron-up text-success"></i>
                                     </p> --}}
                                 </div>
-                                <h2 class="mb-0 primary-font"> {{$total_income}} دلار</h2>
+                                <h2 class="mb-0 primary-font"> {{ $total_income }} دلار</h2>
                             </div>
                             <div class="card-body">
                                 <div id="conversionBarchart"></div>
@@ -199,7 +199,8 @@
                                                             class="bx bx-user fs-4"></i></span>
                                                 </div>
                                                 <div class="card-info">
-                                                    <h5 class="card-title mb-0 me-2 primary-font">{{$past_month_all_visits}}</h5>
+                                                    <h5 class="card-title mb-0 me-2 primary-font">
+                                                        {{ $past_month_all_visits }}</h5>
                                                     <small class="text-muted">بازدید ماه اخیر</small>
                                                 </div>
                                             </div>
@@ -218,7 +219,8 @@
                                                             class="bx bx-dollar fs-4"></i></span>
                                                 </div>
                                                 <div class="card-info">
-                                                    <h5 class="card-title mb-0 me-2 primary-font">{{$past_day_visits}}</h5>
+                                                    <h5 class="card-title mb-0 me-2 primary-font">{{ $past_day_visits }}
+                                                    </h5>
                                                     <small class="text-muted">بازدید روزانه</small>
                                                 </div>
                                             </div>
@@ -249,7 +251,7 @@
                                 <div class="d-flex flex-column w-100">
                                     <div class="d-flex justify-content-between mb-2">
                                         <span>بید فروخته شده</span>
-                                        <span class="text-muted">دلار {{$packages_total_sales}}</span>
+                                        <span class="text-muted">دلار {{ $packages_total_sales }}</span>
                                     </div>
                                     <div class="progress" style="height: 6px">
                                         <div class="progress-bar bg-primary" style="width: 100%" role="progressbar"
@@ -265,7 +267,7 @@
                                 <div class="d-flex flex-column w-100">
                                     <div class="d-flex justify-content-between mb-2">
                                         <span>محصول فروخته شده</span>
-                                        <span class="text-muted">دلار {{$products_total_sales}}</span>
+                                        <span class="text-muted">دلار {{ $products_total_sales }}</span>
                                     </div>
                                     <div class="progress" style="height: 6px">
                                         <div class="progress-bar bg-success" style="width: 100%" role="progressbar"
@@ -281,7 +283,7 @@
                                 <div class="d-flex flex-column w-100">
                                     <div class="d-flex justify-content-between mb-2">
                                         <span>درآمد کل</span>
-                                        <span class="text-muted">دلار {{$total_income}}</span>
+                                        <span class="text-muted">دلار {{ $total_income }}</span>
                                     </div>
                                     <div class="progress" style="height: 6px">
                                         <div class="progress-bar bg-warning" style="width: 100%" role="progressbar"
@@ -297,7 +299,7 @@
                                 <div class="d-flex flex-column w-100">
                                     <div class="d-flex justify-content-between mb-2">
                                         <span>حراجی های برگزار شده</span>
-                                        <span class="text-muted">{{$all_auctions}}</span>
+                                        <span class="text-muted">{{ $all_auctions }}</span>
                                     </div>
                                     <div class="progress" style="height: 6px">
                                         <div class="progress-bar bg-danger" style="width: 100%" role="progressbar"
@@ -324,14 +326,14 @@
                                     <div class="d-flex align-content-center">
                                         <div class="chart-report mt-n1" data-color="danger" data-series="25"></div>
                                         <div class="chart-info">
-                                            <h5 class="mb-1 lh-inherit">{{$last_month_income}} دلار</h5>
+                                            <h5 class="mb-1 lh-inherit">{{ $last_month_income }} دلار</h5>
                                             <small class="text-muted">این ماه</small>
                                         </div>
                                     </div>
                                     <div class="d-flex align-content-center">
                                         <div class="chart-report mt-n1" data-color="info" data-series="50"></div>
                                         <div class="chart-info">
-                                            <h5 class="mb-1 lh-inherit">{{$total_income}} دلار</h5>
+                                            <h5 class="mb-1 lh-inherit">{{ $total_income }} دلار</h5>
                                             <small class="text-muted">کل</small>
                                         </div>
                                     </div>
@@ -348,7 +350,7 @@
                                 <div class="d-flex justify-content-between align-items-end gap-3">
                                     <div class="mb-3">
                                         <div class="d-flex align-content-center align-items-center">
-                                            <h5 class="mb-0">  {{$new_singups}} نفر</h5>
+                                            <h5 class="mb-0"> {{ $new_singups }} نفر</h5>
                                             <i class="bx bx-chevron-up text-success"></i>
                                         </div>
                                         {{-- <small class="text-success">12.8%</small> --}}
@@ -433,11 +435,83 @@
                 </div>
             </div> --}}
             <!-- Growth Chart-->
+            <div class="card" style="max-height: 30rem;">
+                <div class="card-header">
+                    <h5 class="mb-0">دستگاه‌های اخیر</h5>
+                </div>
+                {{-- <i class="fa-brands fa-apple"></i>
+                <i class="fa-brands fa-windows"></i>
 
-          
 
-          
+
+
+
+ --}}
+
+
+                <div class="table-responsive">
+                    <table class="table border-top">
+                        <thead>
+                            <tr>
+                                <th class="text-truncate">مرورگر</th>
+                                <th class="text-truncate">دستگاه</th>
+                                <th class="text-truncate">سیستم عامل</th>
+                                <th class="text-truncate">آی پی</th>
+                                <th class="text-truncate">آدرس دیده شده </th>
+                                <th class="text-truncate"> زمان</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($latest_visits as $visit)
+                                <tr>
+                                    <td class="text-truncate">
+                                        {{-- <i class="bx bxl-windows text-info me-3"></i> --}}
+
+                                        @if ($visit->browser == 'Firefox')
+                                            <i style="    color: #ff9400;
+                                            font-size: 1.5rem;"
+                                                class="fa-brands fa-firefox-browser"></i>
+                                        @elseif($visit->browser == 'Safari')
+                                            <i style="    color: #00a5f2;
+    font-size: 1.5rem;"
+                                                class="fa-brands fa-safari"></i>
+                                        @elseif($visit->browser == 'Chrome')
+                                            <i style="    color: #f23b00;
+    font-size: 1.5rem;"
+                                                class="fa-brands fa-chrome"></i>
+                                        @else
+                                            <i style="    color: #5535f4;
+    font-size: 1.5rem;"
+                                                class="fa-solid fa-globe"></i>
+                                        @endif
+
+
+
+                                        <span class="fw-semibold">{{ $visit->browser }}</span>
+                                    </td>
+                                    <td class="text-truncate">
+
+                                        {{ $visit->device }}
+
+
+
+                                    </td>
+                                    <td class="text-truncate">{{ $visit->platform }} </td>
+                                    <td class="text-truncate">{{ $visit->ip }}</td>
+                                    <td class="text-truncate">{{ $visit->url }}</td>
+                                    {{-- <td class="text-truncate">10 فروردین 1401 - 20:07</td> --}}
+                                    <td class="text-truncate">{{ $visit->created_at }}</td>
+                                </tr>
+                            @endforeach
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
         </div>
     </div>
-
 @endsection

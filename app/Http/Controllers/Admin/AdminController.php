@@ -46,7 +46,7 @@ class AdminController extends Controller
         $past_year_monthly_income = []; // arrange by month in an array
         $past_year_monthly_singups = [];
         $past_year_monthly_auctions = [];
-        $past_year_monthly_products = []; 
+        $past_year_monthly_products = [];
         $past_year_monthly_packages_salses = [];
         $past_year_monthly_products_salses = [];
         $past_year_monthly_visits = [];
@@ -54,8 +54,8 @@ class AdminController extends Controller
 
         for ($i = 1; $i <= 12; $i++) {
             $past_year_monthly_income[] = Transaction::where('status', 100)->whereMonth('created_at', $i)->sum('amount');
-            $past_year_monthly_packages_salses[] = Transaction::where('status', 100)->where('item_type' , 1)->whereMonth('created_at', $i)->sum('amount');
-            $past_year_monthly_products_salses[] = Transaction::where('status', 100)->where('item_type' , 2)->whereMonth('created_at', $i)->sum('amount');
+            $past_year_monthly_packages_salses[] = Transaction::where('status', 100)->where('item_type', 1)->whereMonth('created_at', $i)->sum('amount');
+            $past_year_monthly_products_salses[] = Transaction::where('status', 100)->where('item_type', 2)->whereMonth('created_at', $i)->sum('amount');
 
 
 
@@ -65,7 +65,7 @@ class AdminController extends Controller
             $past_year_monthly_auctions[] = Auction::whereMonth('created_at', $i)->count();
             $past_year_monthly_products[] = Product::whereMonth('created_at', $i)->count();
         }
-       
+
         // convert to string to inject to in blade
         $past_year_monthly_income = (implode(',', $past_year_monthly_income));
         $past_year_monthly_singups = (implode(',', $past_year_monthly_singups));
@@ -76,17 +76,19 @@ class AdminController extends Controller
         $past_year_monthly_visits = (implode(',', $past_year_monthly_visits));
 
 
-        
+        // last 40 visits
+        $latest_visits = TrackVisit::take(40)->latest()->get();
+
 
 
 
         //total visits 
-        $total_visits=TrackVisit::count();
+        $total_visits = TrackVisit::count();
 
         //past month visits all and uniqe
-        $past_month_all_visits=TrackVisit::where('created_at', '>', $last_month)->count();
-        $past_day_visits=TrackVisit::where('created_at', '>', $last_24hrs)->count();
-        $past_month_uniqe_visits=TrackVisit::where('created_at', '>', $last_month)->distinct('ip')->count();
+        $past_month_all_visits = TrackVisit::where('created_at', '>', $last_month)->count();
+        $past_day_visits = TrackVisit::where('created_at', '>', $last_24hrs)->count();
+        $past_month_uniqe_visits = TrackVisit::where('created_at', '>', $last_month)->distinct('ip')->count();
 
 
 
@@ -158,12 +160,13 @@ class AdminController extends Controller
             'past_year_monthly_income',
             'past_year_monthly_singups',
             'past_year_monthly_packages_salses',
-'past_year_monthly_products_salses',
-'past_year_monthly_visits',
-'past_month_all_visits',
-'past_month_uniqe_visits',
-'total_visits',
-'past_day_visits'
+            'past_year_monthly_products_salses',
+            'past_year_monthly_visits',
+            'past_month_all_visits',
+            'past_month_uniqe_visits',
+            'total_visits',
+            'past_day_visits',
+            'latest_visits'
 
         ));
     }

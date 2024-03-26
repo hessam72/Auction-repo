@@ -13,7 +13,7 @@
         <div class="card">
             <div style="display: flex;
             justify-content: space-between;" class="card-header border-bottom">
-                <h5 class="card-title">Redeem Codes </h5>
+                <h5 class="card-title">حراجی ها </h5>
                 <div class="d-flex justify-content-between align-items-center row py-3 gap-3 gap-md-0 primary-font">
                     <div class="col-md-4 user_role"></div>
                     <div class="col-md-4 user_plan"></div>

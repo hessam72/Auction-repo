@@ -29,6 +29,11 @@
  <link rel="stylesheet" href="../../assets/vendor/libs/bs-stepper/bs-stepper.css">
  <link rel="stylesheet" href="../../assets/vendor/libs/formvalidation/dist/css/formValidation.min.css">
 
+
+ <link rel="stylesheet" href="../../assets/vendor/css/pages/app-chat.css">
+
+
+
  <!-- Helpers -->
  <script src="../../assets/vendor/js/helpers.js"></script>
 

@@ -85,6 +85,7 @@
 
 <script src="../../assets/js/form-wizard-validation.js"></script>
 
+<script src="../../assets/js/app-chat.js"></script>
 
 
 
@@ -149,7 +150,7 @@
         enableTime: false,
         minDate: "today",
 
-    }  
+    }
     const with_time_config = {
         enableTime: true,
         dateFormat: "Y-m-d H:i",
@@ -158,14 +159,54 @@
     }
     $("#datePickerTime").flatpickr(with_time_config);
     $("#datePicker").flatpickr(default_config);
-  
+
+
 
     $(document).ready(function() {
 
         // flatpicker
 
+        //activate current menu
+        var url = window.location.pathname;
+        if (url.includes('auctions')) {
+            $('#auctions_menu').addClass('active');
+        } else if (url.includes('categories')) {
+            $('#categories_menu').addClass('active');
+        } else if (url.includes('rewards')) {
+            $('#rewards_menu').addClass('active');
+        } else if (url.includes('challenges')) {
+            $('#challenges_menu').addClass('active');
+        } else if (url.includes('products')) {
+            $('#products_menu').addClass('active');
+        } else if (url.includes('bidPackages')) {
+            $('#bidPackages_menu').addClass('active');
+        } else if (url.includes('specialOffers')) {
+            $('#specialOffers_menu').addClass('active');
+        } else if (url.includes('redeemCodes')) {
+            $('#redeemCodes_menu').addClass('active');
+        } else if (url.includes('tickets')) {
+            $('#tickets_menu').addClass('active');
+        } else if (url.includes('states')) {
+            $('#geo_menu').addClass('active');
+        } else if (url.includes('cities')) {
+            $('#geo_menu').addClass('active');
+        } else {
+            $('#dashboard_menu').addClass('active');
+        }
 
 
+
+
+
+        //download ticket file
+        $('.ticket_download_btn').click(function(e) {
+
+            file_path = $(this).next().val();
+
+            window.open("/storage/" + file_path, "_blank");
+
+
+        });
 
 
 
@@ -354,15 +395,14 @@
             //hide product selection
             $('.product_selection_drop').hide();
             $('.bidPackage_selection_drop').show();
-        }
-        else if($('#product_select').prop('checked')) {
+        } else if ($('#product_select').prop('checked')) {
             //hide bid package selection
             $('.bidPackage_selection_drop').hide();
             $('.product_selection_drop').show();
         }
 
     });
-    $('#submit_sp_wizard_form').click(function(){
+    $('#submit_sp_wizard_form').click(function() {
         // alert('dsdsdssds')
         // $('#wizard-create-deal-form').submit();
     });
@@ -373,33 +413,33 @@
 
 
     // dashboard analitics
-    var monthly_income_string=$('#chart_value_monthly_income').val();
+    var monthly_income_string = $('#chart_value_monthly_income').val();
     var monthly_income = monthly_income_string.split(",").map(Number);
 
-      var monthly_singups_string=$('#chart_value_monthly_singups').val();
+    var monthly_singups_string = $('#chart_value_monthly_singups').val();
     var monthly_singups = monthly_singups_string.split(",").map(Number);
 
-  var monthly_auctions_string=$('#chart_value_monthly_auctions').val();
+    var monthly_auctions_string = $('#chart_value_monthly_auctions').val();
     var monthly_auctions = monthly_auctions_string.split(",").map(Number);
 
-  var monthly_products_string=$('#chart_value_monthly_products').val();
+    var monthly_products_string = $('#chart_value_monthly_products').val();
     var monthly_products = monthly_products_string.split(",").map(Number);
 
-  var monthly_products_sales_string=$('#chart_value_monthly_products_sales').val();
+    var monthly_products_sales_string = $('#chart_value_monthly_products_sales').val();
     var monthly_products_sales = monthly_products_sales_string.split(",").map(Number);
 
-  var monthly_packages_sales_string=$('#chart_value_monthly_packages_sales').val();
+    var monthly_packages_sales_string = $('#chart_value_monthly_packages_sales').val();
     var monthly_packages_sales = monthly_packages_sales_string.split(",").map(Number);
 
 
 
-  var past_year_monthly_visits_string=$('#chart_value_past_year_monthly_visits').val();
+    var past_year_monthly_visits_string = $('#chart_value_past_year_monthly_visits').val();
     var past_year_monthly_visits = past_year_monthly_visits_string.split(",").map(Number);
 
-  var past_month_all_visits_string=$('#chart_value_past_month_all_visits').val();
+    var past_month_all_visits_string = $('#chart_value_past_month_all_visits').val();
     var past_month_all_visits = past_month_all_visits_string.split(",").map(Number);
 
-  var past_month_uniqe_visits_string=$('#chart_value_past_month_uniqe_visits').val();
+    var past_month_uniqe_visits_string = $('#chart_value_past_month_uniqe_visits').val();
     var past_month_uniqe_visits = past_month_uniqe_visits_string.split(",").map(Number);
 
 
@@ -430,71 +470,69 @@
 
     Apex.chart = {
         fontFamily: "inherit",
-        locales: [
-            {
-                name: "fa",
-                options: {
-                    months: [
-                        "ژانویه",
-                        "فوریه",
-                        "مارس",
-                        "آوریل",
-                        "می",
-                        "ژوئن",
-                        "جولای",
-                        "آگوست",
-                        "سپتامبر",
-                        "اکتبر",
-                        "نوامبر",
-                        "دسامبر",
-                    ],
-                    shortMonths: [
-                        "ژانویه",
-                        "فوریه",
-                        "مارس",
-                        "آوریل",
-                        "می",
-                        "ژوئن",
-                        "جولای",
-                        "آگوست",
-                        "سپتامبر",
-                        "اکتبر",
-                        "نوامبر",
-                        "دسامبر",
-                    ],
-                    days: [
-                        "یکشنبه",
-                        "دوشنبه",
-                        "سه‌شنبه",
-                        "چهارشنبه",
-                        "پنجشنبه",
-                        "جمعه",
-                        "شنبه",
-                    ],
-                    shortDays: ["ی", "د", "س", "چ", "پ", "ج", "ش"],
-                    toolbar: {
-                        exportToSVG: "دریافت SVG",
-                        exportToPNG: "دریافت PNG",
-                        menu: "فهرست",
-                        selection: "انتخاب",
-                        selectionZoom: "بزرگنمایی قسمت انتخاب شده",
-                        zoomIn: "بزرگ نمایی",
-                        zoomOut: "کوچک نمایی",
-                        pan: "جا به جایی",
-                        reset: "بازنشانی بزرگ نمایی",
-                    },
+        locales: [{
+            name: "fa",
+            options: {
+                months: [
+                    "ژانویه",
+                    "فوریه",
+                    "مارس",
+                    "آوریل",
+                    "می",
+                    "ژوئن",
+                    "جولای",
+                    "آگوست",
+                    "سپتامبر",
+                    "اکتبر",
+                    "نوامبر",
+                    "دسامبر",
+                ],
+                shortMonths: [
+                    "ژانویه",
+                    "فوریه",
+                    "مارس",
+                    "آوریل",
+                    "می",
+                    "ژوئن",
+                    "جولای",
+                    "آگوست",
+                    "سپتامبر",
+                    "اکتبر",
+                    "نوامبر",
+                    "دسامبر",
+                ],
+                days: [
+                    "یکشنبه",
+                    "دوشنبه",
+                    "سه‌شنبه",
+                    "چهارشنبه",
+                    "پنجشنبه",
+                    "جمعه",
+                    "شنبه",
+                ],
+                shortDays: ["ی", "د", "س", "چ", "پ", "ج", "ش"],
+                toolbar: {
+                    exportToSVG: "دریافت SVG",
+                    exportToPNG: "دریافت PNG",
+                    menu: "فهرست",
+                    selection: "انتخاب",
+                    selectionZoom: "بزرگنمایی قسمت انتخاب شده",
+                    zoomIn: "بزرگ نمایی",
+                    zoomOut: "کوچک نمایی",
+                    pan: "جا به جایی",
+                    reset: "بازنشانی بزرگ نمایی",
                 },
             },
-        ],
+        }, ],
         defaultLocale: "fa",
     };
-    
 
 
 
 
 
-   
+
+
     const analyticsBarChartEl = document.querySelector("#analyticsBarChart"),
         analyticsBarChartConfig = {
             chart: {
@@ -515,17 +553,16 @@
             dataLabels: {
                 enabled: false,
             },
-            colors: ['#5a8dee' , '#ee8dee' ,'#5a833e'],
+            colors: ['#5a8dee', '#ee8dee', '#5a833e'],
             // income data 
-            series: [
-                {
+            series: [{
                     name: "حراجی جدید",
                     data: monthly_auctions,
                 },
                 {
                     name: "ثبت نامی جدید",
                     data: monthly_singups,
-                }, 
+                },
                 {
                     name: "محصولات جدید",
                     data: monthly_products,
@@ -539,19 +576,19 @@
             },
             xaxis: {
                 categories: [
-                        "ژانویه",
-                        "فوریه",
-                        "مارس",
-                        "آوریل",
-                        "می",
-                        "ژوئن",
-                        "جولای",
-                        "آگوست",
-                        "سپتامبر",
-                        "اکتبر",
-                        "نوامبر",
-                        "دسامبر",
-                    ],
+                    "ژانویه",
+                    "فوریه",
+                    "مارس",
+                    "آوریل",
+                    "می",
+                    "ژوئن",
+                    "جولای",
+                    "آگوست",
+                    "سپتامبر",
+                    "اکتبر",
+                    "نوامبر",
+                    "دسامبر",
+                ],
                 axisBorder: {
                     show: false,
                 },
@@ -579,7 +616,7 @@
             },
             tooltip: {
                 y: {
-                    formatter: function (val) {
+                    formatter: function(val) {
                         return val + "";
                     },
                 },
@@ -597,7 +634,7 @@
     }
 
     // bar chart 2
-   
+
     const analyticsBarChartEl_2 = document.querySelector("#analyticsBarChart_2"),
         analyticsBarChartConfig_2 = {
             chart: {
@@ -618,18 +655,17 @@
             dataLabels: {
                 enabled: false,
             },
-            colors: ['#5a8dee' , '#ee8dee' ],
+            colors: ['#5a8dee', '#ee8dee'],
             // income data 
-            series: [
-                {
+            series: [{
                     name: "فروش بید",
                     data: monthly_products_sales,
                 },
                 {
                     name: "فروش محصول",
                     data: monthly_packages_sales,
-                }, 
-               
+                },
+
             ],
             grid: {
                 borderColor: borderColor,
@@ -639,19 +675,19 @@
             },
             xaxis: {
                 categories: [
-                        "ژانویه",
-                        "فوریه",
-                        "مارس",
-                        "آوریل",
-                        "می",
-                        "ژوئن",
-                        "جولای",
-                        "آگوست",
-                        "سپتامبر",
-                        "اکتبر",
-                        "نوامبر",
-                        "دسامبر",
-                    ],
+                    "ژانویه",
+                    "فوریه",
+                    "مارس",
+                    "آوریل",
+                    "می",
+                    "ژوئن",
+                    "جولای",
+                    "آگوست",
+                    "سپتامبر",
+                    "اکتبر",
+                    "نوامبر",
+                    "دسامبر",
+                ],
                 axisBorder: {
                     show: false,
                 },
@@ -679,7 +715,7 @@
             },
             tooltip: {
                 y: {
-                    formatter: function (val) {
+                    formatter: function(val) {
                         return val + " دلار ";
                     },
                 },
@@ -696,7 +732,7 @@
         analyticsBarChart_2.render();
     }
 
- // Registrations Bar Chart new singups mini bar
+    // Registrations Bar Chart new singups mini bar
     // --------------------------------------------------------------------
     const registrationsBarChartEl = document.querySelector(
             "#registrationsBarChart"
@@ -741,30 +777,28 @@
             dataLabels: {
                 enabled: false,
             },
-            series: [
-                {
-                    name: "ثبت نامی این ماه",
-                    data: monthly_singups,
-                },
-            ],
+            series: [{
+                name: "ثبت نامی این ماه",
+                data: monthly_singups,
+            }, ],
             legend: {
                 show: false,
             },
             xaxis: {
                 categories: [
-                        "ژانویه",
-                        "فوریه",
-                        "مارس",
-                        "آوریل",
-                        "می",
-                        "ژوئن",
-                        "جولای",
-                        "آگوست",
-                        "سپتامبر",
-                        "اکتبر",
-                        "نوامبر",
-                        "دسامبر",
-                    ],
+                    "ژانویه",
+                    "فوریه",
+                    "مارس",
+                    "آوریل",
+                    "می",
+                    "ژوئن",
+                    "جولای",
+                    "آگوست",
+                    "سپتامبر",
+                    "اکتبر",
+                    "نوامبر",
+                    "دسامبر",
+                ],
                 axisBorder: {
                     show: false,
                 },
@@ -792,19 +826,17 @@
         registrationsBarChart.render();
     }
 
-            // labels: ["بازدید کل", "بازدید یکتا"],
+    // labels: ["بازدید کل", "بازدید یکتا"],
 
 
     // Conversion - Bar Chart income charts monthly visits
     // --------------------------------------------------------------------
     const referralLineChartEl = document.querySelector("#referralLineChart"),
         referralLineChartConfig = {
-            series: [
-                {
-                    name: "بازدید ماهیانه",
-                    data: past_year_monthly_visits,
-                },
-            ],
+            series: [{
+                name: "بازدید ماهیانه",
+                data: past_year_monthly_visits,
+            }, ],
             chart: {
                 height: 100,
                 parentHeightOffset: 0,
@@ -819,17 +851,15 @@
                 colors: "transparent",
                 strokeColors: "transparent",
                 strokeWidth: 4,
-                discrete: [
-                    {
-                        fillColor: cardColor,
-                        seriesIndex: 0,
-                        dataPointIndex: 5,
-                        strokeColor: config.colors.success,
-                        strokeWidth: 4,
-                        size: 6,
-                        radius: 2,
-                    },
-                ],
+                discrete: [{
+                    fillColor: cardColor,
+                    seriesIndex: 0,
+                    dataPointIndex: 5,
+                    strokeColor: config.colors.success,
+                    strokeWidth: 4,
+                    size: 6,
+                    radius: 2,
+                }, ],
                 hover: {
                     size: 7,
                 },
@@ -850,21 +880,21 @@
             },
             colors: [config.colors.success],
             xaxis: {
-              
+
                 categories: [
-                        "ژانویه",
-                        "فوریه",
-                        "مارس",
-                        "آوریل",
-                        "می",
-                        "ژوئن",
-                        "جولای",
-                        "آگوست",
-                        "سپتامبر",
-                        "اکتبر",
-                        "نوامبر",
-                        "دسامبر",
-                    ],
+                    "ژانویه",
+                    "فوریه",
+                    "مارس",
+                    "آوریل",
+                    "می",
+                    "ژوئن",
+                    "جولای",
+                    "آگوست",
+                    "سپتامبر",
+                    "اکتبر",
+                    "نوامبر",
+                    "دسامبر",
+                ],
                 show: false,
                 axisBorder: {
                     show: false,
@@ -896,7 +926,7 @@
 
 
     // --------------------- uniqe visit vs all visitsconst impressionDonutChartEl = document.querySelector(
-        // Impression - Donut Chart
+    // Impression - Donut Chart
     // --------------------------------------------------------------------
     const impressionDonutChartEl = document.querySelector(
             "#impressionDonutChart"
@@ -915,7 +945,8 @@
                 },
             },
             series: [past_month_all_visits,
-                        past_month_uniqe_visits],
+                past_month_uniqe_visits
+            ],
             labels: ["کل", "یکتا"],
             stroke: {
                 width: 0,
@@ -941,7 +972,7 @@
                                 fontWeight: "500",
                                 color: headingColor,
                                 offsetY: -22,
-                                formatter: function (val) {
+                                formatter: function(val) {
                                     return val;
                                 },
                             },
@@ -949,9 +980,9 @@
                                 show: true,
                                 label: " بازدید ماه",
                                 color: legendColor,
-                                formatter: function (w) {
+                                formatter: function(w) {
                                     return w.globals.seriesTotals.reduce(
-                                        function (a, b) {
+                                        function(a, b) {
                                             return a + b;
                                         },
                                         0
@@ -989,7 +1020,4 @@
         );
         impressionDonutChart.render();
     }
-
-   
-
 </script>
