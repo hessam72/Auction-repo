@@ -5,7 +5,6 @@
         <!-- v-if="auctions.length > 0" -->
 
         <main-section
-            :test_val
             :test_auctions="test_auctions"
             :is_loading_more="inline_loading"
             @loadMore="fetchAuctions"
@@ -48,6 +47,7 @@ export default {
             "storedAuctions",
             "findAuction",
             "findBiddingQueue",
+            
         ]),
     },
     methods: {
@@ -59,33 +59,33 @@ export default {
             "addAuction",
             "addBiddingQueue",
         ]),
+        
         connect() {
             let vm = this;
             window.Echo.channel("my-channel")
                 .listen(".my-event", (e) => {
                     // listening for user direct submit bid
                     vm.upadteAnAuctionState(e.data);
-                   
+
                     console.log(e);
                 })
                 .listen(".auto-bidding-event", (e) => {
                     // listening for bidbuddy submit bid
-                    console.log('auto bidding is running')
+                    console.log("auto bidding is running");
                     // loop for updating every incomming bid budy's bid
                     for (let i = 0; i < e.data.length; i++) {
-                       
                         vm.upadteAnAuctionState(e.data[i]);
                     }
-                }).listen(".win-event", (e) => {
+                })
+                .listen(".win-event", (e) => {
                     // listening for bidbuddy submit bid
-                    console.log('winner');
+                    console.log("winner");
                     console.log(e);
-                    
+
                     vm.upadteAnAuctionState(e.data);
-                    
+
                     console.log("******** we have a winner ***********");
                     console.log(e);
-                   
                 });
         },
         disconnect() {
@@ -99,7 +99,6 @@ export default {
             // }, 300);
             this.fetchAuctions(1);
         },
-
         fetchAuctions(loading_more = 0) {
             if (!loading_more) this.is_loading = true;
             var url = this.baseUrl + this.localUrl;
@@ -110,6 +109,7 @@ export default {
             axios
                 .get(url)
                 .then((response) => {
+                    console.log(response)
                     if (loading_more) {
                         // attach to the end of existing array
 
@@ -133,7 +133,6 @@ export default {
                     this.inline_loading = false;
                 });
         },
-        
 
         fetchSpecialOffer() {
             this.is_loading = true;
@@ -158,8 +157,7 @@ export default {
         saveAuctions() {
             let data = [];
             let queues = [];
-            console.log("this.auctions*************************");
-            console.log(this.auctions);
+
             for (let i = 0; i < this.auctions.length; i++) {
                 data.push({
                     id: this.auctions[i].id,
@@ -177,7 +175,6 @@ export default {
         },
         // for user direct bid
         upadteAnAuctionState(item) {
-
             // add 10 seccound to now
             // var t = new Date();
             // t = t.setSeconds(t.getSeconds() + 10);
@@ -197,8 +194,9 @@ export default {
 
             // this.emitter.emit("update-live-auction", item);
         },
-       
+
         searchAuctions(val) {
+            console.log("searching...");
             const body = {
                 search: val,
             };
@@ -210,7 +208,11 @@ export default {
             })
                 // .get(this.baseUrl + this.userUrl, body , config)
                 .then((response) => {
+                    console.log(response);
                     this.auctions = response.data.data;
+                    this.test_auctions = this.auctions;
+
+                    this.saveAuctions();
                 })
                 .catch((error) => {
                     console.log("error");
@@ -234,6 +236,9 @@ export default {
                 // .get(this.baseUrl + this.userUrl, body , config)
                 .then((response) => {
                     this.auctions = response.data.data;
+                    this.test_auctions = this.auctions;
+
+                    this.saveAuctions();
                 })
                 .catch((error) => {
                     console.log("error");
@@ -277,6 +282,7 @@ export default {
                     // always executed
                 });
         },
+        
     },
     created() {
         this.fetchAuctions();
@@ -288,7 +294,6 @@ export default {
     mounted() {
         this.connect(); //connect to Pusher
         setTimeout(() => {
-            this.test_val = 11111;
             this.test_auctions = this.auctions;
         }, 1000);
         // receiving global emit
@@ -299,9 +304,9 @@ export default {
             this.filterAuctions(value);
         });
         this.emitter.on("live_timer_end", (auction_id) => {
-            alert("ddddd: " + auction_id);
             this.endAuction(auction_id);
         });
+       
     },
     watch: {
         $route(to, from) {

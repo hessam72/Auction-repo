@@ -62,6 +62,11 @@ class UserShipedProduct extends Model
 	{
 		return $this->belongsTo(City::class);
 	}
+	public function transaction()
+	{
+		return $this->belongsTo(Transaction::class);
+	}
+	
 
 	public function product()
 	{

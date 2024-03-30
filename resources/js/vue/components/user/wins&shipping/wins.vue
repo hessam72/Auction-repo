@@ -35,7 +35,54 @@
                             class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg"
                         >
                             <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
-                                <div class="sm:flex sm:items-start">
+                                <div
+                                    v-if="want_to_convert"
+                                    class="sm:flex sm:items-start"
+                                >
+                                    <div
+                                        class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-10 sm:w-10"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="#eee"
+                                            viewBox="0 0 24 24"
+                                            stroke-width="1.5"
+                                            stroke="green"
+                                            class="h-8 w-8"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.076-4.076a1.526 1.526 0 011.037-.443 48.282 48.282 0 005.68-.494c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <div
+                                        class="w-full mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"
+                                    >
+                                        <DialogTitle
+                                            as="h3"
+                                            class="text-base font-semibold leading-6 text-gray-900"
+                                            >Convert Your Win To Bids
+                                        </DialogTitle>
+
+                                        <div class="mt-6 w-full">
+                                            <p>
+                                                Your Reward Will Be:
+                                                {{ converted_bid_amount }} Bids
+                                            </p>
+                                            <br />
+                                            <p>
+                                                Are You sure you want to convert
+                                                it?
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    v-else-if="want_to_buy"
+                                    class="sm:flex sm:items-start"
+                                >
                                     <div
                                         class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-10 sm:w-10"
                                     >
@@ -154,11 +201,71 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- first modal  -->
+                                <div v-else class="sm:flex sm:items-start">
+                                    <div
+                                        class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-10 sm:w-10"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="#eee"
+                                            viewBox="0 0 24 24"
+                                            stroke-width="1.5"
+                                            stroke="green"
+                                            class="h-8 w-8"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.076-4.076a1.526 1.526 0 011.037-.443 48.282 48.282 0 005.68-.494c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <div
+                                        class="w-full mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"
+                                    >
+                                        <DialogTitle
+                                            as="h3"
+                                            class="text-base font-semibold leading-6 text-gray-900"
+                                            >How do you like to Retrive Your
+                                            prize?
+                                        </DialogTitle>
+
+                                        <div class="mt-6 w-full">
+                                            <button
+                                                @click="want_to_buy = true"
+                                                type="button"
+                                                class="inline-flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-violet-500 sm:ml-3 sm:w-auto"
+                                            >
+                                                Purchase Product
+                                            </button>
+                                            <button
+                                                @click="calculate_return_bids"
+                                                type="button"
+                                                class="inline-flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-violet-500 sm:ml-3 sm:w-auto"
+                                            >
+                                                Convert to Bids
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div
                                 class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6"
                             >
                                 <button
+                                    v-if="want_to_convert"
+                                    @click="
+                                        start_converting(),
+                                            (create_modal = false)
+                                    "
+                                    type="button"
+                                    class="inline-flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-violet-500 sm:ml-3 sm:w-auto"
+                                >
+                                    Convert
+                                </button>
+                                <button
+                                    v-else-if="want_to_buy"
                                     @click="
                                         start_buying(), (create_modal = false)
                                     "
@@ -170,7 +277,7 @@
                                 <button
                                     type="button"
                                     class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
-                                    @click="create_modal = false"
+                                    @click="close_modal()"
                                     ref="cancelButtonRef"
                                 >
                                     Cancel
@@ -218,10 +325,13 @@ export default {
             finalWinProducts: [],
             create_modal: false,
             address: null,
+            want_to_buy: false,
+            want_to_convert: false,
             selected_state: null,
             selected_city: null,
             postal_code: null,
             selected: null,
+            converted_bid_amount: 0,
             citySelectOptions: [
                 {
                     value: "first",
@@ -230,6 +340,7 @@ export default {
             ],
             geoUrl: "geo/all",
             saveTransactionUrl: "transaction/store",
+            rewardBidUrl: "transaction/reward_bid",
 
             storeShippingUrl: "shiped_product/store",
             states: [],
@@ -257,13 +368,29 @@ export default {
         ]),
     },
     methods: {
-        clicked() {
-            // alert("hello");
-        },
         convertDBTimeToDate,
         merge,
         arrangeData,
+        close_modal() {
+            this.create_modal = false;
+            setTimeout(() => {
+                this.want_to_buy = false;
+                this.converted_bid_amount = 0;
+                this.want_to_convert = false;
+            }, 500);
+        },
+        calculate_return_bids() {
+            const win_item = this.WinProducts.find(
+                (o) => Number(o.id) === Number(this.current_win_id)
+            );
+            const win_price = win_item.win_price;
 
+            //assuming each bid cost 1 cent;
+            //calculate converted bids
+            this.converted_bid_amount = win_price * 100;
+            //open convert modal
+            this.want_to_convert = true;
+        },
         // wins setup
         fetchWins() {
             this.is_loading = true;
@@ -279,7 +406,7 @@ export default {
                 .then((response) => {
                     this.WinProducts = response.data.data;
                     this.mergedWinProducts = this.arrangeData(this.WinProducts);
-                    console.dir(this.mergedWinProducts);
+                    // console.dir(this.mergedWinProducts);
                     this.finalWinProducts = this.formatWins();
 
                     this.setUpWinsDataTable();
@@ -292,7 +419,33 @@ export default {
                     this.is_loading = false;
                 });
         },
+        start_converting() {
+            let config = {
+                Authorization: this.UserAuthToken,
+            };
+            let body = {
+                winner_id: this.current_win_id,
+            };
 
+            axios({
+                method: "post",
+                url: this.baseUrl + this.rewardBidUrl,
+                data: body,
+                headers: config,
+            })
+                .then((response) => {
+                    // now saving shipping data
+                    console.log(response.data);
+                    this.toast.success(response.data.success);
+                    this.clearData();
+                })
+                .catch((error) => {
+                    console.log("error create transac");
+                    console.log(error);
+                    this.is_loading = false;
+                })
+                .finally(() => {});
+        },
         formatWins() {
             var arr = [];
 
@@ -423,8 +576,7 @@ export default {
                 "buying " +
                 win_item.product.title +
                 " for price of: $" +
-                win_item.win_price 
-                ;
+                win_item.win_price;
             this.current_win = win_item;
             generatePaymentLink(
                 pay_price,
@@ -452,7 +604,7 @@ export default {
             let body = {
                 amount: pay_data.price_amount,
                 order_id: pay_data.order_id,
-                item_type: 2, // user shipped product id 
+                item_type: 2, // user shipped product id
                 // item_id: this.current_offer.id,
                 payment_description: pay_data.order_description,
                 payment_id: pay_data.id,
@@ -475,7 +627,6 @@ export default {
                     console.log("error create transac");
                     console.log(error);
                     this.is_loading = false;
-
                 })
                 .finally(() => {});
         },
@@ -503,17 +654,14 @@ export default {
                 headers: config,
             })
                 .then((response) => {
-                    const id =this.current_payment.id
+                    const id = this.current_payment.id;
                     this.clearData();
                     //for updating offers...
                     this.fetchData();
-       
 
                     // then redirect to pay
-                    window.location.href ="https://nowpayments.io/payment/?iid=" +id;
-
-                    
-                   
+                    window.location.href =
+                        "https://nowpayments.io/payment/?iid=" + id;
                 })
                 .catch((error) => {
                     console.log(error);
@@ -530,6 +678,7 @@ export default {
             this.selected_state = null;
             this.address = null;
             this.postal_code = null;
+           this.close_modal();
         },
     },
     mounted() {

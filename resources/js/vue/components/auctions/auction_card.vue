@@ -2,8 +2,13 @@
     <div class="item-container relative">
         <div v-if="no_new_bidders" class="no-new-bidders">no new bidders</div>
         <div @click="toggleBookmark()" class="bookmark-container">
-            <ion-icon
+            <ion-icon v-if="!temp_bookmark"
                 :class="[is_bookmarked ? 'bookmarked' : '', 'icon-bg']"
+                name="bookmark"
+            ></ion-icon> 
+            <!-- templrary bookmark before refetching from database -->
+            <ion-icon v-else
+                :class="[current_bookmark_status ? 'bookmarked' : '', 'icon-bg']"
                 name="bookmark"
             ></ion-icon>
         </div>
@@ -122,15 +127,21 @@ export default {
     data() {
         return {
             updateBookmarkUrl: "bookmark/toggle",
+            temp_bookmark:false,
+            current_bookmark_status:false,
         };
     },
     computed: {
         ...mapGetters(["baseUrl", "UserAuthToken"]),
     },
+    mounted() {
+        this.current_bookmark_status=this.is_bookmarked;
+    },
 
     methods: {
         translateAuctionStatus,
         convertDateToMilliSeconds,
+        
         toggleBookmark() {
             let config = {
                 Authorization: this.UserAuthToken,
@@ -147,7 +158,11 @@ export default {
             })
                 // .get(this.baseUrl + this.userUrl, body , config)
                 .then((response) => {
+                    console.log(this.is_bookmarked)
+                    this.temp_bookmark=true;
+                    this.current_bookmark_status=!this.current_bookmark_status;
                     this.$emit("refreshData");
+
                 })
                 .catch((error) => {
                     console.log("error");

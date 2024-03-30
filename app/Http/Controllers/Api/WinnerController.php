@@ -40,6 +40,7 @@ class WinnerController extends Controller
 
         ], 200);
     }
+   
     public function all(Request $request)
     {
 

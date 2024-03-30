@@ -85,6 +85,7 @@ Route::controller(TransactionController::class)->prefix('/transaction')->group(f
     Route::middleware('jwt.auth')->post('/store', 'store');
     Route::post('/saveSuccessfullPay', 'saveSuccessfullPay');
     Route::post('/saveFailPay', 'saveFailPay');
+    Route::post('/reward_bid', 'rewardBid');
 });
 
 
@@ -152,6 +153,7 @@ Route::controller(WinnerController::class)->prefix('/winners')->group(function (
     Route::post('/auction', 'index');
     Route::post('/all', 'all');
     Route::post('/store', 'storeWinner');
+   
 });
 Route::controller(CommentController::class)->prefix('/comments')->group(function () {
 

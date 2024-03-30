@@ -82,14 +82,14 @@
                                     <input
                                         type="range"
                                         min="0"
-                                        max="100"
+                                        max="10000"
                                         v-model="min"
                                         id="lower"
                                     />
                                     <input
                                         type="range"
                                         min="0"
-                                        max="100"
+                                        max="10000"
                                         v-model="max"
                                         id="upper"
                                     />
@@ -240,7 +240,7 @@ export default {
     data() {
         return {
             min: 1,
-            max: 100,
+            max: 10000,
             search_input: null,
             category_id: null,
             sortBy: null,
@@ -303,11 +303,13 @@ export default {
             axios
                 .get(url)
                 .then((response) => {
+                   
                     this.cats = response.data.data;
-                    console.log(this.cats);
-                    // setTimeout(() => {
-                    //     init_dropdown();
-                    // }, 300);
+                    this.cats.unshift({
+                        id:0,
+                        title:'All'
+                    });
+                   
                 })
                 .catch((error) => {
                     throw error;

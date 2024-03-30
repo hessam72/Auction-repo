@@ -92,6 +92,20 @@
                 <div>کدهای جایزه</div>
             </a>
 
+        </li> 
+        <li  id="redeemCodes_menu" class="menu-item add-margin-btn">
+            <a href="{{ route('admin.winners.index') }}" class="menu-link ">
+                <i class="fa-solid menu-icon fa-money-check-dollar"></i>
+                <div> برندگان</div>
+            </a>
+
+        </li>  
+        <li  id="redeemCodes_menu" class="menu-item add-margin-btn">
+            <a href="{{ route('admin.shipped_products.index') }}" class="menu-link ">
+                <i class="fa-solid menu-icon fa-money-check-dollar"></i>
+                <div> کالاهای خریداری شده</div>
+            </a>
+
         </li>
         <li  id="tickets_menu" class="menu-item add-margin-btn">
             <a href="{{ route('admin.tickets.index') }}" class="menu-link ">

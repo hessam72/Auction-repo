@@ -10,9 +10,11 @@ use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RedeemCodeController;
 use App\Http\Controllers\Admin\RewardController;
+use App\Http\Controllers\Admin\ShippedProductsController;
 use App\Http\Controllers\Admin\SpecialOfferController;
 use App\Http\Controllers\Admin\StateController;
 use App\Http\Controllers\Admin\TicketController;
+use App\Http\Controllers\Admin\WinnerController;
 use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Resources\UserResource;
@@ -85,6 +87,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::resource('challenges', ChallengeController::class);
     Route::resource('redeemCodes', RedeemCodeController::class);
     Route::resource('tickets', TicketController::class);
+    Route::resource('winners', WinnerController::class);
+    Route::resource('shipped_products', ShippedProductsController::class);
 
     Route::controller(ProductController::class)->group(function () {
 

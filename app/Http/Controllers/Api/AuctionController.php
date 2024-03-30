@@ -110,7 +110,6 @@ class AuctionController extends Controller
             $take = 4;
         }
 
-
         return AuctionResource::collection(Auction::skip($skip)->take($take)->get());
     }
 
@@ -177,7 +176,7 @@ class AuctionController extends Controller
         }
 
 
-        if ($category_id === null) {
+        if ($category_id === null || $category_id === 0) {
             $products = Product::orderBy($productOrderBy)->get();
         } else {
             $products = Product::orderBy($productOrderBy)->filterByCategory($category_id)->get();

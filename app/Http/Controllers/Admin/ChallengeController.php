@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Challenge;
 use App\Models\Reward;
+use App\Models\User;
+use App\Models\UserChallenge;
 use Illuminate\Http\Request;
 
 class ChallengeController extends Controller
@@ -43,7 +45,7 @@ class ChallengeController extends Controller
             'type' => 'required',
             'day_type' => 'required',
         ]);
-        Challenge::create([
+        $challenge = Challenge::create([
 
             'description' => $request->description,
             'category_id' => $request->category_id,
@@ -53,7 +55,19 @@ class ChallengeController extends Controller
             'time_type' => $request->day_type,
 
         ]);
-        return redirect()->back()->with('success', 'ثبت با موفقیت ثبت شد');
+
+        // start challenge for users
+        $users = User::where('status', 1)->get();
+        foreach ($users as $user) {
+            UserChallenge::create([
+                'user_id' => $user->id,
+                'challenge_id' => $challenge->id,
+                'status' => 1,
+                'progress' => 0
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'ثبت و تخصیص چالش با موفقیت انجام شد');
     }
 
     /**
@@ -112,6 +126,5 @@ class ChallengeController extends Controller
     {
         $challenge->delete();
         return redirect()->back()->with('success', 'حذف با موفقیت ثبت شد');
-
     }
 }
