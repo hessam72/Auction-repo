@@ -46,6 +46,7 @@ class Ticket extends Model
 		'content',
 		'attachment',
 		'status',
+		'seen',
 		'reply_to_id'
 	];
 

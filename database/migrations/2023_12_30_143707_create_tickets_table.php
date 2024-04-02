@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('subject');
             $table->text('content')->nullable();
             $table->string('attachment')->nullable();
+            $table->boolean('seen')->default(0);
             $table->integer('status')->default(1)->comment('1=pending 100=answered 0=closed');
             $table->integer('reply_to_id')->default(0)->index('reply_to_id');
             $table->timestamp('created_at')->useCurrent();

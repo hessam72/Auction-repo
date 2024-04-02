@@ -25,8 +25,11 @@ class TicketController extends Controller
         $request->validate([
             "ticket_id" => 'required',
         ]);
-        $parent = Ticket::find($request->ticket_id);
-        return TicketResource::collection($parent->children);
+        $parent = Ticket::where('id' ,$request->ticket_id)->with('children')->get();
+        $parent[0]->seen =1;
+        $parent[0]->save();
+        return TicketResource::collection($parent);
+   
     }
     public function store(Request $request)
     {

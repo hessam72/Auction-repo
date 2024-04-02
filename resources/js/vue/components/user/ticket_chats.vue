@@ -2,7 +2,7 @@
     <section class="msger">
         <header class="msger-header">
             <div class="msger-header-title">
-                <i class="fas fa-comment-alt"></i> SimpleChat
+                <i class="fas fa-comment-alt"></i> Ticket Info
             </div>
             <div class="msger-header-options">
                 <span @click="close()"
@@ -12,8 +12,70 @@
         </header>
 
         <main class="msger-chat">
+            <!--  print first ticket -->
             <div
-                v-for="(item, index) in tickets"
+                class="right-msg msg"
+            >
+                <div
+                    class="msg-img"
+                    style="
+                        background-image: url(https://image.flaticon.com/icons/svg/327/327779.svg);
+                    "
+                ></div>
+
+                <div class="msg-bubble">
+                    <div
+                        class="right-dir msg-info"
+                    >
+                        <div class="msg-info-name">
+                            {{ user.username }}
+                        </div>
+                        <div class="msg-info-time">
+                            <p>{{ convertDBTimeToTime(tickets.created_at) }}</p>
+                            <p>{{ convertDBTimeToDate(tickets.created_at) }}</p>
+                        </div>
+                    </div>
+
+                    <div class="msg-text">
+                        {{ tickets.content }}
+                    </div>
+                    <div
+                        v-if="tickets.attachment != null"
+                        class="msg-text file"
+                    >
+                       
+                        <button
+                            @click="downloadFile(tickets.attachment)"
+                            class="button"
+                            type="button"
+                        >
+                            <span class="button__text">Download</span>
+                            <span class="button__icon"
+                                ><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 35 35"
+                                    id="bdd05811-e15d-428c-bb53-8661459f9307"
+                                    data-name="Layer 2"
+                                    class="svg"
+                                >
+                                    <path
+                                        d="M17.5,22.131a1.249,1.249,0,0,1-1.25-1.25V2.187a1.25,1.25,0,0,1,2.5,0V20.881A1.25,1.25,0,0,1,17.5,22.131Z"
+                                    ></path>
+                                    <path
+                                        d="M17.5,22.693a3.189,3.189,0,0,1-2.262-.936L8.487,15.006a1.249,1.249,0,0,1,1.767-1.767l6.751,6.751a.7.7,0,0,0,.99,0l6.751-6.751a1.25,1.25,0,0,1,1.768,1.767l-6.752,6.751A3.191,3.191,0,0,1,17.5,22.693Z"
+                                    ></path>
+                                    <path
+                                        d="M31.436,34.063H3.564A3.318,3.318,0,0,1,.25,30.749V22.011a1.25,1.25,0,0,1,2.5,0v8.738a.815.815,0,0,0,.814.814H31.436a.815.815,0,0,0,.814-.814V22.011a1.25,1.25,0,1,1,2.5,0v8.738A3.318,3.318,0,0,1,31.436,34.063Z"
+                                    ></path>
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                v-for="(item, index) in tickets.children"
                 :class="[item.status === 100 ? 'left-msg' : 'right-msg', 'msg']"
             >
                 <div
@@ -51,7 +113,11 @@
                     <div v-if="item.attachment != null" class="msg-text file">
                         <!-- <ion-icon name="attach"></ion-icon>
                         <p @click="downloadFile(item.attachment)" >Download file</p> -->
-                        <button @click="downloadFile(item.attachment)" class="button" type="button">
+                        <button
+                            @click="downloadFile(item.attachment)"
+                            class="button"
+                            type="button"
+                        >
                             <span class="button__text">Download</span>
                             <span class="button__icon"
                                 ><svg
@@ -69,33 +135,13 @@
                                     ></path>
                                     <path
                                         d="M31.436,34.063H3.564A3.318,3.318,0,0,1,.25,30.749V22.011a1.25,1.25,0,0,1,2.5,0v8.738a.815.815,0,0,0,.814.814H31.436a.815.815,0,0,0,.814-.814V22.011a1.25,1.25,0,1,1,2.5,0v8.738A3.318,3.318,0,0,1,31.436,34.063Z"
-                                    ></path></svg>
-                                </span>
+                                    ></path>
+                                </svg>
+                            </span>
                         </button>
                     </div>
                 </div>
             </div>
-
-            <!-- user msg -->
-            <!-- <div class="msg right-msg">
-                <div
-                    class="msg-img"
-                    style="
-                        background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg);
-                    "
-                ></div>
-
-                <div class="msg-bubble">
-                    <div class="msg-info">
-                        <div class="msg-info-name">Sajad</div>
-                        <div class="msg-info-time">12:46</div>
-                    </div>
-
-                    <div class="msg-text">
-                        You can change your name in JS section!
-                    </div>
-                </div>
-            </div> -->
         </main>
 
         <form @submit.prevent="sendMsg" class="msger-inputarea">
@@ -321,50 +367,52 @@ export default {
     margin-top: 1rem;
 }
 
-.button, .button__icon, .button__text {
-  transition: all 0.3s;
+.button,
+.button__icon,
+.button__text {
+    transition: all 0.3s;
 }
 
 .button .button__text {
-  transform: translateX(22px);
-  color: #fff;
-  font-weight: 600;
+    transform: translateX(22px);
+    color: #fff;
+    font-weight: 600;
 }
 
 .button .button__icon {
-  position: absolute;
-  transform: translateX(109px);
-  height: 100%;
-  width: 39px;
-  background-color: #1d4a86;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    position: absolute;
+    transform: translateX(109px);
+    height: 100%;
+    width: 39px;
+    background-color: #1d4a86;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .button .svg {
-  width: 20px;
-  fill: #fff;
+    width: 20px;
+    fill: #fff;
 }
 
 .button:hover {
-  background: #193e70;
+    background: #193e70;
 }
 
 .button:hover .button__text {
-  color: transparent;
+    color: transparent;
 }
 
 .button:hover .button__icon {
-  width: 148px;
-  transform: translateX(0);
+    width: 148px;
+    transform: translateX(0);
 }
 
 .button:active .button__icon {
-  background-color: #1d4a86;
+    background-color: #1d4a86;
 }
 
 .button:active {
-  border: 1px solid #1d4a86;
+    border: 1px solid #1d4a86;
 }
 </style>

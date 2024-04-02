@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
+use App\Models\Notification;
+use App\Models\Ticket;
 use App\Models\User;
 use App\Traits\Upload;
 use Illuminate\Http\Request;
@@ -30,11 +32,20 @@ class UserController extends Controller
     public function getNotifications()
     {
         // geting all new notifications with msg and count + all new tickets with count
+        $notifications = Notification::where('user_id', Auth::user()->id)->where('seen', 0)->get();
+        $tickets = Ticket::where('user_id', Auth::user()->id)->where('status', 100)->where('reply_to_id', 0)->where('seen', 0)->get();
         return response()->json([
-            'tickets' => 8,
-            'notifications'=>4
+            'tickets' => $tickets,
+            'notifications' => $notifications,
+
 
         ], 200);
+    }
+    public function updateNotifications(){
+        Notification::where('user_id', Auth::user()->id)->where('seen', 0)->update([
+            'seen'=>1
+        ]);
+        return 'seen saved';
     }
     public function update(Request $request)
     {

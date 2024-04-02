@@ -66,6 +66,7 @@
                     data-te-ripple-init
                     data-te-ripple-color="light"
                     class="ticket-item flex justify-between items-center"
+                    @click="showDetails(item)"
                 >
                     <p>#{{ index + 1 }}</p>
                     <p>{{ item.subject }}</p>
@@ -87,6 +88,7 @@
                     data-te-ripple-init
                     data-te-ripple-color="light"
                     class="ticket-item flex justify-between items-center"
+                    @click="showDetails(item)"
                 >
                     <p>#{{ index + 1 }}</p>
                     <p>{{ item.subject }}</p>
@@ -446,7 +448,7 @@ export default {
                 // new ticket
                 formData.append("subject", this.newTicketSubject);
             }
-            console.log(myFile);
+          
 
             let config = {
                 Authorization: this.UserAuthToken,
@@ -500,7 +502,7 @@ export default {
             })
                 .then((response) => {
                     console.log(response.data.data);
-                    this.ticket_details = response.data.data;
+                    this.ticket_details = response.data.data[0];
                     if (this.ticket_details.length === 0) {
                         alert("no record found");
                         return;

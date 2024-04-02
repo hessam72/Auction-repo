@@ -75,6 +75,7 @@ class TicketController extends Controller
 
         // set parent ticket status to answered
         $ticket->parent->status = 100;
+        $ticket->parent->seen = 0;
         $ticket->parent->save();
 
 

@@ -8,7 +8,7 @@
                     <div
                         class="chat-sidebar-left-user sidebar-header d-flex flex-column justify-content-center align-items-center flex-wrap px-4 pt-5">
                         <div class="avatar avatar-xl avatar-online">
-                            <img src="../../assets/img/avatars/1.png" alt="آواتار" class="rounded-circle">
+                            <img src="../../assets/img/avatars/1.png"   onerror="this.src='/storage/images/user_profiles/blank.png'" alt="آواتار" class="rounded-circle">
                         </div>
                         <h5 class="mt-2 mb-0">جان اسنو</h5>
                         <small>مدیر</small>
@@ -136,7 +136,8 @@
                                     {{-- avatar-online --}}
                                     <div class="flex-shrink-0 avatar ">
                                         <img src="/storage/{{ $ticket->user->profile_pic }}" alt="آواتار"
-                                            class="rounded-circle">
+                                        onerror="this.src='/storage/images/user_profiles/blank.png'"   
+                                        class="rounded-circle">
                                     </div>
                                     <div class="chat-contact-info flex-grow-1 ms-3">
                                         <h6 class="chat-contact-name text-truncate m-0">{{ $ticket->user->username }}</h6>
@@ -172,7 +173,8 @@
                                     {{-- avatar-online --}}
                                     <div class="flex-shrink-0 avatar ">
                                         <img src="/storage/{{ $ticket->user->profile_pic }}" alt="آواتار"
-                                            class="rounded-circle">
+                                        onerror="this.src='/storage/images/user_profiles/blank.png'"
+                                         class="rounded-circle">
                                     </div>
                                     <div class="chat-contact-info flex-grow-1 ms-3">
                                         <h6 class="chat-contact-name text-truncate m-0">{{ $ticket->user->username }}</h6>
@@ -202,6 +204,7 @@
                                     <div class="flex-shrink-0 avatar">
                                         <img src="/storage/{{ $current_ticket->user->profile_pic }}" alt="آواتار"
                                             class="rounded-circle" data-bs-toggle="sidebar" data-overlay
+                                            onerror="this.src='/storage/images/user_profiles/blank.png'" 
                                             data-target="#app-chat-sidebar-right">
                                     </div>
                                     <div class="chat-contact-info flex-grow-1 ms-3">
@@ -264,7 +267,7 @@
                                         <div class="user-avatar flex-shrink-0 ms-3">
                                             <div class="avatar avatar-sm">
                                                 <img src="/storage/{{ $current_ticket->user->profile_pic }}"
-                                                    alt="آواتار" class="rounded-circle">
+                                                    alt="آواتار" class="rounded-circle"   onerror="this.src='/storage/images/user_profiles/blank.png'">
                                             </div>
                                         </div>
                                     </div>
@@ -306,7 +309,8 @@
                                                 <div class="user-avatar flex-shrink-0 ms-3">
                                                     <div class="avatar avatar-sm">
                                                         <img src="/storage/{{ $ticket->user->profile_pic }}"
-                                                            alt="آواتار" class="rounded-circle">
+                                                        onerror="this.src='/storage/images/user_profiles/blank.png'"
+                                                           alt="آواتار" class="rounded-circle">
                                                     </div>
                                                 </div>
                                             </div>
@@ -394,7 +398,8 @@
                     <div
                         class="sidebar-header d-flex flex-column justify-content-center align-items-center flex-wrap px-4 pt-5">
                         <div class="avatar avatar-xl avatar-online">
-                            <img src="../../assets/img/avatars/2.png" alt="آواتار" class="rounded-circle">
+                            <img src="../../assets/img/avatars/2.png"   onerror="this.src='/storage/images/user_profiles/blank.png'"
+                             alt="آواتار" class="rounded-circle">
                         </div>
                         <h6 class="mt-2 mb-0">دیوید بکهام</h6>
                         <span>توسعه دهنده NextJS</span>

@@ -128,11 +128,11 @@
                                 class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                             >
                                 <span class="absolute -inset-1.5" />
-                                <span class="sr-only">Open user menu</span>
+                                <span class="sr-only">Open tickets menu</span>
                                 <span
-                                    v-if="notification_count > 0"
+                                    v-if="tickets.length > 0"
                                     class="notify_count"
-                                    >{{ ticket_count }}</span
+                                    >{{ tickets.length }}</span
                                 >
                                 <ion-icon
                                     style="
@@ -154,15 +154,21 @@
                             leave-from-class="transform opacity-100 scale-100"
                             leave-to-class="transform opacity-0 scale-95"
                         >
-                            <MenuItems
+                            <MenuItems v-if="tickets.length > 0"
                                 class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                             >
-                                <MenuItem as="div">
+                                <MenuItem
+                                    v-for="(item, index) in tickets"
+                                    :key="index"
+                                    as="div"
+                                >
                                     <p
                                         class="'block px-4 py-2 text-sm text-gray-700',"
                                     >
-                                        hello
+                                        New Reply for "{{ item.subject }}"
                                     </p>
+
+                                    <!-- <p class="block px-4 text-sm text-gray-700 one_line_text">{{ item.description }}</p> -->
                                 </MenuItem>
                             </MenuItems>
                         </transition>
@@ -175,13 +181,16 @@
                                 class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                             >
                                 <span class="absolute -inset-1.5" />
-                                <span class="sr-only">Open user menu</span>
+                                <span class="sr-only"
+                                    >Open notifications menu</span
+                                >
                                 <span
-                                    v-if="notification_count > 0"
+                                    v-if="notify_count > 0"
                                     class="notify_count"
-                                    >{{ notification_count }}</span
+                                    >{{ notify_count }}</span
                                 >
                                 <ion-icon
+                                    @click="seenNotifications()"
                                     style="
                                         font-size: 1.8rem;
                                         padding: 0.2rem;
@@ -201,15 +210,21 @@
                             leave-from-class="transform opacity-100 scale-100"
                             leave-to-class="transform opacity-0 scale-95"
                         >
-                            <MenuItems
+                            <MenuItems v-if="notifications.length >0"
                                 class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                             >
-                                <MenuItem as="div">
+                                <MenuItem
+                                    v-for="(item, index) in notifications"
+                                    :key="index"
+                                    as="div"
+                                >
                                     <p
                                         class="'block px-4 py-2 text-sm text-gray-700',"
                                     >
-                                        hello
+                                        {{ item.title }}
                                     </p>
+
+                                    <!-- <p class="block px-4 text-sm text-gray-700 one_line_text">{{ item.description }}</p> -->
                                 </MenuItem>
                             </MenuItems>
                         </transition>
@@ -397,9 +412,11 @@ export default {
                     current: false,
                 },
             ],
-            notification_count: 0,
-            ticket_count: 0,
+            notifications: [],
+            notify_count: 0,
+            tickets: [],
             getCountUrl: "user/get_notifications",
+            updateNotificationsUrl: "user/update_notifications",
         };
     },
     mounted() {
@@ -447,11 +464,40 @@ export default {
                 headers: config,
             })
                 .then((response) => {
-                    this.notification_count = response.data.notifications;
-                    this.ticket_count = response.data.tickets;
-
+                    this.notifications = response.data.notifications;
+                    this.tickets = response.data.tickets;
+                    this.notify_count = this.notifications.length;
                     console.log("99999999999");
-                    console.log(this.notification_count , this.ticket_count);
+                    console.log(this.notifications, this.tickets);
+                })
+                .catch((error) => {
+                    console.log("error");
+                    console.log(error);
+                })
+                .finally(() => {});
+        },
+        seenNotifications() {
+            if(this.notify_count == 0){
+                return;
+            }
+            let config = {
+                Authorization: this.UserAuthToken,
+            };
+
+            const body = {};
+
+            axios({
+                method: "post",
+                url: this.baseUrl + this.updateNotificationsUrl,
+                data: body,
+                headers: config,
+            })
+                .then((response) => {
+                    console.log(response);
+                    setTimeout(() => {
+                        this.notify_count = 0;
+                    }, 3000);
+                    
                 })
                 .catch((error) => {
                     console.log("error");
@@ -502,7 +548,7 @@ export default {
 }
 .notify_count {
     position: absolute;
-    background: red;
+    background: #d20000d9;
     padding: 0.1rem 0.4rem;
     border-radius: 30px;
     z-index: 1;
