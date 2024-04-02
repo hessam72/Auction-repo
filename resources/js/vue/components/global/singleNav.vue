@@ -2,6 +2,12 @@
  <div class="nav-container">
       <nav-bar-section :is_single_nav="is_single_nav"></nav-bar-section>
     </div>
+
+
+
+
+
+
 </template>
 <script>
 import navBarSection from "./navbar.vue";

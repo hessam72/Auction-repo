@@ -52,9 +52,14 @@ class ShippedProductsController extends Controller
     /**
      * Update the specified resource in storage.
      */
+    //save posted product status
     public function update(Request $request, string $id)
     {
-        //
+        UserShipedProduct::where('id' , $id)->update([
+            'status' => 200 //shipped
+        ]);
+        
+        return redirect()->back()->with('success', 'ثبت ارسال کالا با موفقیت انجام شد');
     }
 
     /**

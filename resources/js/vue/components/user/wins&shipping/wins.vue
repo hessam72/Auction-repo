@@ -1,295 +1,308 @@
 <template>
-    <div id="wins_table"></div>
-    <loading :is_loading="is_loading"></loading>
-    <!-- shipping modal -->
-    <TransitionRoot as="template" :show="create_modal">
-        <Dialog as="div" class="relative z-10" @close="open = false">
-            <TransitionChild
-                as="template"
-                enter="ease-out duration-300"
-                enter-from="opacity-0"
-                enter-to="opacity-100"
-                leave="ease-in duration-200"
-                leave-from="opacity-100"
-                leave-to="opacity-0"
-            >
-                <div
-                    class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
-                />
-            </TransitionChild>
+    <div id="wins_container">
+        <div id="wins_table"></div>
+        <loading :is_loading="is_loading"></loading>
+        <!-- shipping modal -->
 
-            <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
-                <div
-                    class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"
+        <TransitionRoot as="template" :show="create_modal">
+            <Dialog as="div" class="relative z-10" @close="open = false">
+                <TransitionChild
+                    as="template"
+                    enter="ease-out duration-300"
+                    enter-from="opacity-0"
+                    enter-to="opacity-100"
+                    leave="ease-in duration-200"
+                    leave-from="opacity-100"
+                    leave-to="opacity-0"
                 >
-                    <TransitionChild
-                        as="template"
-                        enter="ease-out duration-300"
-                        enter-from="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                        enter-to="opacity-100 translate-y-0 sm:scale-100"
-                        leave="ease-in duration-200"
-                        leave-from="opacity-100 translate-y-0 sm:scale-100"
-                        leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                    <div
+                        class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+                    />
+                </TransitionChild>
+
+                <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+                    <div
+                        class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"
                     >
-                        <DialogPanel
-                            class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg"
+                        <TransitionChild
+                            as="template"
+                            enter="ease-out duration-300"
+                            enter-from="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                            enter-to="opacity-100 translate-y-0 sm:scale-100"
+                            leave="ease-in duration-200"
+                            leave-from="opacity-100 translate-y-0 sm:scale-100"
+                            leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                         >
-                            <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
-                                <div
-                                    v-if="want_to_convert"
-                                    class="sm:flex sm:items-start"
-                                >
-                                    <div
-                                        class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-10 sm:w-10"
-                                    >
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="#eee"
-                                            viewBox="0 0 24 24"
-                                            stroke-width="1.5"
-                                            stroke="green"
-                                            class="h-8 w-8"
-                                        >
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.076-4.076a1.526 1.526 0 011.037-.443 48.282 48.282 0 005.68-.494c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"
-                                            />
-                                        </svg>
-                                    </div>
-                                    <div
-                                        class="w-full mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"
-                                    >
-                                        <DialogTitle
-                                            as="h3"
-                                            class="text-base font-semibold leading-6 text-gray-900"
-                                            >Convert Your Win To Bids
-                                        </DialogTitle>
-
-                                        <div class="mt-6 w-full">
-                                            <p>
-                                                Your Reward Will Be:
-                                                {{ converted_bid_amount }} Bids
-                                            </p>
-                                            <br />
-                                            <p>
-                                                Are You sure you want to convert
-                                                it?
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div
-                                    v-else-if="want_to_buy"
-                                    class="sm:flex sm:items-start"
-                                >
-                                    <div
-                                        class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-10 sm:w-10"
-                                    >
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="#eee"
-                                            viewBox="0 0 24 24"
-                                            stroke-width="1.5"
-                                            stroke="green"
-                                            class="h-8 w-8"
-                                        >
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.076-4.076a1.526 1.526 0 011.037-.443 48.282 48.282 0 005.68-.494c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"
-                                            />
-                                        </svg>
-                                    </div>
-                                    <div
-                                        class="w-full mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"
-                                    >
-                                        <DialogTitle
-                                            as="h3"
-                                            class="text-base font-semibold leading-6 text-gray-900"
-                                            >Fill Shipping Info
-                                        </DialogTitle>
-
-                                        <div class="mt-6 w-full">
-                                            <!-- its a reply -->
-                                            <div class="relative mb-3">
-                                                <div
-                                                    class="edit-row under_line"
-                                                >
-                                                    <label>State</label>
-                                                    <div
-                                                        class="selectbox-container"
-                                                    >
-                                                        <VueMultiselect
-                                                            @select="
-                                                                setCityOptions
-                                                            "
-                                                            label="name"
-                                                            placeholder="Select Your State"
-                                                            v-model="
-                                                                selected_state
-                                                            "
-                                                            :options="states"
-                                                        >
-                                                        </VueMultiselect>
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    class="edit-row under_line"
-                                                >
-                                                    <label>City</label>
-                                                    <div
-                                                        class="selectbox-container"
-                                                    >
-                                                        <VueMultiselect
-                                                            label="name"
-                                                            placeholder="Select State First"
-                                                            v-model="
-                                                                selected_city
-                                                            "
-                                                            :options="
-                                                                citySelectOptions
-                                                            "
-                                                        >
-                                                        </VueMultiselect>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div
-                                                class="relative mb-3"
-                                                data-te-input-wrapper-init
-                                            >
-                                                <textarea
-                                                    v-model="address"
-                                                    class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                                                    id="exampleFormControlTextarea1"
-                                                    rows="4"
-                                                    placeholder="Your message"
-                                                    required
-                                                ></textarea>
-                                                <label
-                                                    style="
-                                                        z-index: 1;
-                                                        background: #fff;
-                                                    "
-                                                    for="exampleFormControlTextarea1"
-                                                    class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-                                                    >Address
-                                                </label>
-                                            </div>
-                                            <div
-                                                class="relative mb-3 w-full"
-                                                data-te-input-wrapper-init
-                                            >
-                                                <input
-                                                    v-model="postal_code"
-                                                    type="number"
-                                                    class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                                                    id="exampleFormControlInputText"
-                                                    placeholder="Example label"
-                                                />
-                                                <label
-                                                    style="
-                                                        z-index: 1;
-                                                        background: #fff;
-                                                    "
-                                                    for="exampleFormControlInputText"
-                                                    class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-                                                    >Postal Code
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- first modal  -->
-                                <div v-else class="sm:flex sm:items-start">
-                                    <div
-                                        class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-10 sm:w-10"
-                                    >
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="#eee"
-                                            viewBox="0 0 24 24"
-                                            stroke-width="1.5"
-                                            stroke="green"
-                                            class="h-8 w-8"
-                                        >
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.076-4.076a1.526 1.526 0 011.037-.443 48.282 48.282 0 005.68-.494c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"
-                                            />
-                                        </svg>
-                                    </div>
-                                    <div
-                                        class="w-full mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"
-                                    >
-                                        <DialogTitle
-                                            as="h3"
-                                            class="text-base font-semibold leading-6 text-gray-900"
-                                            >How do you like to Retrive Your
-                                            prize?
-                                        </DialogTitle>
-
-                                        <div class="mt-6 w-full">
-                                            <button
-                                                @click="want_to_buy = true"
-                                                type="button"
-                                                class="inline-flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-violet-500 sm:ml-3 sm:w-auto"
-                                            >
-                                                Purchase Product
-                                            </button>
-                                            <button
-                                                @click="calculate_return_bids"
-                                                type="button"
-                                                class="inline-flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-violet-500 sm:ml-3 sm:w-auto"
-                                            >
-                                                Convert to Bids
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div
-                                class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6"
+                            <DialogPanel
+                                class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg"
                             >
-                                <button
-                                    v-if="want_to_convert"
-                                    @click="
-                                        start_converting(),
-                                            (create_modal = false)
-                                    "
-                                    type="button"
-                                    class="inline-flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-violet-500 sm:ml-3 sm:w-auto"
+                                <div
+                                    class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4"
                                 >
-                                    Convert
-                                </button>
-                                <button
-                                    v-else-if="want_to_buy"
-                                    @click="
-                                        start_buying(), (create_modal = false)
-                                    "
-                                    type="button"
-                                    class="inline-flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-violet-500 sm:ml-3 sm:w-auto"
+                                    <div
+                                        v-if="want_to_convert"
+                                        class="sm:flex sm:items-start"
+                                    >
+                                        <div
+                                            class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-10 sm:w-10"
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="#eee"
+                                                viewBox="0 0 24 24"
+                                                stroke-width="1.5"
+                                                stroke="green"
+                                                class="h-8 w-8"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.076-4.076a1.526 1.526 0 011.037-.443 48.282 48.282 0 005.68-.494c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"
+                                                />
+                                            </svg>
+                                        </div>
+                                        <div
+                                            class="w-full mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"
+                                        >
+                                            <DialogTitle
+                                                as="h3"
+                                                class="text-base font-semibold leading-6 text-gray-900"
+                                                >Convert Your Win To Bids
+                                            </DialogTitle>
+
+                                            <div class="mt-6 w-full">
+                                                <p>
+                                                    Your Reward Will Be:
+                                                    {{
+                                                        converted_bid_amount
+                                                    }}
+                                                    Bids
+                                                </p>
+                                                <br />
+                                                <p>
+                                                    Are You sure you want to
+                                                    convert it?
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        v-else-if="want_to_buy"
+                                        class="sm:flex sm:items-start"
+                                    >
+                                        <div
+                                            class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-10 sm:w-10"
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="#eee"
+                                                viewBox="0 0 24 24"
+                                                stroke-width="1.5"
+                                                stroke="green"
+                                                class="h-8 w-8"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.076-4.076a1.526 1.526 0 011.037-.443 48.282 48.282 0 005.68-.494c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"
+                                                />
+                                            </svg>
+                                        </div>
+                                        <div
+                                            class="w-full mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"
+                                        >
+                                            <DialogTitle
+                                                as="h3"
+                                                class="text-base font-semibold leading-6 text-gray-900"
+                                                >Fill Shipping Info
+                                            </DialogTitle>
+
+                                            <div class="mt-6 w-full">
+                                                <!-- its a reply -->
+                                                <div class="relative mb-3">
+                                                    <div
+                                                        class="edit-row under_line"
+                                                    >
+                                                        <label>State</label>
+                                                        <div
+                                                            class="selectbox-container"
+                                                        >
+                                                            <VueMultiselect
+                                                                @select="
+                                                                    setCityOptions
+                                                                "
+                                                                label="name"
+                                                                placeholder="Select Your State"
+                                                                v-model="
+                                                                    selected_state
+                                                                "
+                                                                :options="
+                                                                    states
+                                                                "
+                                                            >
+                                                            </VueMultiselect>
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="edit-row under_line"
+                                                    >
+                                                        <label>City</label>
+                                                        <div
+                                                            class="selectbox-container"
+                                                        >
+                                                            <VueMultiselect
+                                                                label="name"
+                                                                placeholder="Select State First"
+                                                                v-model="
+                                                                    selected_city
+                                                                "
+                                                                :options="
+                                                                    citySelectOptions
+                                                                "
+                                                            >
+                                                            </VueMultiselect>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="relative mb-3"
+                                                    data-te-input-wrapper-init
+                                                >
+                                                    <textarea
+                                                        v-model="address"
+                                                        class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                                                        id="exampleFormControlTextarea1"
+                                                        rows="4"
+                                                        placeholder="Your message"
+                                                        required
+                                                    ></textarea>
+                                                    <label
+                                                        style="
+                                                            z-index: 1;
+                                                            background: #fff;
+                                                        "
+                                                        for="exampleFormControlTextarea1"
+                                                        class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+                                                        >Address
+                                                    </label>
+                                                </div>
+                                                <div
+                                                    class="relative mb-3 w-full"
+                                                    data-te-input-wrapper-init
+                                                >
+                                                    <input
+                                                        v-model="postal_code"
+                                                        type="number"
+                                                        class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                                                        id="exampleFormControlInputText"
+                                                        placeholder="Example label"
+                                                    />
+                                                    <label
+                                                        style="
+                                                            z-index: 1;
+                                                            background: #fff;
+                                                        "
+                                                        for="exampleFormControlInputText"
+                                                        class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
+                                                        >Postal Code
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- first modal  -->
+                                    <div v-else class="sm:flex sm:items-start">
+                                        <div
+                                            class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-10 sm:w-10"
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="#eee"
+                                                viewBox="0 0 24 24"
+                                                stroke-width="1.5"
+                                                stroke="green"
+                                                class="h-8 w-8"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.076-4.076a1.526 1.526 0 011.037-.443 48.282 48.282 0 005.68-.494c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"
+                                                />
+                                            </svg>
+                                        </div>
+                                        <div
+                                            class="w-full mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left"
+                                        >
+                                            <DialogTitle
+                                                as="h3"
+                                                class="text-base font-semibold leading-6 text-gray-900"
+                                                >How do you like to Retrive Your
+                                                prize?
+                                            </DialogTitle>
+
+                                            <div class="mt-6 w-full">
+                                                <button
+                                                    @click="want_to_buy = true"
+                                                    type="button"
+                                                    class="inline-flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-violet-500 sm:ml-3 sm:w-auto"
+                                                >
+                                                    Purchase Product
+                                                </button>
+                                                <button
+                                                    @click="
+                                                        calculate_return_bids
+                                                    "
+                                                    type="button"
+                                                    class="inline-flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-violet-500 sm:ml-3 sm:w-auto"
+                                                >
+                                                    Convert to Bids
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6"
                                 >
-                                    Pay
-                                </button>
-                                <button
-                                    type="button"
-                                    class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
-                                    @click="close_modal()"
-                                    ref="cancelButtonRef"
-                                >
-                                    Cancel
-                                </button>
-                            </div>
-                        </DialogPanel>
-                    </TransitionChild>
+                                    <button
+                                        v-if="want_to_convert"
+                                        @click="
+                                            start_converting(),
+                                                (create_modal = false)
+                                        "
+                                        type="button"
+                                        class="inline-flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-violet-500 sm:ml-3 sm:w-auto"
+                                    >
+                                        Convert
+                                    </button>
+                                    <button
+                                        v-else-if="want_to_buy"
+                                        @click="
+                                            start_buying(),
+                                                (create_modal = false)
+                                        "
+                                        type="button"
+                                        class="inline-flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-violet-500 sm:ml-3 sm:w-auto"
+                                    >
+                                        Pay
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
+                                        @click="close_modal()"
+                                        ref="cancelButtonRef"
+                                    >
+                                        Cancel
+                                    </button>
+                                </div>
+                            </DialogPanel>
+                        </TransitionChild>
+                    </div>
                 </div>
-            </div>
-        </Dialog>
-    </TransitionRoot>
-    <loading :is_loading="is_loading"></loading>
+            </Dialog>
+        </TransitionRoot>
+        <loading :is_loading="is_loading"></loading>
+    </div>
 </template>
 <script>
 import { Datatable } from "tw-elements";
@@ -363,11 +376,14 @@ export default {
             "baseUrl",
             "UserAuthToken",
             "user",
+
             "nowPayKey",
             "nowPayUrl",
         ]),
     },
+
     methods: {
+        ...mapActions(["setUser"]),
         convertDBTimeToDate,
         merge,
         arrangeData,
@@ -405,16 +421,18 @@ export default {
             })
                 .then((response) => {
                     this.WinProducts = response.data.data;
+
                     this.mergedWinProducts = this.arrangeData(this.WinProducts);
                     // console.dir(this.mergedWinProducts);
                     this.finalWinProducts = this.formatWins();
 
                     this.setUpWinsDataTable();
+                    this.addClickListener();
                 })
-                .catch((error) => {
-                    console.log("error");
-                    console.log(error);
-                })
+                // .catch((error) => {
+                //     console.log("error");
+                //     console.log(error);
+                // })
                 .finally(() => {
                     this.is_loading = false;
                 });
@@ -434,10 +452,18 @@ export default {
                 headers: config,
             })
                 .then((response) => {
-                    // now saving shipping data
                     console.log(response.data);
+                    // updating store user bids
+                    var temp_user = this.user;
+
+                    temp_user.bid_amount =
+                        temp_user.bid_amount + this.converted_bid_amount;
+                    this.setUser(temp_user);
+
                     this.toast.success(response.data.success);
+
                     this.clearData();
+                    this.fetchWins();
                 })
                 .catch((error) => {
                     console.log("error create transac");
@@ -460,12 +486,23 @@ export default {
 
                 arr.push(item);
             });
+
             return arr;
         },
 
         setUpWinsDataTable() {
             // wins product configurations
+            var old_tabel = document.getElementById("wins_table");
+            old_tabel.remove();
+
+            var new_table = document.createElement("div");
+            new_table.setAttribute("id", "wins_table");
+
+            const container = document.getElementById("wins_container");
+            container.appendChild(new_table);
+
             const customDatatable = document.getElementById("wins_table");
+
             const setActions = () => {
                 // document.querySelectorAll(".call-btn").forEach((btn) => {
                 //     btn.addEventListener("click", () => {
@@ -483,6 +520,9 @@ export default {
                 // });
             };
             customDatatable.addEventListener("render.te.datatable", setActions);
+            // empthy table before any update !!
+            console.log("this.finalWinProducts");
+            console.log(this.finalWinProducts);
 
             new Datatable(
                 customDatatable,
@@ -678,7 +718,15 @@ export default {
             this.selected_state = null;
             this.address = null;
             this.postal_code = null;
-           this.close_modal();
+            this.close_modal();
+        },
+        addClickListener() {
+            var self = this;
+            $("#wins_table").on("click", "button", function () {
+                var id = $(this).attr("id");
+
+                self.openShippingModal(id);
+            });
         },
     },
     mounted() {
@@ -686,12 +734,7 @@ export default {
         this.fetchGeo();
 
         // binding datatabel buy buttons to methods
-        var self = this;
-        $("#wins_table").on("click", "button", function () {
-            var id = $(this).attr("id");
-
-            self.openShippingModal(id);
-        });
+        this.addClickListener();
     },
 };
 </script>

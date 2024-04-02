@@ -1,5 +1,6 @@
 <template>
     <!-- <div class="top">Scroll \/</div> -->
+
     <Disclosure
         as="nav"
         id="site_nav"
@@ -120,15 +121,99 @@
                 <div
                     class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
                 >
-                    <button
-                        type="button"
-                        class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                    >
-                        <span class="absolute -inset-1.5" />
-                        <span class="sr-only">View notifications</span>
-                        <BellIcon class="h-6 w-6" aria-hidden="true" />
-                    </button>
+                    <!-- new tickets -->
+                    <Menu v-if="UserAuthToken" as="div" class="relative ml-3">
+                        <div>
+                            <MenuButton
+                                class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                            >
+                                <span class="absolute -inset-1.5" />
+                                <span class="sr-only">Open user menu</span>
+                                <span
+                                    v-if="notification_count > 0"
+                                    class="notify_count"
+                                    >{{ ticket_count }}</span
+                                >
+                                <ion-icon
+                                    style="
+                                        font-size: 1.6rem;
+                                        padding: 0.3rem;
+                                        background-color: #e2e2e2;
+                                        border-radius: 50px;
+                                        color: #777;
+                                    "
+                                    name="chatbubbles"
+                                ></ion-icon>
+                            </MenuButton>
+                        </div>
+                        <transition
+                            enter-active-class="transition ease-out duration-100"
+                            enter-from-class="transform opacity-0 scale-95"
+                            enter-to-class="transform opacity-100 scale-100"
+                            leave-active-class="transition ease-in duration-75"
+                            leave-from-class="transform opacity-100 scale-100"
+                            leave-to-class="transform opacity-0 scale-95"
+                        >
+                            <MenuItems
+                                class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                            >
+                                <MenuItem as="div">
+                                    <p
+                                        class="'block px-4 py-2 text-sm text-gray-700',"
+                                    >
+                                        hello
+                                    </p>
+                                </MenuItem>
+                            </MenuItems>
+                        </transition>
+                    </Menu>
+                    <!-- notifications -->
 
+                    <Menu v-if="UserAuthToken" as="div" class="relative ml-3">
+                        <div>
+                            <MenuButton
+                                class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                            >
+                                <span class="absolute -inset-1.5" />
+                                <span class="sr-only">Open user menu</span>
+                                <span
+                                    v-if="notification_count > 0"
+                                    class="notify_count"
+                                    >{{ notification_count }}</span
+                                >
+                                <ion-icon
+                                    style="
+                                        font-size: 1.8rem;
+                                        padding: 0.2rem;
+                                        background-color: #e2e2e2;
+                                        border-radius: 50px;
+                                        color: #777;
+                                    "
+                                    name="notifications-outline"
+                                ></ion-icon>
+                            </MenuButton>
+                        </div>
+                        <transition
+                            enter-active-class="transition ease-out duration-100"
+                            enter-from-class="transform opacity-0 scale-95"
+                            enter-to-class="transform opacity-100 scale-100"
+                            leave-active-class="transition ease-in duration-75"
+                            leave-from-class="transform opacity-100 scale-100"
+                            leave-to-class="transform opacity-0 scale-95"
+                        >
+                            <MenuItems
+                                class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                            >
+                                <MenuItem as="div">
+                                    <p
+                                        class="'block px-4 py-2 text-sm text-gray-700',"
+                                    >
+                                        hello
+                                    </p>
+                                </MenuItem>
+                            </MenuItems>
+                        </transition>
+                    </Menu>
                     <!-- Profile dropdown -->
                     <Menu v-if="UserAuthToken" as="div" class="relative ml-3">
                         <div>
@@ -139,7 +224,8 @@
                                 <span class="sr-only">Open user menu</span>
                                 <img
                                     class="h-8 w-8 rounded-full"
-                                    :src="'/storage/'+user.profile_pic"
+                                    :src="'/storage/' + user.profile_pic"
+                                    onerror="this.src='/storage/images/user_profiles/blank.png'"
                                     alt=""
                                 />
                             </MenuButton>
@@ -157,12 +243,16 @@
                             >
                                 <MenuItem as="a">
                                     <router-link
+                                        style="
+                                            background-color: snow;
+                                            color: #555;
+                                        "
                                         :to="{ name: 'profile' }"
                                         class="'block px-4 py-2 text-sm text-gray-700',"
                                         >Dashboard</router-link
                                     >
                                 </MenuItem>
-                                <MenuItem v-slot="{ active }">
+                                <!-- <MenuItem v-slot="{ active }">
                                     <a
                                         href="#"
                                         :class="[
@@ -171,7 +261,7 @@
                                         ]"
                                         >Settings</a
                                     >
-                                </MenuItem>
+                                </MenuItem> -->
                                 <MenuItem v-slot="{ active }">
                                     <a
                                         href="#"
@@ -187,26 +277,25 @@
                         </transition>
                     </Menu>
                     <!-- login / singup btn -->
-                    <router-link v-else :to="{name:'auth'}">
-                    <button class="button">
-
-                        <span class="label">Join</span>
-                        <span class="icon">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24"
-                                width="24"
-                                height="24"
-                            >
-                                <path fill="none" d="M0 0h24v24H0z"></path>
-                                <path
-                                    fill="currentColor"
-                                    d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
-                                ></path>
-                            </svg>
-                        </span>
-                    </button>
-                  </router-link>
+                    <router-link v-else :to="{ name: 'auth' }">
+                        <button class="button">
+                            <span class="label">Join</span>
+                            <span class="icon">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                    width="24"
+                                    height="24"
+                                >
+                                    <path fill="none" d="M0 0h24v24H0z"></path>
+                                    <path
+                                        fill="currentColor"
+                                        d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                    ></path>
+                                </svg>
+                            </span>
+                        </button>
+                    </router-link>
                 </div>
             </div>
         </div>
@@ -242,6 +331,7 @@ import {
     MenuItem,
     MenuItems,
 } from "@headlessui/vue";
+
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/vue/24/outline";
 export default {
     props: {
@@ -307,6 +397,9 @@ export default {
                     current: false,
                 },
             ],
+            notification_count: 0,
+            ticket_count: 0,
+            getCountUrl: "user/get_notifications",
         };
     },
     mounted() {
@@ -336,6 +429,35 @@ export default {
                     menu.classList.remove("sticky");
                 }
             };
+        },
+        fetchStatistics() {
+            if (!this.UserAuthToken) {
+                return;
+            }
+            let config = {
+                Authorization: this.UserAuthToken,
+            };
+
+            const body = {};
+
+            axios({
+                method: "post",
+                url: this.baseUrl + this.getCountUrl,
+                data: body,
+                headers: config,
+            })
+                .then((response) => {
+                    this.notification_count = response.data.notifications;
+                    this.ticket_count = response.data.tickets;
+
+                    console.log("99999999999");
+                    console.log(this.notification_count , this.ticket_count);
+                })
+                .catch((error) => {
+                    console.log("error");
+                    console.log(error);
+                })
+                .finally(() => {});
         },
         logout() {
             axios
@@ -367,6 +489,9 @@ export default {
         BellIcon,
         XMarkIcon,
     },
+    created() {
+        this.fetchStatistics();
+    },
 };
 </script>
 
@@ -375,7 +500,17 @@ export default {
     border-radius: 40px;
     width: 20rem;
 }
-
+.notify_count {
+    position: absolute;
+    background: red;
+    padding: 0.1rem 0.4rem;
+    border-radius: 30px;
+    z-index: 1;
+    color: #eee;
+    font-weight: 500;
+    top: -0.7rem;
+    left: -0.7rem;
+}
 .search-label {
     background-color: var(--color-primary);
     border-top-right-radius: 20px;

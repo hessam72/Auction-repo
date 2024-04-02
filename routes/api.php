@@ -94,6 +94,7 @@ Route::middleware('jwt.auth')->group(function () {
         Route::post('/fetch', 'index');
         Route::put('/update', 'update');
         Route::post('/change-avatar', 'setAvatar');
+        Route::post('/get_notifications', 'getNotifications');
     });
     Route::controller(GeoController::class)->prefix('/geo')->group(function () {
         Route::post('/all', 'all');

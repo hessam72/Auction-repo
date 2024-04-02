@@ -77,6 +77,18 @@
                             ></ion-icon>
                             <span class="title">Support</span>
                         </router-link>
+                    </li>  
+                    <li>
+                        <router-link
+                            @click="log_out() , close('outside')"
+                            to=""
+                        >
+                            <ion-icon
+                                class="icon"
+                                name="log-out"
+                            ></ion-icon>
+                            <span style="color: #1e618b;" class="title">Log Out</span>
+                        </router-link>
                     </li>
                 </ul>
             </div>
@@ -94,6 +106,7 @@
                     <img
                         class="user_img"
                         :src="'/storage/' + user.profile_pic"
+                        onerror="this.src='/storage/images/user_profiles/blank.png'"
                     />
                 </div>
             </div>
@@ -121,7 +134,7 @@
                 <hr />
                 <div class="row">
                     <ion-icon name="pin"></ion-icon>
-                    <p>{{ user.city.name }}</p>
+                    <p v-if="user.city">{{ user.city.name }}</p>
                 </div>
             </div>
         </div>
@@ -146,14 +159,22 @@ export default {
             file: null,
             storeUrl: "user/change-avatar",
             is_loading: false,
+            userUrl: "user/fetch",
+            is_loading: false,
         };
     },
     methods: {
-        ...mapActions(["setUser"]),
+        ...mapActions(["setUser", "logoutUser"]),
         convertDBTimeToDate,
         close() {
             console.log("closing");
             $(".navigation").removeClass("active");
+        },
+        log_out(){
+       
+            this.logoutUser();
+                    this.setUser({});
+                    this.$router.push({ name: "auth" });
         },
         onFileChanged(event) {
             this.file = event.target.files[0];
@@ -189,18 +210,49 @@ export default {
                 .catch((error) => {
                     console.log("error");
                     console.log(error);
-                    this.toast.error(error.response.data.message);
+                    this.toast.error("error");
+                })
+                .finally(() => {
+                    this.is_loading = false;
+                });
+        },
+        //check to see if user is still authenticated or not
+        checkUser() {
+            this.is_loading = true;
+            let config = {
+                Authorization: this.UserAuthToken,
+            };
+
+            const body = {};
+
+            axios({
+                method: "post",
+                url: this.baseUrl + this.userUrl,
+                data: body,
+                headers: config,
+            })
+                .then((response) => {
+                    console.log(response.data.data);
+                })
+                .catch((error) => {
+                    this.toast.error(error.response.data.message );
+                    this.log_out();
+                   
                 })
                 .finally(() => {
                     this.is_loading = false;
                 });
         },
     },
+    created() {
+        this.checkUser();
+    },
     mounted() {
         $(".toggle").click(function () {
             $(".navigation").toggleClass("active");
         });
     },
+   
     computed: {
         ...mapGetters(["baseUrl", "UserAuthToken", "user"]),
     },

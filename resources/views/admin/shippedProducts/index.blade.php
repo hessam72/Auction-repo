@@ -1,11 +1,17 @@
 @extends('admin.app')
 @section('content')
+<style>
+.head_rec{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.item_rec{
+    display: flex;
+    gap: .5rem;
+}
+    </style>
     <div class="container-xxl flex-grow-1 container-p-y">
-
-
-
-
-
         <div class="card">
             <div style="display: flex;
             justify-content: space-between;" class="card-header border-bottom">
@@ -55,6 +61,8 @@
                                         <p style="color:rgb(145, 156, 0)"> در انتظار پرداخت </p>
                                     @elseif($product->status === 100)
                                         <p style="color:rgb(2, 147, 24)">پرداخت شده </p>
+                                    @elseif($product->status === 200)
+                                        <p style="color:rgb(2, 147, 24)">ارسال شده </p>
                                     @elseif($product->status === 300)
                                         <p style="color:red"> پرداخت بصورت نیمه تمام</p>
                                     @elseif($product->status === 400)
@@ -71,12 +79,12 @@
 
                                         </button>
 
-
-                                        <button class="btn btn-sm btn-icon delete-record">
-
-                                            <i data-bs-toggle="modal" data-bs-target="#editmodal{{ $product->id }}"
-                                                class="bx bx-edit"></i></button>
-
+                                        @if ($product->status === 100)
+                                            <button class="btn btn-sm btn-icon delete-record">
+                                                <i class="fa-solid fa-truck-fast" data-bs-toggle="modal"
+                                                    data-bs-target="#editmodal{{ $product->id }}"></i>
+                                            </button>
+                                        @endif
 
 
 
@@ -89,99 +97,25 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                         <div class="text-center mb-4 mt-0 mt-md-n2">
-                                                            <h3 class="secondary-font">به روز رسانی </h3>
+                                                            <h3 class="secondary-font">ارسال کالا</h3>
 
                                                         </div>
 
                                                         <form class="row g-3 " method="POST"
-                                                            action="{{ route('admin.products.update', ['product' => $product->id]) }}">
+                                                            action="{{ route('admin.shipped_products.update', ['shipped_product' => $product->id]) }}">
                                                             @csrf
                                                             @method('put')
 
 
-                                                            <div class="col-12 col-md-6">
-                                                                <label class="form-label" for="modalEditUserFirstName">تعریف
-                                                                    Redeem Code</label>
-                                                                <input type="text" id="modalEditUserFirstName"
-                                                                    name="description" class="form-control"
-                                                                    placeholder="توضیحات کد"
-                                                                    value="{{ $product->description }}">
-                                                            </div>
-                                                            <div class="col-12 col-md-6">
-                                                                <label class="form-label" for="modalEditUserFirstName">کد
-                                                                    Redeem Code</label>
-                                                                <input type="text" id="modalEditUserFirstName"
-                                                                    name="code" class="form-control"
-                                                                    placeholder="کد دلخواه خود را وارد کنید"
-                                                                    value="{{ $product->code }}" required>
-                                                            </div>
-
-
-                                                            <div class="col-12 col-md-6">
-                                                                <label class="form-label" for="modalEditUserName">
-                                                                    تعداد بید </label>
-                                                                <input type="number" id="modalEditUserName" name="value"
-                                                                    class="form-control text-start"
-                                                                    placeholder="تعداد بید موجود در کد را وارد کنید"
-                                                                    value="{{ $product->value }}" dir="ltr" required>
-                                                            </div>
-                                                            <div class="col-12 col-md-6">
-                                                                <label class="form-label" for="modalEditUserName">
-                                                                    تعداد قابل استفاده </label>
-                                                                <input type="number" id="modalEditUserName"
-                                                                    name="use_limit_count" class="form-control text-start"
-                                                                    value="{{ $product->use_limit_count }}"
-                                                                    placeholder="تعداد دفعات قابل استفاده از کد را وارد کنید"
-                                                                    dir="ltr">
-                                                            </div>
-
-
-                                                            <div class="col-12 col-md-6">
-                                                                <label class="form-label" for="modalEditUserStatus">
-                                                                    فعال / غیرفعال کردن کد</label>
-                                                                <label class="switch">
-
-                                                                    @if ($product->status === 1)
-                                                                        {{-- currently active --}}
-                                                                        <input type="checkbox" name="status"
-                                                                            class="switch-input" checked>
-                                                                        <span class="switch-toggle-slider">
-                                                                            <span class="switch-on">
-                                                                                <i class="bx bx-check"></i>
-                                                                            </span>
-                                                                            <span class="switch-off">
-                                                                                <i class="bx bx-x"></i>
-                                                                            </span>
-                                                                        </span>
-                                                                    @else
-                                                                        {{-- currently deactive  --}}
-                                                                        <input type="checkbox" name="status"
-                                                                            class="switch-input">
-                                                                        <span class="switch-toggle-slider">
-                                                                            <span class="switch-off">
-                                                                                <i class="bx bx-x "></i>
-                                                                            </span>
-                                                                            <span class="switch-on">
-                                                                                <i class="bx bx-check"></i>
-                                                                            </span>
-                                                                        </span>
-                                                                    @endif
-
-
-
-
-                                                                    <span class="switch-label"></span>
-                                                                </label>
-                                                            </div>
-
-
+                                                            <p style="text-align: center">شما در حال ثبت ارسال کالا به آدرس
+                                                                میباشید. این عمل غیر قابل بازگشت میباشد</p>
 
 
                                                             <div class="col-12 text-center mt-4">
 
                                                                 <button type="submit" class="btn btn-primary">
 
-                                                                    <span id="main_label" class=""> ثبت </span>
+                                                                    <span id="main_label" class=""> ثبت ارسال </span>
                                                                 </button>
                                                                 <button type="reset" class="btn btn-label-secondary"
                                                                     data-bs-dismiss="modal" aria-label="Close">
@@ -204,68 +138,102 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                         <div class="text-center mb-4 mt-0 mt-md-n2">
-                                                            <h3 class="secondary-font">جزییات فاکتور</h3>
+                                                            <h3 class="secondary-font">فاکتور فروش</h3>
 
-                                                            <div class="row">
-                                                                <p> محصول</p>
-                                                                <p>{{ $product->product->title }}</p>
+                                                            <div class="head_rec">
+                                                                <div class="right">
+                                                                    <div class="item_rec">
+                                                                        <p> محصول</p>
+                                                                        <p>{{ $product->product->title }}</p>
+                                                                    </div>
+                                                                    <div class="item_rec">
+                                                                        <p>قیمت</p>
+                                                                        <p>{{ $product->transaction->amount }}</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="left">
+                                                                    <div class="item_rec">
+                                                                        <p>وضعیت </p>
+                                                                        <p>
+                                                                            @if ($product->status === 1)
+                                                                                <p style="color:rgb(145, 156, 0)"> در انتظار
+                                                                                    پرداخت
+                                                                                </p>
+                                                                            @elseif($product->status === 100)
+                                                                                <p style="color:rgb(2, 147, 24)">پرداخت شده
+                                                                                </p>
+                                                                            @elseif($product->status === 200)
+                                                                                <p style="color:rgb(2, 147, 24)">ارسال شده
+                                                                                </p>
+                                                                            @elseif($product->status === 300)
+                                                                                <p style="color:red"> پرداخت بصورت نیمه تمام
+                                                                                </p>
+                                                                            @elseif($product->status === 400)
+                                                                                <p style="color:rgb(170, 26, 1)"> پرداخت
+                                                                                    ناموفق</p>
+                                                                            @endif
+                                                                        </p>
+                                                                    </div>
+                                                                    <div>
+                                                                        <p></p>
+                                                                        <p>
+                                                                            {{ $product->created_at }}
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                            <div class="row">
-                                                                <p>نام خریدار</p>
-                                                                <p>{{ $product->user->username }}</p>
+                                                            <div class="body_rec">
+                                                                <div class="item_rec">
+                                                                    <p> خریدار</p>
+                                                                    <p>{{ $product->user->username }}</p>
+                                                                </div>
+                                                                <div class="item_rec">
+                                                                    <p>ایمیل خریدار</p>
+                                                                    <p>{{ $product->user->email }}</p>
+                                                                </div>
+                                                                <div class="item_rec">
+                                                                    <p> استان</p>
+                                                                    <p>{{ $product->state->name }}</p>
+                                                                </div>
+                                                                <div class="item_rec">
+                                                                    <p>شهر</p>
+                                                                    <p>{{ $product->city->name }}</p>
+                                                                </div>
+                                                                <div class="item_rec">
+                                                                    <p>آدرس پستی</p>
+                                                                    <p>{{ $product->address }}</p>
+                                                                </div>
+                                                                <div class="item_rec">
+                                                                    <p>کد پستی</p>
+                                                                    <p>{{ $product->postal_code }}</p>
+                                                                </div>
                                                             </div>
-                                                            <div class="row">
-                                                                <p>ایمیل خریدار</p>
-                                                                <p>{{ $product->user->email }}</p>
+
+                                                            <div class="footer_rec">
+                                                                <div class="item_rec">
+                                                                    <p>شماره سفارش</p>
+                                                                    <p>{{ $product->transaction->order_id }}</p>
+                                                                </div>
+                                                                <div class="item_rec">
+                                                                    <p>توضیحات سفارش</p>
+                                                                    <p>{{ $product->transaction->payment_description }}</p>
+                                                                </div>
                                                             </div>
-                                                            <div class="row">
-                                                                <p>شهر</p>
-                                                                <p>{{$product->city->name}}</p>
-                                                            </div>
-                                                            <div class="row">
-                                                                <p> استان</p>
-                                                                <p>{{$product->state->name}}</p>
-                                                            </div>
-                                                            <div class="row">
-                                                                <p>آدرس پستی</p>
-                                                                <p>{{$product->address}}</p>
-                                                            </div>
-                                                            <div class="row">
-                                                                <p>کد پستی</p>
-                                                                <p>{{$product->postal_code}}</p>
-                                                            </div>
-                                                            <div class="row">
-                                                                <p>قیمت</p>
-                                                                <p>{{$product->transaction->amount}}</p>
-                                                            </div>
-                                                            <div class="row">
-                                                                <p>وضعیت پرداخت</p>
-                                                                <p> @if ($product->status === 1)
-                                                                    <p style="color:rgb(145, 156, 0)"> در انتظار پرداخت </p>
-                                                                @elseif($product->status === 100)
-                                                                    <p style="color:rgb(2, 147, 24)">پرداخت شده </p>
-                                                                @elseif($product->status === 300)
-                                                                    <p style="color:red"> پرداخت بصورت نیمه تمام</p>
-                                                                @elseif($product->status === 400)
-                                                                    <p style="color:rgb(170, 26, 1)"> پرداخت ناموفق</p>
-                                                                @endif</p>
-                                                            </div>
-                                                            <div class="row">
-                                                                <p>شماره سفارش</p>
-                                                                <p>{{$product->transaction->order_id}}</p>
-                                                            </div>
-                                                            <div class="row">
-                                                                <p>توضیحات سفارش</p>
-                                                                <p>{{$product->transaction->payment_description}}</p>
-                                                            </div>
+
+
+
+
+
+
+
+
 
 
                                                         </div>
 
                                                         <div class="col-12 text-center mt-4">
 
-                                                            <button type="reset"
-                                                                class="btn btn-label-secondary btn-reset"
+                                                            <button type="reset" class="btn btn-label-secondary btn-reset"
                                                                 data-bs-dismiss="modal" aria-label="Close">
                                                                 بستن
                                                             </button>

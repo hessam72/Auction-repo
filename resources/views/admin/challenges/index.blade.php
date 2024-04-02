@@ -2,13 +2,6 @@
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
        
-
-
-
-
-
-
-
         <div class="modal fade" id="createmodal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-simple modal-edit-user">
                 <div class="modal-content p-3 p-md-5">
@@ -97,6 +90,22 @@
 
                                 </select>
                             </div>
+                             <div class="col-12 col-md-6">
+                                <label class="form-label" for="modalEditUserStatus">
+                                    سطح چالش</label>
+                                <select id="modalEditUserStatus" name="level" class="form-select"
+                                    aria-label="Default select example">
+                                    <option selected>
+                                        سطح چالش را انتخاب کنید
+                                    </option>
+
+
+                                    <option value="beginner">مبتدی</option>
+                                    <option value="intermediate">متوسط</option>
+                                    <option value="pro">حرفه ای</option>
+
+                                </select>
+                            </div>
 
 
 
@@ -154,6 +163,7 @@
                             <th>نوع چالش</th>
                             <th>زمان انجام چالش</th>
                             <th>تعداد مورد نیاز</th>
+                            <th>سطح چالش</th>
                             <th>وضعیت</th>
                             <th>مدیریت</th>
 
@@ -189,6 +199,15 @@
 
                                 </td>
                                 <td>{{ $challenge->number_to_win }}</td>
+                                <td>
+                                    @if ($challenge->level === 'beginner')
+                                       <p style="color:rgb(0, 102, 128)"> مبتدی </p>
+                                    @elseif($challenge->level === 'intermediate')
+                                       <p style="color:rgb(2, 155, 101)"> متوسط </p> 
+                                         @elseif($challenge->level === 'pro')
+                                       <p style="color:rgb(17, 147, 0)"> حرفه ای </p>
+                                    @endif
+                                </td> 
                                 <td>
                                     @if ($challenge->status === 1)
                                        <p style="color:green"> فعال </p>
@@ -437,6 +456,7 @@
                             <th>نوع چالش</th>
                             <th>زمان انجام چالش</th>
                             <th>تعداد مورد نیاز</th>
+                            <th>سطح چالش</th>
                             <th>وضعیت</th>
                             <th>مدیریت</th>
                         </tr>

@@ -109,7 +109,7 @@ export default {
                 })
                 .then((response) => {
                     // console.log("response");
-                    // console.log(response);
+                    console.log(response);
                     var token = "Bearer " + response.data.token;
                     this.loginUser(token);
                     this.setUser(response.data.user);

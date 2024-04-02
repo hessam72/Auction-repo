@@ -110,8 +110,16 @@
 <script>
 import navBarSection from "../../components/global/navbar.vue";
 import { mapGetters, mapActions } from "vuex";
+import { useToast } from "vue-toastification";
+
 import { init_login_singup_styles } from "@/modules/utilities/login_singup.js";
 export default {
+    setup() {
+        // Get toast interface
+        const toast = useToast();
+
+        return { toast };
+    },
     components: {
         navBarSection,
     },
@@ -148,12 +156,10 @@ export default {
             axios
                 .post(this.baseUrl + this.loginUrl, body)
                 .then((response) => {
-                   
                     var token = "Bearer " + response.data.token;
                     this.loginUser(token);
                     this.setUser(response.data.user);
                     this.redirect();
-                    
                 })
                 .catch(function (error) {
                     console.log("error");
@@ -167,7 +173,9 @@ export default {
             if (this.register_password != this.confirm_pass) {
                 var confirm_password =
                     document.getElementById("confirm_password");
-                confirm_password.setCustomValidity("Passwords Don't Match");
+                // confirm_password.setCustomValidity();
+                this.toast.error("Passwords Don't Match");
+
                 return;
             }
             const body = {
@@ -189,6 +197,7 @@ export default {
                 .catch(function (error) {
                     console.log("error");
                     console.log(error);
+                    this.toast.error(error.response.data.message);
                 })
                 .finally(function () {
                     // always executed

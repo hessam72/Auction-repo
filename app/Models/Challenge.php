@@ -34,7 +34,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class Challenge extends Model
 {
-	
+
 	use HasFactory;
 	protected $table = 'challenges';
 
@@ -54,7 +54,8 @@ class Challenge extends Model
 		'time_type',
 		'category_id',
 		'number_to_win',
-		'status'
+		'status',
+		'level'
 	];
 
 	public function category()
@@ -70,6 +71,8 @@ class Challenge extends Model
 	public function users()
 	{
 		return $this->belongsToMany(User::class, 'user_challenges')
-					->withPivot('id', 'status', 'progress');
+			->withPivot('id', 'status', 'progress');
 	}
+
+	
 }

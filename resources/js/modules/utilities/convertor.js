@@ -78,6 +78,7 @@ export function  arrangeData(data){
     data.forEach( (item, index) =>{
       arr.push(merge(item))
     });
+    
   
     return arr;
   };

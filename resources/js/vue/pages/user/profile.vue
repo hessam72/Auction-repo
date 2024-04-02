@@ -36,7 +36,8 @@
         </div>
         <div class="profile-container">
             <div class="section-head">
-                <h2>Edit Profile</h2>
+                <h2 v-if="!user.birth_date && !user.bio && !user.profile_pic">Complete Your Profile</h2>
+                <h2 v-else>Edit Profile</h2>
                 <hr class="header-hr" />
             </div>
             <div class="edit-form">
@@ -166,7 +167,7 @@ export default {
         VueMultiselect,
     },
     methods: {
-        ...mapActions(["loginUser", "setUser"]),
+        ...mapActions(["loginUser", "setUser" , "logoutUser"]),
         convertSecondsToTime,
         fetchData() {
             this.is_loading = true;
@@ -202,7 +203,16 @@ export default {
                     // this.selected_state = this.user.city.state;
                 })
                 .catch((error) => {
-                    console.log("error");
+                   
+                    this.toast.error(error.response.data.message );
+                    if(error.response.status == 419 || error.response.status == 401 ){
+                    
+                         this.logoutUser();
+                    this.setUser({});
+                    this.$router.push({ name: "auth" });
+                    }
+                   
+                    console.log("error**************");
                     console.log(error);
                 })
                 .finally(() => {
@@ -281,6 +291,7 @@ export default {
         },
     },
     created() {
+      
         this.fetchData();
         this.fetchGeo();
     },

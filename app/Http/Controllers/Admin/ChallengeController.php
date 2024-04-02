@@ -43,6 +43,7 @@ class ChallengeController extends Controller
             'reward_id' => 'required',
             'number_to_win' => 'required',
             'type' => 'required',
+            'level' => 'required',
             'day_type' => 'required',
         ]);
         $challenge = Challenge::create([
@@ -52,19 +53,24 @@ class ChallengeController extends Controller
             'reward_id' => $request->reward_id,
             'number_to_win' => $request->number_to_win,
             'type' => $request->type,
+            'level' => $request->level,
             'time_type' => $request->day_type,
 
         ]);
 
         // start challenge for users
         $users = User::where('status', 1)->get();
+
         foreach ($users as $user) {
-            UserChallenge::create([
-                'user_id' => $user->id,
-                'challenge_id' => $challenge->id,
-                'status' => 1,
-                'progress' => 0
-            ]);
+            if (User::CalculateUserLevel($user->id) === $challenge->level) {
+                //user is on same level as the challenge
+                UserChallenge::create([
+                    'user_id' => $user->id,
+                    'challenge_id' => $challenge->id,
+                    'status' => 1,
+                    'progress' => 0
+                ]);
+            }
         }
 
         return redirect()->back()->with('success', 'ثبت و تخصیص چالش با موفقیت انجام شد');

@@ -172,5 +172,24 @@ class User extends  Authenticatable implements JWTSubject
 	{
 		return $this->belongsTo(City::class);
 	}
+		// level of challenge to assign to currect users: 
+	// beginner: has no win in auctoin or place less than 1000 bids /
+	//  intermediate => 1 win in auction or more than 1000 bids / 
+	// pro => 3 or more win or more than 3000 bids
+	public static function CalculateUserLevel($user_id)
+	{
+		
+		// calculateuser bid placed
+		$bid_count = BiddingHistory::where('user_id', $user_id)->count();
+		$wins_count = Winner::where('user_id', $user_id)->count();
+		if (($bid_count > 1000 && $bid_count < 3000) || ($wins_count > 1 && $wins_count < 3)) {
+			//intermediate
+			return 'intermediate';
+		} elseif (($bid_count > 3000) || ($wins_count > 3)) {
+			return 'pro';
+		} else {
+			return 'beginner';
+		}
+	}
 	
 }

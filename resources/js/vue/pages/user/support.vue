@@ -34,6 +34,7 @@
                 v-if="show_tab === 1"
                 class="tickets-list flex flex-col items-start justify-start"
             >
+            <p v-if="pending.length == 0">No Ticket Found</p>
                 <div
                     v-for="(item, index) in pending"
                     :key="index"
@@ -55,6 +56,7 @@
                 v-else-if="show_tab === 2"
                 class="tickets-list flex flex-col items-start justify-start"
             >
+            <p v-if="answered.length == 0">No Ticket Found</p>
                 <div
                     v-for="(item, index) in answered"
                     :key="index"
@@ -75,6 +77,7 @@
                 v-else-if="show_tab === 3"
                 class="tickets-list flex flex-col items-start justify-start"
             >
+            <p v-if="closed.length == 0">No Ticket Found</p>
                 <div
                     v-for="(item, index) in closed"
                     :key="index"

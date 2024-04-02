@@ -29,6 +29,7 @@ use App\Models\Product;
 use App\Models\Temprary;
 use App\Models\TrackVisit;
 use App\Models\User;
+use App\Models\UserChallenge;
 use App\Models\Winner;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -134,32 +135,16 @@ Route::get('/vue/v1/{any?}', function () {
 
 
 
-Route::middleware('save.visitor')->get('/test', function () {
-    // visitor()->visit();
-   
-    $uniqe_visits=TrackVisit::distinct('ip')->count();
-    
-    dd($uniqe_visits);
-
-
-
-
-
-dd(User::online()->get());
-    dd(visitor()->device(),
-    visitor()->platform(),
-    visitor()->browser(),
-  
-    visitor()->ip(),
-    visitor()->request(),
-    visitor()->useragent(),
-    visitor()->isOnline(),
-);
-
-
-
-
-
+Route::get('/test', function () {
+    $challenge = Challenge::first();
+    $users = User::where('status', 1)->get();
+    foreach ($users as $user) {
+      dd(User::CalculateUserLevel($user->id) === $challenge->level);
+        if (User::CalculateUserLevel($user->id) === $challenge->level) {
+            //user is on same level as the challenge
+          dd();
+        }
+    }
 
 
 

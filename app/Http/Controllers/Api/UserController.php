@@ -27,7 +27,15 @@ class UserController extends Controller
 
 
     }
+    public function getNotifications()
+    {
+        // geting all new notifications with msg and count + all new tickets with count
+        return response()->json([
+            'tickets' => 8,
+            'notifications'=>4
 
+        ], 200);
+    }
     public function update(Request $request)
     {
         $request->validate([
@@ -46,7 +54,6 @@ class UserController extends Controller
         $user->city_id = $request->city_id;
         $user->save();
         return new UserResource($user->load('city'));
-        
     }
     public function setAvatar(Request $request)
     {
@@ -66,9 +73,8 @@ class UserController extends Controller
             $user->save();
 
             return new UserResource($user->load('city'));
-
         } catch (\Exception $e) {
-           
+
             return response()->json([
                 'error' => "failed to upload avatar",
 

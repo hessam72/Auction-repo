@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Challenge;
 use App\Models\User;
+use App\Models\UserChallenge;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -38,6 +40,7 @@ class ApiController extends Controller
        
     }
     public function register(Request $request){
+       
       $credentials=  $request->validate([
             'username' => 'required|string|max:255',
             'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
@@ -58,6 +61,17 @@ class ApiController extends Controller
                 'msg' => 'Invalid Credentials.'
             ], 400);
         }
+        // assign challenges
+        $challenges=Challenge::where('status' , 1)->where('level' , 'beginner')->get();
+        foreach($challenges as $challenge){
+            UserChallenge::create([
+                'user_id' => $user->id,
+                'challenge_id' => $challenge->id,
+                'status' => 1,
+                'progress' => 0
+            ]);
+        }
+
         return response([
             'status' => 'success',
             'token'=>$token,
