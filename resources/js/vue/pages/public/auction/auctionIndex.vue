@@ -1,7 +1,7 @@
 <template>
     <div>
         <single-nav></single-nav>
-
+        <!-- {{findAuctionInStore(auction.id)}} -->
         <bread-crumps
             v-bind:history="history"
             :current="current"
@@ -73,7 +73,15 @@
                             <div
                                 class="k-header flex justify-between items-center"
                             >
-                                <h2>Current Bid</h2>
+                                <h2
+                                    v-if="
+                                        findAuctionInStore(auction.id).status ==
+                                        100
+                                    "
+                                >
+                                    Current Bid
+                                </h2>
+                                <h2 v-else>Final Bid</h2>
                                 <!-- <h2 class="price">${{ auction.current_price }}</h2> -->
                                 <h2
                                     :key="
@@ -96,9 +104,11 @@
                                                 class="user_img"
                                                 :src="
                                                     '/storage/' +
-                                                    current_winner.profile_pic
+                                                    findAuctionInStore(
+                                                        auction.id
+                                                    ).avatar
                                                 "
-                                                 onerror="this.src='/storage/images/user_profiles/blank.png'"   
+                                                onerror="this.src='/storage/images/user_profiles/blank.png'"
                                             />
                                         </div>
                                     </div>
@@ -116,10 +126,19 @@
                                                     .current_winner_username
                                             }}
                                         </h3>
-                                        <h4>Current Heighest bidder</h4>
-                                        <h4>
+                                        <h4
+                                            v-if="
+                                                findAuctionInStore(auction.id)
+                                                    .status == 100
+                                            "
+                                        >
+                                            Current Heighest bidder
+                                        </h4>
+                                        <h4 v-else>The Winner</h4>
+
+                                        <h4 class="user_location">
                                             <ion-icon name="pin"></ion-icon>
-                                            <!-- {{ current_winner.city.name }} -->
+                                            {{ current_winner.city.name }}
                                         </h4>
                                     </div>
                                 </div>
@@ -204,8 +223,21 @@
                                 </div>
                             </div>
                             <div class="timer-section">
-                                <h3>Time Left</h3>
-                                <div class="auction-timer">
+                                <h3
+                                    v-if="
+                                        findAuctionInStore(auction.id).status ==
+                                        100
+                                    "
+                                >
+                                    Time Left
+                                </h3>
+                                <div
+                                    v-if="
+                                        findAuctionInStore(auction.id).status ==
+                                        100
+                                    "
+                                    class="auction-timer"
+                                >
                                     <vue-countdown
                                         @end="endAuction(auction.id)"
                                         :time="
@@ -233,8 +265,64 @@
                                         <!-- Timer: {{ remaining_seccounds =seconds +1}} how to do that with vue-countdown? -->
                                     </vue-countdown>
                                 </div>
+                                <div
+                                    v-else-if="
+                                        findAuctionInStore(auction.id).status ==
+                                        3
+                                    "
+                                    class="auction-timer"
+                                >
+                                    <div class="count-down">
+                                        <div
+                                            style="
+                                                padding: 0.7rem 1rem;
+                                                background-color: #372065;
+                                                box-shadow: none;
+                                            "
+                                            class="number"
+                                        >
+                                            <ion-icon
+                                                class="trophy"
+                                                name="trophy"
+                                            ></ion-icon>
+                                        </div>
+                                        <div class="seperator">:</div>
+                                        <div
+                                            style="
+                                                padding: 0.7rem 1rem;
+                                                background-color: #372065;
+                                                box-shadow: none;
+                                            "
+                                            class="number"
+                                        >
+                                            <ion-icon
+                                                class="trophy"
+                                                name="trophy"
+                                            ></ion-icon>
+                                        </div>
+                                        <div class="seperator">:</div>
+                                        <div
+                                            style="
+                                                padding: 0.7rem 1rem;
+                                                background-color: #372065;
+                                                box-shadow: none;
+                                            "
+                                            class="number"
+                                        >
+                                            <ion-icon
+                                                class="trophy"
+                                                name="trophy"
+                                            ></ion-icon>
+                                        </div>
+                                    </div>
+                                    <!-- to sent backend for calculating heighest bidder time -->
+                                    <!-- Timer: {{ remaining_seccounds =seconds +1}} how to do that with vue-countdown? -->
+                                </div>
                             </div>
                             <div
+                                v-if="
+                                    findAuctionInStore(auction.id).status == 100
+                                "
                                 class="btn-container flex justify-between items-center"
                             >
                                 <button
@@ -288,6 +376,7 @@ import { QuillEditor } from "@vueup/vue-quill";
 import "@vueup/vue-quill/dist/vue-quill.snow.css";
 import { useToast } from "vue-toastification";
 import { convertDateToMilliSeconds } from "@/modules/utilities.js";
+import { now } from "@vueuse/core";
 export default {
     setup() {
         // Get toast interface
@@ -311,6 +400,7 @@ export default {
             current: "Index",
             fetchUrl: "auctions/index",
             auction: null,
+            temp_current_winner_id: null, // for detecting changes in state for current auction
             product: null,
             bidBodyCount: 0,
             current_winner: null,
@@ -389,15 +479,7 @@ export default {
         findAuctionInStore(id) {
             return this.findAuction(id);
         },
-        // updateAuction(data){
-        // //   console.log('incommming update')
-        // //   console.log(data)
-        // //     if(this.auction.id == data.id){
-        // //         // this is currect data
 
-        // //         console.log(this.storedAuctions)
-        // //     }
-        // },
         generateRichText(data) {
             var d = JSON.parse(data);
 
@@ -449,6 +531,8 @@ export default {
 
                     this.generateRichText(this.product.description);
                     this.current_winner = this.auction.current_winner;
+                    this.temp_current_winner_id =
+                        this.auction.current_winner_id;
                     this.side_auctions = response.data.side_auctions;
                     this.participaints = response.data.participaints;
                     this.all_participaints = response.data.all_participaints;
@@ -475,7 +559,6 @@ export default {
                 });
         },
 
-        
         submitBid() {
             // sending user bid
             // validate so only auth users can submit bids
@@ -503,7 +586,7 @@ export default {
                     // always executed
                 });
         },
-       
+
         toggleBookmark() {
             let config = {
                 Authorization: this.UserAuthToken,
@@ -575,27 +658,27 @@ export default {
                 this.toast.error("You must be loged in to Activate BidBuddy");
                 return;
             }
-            if(this.bidBodyCount <= 1){
+            if (this.bidBodyCount <= 1) {
                 this.toast.error("Insufficient Number Of Bids");
                 return;
             }
             axios
                 .post(this.baseUrl + this.CreateBuddyUrl, {
-                    count: this.bidBodyCount-1,// first bid will be excuted as direct bid and after that with buddy
+                    count: this.bidBodyCount - 1, // first bid will be excuted as direct bid and after that with buddy
                     user_id: this.user.id,
                     auction_id: this.auction.id,
                 })
                 .then((response) => {
                     console.log(response.data);
-                    this.bidBodyCount=0;
+                    this.bidBodyCount = 0;
                     // after submitting buddy run one bid for user as direct bid to start bidding process
                     this.submitBid();
                 })
-                .catch( (error)=> {
+                .catch((error) => {
                     console.log(error);
                     this.toast.error(error.response.data.error);
                 })
-                .finally(()=> {
+                .finally(() => {
                     // always executed
                 });
         },
@@ -622,10 +705,32 @@ export default {
         this.fetchData();
     },
     watch: {
-        // sec is from old component
-        seconds(val) {
-            console.log("new seccound: " + val);
+        //for updating bidding history
+        storedAuctions(new_val) {
+            // check to see if current auction is updated?
+            var new_current_auction = new_val.find(
+                (x) => x.id === this.auction.id
+            );
+
+            if (
+                new_current_auction.current_winner_id !=
+                this.temp_current_winner_id
+            ) {
+                // store for this auction updated
+                var new_history = {
+                    bid_price: new_current_auction.current_price,
+                    user: {
+                        username: new_current_auction.current_winner_username,
+                    },
+
+                    created_at: new Date().toLocaleString(),
+                };
+                this.all_participaints.unshift(new_history);
+            }
+
+            this.temp_current_winner_id = new_current_auction.current_winner_id;
         },
+
         $route(to, from) {
             // check to see if rout is correct
             if (to.name != "auction-index") return;
@@ -653,6 +758,12 @@ export default {
     margin-bottom: 3rem;
     padding-bottom: 3rem;
     border-bottom: 1.5px solid #777;
+}
+.user_location {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 0.4rem;
 }
 .tabel-mask {
     height: 14rem;
@@ -973,5 +1084,9 @@ export default {
             font-weight: 600;
         }
     }
+}
+.trophy {
+    font-size: 1.7rem;
+    color: gold;
 }
 </style>

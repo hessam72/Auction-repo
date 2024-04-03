@@ -6,7 +6,6 @@
 
             <auction-card
                 @refreshData="$emit('fetchData')"
-                
                 v-for="(item, index) in test_auctions"
                 :key="index"
                 :auction_id="item.id"
@@ -23,7 +22,7 @@
                 :title="item.product.title"
                 :image="item.product.galleries[0]"
                 :is_bookmarked="check_bookmark_status(item.bookmarks, user)"
-                :status="item.status"
+                :status="findAuctionInStore(item.id).status"
             >
             </auction-card>
             <!-- :current_winner_username="item.current_winner.username"

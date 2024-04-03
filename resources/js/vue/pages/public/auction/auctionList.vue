@@ -47,7 +47,6 @@ export default {
             "storedAuctions",
             "findAuction",
             "findBiddingQueue",
-            
         ]),
     },
     methods: {
@@ -59,7 +58,7 @@ export default {
             "addAuction",
             "addBiddingQueue",
         ]),
-        
+
         connect() {
             let vm = this;
             window.Echo.channel("my-channel")
@@ -80,12 +79,11 @@ export default {
                 .listen(".win-event", (e) => {
                     // listening for bidbuddy submit bid
                     console.log("winner");
-                    console.log(e);
-
+                    console.log(e);  
+                    
                     vm.upadteAnAuctionState(e.data);
 
-                    console.log("******** we have a winner ***********");
-                    console.log(e);
+                   
                 });
         },
         disconnect() {
@@ -109,7 +107,7 @@ export default {
             axios
                 .get(url)
                 .then((response) => {
-                    console.log(response)
+                    console.log(response);
                     if (loading_more) {
                         // attach to the end of existing array
 
@@ -165,13 +163,16 @@ export default {
                     current_winner_username:
                         this.auctions[i].current_winner.username,
                     current_price: this.auctions[i].current_price,
+                    avatar: this.auctions[i].current_winner.profile_pic,
                     timer: this.auctions[i].timer,
                     status: this.auctions[i].status,
                 });
                 queues.push(this.auctions[i].bidding_queues);
             }
             this.setAuctions(data);
-            this.setBiddingQueues(queues);
+
+            // TODO remove this bidding queue
+            // this.setBiddingQueues(queues);
         },
         // for user direct bid
         upadteAnAuctionState(item) {
@@ -282,7 +283,6 @@ export default {
                     // always executed
                 });
         },
-        
     },
     created() {
         this.fetchAuctions();
@@ -306,7 +306,6 @@ export default {
         this.emitter.on("live_timer_end", (auction_id) => {
             this.endAuction(auction_id);
         });
-       
     },
     watch: {
         $route(to, from) {

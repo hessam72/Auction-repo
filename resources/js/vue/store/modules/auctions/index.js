@@ -6,6 +6,7 @@ export default {
                 current_winner_id: null,
                 current_price: null,
                 timer: null,
+                avatar:null,
                 status: null,
             }, ],
         };
@@ -42,16 +43,19 @@ export default {
             var index = state.auctions.findIndex(
                 (obj) => obj.id === data.id
             );
-                console.log('updating single auction')
-                console.log(data);
+               
+               
             const new_item = {
                 id: data.id,
                 current_winner_id: data.current_winner_id,
                 current_winner_username: data.current_winner_username,
                 current_price: data.bid_price,
+                status: data.status,
+                avatar: data.avatar,
                 timer: data.timer, // +10 sec
             };
             state.auctions[index] = new_item;
+           
         },
     },
     //calling mutations

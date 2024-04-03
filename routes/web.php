@@ -142,15 +142,54 @@ Route::get('/vue/v1/{any?}', function () {
 
 
 Route::get('/test', function () {
-//    Winner::where('id' , 56)->update([
-//     'win_price'=>23,
-//     'status'=>320
-//    ]);
-$w=Auction::find(212);
-// $w->reward_bids = 40;
-$w->status = 100;
-$w->save();
-   dd('done');
+ $auction = Auction::find(546);
+   
+        $winner_id = $auction->current_winner_id;
+        // edit auction status and final winner
+        $auction->status = 3;
+        $auction->final_winner_id = $winner_id;
+        $auction->save();
+        // return not spent bidbuddy's bid, if any...
+        $bidBuddy = BidBuddy::where('user_id', $winner_id)->where('auction_id', $auction->id)->where('available_bids', '>', 0)->first();
+        if (!empty($bidBuddy)) {
+            User::where('id', $winner_id)->increment('bid_amount', $bidBuddy->available_bids);
+            $bidBuddy->available_bids = 0;
+            $bidBuddy->status = 4; // auction over status for buddy
+            $bidBuddy->save();
+        }
+        // return bid in queue if any 
+        // TODO return bidding in queue
 
+
+
+
+
+        // calculate bids placed to win the auction
+        $bids_placed = BiddingHistory::where('user_id', $winner_id)->where('auction_id', $auction->id)->count();
+        // save in winners table 
+        Winner::create([
+            'user_id' => $winner_id,
+            'product_id' => $auction->product_id,
+            'win_price' => $auction->current_price,
+            'status' => 1,
+            'bids_placed' => $bids_placed
+        ]);
+        // TODO uncomment it 
+        // DB::commit();
+
+        //now create data to push for showing the winner
+
+
+        $winner_alert = [
+            'id' => $auction->id,
+            'bid_price' => $auction->current_price,
+            "current_winner_id" => $winner_id,
+            "current_winner_username" => $auction->user->username,
+            "timer" => $auction->timer,
+            "bidding_queues" => null,
+
+        ];
+    
+    dd('done');
 
 });

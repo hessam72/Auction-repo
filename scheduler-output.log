@@ -49,4 +49,7355 @@ https://github.com/shetabit/visitor
 there is a winner
 sending winner alert
 
-https://github.com/spatie/laravel-analytics
+https://github.com/spatie/laravel-analyticsthere is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+sending winner alert
+there is a winner
+
+   TypeError 
+
+  Unsupported operand types: string + int
+
+  at app/Console/Commands/ManagingBidBudiesCommand.php:53
+     49▕             if (count($auction->uniqe_bid_buddies) === 0) {
+     50▕                 //  there is no new bidder other than current winner 
+     51▕                 // save auction as ended with final winner
+     52▕                 $this->info('there is a winner');
+  ➜  53▕                 $this->info('auction id is: '+ $auction->id);
+     54▕                 $this->saveWinner($auction);
+     55▕                 continue; // no need for calculating new bids anymore
+     56▕             }
+     57▕             $next_bid = $auction->next_bidding_queue;
+
+      [2m+12 vendor frames [22m
+
+  13  artisan:35
+      Illuminate\Foundation\Console\Kernel::handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+
+there is a winner
+
+   TypeError 
+
+  Unsupported operand types: string + int
+
+  at app/Console/Commands/ManagingBidBudiesCommand.php:53
+     49▕             if (count($auction->uniqe_bid_buddies) === 0) {
+     50▕                 //  there is no new bidder other than current winner 
+     51▕                 // save auction as ended with final winner
+     52▕                 $this->info('there is a winner');
+  ➜  53▕                 $this->info('auction id is: '+ $auction->id);
+     54▕                 $this->saveWinner($auction);
+     55▕                 continue; // no need for calculating new bids anymore
+     56▕             }
+     57▕             $next_bid = $auction->next_bidding_queue;
+
+      [2m+12 vendor frames [22m
+
+  13  artisan:35
+      Illuminate\Foundation\Console\Kernel::handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+
+there is a winner
+
+   TypeError 
+
+  Unsupported operand types: string + int
+
+  at app/Console/Commands/ManagingBidBudiesCommand.php:53
+     49▕             if (count($auction->uniqe_bid_buddies) === 0) {
+     50▕                 //  there is no new bidder other than current winner 
+     51▕                 // save auction as ended with final winner
+     52▕                 $this->info('there is a winner');
+  ➜  53▕                 $this->info('auction id is: '+ $auction->id);
+     54▕                 $this->saveWinner($auction);
+     55▕                 continue; // no need for calculating new bids anymore
+     56▕             }
+     57▕             $next_bid = $auction->next_bidding_queue;
+
+      [2m+12 vendor frames [22m
+
+  13  artisan:35
+      Illuminate\Foundation\Console\Kernel::handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+
+there is a winner
+
+   TypeError 
+
+  Unsupported operand types: string + int
+
+  at app/Console/Commands/ManagingBidBudiesCommand.php:53
+     49▕             if (count($auction->uniqe_bid_buddies) === 0) {
+     50▕                 //  there is no new bidder other than current winner 
+     51▕                 // save auction as ended with final winner
+     52▕                 $this->info('there is a winner');
+  ➜  53▕                 $this->info('auction id is: '+ $auction->id);
+     54▕                 $this->saveWinner($auction);
+     55▕                 continue; // no need for calculating new bids anymore
+     56▕             }
+     57▕             $next_bid = $auction->next_bidding_queue;
+
+      [2m+12 vendor frames [22m
+
+  13  artisan:35
+      Illuminate\Foundation\Console\Kernel::handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+
+there is a winner
+
+   TypeError 
+
+  Unsupported operand types: string + int
+
+  at app/Console/Commands/ManagingBidBudiesCommand.php:53
+     49▕             if (count($auction->uniqe_bid_buddies) === 0) {
+     50▕                 //  there is no new bidder other than current winner 
+     51▕                 // save auction as ended with final winner
+     52▕                 $this->info('there is a winner');
+  ➜  53▕                 $this->info('auction id is: '+ $auction->id);
+     54▕                 $this->saveWinner($auction);
+     55▕                 continue; // no need for calculating new bids anymore
+     56▕             }
+     57▕             $next_bid = $auction->next_bidding_queue;
+
+      [2m+12 vendor frames [22m
+
+  13  artisan:35
+      Illuminate\Foundation\Console\Kernel::handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+
+there is a winner
+
+   TypeError 
+
+  Unsupported operand types: string + int
+
+  at app/Console/Commands/ManagingBidBudiesCommand.php:53
+     49▕             if (count($auction->uniqe_bid_buddies) === 0) {
+     50▕                 //  there is no new bidder other than current winner 
+     51▕                 // save auction as ended with final winner
+     52▕                 $this->info('there is a winner');
+  ➜  53▕                 $this->info('auction id is: '+ $auction->id);
+     54▕                 $this->saveWinner($auction);
+     55▕                 continue; // no need for calculating new bids anymore
+     56▕             }
+     57▕             $next_bid = $auction->next_bidding_queue;
+
+      [2m+12 vendor frames [22m
+
+  13  artisan:35
+      Illuminate\Foundation\Console\Kernel::handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+
+there is a winner
+
+   TypeError 
+
+  Unsupported operand types: string + int
+
+  at app/Console/Commands/ManagingBidBudiesCommand.php:53
+     49▕             if (count($auction->uniqe_bid_buddies) === 0) {
+     50▕                 //  there is no new bidder other than current winner 
+     51▕                 // save auction as ended with final winner
+     52▕                 $this->info('there is a winner');
+  ➜  53▕                 $this->info('auction id is: '+ $auction->id);
+     54▕                 $this->saveWinner($auction);
+     55▕                 continue; // no need for calculating new bids anymore
+     56▕             }
+     57▕             $next_bid = $auction->next_bidding_queue;
+
+      [2m+12 vendor frames [22m
+
+  13  artisan:35
+      Illuminate\Foundation\Console\Kernel::handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+
+there is a winner
+
+   TypeError 
+
+  Unsupported operand types: string + int
+
+  at app/Console/Commands/ManagingBidBudiesCommand.php:53
+     49▕             if (count($auction->uniqe_bid_buddies) === 0) {
+     50▕                 //  there is no new bidder other than current winner 
+     51▕                 // save auction as ended with final winner
+     52▕                 $this->info('there is a winner');
+  ➜  53▕                 $this->info('auction id is: '+ $auction->id);
+     54▕                 $this->saveWinner($auction);
+     55▕                 continue; // no need for calculating new bids anymore
+     56▕             }
+     57▕             $next_bid = $auction->next_bidding_queue;
+
+      [2m+12 vendor frames [22m
+
+  13  artisan:35
+      Illuminate\Foundation\Console\Kernel::handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+
+there is a winner
+
+   TypeError 
+
+  Unsupported operand types: string + int
+
+  at app/Console/Commands/ManagingBidBudiesCommand.php:53
+     49▕             if (count($auction->uniqe_bid_buddies) === 0) {
+     50▕                 //  there is no new bidder other than current winner 
+     51▕                 // save auction as ended with final winner
+     52▕                 $this->info('there is a winner');
+  ➜  53▕                 $this->info('auction id is: '+ $auction->id);
+     54▕                 $this->saveWinner($auction);
+     55▕                 continue; // no need for calculating new bids anymore
+     56▕             }
+     57▕             $next_bid = $auction->next_bidding_queue;
+
+      [2m+12 vendor frames [22m
+
+  13  artisan:35
+      Illuminate\Foundation\Console\Kernel::handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+
+there is a winner
+
+   TypeError 
+
+  Unsupported operand types: string + int
+
+  at app/Console/Commands/ManagingBidBudiesCommand.php:53
+     49▕             if (count($auction->uniqe_bid_buddies) === 0) {
+     50▕                 //  there is no new bidder other than current winner 
+     51▕                 // save auction as ended with final winner
+     52▕                 $this->info('there is a winner');
+  ➜  53▕                 $this->info('auction id is: '+ $auction->id);
+     54▕                 $this->saveWinner($auction);
+     55▕                 continue; // no need for calculating new bids anymore
+     56▕             }
+     57▕             $next_bid = $auction->next_bidding_queue;
+
+      [2m+12 vendor frames [22m
+
+  13  artisan:35
+      Illuminate\Foundation\Console\Kernel::handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+
+there is a winner
+
+   TypeError 
+
+  Unsupported operand types: string + int
+
+  at app/Console/Commands/ManagingBidBudiesCommand.php:53
+     49▕             if (count($auction->uniqe_bid_buddies) === 0) {
+     50▕                 //  there is no new bidder other than current winner 
+     51▕                 // save auction as ended with final winner
+     52▕                 $this->info('there is a winner');
+  ➜  53▕                 $this->info('auction id is: '+ $auction->id);
+     54▕                 $this->saveWinner($auction);
+     55▕                 continue; // no need for calculating new bids anymore
+     56▕             }
+     57▕             $next_bid = $auction->next_bidding_queue;
+
+      [2m+12 vendor frames [22m
+
+  13  artisan:35
+      Illuminate\Foundation\Console\Kernel::handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+
+there is a winner
+
+   TypeError 
+
+  Unsupported operand types: string + int
+
+  at app/Console/Commands/ManagingBidBudiesCommand.php:53
+     49▕             if (count($auction->uniqe_bid_buddies) === 0) {
+     50▕                 //  there is no new bidder other than current winner 
+     51▕                 // save auction as ended with final winner
+     52▕                 $this->info('there is a winner');
+  ➜  53▕                 $this->info('auction id is: '+ $auction->id);
+     54▕                 $this->saveWinner($auction);
+     55▕                 continue; // no need for calculating new bids anymore
+     56▕             }
+     57▕             $next_bid = $auction->next_bidding_queue;
+
+      [2m+12 vendor frames [22m
+
+  13  artisan:35
+      Illuminate\Foundation\Console\Kernel::handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+
+there is a winner
+
+   TypeError 
+
+  Unsupported operand types: string + int
+
+  at app/Console/Commands/ManagingBidBudiesCommand.php:53
+     49▕             if (count($auction->uniqe_bid_buddies) === 0) {
+     50▕                 //  there is no new bidder other than current winner 
+     51▕                 // save auction as ended with final winner
+     52▕                 $this->info('there is a winner');
+  ➜  53▕                 $this->info('auction id is: '+ $auction->id);
+     54▕                 $this->saveWinner($auction);
+     55▕                 continue; // no need for calculating new bids anymore
+     56▕             }
+     57▕             $next_bid = $auction->next_bidding_queue;
+
+      [2m+12 vendor frames [22m
+
+  13  artisan:35
+      Illuminate\Foundation\Console\Kernel::handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+
+there is a winner
+
+   TypeError 
+
+  Unsupported operand types: string + int
+
+  at app/Console/Commands/ManagingBidBudiesCommand.php:53
+     49▕             if (count($auction->uniqe_bid_buddies) === 0) {
+     50▕                 //  there is no new bidder other than current winner 
+     51▕                 // save auction as ended with final winner
+     52▕                 $this->info('there is a winner');
+  ➜  53▕                 $this->info('auction id is: '+ $auction->id);
+     54▕                 $this->saveWinner($auction);
+     55▕                 continue; // no need for calculating new bids anymore
+     56▕             }
+     57▕             $next_bid = $auction->next_bidding_queue;
+
+      [2m+12 vendor frames [22m
+
+  13  artisan:35
+      Illuminate\Foundation\Console\Kernel::handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+
+there is a winner
+
+   TypeError 
+
+  Unsupported operand types: string + int
+
+  at app/Console/Commands/ManagingBidBudiesCommand.php:53
+     49▕             if (count($auction->uniqe_bid_buddies) === 0) {
+     50▕                 //  there is no new bidder other than current winner 
+     51▕                 // save auction as ended with final winner
+     52▕                 $this->info('there is a winner');
+  ➜  53▕                 $this->info('auction id is: '+ $auction->id);
+     54▕                 $this->saveWinner($auction);
+     55▕                 continue; // no need for calculating new bids anymore
+     56▕             }
+     57▕             $next_bid = $auction->next_bidding_queue;
+
+      [2m+12 vendor frames [22m
+
+  13  artisan:35
+      Illuminate\Foundation\Console\Kernel::handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+546
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert
+there is a winner
+212
+sending winner alert

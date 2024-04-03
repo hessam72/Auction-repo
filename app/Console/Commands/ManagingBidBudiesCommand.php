@@ -50,6 +50,7 @@ class ManagingBidBudiesCommand extends Command
                 //  there is no new bidder other than current winner 
                 // save auction as ended with final winner
                 $this->info('there is a winner');
+                $this->info($auction->id);
                 $this->saveWinner($auction);
                 continue; // no need for calculating new bids anymore
             }
@@ -111,9 +112,11 @@ class ManagingBidBudiesCommand extends Command
                             'bid_price' => $new_price,
                             "current_winner_id" => $new_winner_id,
                             "current_winner_username" => $next_bid->bid_buddy->user->username,
+                            "avatar" => $next_bid->bid_buddy->user->profile_pic,
                             "timer" => $new_timer,
                             // 'bidderQueueId' => $next_bid->id,
                             "bidding_queues" => $new_queue,
+                            'status' => 100,
                         ];
                     } catch (\Exception $e) {
                         DB::rollback();
@@ -151,9 +154,6 @@ class ManagingBidBudiesCommand extends Command
             // TODO return bidding in queue
 
 
-
-
-
             // calculate bids placed to win the auction
             $bids_placed = BiddingHistory::where('user_id', $winner_id)->where('auction_id', $auction->id)->count();
             // save in winners table 
@@ -164,7 +164,7 @@ class ManagingBidBudiesCommand extends Command
                 'status' => 1,
                 'bids_placed' => $bids_placed
             ]);
-            // TODO uncomment it 
+        //   TODO UNCOMMENT IT AND BROADCAST
             // DB::commit();
 
             //now create data to push for showing the winner
@@ -175,8 +175,11 @@ class ManagingBidBudiesCommand extends Command
                 'bid_price' => $auction->current_price,
                 "current_winner_id" => $winner_id,
                 "current_winner_username" => $auction->user->username,
+                "avatar" => $auction->user->profile_pic,
                 "timer" => $auction->timer,
                 "bidding_queues" => null,
+                "status"=>3// end auction status
+
 
             ];
         } catch (\Exception $e) {
@@ -184,7 +187,7 @@ class ManagingBidBudiesCommand extends Command
         }
         if (!empty($winner_alert)) {
             $this->info('sending winner alert');
-            broadcast(new WinAlertEvent($winner_alert));
+            // broadcast(new WinAlertEvent($winner_alert));
         }
     }
 }

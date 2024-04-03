@@ -2,13 +2,18 @@
     <div class="item-container relative">
         <div v-if="no_new_bidders" class="no-new-bidders">no new bidders</div>
         <div @click="toggleBookmark()" class="bookmark-container">
-            <ion-icon v-if="!temp_bookmark"
+            <ion-icon
+                v-if="!temp_bookmark"
                 :class="[is_bookmarked ? 'bookmarked' : '', 'icon-bg']"
                 name="bookmark"
-            ></ion-icon> 
+            ></ion-icon>
             <!-- templrary bookmark before refetching from database -->
-            <ion-icon v-else
-                :class="[current_bookmark_status ? 'bookmarked' : '', 'icon-bg']"
+            <ion-icon
+                v-else
+                :class="[
+                    current_bookmark_status ? 'bookmarked' : '',
+                    'icon-bg',
+                ]"
                 name="bookmark"
             ></ion-icon>
         </div>
@@ -44,8 +49,15 @@
                     <p class="starting_time">{{ start_time }}</p>
                     <p class="current-winner">Bid during last 9 seconds.</p>
                 </div>
+                <div
+                    v-else-if="status === 3"
+                    class="header flex flex-col gap-1"
+                >
+                    <p class="starting_time">We Have A Winner</p>
+                    <p class="current-winner">{{ current_winner_username }}</p>
+                </div>
                 <!-- if auction is live then using timer  -->
-                <div v-if="status === 100" class="auction-timer ">
+                <div v-if="status === 100" class="auction-timer">
                     <vue-countdown
                         @end="live_countDown_ended(auction_id)"
                         :time="convertDateToMilliSeconds(timer)"
@@ -59,6 +71,21 @@
                             <div class="number">{{ seconds }}</div>
                         </div>
                     </vue-countdown>
+                </div>
+                <div v-if="status === 3" class="auction-timer">
+                    <div class="count-down">
+                        <div style="padding: .7rem 1rem;" class="number">
+                            <ion-icon class="trophy" name="trophy"></ion-icon>
+                        </div>
+                        <div class="seperator">:</div>
+                        <div  style="padding: .7rem 1rem;"class="number">
+                            <ion-icon class="trophy" name="trophy"></ion-icon>
+                        </div>
+                        <div class="seperator">:</div>
+                        <div style="padding: .7rem 1rem;" class="number">
+                            <ion-icon class="trophy" name="trophy"></ion-icon>
+                        </div>
+                    </div>
                 </div>
                 <!-- if its comming soon then using start time for countdown -->
                 <div v-else-if="status === 1" class="auction-timer">
@@ -107,6 +134,12 @@
                     class="w-full startingsoon-btn"
                 >
                     Starting Soon {{ status }}
+                </button> 
+                <button
+                    v-else-if="status === 3"
+                    class="w-full startingsoon-btn"
+                >
+                    Auction Ended
                 </button>
                 <button class="btn-secoundary">
                     Buy it Now for ${{ buy_now_price }}
@@ -127,21 +160,21 @@ export default {
     data() {
         return {
             updateBookmarkUrl: "bookmark/toggle",
-            temp_bookmark:false,
-            current_bookmark_status:false,
+            temp_bookmark: false,
+            current_bookmark_status: false,
         };
     },
     computed: {
         ...mapGetters(["baseUrl", "UserAuthToken"]),
     },
     mounted() {
-        this.current_bookmark_status=this.is_bookmarked;
+        this.current_bookmark_status = this.is_bookmarked;
     },
 
     methods: {
         translateAuctionStatus,
         convertDateToMilliSeconds,
-        
+
         toggleBookmark() {
             let config = {
                 Authorization: this.UserAuthToken,
@@ -158,11 +191,11 @@ export default {
             })
                 // .get(this.baseUrl + this.userUrl, body , config)
                 .then((response) => {
-                    console.log(this.is_bookmarked)
-                    this.temp_bookmark=true;
-                    this.current_bookmark_status=!this.current_bookmark_status;
+                    console.log(this.is_bookmarked);
+                    this.temp_bookmark = true;
+                    this.current_bookmark_status =
+                        !this.current_bookmark_status;
                     this.$emit("refreshData");
-
                 })
                 .catch((error) => {
                     console.log("error");
@@ -264,7 +297,10 @@ export default {
         right: 0;
     }
 }
-
+.trophy{
+    font-size: 1.7rem;
+    color: gold;
+}
 .no-new-bidders {
     position: absolute;
     background-color: #f9f937;
