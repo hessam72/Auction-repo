@@ -500,7 +500,8 @@
                                     <td class="text-truncate">{{ $visit->ip }}</td>
                                     <td class="text-truncate">{{ $visit->url }}</td>
                                     {{-- <td class="text-truncate">10 فروردین 1401 - 20:07</td> --}}
-                                    <td class="text-truncate">{{ $visit->created_at }}</td>
+                                    <td class="text-truncate">{{ \Morilog\Jalali\Jalalian::forge($visit->created_at) }}
+                                    </td>
                                 </tr>
                             @endforeach
 

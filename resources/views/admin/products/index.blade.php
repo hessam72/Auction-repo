@@ -204,7 +204,7 @@
                                 <td>
                                     {{ $product->sales_count }}
                                 </td>
-                                <td>{{ $product->created_at }}</td>
+                                <td>{{ \Morilog\Jalali\Jalalian::forge($product->created_at) }}</td>
                                 <td>
                                     <div class="d-inline-block text-nowrap">
 

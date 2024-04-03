@@ -145,10 +145,10 @@ class User extends  Authenticatable implements JWTSubject
 			->withPivot('id', 'status', 'progress');
 	}
 
-	public function user_ips()
-	{
-		return $this->hasMany(UserIp::class);
-	}
+	// public function user_ips()
+	// {
+	// 	return $this->hasMany(UserIp::class);
+	// }
 
 	public function redeem_codes()
 	{
@@ -190,6 +190,9 @@ class User extends  Authenticatable implements JWTSubject
 		} else {
 			return 'beginner';
 		}
+	}
+	public function admin(){
+		return $this->hasOne(Admin::class);
 	}
 	
 }

@@ -41,7 +41,7 @@
                                 <td>
                                     <p class="limit-chars-30 ">{{ $category->description }}</p>
                                 </td>
-                                <td>{{ $category->created_at }}</td>
+                                <td>{{ \Morilog\Jalali\Jalalian::forge($category->created_at) }}</td>
                                 <td>
                                     <div class="d-inline-block text-nowrap">
                                         <button class="btn btn-sm btn-icon" data-bs-toggle="offcanvas"

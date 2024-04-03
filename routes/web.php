@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\BidPackageController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ChallengeController;
 use App\Http\Controllers\Admin\CityController;
+use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RedeemCodeController;
 use App\Http\Controllers\Admin\RewardController;
@@ -25,6 +26,7 @@ use App\Models\BiddingHistory;
 use App\Models\BiddingQueue;
 use App\Models\Challenge;
 use App\Models\City;
+use App\Models\Comment;
 use App\Models\HighestBidderLevel;
 use App\Models\Product;
 use App\Models\Temprary;
@@ -32,8 +34,10 @@ use App\Models\Ticket;
 use App\Models\TrackVisit;
 use App\Models\User;
 use App\Models\UserChallenge;
+use App\Models\UserShipedProduct;
 use App\Models\Winner;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -68,7 +72,10 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/', function () {
         return view('admin.dashboard');
     });
+    Route::controller(NotificationController::class)->group(function () {
+            Route::post('/notifications/seen', 'seen_notifications');
 
+    });
 
     Route::controller(AdminController::class)->group(function () {
         Route::get('/edit-password', 'updatePasswordIndex')->name('edit-password');
@@ -92,6 +99,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::resource('tickets', TicketController::class);
     Route::resource('winners', WinnerController::class);
     Route::resource('shipped_products', ShippedProductsController::class);
+    Route::resource('notifications', NotificationController::class);
 
     Route::controller(ProductController::class)->group(function () {
 
@@ -133,14 +141,16 @@ Route::get('/vue/v1/{any?}', function () {
 
 
 
-
-
-
-
 Route::get('/test', function () {
-   
-    $parent = Ticket::where('id' ,40)->with('children')->get();
-    return TicketResource::collection($parent);
+//    Winner::where('id' , 56)->update([
+//     'win_price'=>23,
+//     'status'=>320
+//    ]);
+$w=Auction::find(212);
+// $w->reward_bids = 40;
+$w->status = 100;
+$w->save();
+   dd('done');
 
 
 });

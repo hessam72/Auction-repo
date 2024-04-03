@@ -54,7 +54,7 @@
                                 <td>{{ $product->user->email }}</td>
                                 <td>{{ $product->product->title }}</td>
                                 <td>{{ $product->transaction->amount }}</td>
-                                <td>{{ $product->created_at }}</td>
+                                <td>{{ \Morilog\Jalali\Jalalian::forge($product->created_at) }}</td>
                                 {{-- 1=> new and pending / 100 => sucsess full payment 300=>partially paid / 400 => failed payment --}}
                                 <td>
                                     @if ($product->status === 1)

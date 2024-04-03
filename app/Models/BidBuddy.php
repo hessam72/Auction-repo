@@ -11,6 +11,10 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+use App\Observers\BidBuddyObserver;
+
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+ 
 
 /**
  * Class BidBuddy
@@ -28,6 +32,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *
  * @package App\Models
  */
+#[ObservedBy([BidBuddyObserver::class])]
 class BidBuddy extends Model
 {
 use HasFactory;

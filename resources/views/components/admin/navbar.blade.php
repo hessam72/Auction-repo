@@ -1,4 +1,4 @@
-<?php $user=Auth::user();  ?>
+<?php $user = Auth::user(); ?>
 <nav class="layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme" id="layout-navbar">
     <div class="container-fluid">
         <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
@@ -11,7 +11,7 @@
             <!-- Search -->
             <div class="navbar-nav align-items-center">
                 <div class="nav-item navbar-search-wrapper mb-0">
-                    
+
                     <a class="nav-item nav-link search-toggler px-0" href="javascript:void(0);">
                         <i class="bx bx-search-alt bx-sm"></i>
                         <span class="d-none d-md-inline-block text-muted">جستجو <span class="d-inline-block"
@@ -53,71 +53,95 @@
                 </li>
                 <!--/ Style Switcher -->
 
-                <!-- Quick links  -->
-               
-                <!-- Quick links -->
-
-                   <!-- Notification -->
-                   <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-2">
-                    <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                      <i class="bx bx-bell bx-sm"></i>
-                      <span class="badge bg-danger rounded-pill badge-notifications">5</span>
+                <!-- Notification -->
+                @if(count(Auth::user()->admin->new_notifications()))
+                <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-2">
+                    <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown"
+                        data-bs-auto-close="outside" aria-expanded="false">
+                        <i class="bx bx-bell bx-sm"></i>
+                        <span
+                            class="badge bg-danger rounded-pill badge-notifications">{{ count(Auth::user()->admin->new_notifications()) }}</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end py-0">
-                      <li class="dropdown-menu-header border-bottom">
-                        <div class="dropdown-header d-flex align-items-center py-3">
-                          <h5 class="text-body mb-0 me-auto secondary-font">اعلان‌ها</h5>
-                          {{-- <a href="javascript:void(0)" class="dropdown-notifications-all text-body" data-bs-toggle="tooltip" data-bs-placement="top" title="Mark all as read"><i class="bx fs-4 bx-envelope-open"></i></a> --}}
-                        </div>
-                      </li>
-                      <li class="dropdown-notifications-list scrollable-container">
-                        <ul class="list-group list-group-flush">
-                          <li class="list-group-item list-group-item-action dropdown-notifications-item">
-                            <div class="d-flex">
-                              <div class="flex-shrink-0 me-3">
+                        <li class="dropdown-menu-header border-bottom">
+                            <div class="dropdown-header d-flex align-items-center py-3">
+                                <h5 class="text-body mb-0 me-auto secondary-font">اعلان‌ها</h5>
+                                <form action="/admin/notifications/seen" method="POST" class="row g-3">
+
+                                    @csrf
+
+                                    <button style="border: none;
+                                    background: none;"
+                                        type="submit" href="javascript:void(0)"
+                                        class="dropdown-notifications-all text-body" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" title="مشاهده کردم"><i
+                                            class="bx fs-4 bx-envelope-open"></i></button>
+
+                                </form>
+                            </div>
+                        </li>
+                        <li class="dropdown-notifications-list scrollable-container">
+                            <ul class="list-group list-group-flush">
+                                @foreach (Auth::user()->admin->new_notifications() as $notification)
+                                    <li class="list-group-item list-group-item-action dropdown-notifications-item">
+
+                                        <div class="d-flex">
+                                            {{-- <div class="flex-shrink-0 me-3">
                                 <div class="avatar">
                                   <img src="../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle">
                                 </div>
-                              </div>
-                              <div class="flex-grow-1">
-                                <h6 class="mb-1">تبریک می‌گوییم کلارک</h6>
-                                <p class="mb-1">شما نشان فروشنده برتر ماه را برنده شدید</p>
-                                <small class="text-muted">1 ساعت قبل</small>
-                              </div>
-                             
-                            </div>
-                          </li>
-                         
-                        </ul>
-                      </li>
-                      {{-- <li class="dropdown-menu-footer border-top">
+                              </div> --}}
+
+                                            <div class="flex-grow-1">
+                                                <h6 class="mb-1">{{ $notification->title }}</h6>
+                                                <p class="mb-1">{{ $notification->description }}</p>
+                                                <small
+                                                    class="text-muted">{{ \Morilog\Jalali\Jalalian::forge($notification->created_at)->ago() }}</small>
+                                            </div>
+
+
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                        {{-- <li class="dropdown-menu-footer border-top">
                         <a href="javascript:void(0);" class="dropdown-item d-flex justify-content-center p-3">
                           مشاهده همه اعلان‌ها
                         </a>
                       </li> --}}
                     </ul>
-                  </li>
-                  <!--/ Notification -->
+                </li>
+                @else
+                <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-2">
+                    <a class="nav-link  hide-arrow" href="javascript:void(0);" aria-expanded="false">
+                        <i class="bx bx-bell bx-sm"></i>
+                       
+                    </a>
+                </li>
+
+                @endif
+                <!--/ Notification -->
 
                 <!-- User -->
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                    <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
-                        data-bs-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                         <div class="avatar avatar-online">
                             <img src="{{ asset('storage/' . $user->profile_pic) }}" alt class="rounded-circle">
                         </div>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li>
-                            <a class="dropdown-item" href="{{route('admin.info')}}">
+                            <a class="dropdown-item" href="{{ route('admin.info') }}">
                                 <div class="d-flex align-items-center">
                                     <div class="flex-shrink-0 me-3">
                                         <div class="avatar avatar-online">
-                                            <img src="{{ asset('storage/' . $user->profile_pic) }}" alt class="rounded-circle">
+                                            <img src="{{ asset('storage/' . $user->profile_pic) }}" alt
+                                                class="rounded-circle">
                                         </div>
                                     </div>
                                     <div class="flex-grow-1">
-                                        <span class="fw-semibold d-block">{{$user->username}}</span>
+                                        <span class="fw-semibold d-block">{{ $user->username }}</span>
                                         <small>مدیر سیستم</small>
                                     </div>
                                 </div>
@@ -127,23 +151,23 @@
                             <div class="dropdown-divider"></div>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="{{route('admin.info')}}">
+                            <a class="dropdown-item" href="{{ route('admin.info') }}">
                                 <i class="bx bx-user me-2"></i>
                                 <span class="align-middle">پروفایل من</span>
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="{{route('admin.edit-password')}}">
+                            <a class="dropdown-item" href="{{ route('admin.edit-password') }}">
                                 <i class="bx bx-cog me-2"></i>
                                 <span class="align-middle">امنیت</span>
                             </a>
                         </li>
-                       
+
                         <li>
                             <div class="dropdown-divider"></div>
                         </li>
-                        
-                        
+
+
                         <li>
                             <form style="display: flex;
                             align-items: center;"

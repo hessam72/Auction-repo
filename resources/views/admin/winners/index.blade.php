@@ -59,7 +59,7 @@
                                    
                                     @endif
                                 </td>
-                               <td>{{$winner->created_at}}</td>
+                               <td>{{ \Morilog\Jalali\Jalalian::forge($winner->created_at) }}</td>
 
                             </tr>
                         @endforeach

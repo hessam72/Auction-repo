@@ -30,15 +30,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Comment extends Model
 {
 	protected $table = 'comments';
-use HasFactory;
+	use HasFactory;
 	protected $casts = [
-		'socre' => 'int',
+		// 'socre' => 'int',
 		'user_id' => 'int',
 		'product_id' => 'int'
 	];
 
 	protected $fillable = [
-		'socre',
+		'quality',
+		'value_for_price',
+		'suggest_it',
+		'packaging',
+		'total_socre',
 		'title',
 		'content',
 		'user_id',

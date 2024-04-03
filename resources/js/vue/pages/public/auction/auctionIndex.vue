@@ -98,6 +98,7 @@
                                                     '/storage/' +
                                                     current_winner.profile_pic
                                                 "
+                                                 onerror="this.src='/storage/images/user_profiles/blank.png'"   
                                             />
                                         </div>
                                     </div>

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\Auction;
 use App\Models\BiddingHistory;
+use App\Models\Notification;
 use App\Models\Product;
 use App\Models\TrackVisit;
 use App\Models\Transaction;
@@ -213,41 +214,7 @@ class AdminController extends Controller
         return view('admin.profile.edit-password', compact('user'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(User $user)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(User $user)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
+   
     public function update(Request $request, User $user)
     {
         $user = auth()->user();
@@ -274,11 +241,6 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'ویرایش اطلاعات کاربری انجام شد');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(User $user)
-    {
-        //
-    }
+   
+   
 }

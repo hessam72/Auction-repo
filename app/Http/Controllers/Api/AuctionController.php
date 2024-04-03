@@ -17,6 +17,7 @@ use App\Traits\Upload;
 use Carbon\Carbon;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuctionController extends Controller
 {
@@ -40,17 +41,17 @@ class AuctionController extends Controller
 
             // if there was any then:
             $uniq_participaints[] = $all_participaints[0];
-            $is_uniqe=1;
+            $is_uniqe = 1;
             foreach ($all_participaints as $p) {
                 foreach ($uniq_participaints as $uniq_p) {
                     if ($uniq_p->user_id === $p->user_id) {
-                      $is_uniqe=0;
-                    } 
+                        $is_uniqe = 0;
+                    }
                 }
-                if($is_uniqe){
-                    $uniq_participaints []=$p;
+                if ($is_uniqe) {
+                    $uniq_participaints[] = $p;
                 }
-                $is_uniqe=1;
+                $is_uniqe = 1;
             }
         }
 
@@ -286,12 +287,40 @@ class AuctionController extends Controller
      */
 
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Auction $auction)
+
+    public function store_comment(Request $request)
     {
-        //
+        $request->validate([
+
+            'product_id' => 'required',
+            'title' => 'required',
+            'content' => 'required',
+            'comment_quality' => 'required',
+            'comment_worth_of_money' => 'required',
+            'comment_suggest_it' => 'required',
+            'comment_packaging' => 'required'
+        ]);
+       
+        $total_score = ($request->comment_quality +
+            $request->comment_worth_of_money +
+            $request->comment_suggest_it +
+            $request->comment_packaging) / 4;
+
+        Comment::create([
+            'product_id' => $request->product_id,
+            'user_id' => Auth::user()->id,
+            'title' => $request->title,
+            'content' => $request->content,
+            'quality' => $request->comment_quality,
+            'value_for_price' => $request->comment_worth_of_money,
+            'suggest_it' => $request->comment_suggest_it,
+            'packaging' => $request->comment_packaging,
+            'total_socre'=>$total_score
+        ]);
+        return response()->json([
+            'success' => 'Review Submited Successfully',
+
+        ]);
     }
 
     /**

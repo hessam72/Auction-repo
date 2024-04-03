@@ -16,7 +16,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->string('title');
             $table->string('description')->nullable();
-            $table->integer('seen')->default(0);
+            $table->boolean('seen')->default(0);
+            $table->boolean('for_admin')->default(0)->comment('is notification for admin or not');
             $table->timestamps();
         });
     }

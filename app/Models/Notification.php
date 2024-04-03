@@ -9,10 +9,16 @@ class Notification extends Model
 {
     use HasFactory;
 
-    protected $gaurded=[];
-
+    protected $gaurded = [];
+    protected $fillable = [
+        'user_id',
+        'title',
+        'description',
+        'for_admin',
+        'seen'
+    ];
     public function user()
-	{
-		return $this->belongsTo(User::class);
-	}
+    {
+        return $this->belongsTo(User::class);
+    }
 }

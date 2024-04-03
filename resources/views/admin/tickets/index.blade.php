@@ -4,11 +4,13 @@
         <div class="app-chat card overflow-hidden">
             <div class="row g-0">
                 <!-- Sidebar Left -->
-                <div class="col app-chat-sidebar-left app-sidebar overflow-hidden" id="app-chat-sidebar-left">
+                {{-- <div class="col app-chat-sidebar-left app-sidebar overflow-hidden" id="app-chat-sidebar-left">
                     <div
                         class="chat-sidebar-left-user sidebar-header d-flex flex-column justify-content-center align-items-center flex-wrap px-4 pt-5">
                         <div class="avatar avatar-xl avatar-online">
-                            <img src="../../assets/img/avatars/1.png"   onerror="this.src='/storage/images/user_profiles/blank.png'" alt="آواتار" class="rounded-circle">
+                            <img src="../../assets/img/avatars/1.png"
+                                onerror="this.src='/storage/images/user_profiles/blank.png'" alt="آواتار"
+                                class="rounded-circle">
                         </div>
                         <h5 class="mt-2 mb-0">جان اسنو</h5>
                         <small>مدیر</small>
@@ -20,7 +22,7 @@
                             <p class="text-muted text-uppercase">درباره</p>
                             <textarea id="chat-sidebar-left-user-about" class="form-control chat-sidebar-left-user-about mt-3" rows="4"
                                 maxlength="120">
-لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه</textarea>
+                            </textarea>
                         </div>
                         <div class="my-4">
                             <p class="text-muted text-uppercase">وضعیت</p>
@@ -93,7 +95,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <!-- /Sidebar Left-->
 
                 <!-- Chat & Contacts -->
@@ -109,8 +111,9 @@
                             <div class="flex-grow-1 input-group input-group-merge rounded-pill">
                                 <span class="input-group-text" id="basic-addon-search31"><i
                                         class="bx bx-search fs-4"></i></span>
-                                <input type="text" class="form-control chat-search-input" placeholder="جستجو در مخاطبین..."
-                                    aria-label="Search..." aria-describedby="basic-addon-search31">
+                                <input type="text" class="form-control chat-search-input"
+                                    placeholder="جستجو در مخاطبین..." aria-label="Search..."
+                                    aria-describedby="basic-addon-search31">
                             </div>
                         </div>
                         <i class="bx bx-x cursor-pointer position-absolute top-0 end-0 mt-2 me-1 fs-4 d-lg-none d-block"
@@ -136,8 +139,8 @@
                                     {{-- avatar-online --}}
                                     <div class="flex-shrink-0 avatar ">
                                         <img src="/storage/{{ $ticket->user->profile_pic }}" alt="آواتار"
-                                        onerror="this.src='/storage/images/user_profiles/blank.png'"   
-                                        class="rounded-circle">
+                                            onerror="this.src='/storage/images/user_profiles/blank.png'"
+                                            class="rounded-circle">
                                     </div>
                                     <div class="chat-contact-info flex-grow-1 ms-3">
                                         <h6 class="chat-contact-name text-truncate m-0">{{ $ticket->user->username }}</h6>
@@ -173,8 +176,8 @@
                                     {{-- avatar-online --}}
                                     <div class="flex-shrink-0 avatar ">
                                         <img src="/storage/{{ $ticket->user->profile_pic }}" alt="آواتار"
-                                        onerror="this.src='/storage/images/user_profiles/blank.png'"
-                                         class="rounded-circle">
+                                            onerror="this.src='/storage/images/user_profiles/blank.png'"
+                                            class="rounded-circle">
                                     </div>
                                     <div class="chat-contact-info flex-grow-1 ms-3">
                                         <h6 class="chat-contact-name text-truncate m-0">{{ $ticket->user->username }}</h6>
@@ -204,10 +207,11 @@
                                     <div class="flex-shrink-0 avatar">
                                         <img src="/storage/{{ $current_ticket->user->profile_pic }}" alt="آواتار"
                                             class="rounded-circle" data-bs-toggle="sidebar" data-overlay
-                                            onerror="this.src='/storage/images/user_profiles/blank.png'" 
+                                            onerror="this.src='/storage/images/user_profiles/blank.png'"
                                             data-target="#app-chat-sidebar-right">
                                     </div>
-                                    <div class="chat-contact-info flex-grow-1 ms-3">
+                                    <div style="cursor: pointer;" data-bs-toggle="sidebar" data-overlay
+                                        data-target="#app-chat-sidebar-right" class="chat-contact-info flex-grow-1 ms-3">
                                         <h6 class="m-0">{{ $current_ticket->user->username }}</h6>
                                         <small class="user-status text-muted">{{ $current_ticket->user->email }}</small>
                                     </div>
@@ -267,7 +271,8 @@
                                         <div class="user-avatar flex-shrink-0 ms-3">
                                             <div class="avatar avatar-sm">
                                                 <img src="/storage/{{ $current_ticket->user->profile_pic }}"
-                                                    alt="آواتار" class="rounded-circle"   onerror="this.src='/storage/images/user_profiles/blank.png'">
+                                                    alt="آواتار" class="rounded-circle"
+                                                    onerror="this.src='/storage/images/user_profiles/blank.png'">
                                             </div>
                                         </div>
                                     </div>
@@ -309,8 +314,8 @@
                                                 <div class="user-avatar flex-shrink-0 ms-3">
                                                     <div class="avatar avatar-sm">
                                                         <img src="/storage/{{ $ticket->user->profile_pic }}"
-                                                        onerror="this.src='/storage/images/user_profiles/blank.png'"
-                                                           alt="آواتار" class="rounded-circle">
+                                                            onerror="this.src='/storage/images/user_profiles/blank.png'"
+                                                            alt="آواتار" class="rounded-circle">
                                                     </div>
                                                 </div>
                                             </div>
@@ -338,7 +343,7 @@
                                                 cursor: pointer;
                                                 border-radius: 10px;"
                                                                 class="mb-0 ticket_download_btn">Download File
-                                                                
+
                                                             </p>
                                                             <input id="ticket_download_file" type="text"
                                                                 style="display: none;"
@@ -367,12 +372,16 @@
 
                         <!-- Chat message form -->
                         <div class="chat-history-footer shadow-sm">
-                            <form method="POST"  action="{{ route('admin.tickets.store') }}" enctype="multipart/form-data"
-                            class="form-send-message d-flex justify-content-between align-items-center">
+                            <form method="POST" action="{{ route('admin.tickets.store') }}"
+                                enctype="multipart/form-data"
+                                class="form-send-message d-flex justify-content-between align-items-center">
                                 @csrf
-                                <input type="text" style="display: none;" value="{{$current_ticket->subject}}" name="subject" />
-                                <input type="text" style="display: none;" value="{{$current_ticket->id}}" name="reply_to_id" />
-                                <input type="text" name="content" class="form-control message-input border-0 me-3 shadow-none"
+                                <input type="text" style="display: none;" value="{{ $current_ticket->subject }}"
+                                    name="subject" />
+                                <input type="text" style="display: none;" value="{{ $current_ticket->id }}"
+                                    name="reply_to_id" />
+                                <input type="text" name="content"
+                                    class="form-control message-input border-0 me-3 shadow-none"
                                     placeholder="پاسخ خود را بنویسید" required>
                                 <div class="message-actions d-flex align-items-center">
                                     {{-- <i class="speech-to-text bx bx-microphone bx-sm cursor-pointer"></i> --}}
@@ -393,16 +402,17 @@
 
                 <!-- /Chat History -->
 
-                <!-- Sidebar Right -->
+                <!-- ticket user info -->
                 <div class="col app-chat-sidebar-right app-sidebar overflow-hidden" id="app-chat-sidebar-right">
                     <div
                         class="sidebar-header d-flex flex-column justify-content-center align-items-center flex-wrap px-4 pt-5">
-                        <div class="avatar avatar-xl avatar-online">
-                            <img src="../../assets/img/avatars/2.png"   onerror="this.src='/storage/images/user_profiles/blank.png'"
-                             alt="آواتار" class="rounded-circle">
+                        <div class="avatar avatar-xl ">
+                            <img src="/storage/{{ $current_ticket->user->profile_pic }}"
+                                onerror="this.src='/storage/images/user_profiles/blank.png'" alt="آواتار"
+                                class="rounded-circle">
                         </div>
-                        <h6 class="mt-2 mb-0">دیوید بکهام</h6>
-                        <span>توسعه دهنده NextJS</span>
+                        <h6 class="mt-2 mb-0"> {{ $current_ticket->user->username }}</h6>
+                        <span>کاربر سیستم</span>
                         <i class="bx bx-x bx-sm cursor-pointer close-sidebar d-block" data-bs-toggle="sidebar"
                             data-overlay data-target="#app-chat-sidebar-right"></i>
                     </div>
@@ -410,55 +420,59 @@
                         <div class="my-4">
                             <p class="text-muted text-uppercase">درباره</p>
                             <p class="mb-0 mt-3">
-                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-                                چاپگرها و متون بلکه روزنامه و
+                                {{ $current_ticket->user->bio }}
                             </p>
                         </div>
                         <div class="my-4">
                             <p class="text-muted text-uppercase">اطلاعات شخصی</p>
                             <ul class="list-unstyled d-grid gap-2 mt-3">
                                 <li class="d-flex align-items-center">
-                                    <i class="bx bx-envelope"></i>
-                                    <span class="align-middle ms-2">لورم ایپسوم متن ساختگی</span>
+                                    <i class="bx bx-at"></i>
+                                    <span class="align-middle ms-2">{{ $current_ticket->user->email }}</span>
                                 </li>
-                                <li class="d-flex align-items-center">
-                                    <i class="bx bx-phone-call"></i>
-                                    <span class="align-middle ms-2">+1(123) 456 - 7890</span>
-                                </li>
-                                <li class="d-flex align-items-center">
-                                    <i class="bx bx-time-five"></i>
-                                    <span class="align-middle ms-2">شنبه الی پنجشنبه - 10صبح الی 8 شب</span>
-                                </li>
+                                @if ($current_ticket->user->city)
+                                    <li class="d-flex align-items-center">
+                                        <i class="bx bx-pin"></i>
+                                        <span class="align-middle ms-2">{{ $current_ticket->user->city->name }}</span>
+                                    </li>
+                                @endif
+                                @if ($current_ticket->user->birth_date != null)
+                                    <li class="d-flex align-items-center">
+                                        <i class="bx bx-cake"></i>
+                                        <span class="align-middle ms-2">
+
+                                            {{ \Morilog\Jalali\Jalalian::forge($current_ticket->user->birth_date)->format('%A, %d %B %y') }}
+
+                                        </span>
+                                    </li>
+                                @endif
                             </ul>
                         </div>
+
                         <div class="mt-4">
-                            <p class="text-muted text-uppercase">گزینه‌ها</p>
+                            <p class="text-muted text-uppercase">آمار </p>
                             <ul class="list-unstyled d-grid gap-2 mt-3">
                                 <li class="cursor-pointer d-flex align-items-center">
-                                    <i class="bx bx-tag"></i>
-                                    <span class="align-middle ms-2">افزودن برچسب</span>
+                                    <i class="bx bx-dollar"></i>
+                                    <span class="align-middle ms-2">{{ $current_ticket->user->bid_amount }} موجودی
+                                        بید</span>
                                 </li>
                                 <li class="cursor-pointer d-flex align-items-center">
                                     <i class="bx bx-star"></i>
-                                    <span class="align-middle ms-2">درون‌ریزی مخاطب</span>
+                                    <span class="align-middle ms-2">{{ count($current_ticket->user->bidding_histories) }}
+                                        بید ثبت شده</span>
                                 </li>
                                 <li class="cursor-pointer d-flex align-items-center">
-                                    <i class="bx bx-image"></i>
-                                    <span class="align-middle ms-2">به اشتراک گذاری رسانه</span>
+                                    <i class="bx bx-cake"></i>
+                                    <span class="align-middle ms-2">{{ count($current_ticket->user->winners) }} برد در
+                                        حراجی</span>
                                 </li>
-                                <li class="cursor-pointer d-flex align-items-center">
-                                    <i class="bx bx-trash"></i>
-                                    <span class="align-middle ms-2">حذف مخاطب</span>
-                                </li>
-                                <li class="cursor-pointer d-flex align-items-center">
-                                    <i class="bx bx-block"></i>
-                                    <span class="align-middle ms-2">مسدود کردن مخاطب</span>
-                                </li>
+
                             </ul>
                         </div>
                     </div>
                 </div>
-                <!-- /Sidebar Right -->
+
 
                 <div class="app-overlay"></div>
             </div>

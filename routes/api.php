@@ -90,6 +90,9 @@ Route::controller(TransactionController::class)->prefix('/transaction')->group(f
 
 
 Route::middleware('jwt.auth')->group(function () {
+    Route::controller(AuctionController::class)->prefix('/auctions')->group(function () {
+        Route::post('/store_comment', 'store_comment');
+    });
     Route::controller(UserController::class)->prefix('/user')->group(function () {
         Route::post('/fetch', 'index');
         Route::put('/update', 'update');

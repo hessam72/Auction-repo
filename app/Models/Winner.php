@@ -6,7 +6,9 @@
 
 namespace App\Models;
 
+use App\Observers\WinnerObserver;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -23,6 +25,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models
  */
+#[ObservedBy([WinnerObserver::class])]
 class Winner extends Model
 {
 	protected $table = 'winners';

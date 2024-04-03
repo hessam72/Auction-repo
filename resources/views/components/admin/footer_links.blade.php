@@ -172,6 +172,8 @@
             $('#auctions_menu').addClass('active');
         } else if (url.includes('categories')) {
             $('#categories_menu').addClass('active');
+        } else if (url.includes('shipped_products')) {
+            $('#shipped_products_menu').addClass('active');
         } else if (url.includes('rewards')) {
             $('#rewards_menu').addClass('active');
         } else if (url.includes('challenges')) {
@@ -190,6 +192,10 @@
             $('#geo_menu').addClass('active');
         } else if (url.includes('cities')) {
             $('#geo_menu').addClass('active');
+        } else if (url.includes('winners')) {
+            $('#winners_menu').addClass('active');
+        } else if (url.includes('notifications')) {
+            $('#notifications_menu').addClass('active');
         } else {
             $('#dashboard_menu').addClass('active');
         }

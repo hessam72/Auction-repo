@@ -93,16 +93,16 @@
             </a>
 
         </li> 
-        <li  id="redeemCodes_menu" class="menu-item add-margin-btn">
+        <li  id="winners_menu" class="menu-item add-margin-btn">
             <a href="{{ route('admin.winners.index') }}" class="menu-link ">
-                <i class="fa-solid menu-icon fa-money-check-dollar"></i>
+           <i class="fa-solid  menu-icon fa-ranking-star"></i>
                 <div> برندگان</div>
             </a>
 
         </li>  
-        <li  id="redeemCodes_menu" class="menu-item add-margin-btn">
+        <li  id="shipped_products_menu" class="menu-item add-margin-btn">
             <a href="{{ route('admin.shipped_products.index') }}" class="menu-link ">
-                <i class="fa-solid menu-icon fa-money-check-dollar"></i>
+               <i class="fa-solid menu-icon fa-cart-shopping"></i>
                 <div> کالاهای خریداری شده</div>
             </a>
 
@@ -111,6 +111,12 @@
             <a href="{{ route('admin.tickets.index') }}" class="menu-link ">
                 <i class="fa-solid menu-icon fa-headset"></i>
                 <div>پشتیبانی</div>
+            </a>
+
+        </li>  <li  id="notifications_menu" class="menu-item add-margin-btn">
+            <a href="{{ route('admin.notifications.index') }}" class="menu-link ">
+                <i class="fa-solid menu-icon fa-bell"></i>
+                <div>اعلان ها</div>
             </a>
 
         </li>

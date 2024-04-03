@@ -30,9 +30,7 @@ class Admin extends Model
 	use HasFactory;
 	protected $table = 'admins';
 
-	protected $fillable = [
-	
-	];
+	protected $fillable = [];
 
 	public function tickets()
 	{
@@ -42,5 +40,12 @@ class Admin extends Model
 	{
 		return $this->belongsTo(User::class);
 	}
-
+	public function new_notifications()
+	{
+		return Notification::where('for_admin', 1)->where('seen', 0)->get();
+	}
+	public function all_notifications()
+	{
+		return Notification::where('for_admin', 1)->get();
+	}
 }

@@ -42,7 +42,7 @@
                                 <td>{{ $city->name }}</td>
                                 <td>{{ $city->state->name }}</td>
 
-                                <td>{{ $city->created_at }}</td>
+                                <td>{{ \Morilog\Jalali\Jalalian::forge($city->created_at) }}</td>
                                 <td>
                                     <div class="d-inline-block text-nowrap">
                                         <button class="btn btn-sm btn-icon" data-bs-toggle="offcanvas"

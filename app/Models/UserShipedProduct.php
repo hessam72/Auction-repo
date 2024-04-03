@@ -6,7 +6,9 @@
 
 namespace App\Models;
 
+use App\Observers\UserShipedProductObserver;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -32,6 +34,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *
  * @package App\Models
  */
+#[ObservedBy([UserShipedProductObserver::class])]
 class UserShipedProduct extends Model
 {
 	protected $table = 'user_shiped_products';
