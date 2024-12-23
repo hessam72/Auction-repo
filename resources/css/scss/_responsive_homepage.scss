@@ -1,0 +1,59 @@
+// for pc
+
+@media (min-width: 1280px) {
+}
+
+//for tablets and landscape mobile
+@media (max-width: 1280px) {
+    html {
+        font-size: 100% !important;
+    }
+}
+
+// for mobile
+@media only screen and (max-width: 800px) {
+    html {
+        font-size: 70% !important;
+    }
+    body {
+        overflow-x: clip;
+    }
+    .hero-container {
+        .content {
+            margin-bottom: 5rem;
+            height: 52vh;
+        }
+
+        .w-6\/12 {
+            width: 100%;
+            text-align: center;
+        }
+    }
+
+    #scroll-down-animation {
+        transform: scale(0.8) !important;
+        left: 40% !important;
+        bottom: 2.5rem !important;
+    }
+    span.and {
+        ion-icon {
+            font-size: 2.5rem !important;
+        }
+    }
+    section#counter-stats {
+        margin: 4rem !important;
+        .container .row {
+            width: 100% !important;
+        }
+    }
+    .section-container {
+        .auction-container {
+          overflow-x: scroll;
+          padding: 3rem;
+        }
+        .reviews-container{
+            // overflow-x: scroll;
+            // padding: 3rem;
+        }
+    }
+}

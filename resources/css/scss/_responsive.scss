@@ -1,0 +1,27 @@
+// for pc
+
+
+@media (min-width: 1280px) {
+
+}
+
+//for tablets and landscape mobile
+@media (max-width: 1280px) {
+  html {
+    font-size: 100% !important;
+  }
+}
+
+// for mobile
+@media only screen and (max-width: 800px) {
+  html {
+    font-size: 70% !important;
+  }
+  body {
+    
+    overflow-x: clip;
+  }
+  
+
+ 
+}
