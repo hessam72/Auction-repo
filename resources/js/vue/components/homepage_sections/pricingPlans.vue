@@ -1,12 +1,12 @@
 <template>
-    <div id="pricing" class="section-seperator">
+    <div id="pricing" class=" section-seperator">
         <div class="divider"></div>
         <span class="and">
             <ion-icon name="basket"></ion-icon>
         </span>
         <div class="divider"></div>
     </div>
-    <div v-if="packages.length === 3" class="section-container">
+    <div v-if="packages.length === 3" class="pricing-section section-container">
         <div class="buy-header-container">
             <h2 style="display: inline" class="section-title">Buy</h2>
             <h2 class="section-title" style="display: inline; color: var(--color-secondary)">

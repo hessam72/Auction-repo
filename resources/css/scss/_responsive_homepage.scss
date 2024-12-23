@@ -48,12 +48,38 @@
     }
     .section-container {
         .auction-container {
-          overflow-x: scroll;
-          padding: 3rem;
+            overflow-x: scroll;
+            padding: 3rem;
         }
-        .reviews-container{
-            // overflow-x: scroll;
-            // padding: 3rem;
+        .reviews-container {
+            overflow-x: scroll;
+            padding: 3rem;
+            gap: 3rem;
+            .container {
+                min-width: 22rem;
+            }
         }
+    }
+    .pricing-section {
+        .section {
+            width: 95vw;
+            margin-left: -4rem;
+            .container {
+                max-width: 100% !important;
+            }
+        }
+        .row {
+            width: 100% !important;
+        }
+    }
+    .footer-container{
+      height: auto!important;
+    }
+    .footer-infos{
+      display: grid
+      ;
+          grid-template-columns: 1fr 1fr;
+          margin-top: 3rem;
+          margin-bottom: 3rem;
     }
 }
