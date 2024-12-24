@@ -1,5 +1,5 @@
 <template>
-    <div class="item-container relative">
+    <div class="item-container  auction-card-wrapper relative">
         <div v-if="no_new_bidders" class="no-new-bidders">no new bidders</div>
         <div @click="toggleBookmark()" class="bookmark-container">
             <ion-icon
@@ -252,6 +252,8 @@ export default {
 
     img {
         height: 13rem;
+        padding: 1rem;
+    background: #fff;
     }
 }
 

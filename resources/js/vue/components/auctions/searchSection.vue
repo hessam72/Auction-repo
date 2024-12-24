@@ -76,7 +76,7 @@
                             >
                                 <div class="filter-item-header">
                                     <ion-icon name="cash"></ion-icon>
-                                    <p>Price range</p>
+                                    <p>Price range not working on touch</p>
                                 </div>
                                 <span class="multi-range">
                                     <input

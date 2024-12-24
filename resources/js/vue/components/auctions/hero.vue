@@ -1,5 +1,5 @@
 <template>
-    <div v-if="special_offer" class="hero-container flex w-full relative">
+    <div v-if="special_offer" class="hero-container auctions-hero flex w-full relative">
         <div class="content w-full px-20 flex flex-col gap-7 py-14 z-20">
             <div class="hero-badge countdown">
                 <vue3-flip-countdown

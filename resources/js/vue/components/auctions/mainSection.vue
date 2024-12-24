@@ -1,7 +1,7 @@
 <template>
     <div>
         <search-section></search-section>
-        <div class="main-container">
+        <div class="main-container list-a-wrapper">
             <!-- <div v-show="show_backdrop" class="backdrop">.</div> -->
             <auction-card
                 @refreshData="$emit('fetchData')"
