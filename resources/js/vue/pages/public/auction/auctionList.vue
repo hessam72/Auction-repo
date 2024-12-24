@@ -2,9 +2,9 @@
     <div>
         <nav-bar-section :is_single_nav="true"></nav-bar-section>
         <hero-section :special_offer></hero-section>
-        <!-- v-if="auctions.length > 0" -->
-
         <main-section
+     
+
             :test_auctions="test_auctions"
             :is_loading_more="inline_loading"
             @loadMore="fetchAuctions"
@@ -117,12 +117,13 @@ export default {
                     } else {
                         this.auctions = response.data.data;
                     }
-
                     // console.log(JSON.parse(  JSON.stringify(this.auctions)));
                     this.saveAuctions();
+
                 })
                 .catch((error) => {
-                    throw error.response.data.message;
+                    console.log(error)
+                    // throw error.response.data.message;
                 })
                 .finally(() => {
                     // always executed

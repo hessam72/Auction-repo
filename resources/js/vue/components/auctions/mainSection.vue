@@ -3,7 +3,6 @@
         <search-section></search-section>
         <div class="main-container">
             <!-- <div v-show="show_backdrop" class="backdrop">.</div> -->
-
             <auction-card
                 @refreshData="$emit('fetchData')"
                 v-for="(item, index) in test_auctions"
@@ -23,8 +22,7 @@
                 :image="item.product.galleries[0]"
                 :is_bookmarked="check_bookmark_status(item.bookmarks, user)"
                 :status="findAuctionInStore(item.id).status"
-            >
-            </auction-card>
+            />
             <!-- :current_winner_username="item.current_winner.username"
                 :live_price="item.current_price" :timer="item.timer"-->
         </div>
@@ -51,13 +49,13 @@ import "v3-infinite-loading/lib/style.css"; //required if you're not going to ov
 import AuctionCard from "./auction_card.vue";
 import { check_bookmark_status } from "@/modules/utilities/auctionUtils.js";
 import searchSection from "./searchSection.vue";
-import auctions from "../../store/modules/auctions";
+// import auctions from "../../store/modules/auctions";
 import { mapGetters } from "vuex";
 export default {
     props: {
-        auctions: {
-            type: Object,
-        },
+        // auctions: {
+        //     type: Object,
+        // },
         categories: {},
         test_auctions: {},
         is_loading_more: {

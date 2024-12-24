@@ -15,8 +15,6 @@ export default {
     mutations: {
         setAuctions(state, data) {
             state.auctions = data;
-            
-         
         },
         addAuction(state, data) {
            
@@ -77,6 +75,7 @@ export default {
     // getting states
     getters: {
         storedAuctions(state) {
+            console.log('inside store auctions...' , state)
             return state.auctions;
         },
         findAuction: (state) => (id) => {

@@ -1,5 +1,5 @@
 <template>
-    <div id="pricing" class=" section-seperator">
+    <div id="pricing" class="section-seperator">
         <div class="divider"></div>
         <span class="and">
             <ion-icon name="basket"></ion-icon>
@@ -9,24 +9,29 @@
     <div v-if="packages.length === 3" class="pricing-section section-container">
         <div class="buy-header-container">
             <h2 style="display: inline" class="section-title">Buy</h2>
-            <h2 class="section-title" style="display: inline; color: var(--color-secondary)">
+            <h2
+                class="section-title"
+                style="display: inline; color: var(--color-secondary)"
+            >
                 Bid
             </h2>
             <h2 class="section-title" style="display: inline">& Start Today</h2>
         </div>
         <section class="section">
-            <div class="container">
+            <div class="container relative">
                 <div class="row">
-<!-- bid packages are sorted by price  -->
+                    <!-- bid packages are sorted by price  -->
 
-
-                    <div class="col-md-4 p-md-0">
+                    <div data-index="1" class="price-card col-md-4 p-md-0">
                         <!-- BEGIN TABLE -->
                         <div class="table-default table1 grad1">
                             <!-- BEGIN TABLE HEADER -->
                             <div class="table__header">
                                 <h2 class="table__header--title">Basic</h2>
-                                <p data-price="120" class="table__header--price">
+                                <p
+                                    data-price="120"
+                                    class="table__header--price"
+                                >
                                     <span>$</span> {{ packages[2].price }}
                                 </p>
                             </div>
@@ -34,7 +39,10 @@
                             <div class="table__content">
                                 <!-- BEGIN TABLE LIST -->
                                 <ul class="table__content--list">
-                                    <li>Contain {{ packages[2].bid_amount }} Bids</li>
+                                    <li>
+                                        Contain
+                                        {{ packages[2].bid_amount }} Bids
+                                    </li>
                                     <li>500 Anylytics Campaings</li>
                                     <li>250,000 crawled Page</li>
                                     <li class="muted">Unlimited Updates</li>
@@ -48,16 +56,23 @@
                                 <button class="cssbuttons-io-button">
                                     Get started
                                     <div class="icon">
-                                        <svg height="24" width="24" viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M0 0h24v24H0z" fill="none"></path>
+                                        <svg
+                                            height="24"
+                                            width="24"
+                                            viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                d="M0 0h24v24H0z"
+                                                fill="none"
+                                            ></path>
                                             <path
                                                 d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
-                                                fill="currentColor"></path>
+                                                fill="currentColor"
+                                            ></path>
                                         </svg>
                                     </div>
                                 </button>
-
                             </div>
                             <!-- END TABLE FOOTER -->
                         </div>
@@ -65,16 +80,22 @@
                     </div>
                     <!-- main -->
                     <!-- first package is most expensive and main one -->
-                    <div class="col-md-4 p-md-0">
+                    <div data-index="2" class="center-p price-card col-md-4 p-md-0">
                         <!-- BEGIN TABLE -->
-                        <div style="position: relative" class="table-default table1 recommended grad2">
+                        <div
+                            style="position: relative"
+                            class="table-default table1 recommended grad2"
+                        >
                             <!-- BEGIN TABLE HEADER -->
                             <div class="tag">
                                 <p>Best Seller</p>
                             </div>
                             <div class="table__header">
                                 <h2 class="table__header--title">Premium</h2>
-                                <p data-price="250" class="table__header--price">
+                                <p
+                                    data-price="250"
+                                    class="table__header--price"
+                                >
                                     <span>$</span> {{ packages[0].price }}
                                 </p>
                             </div>
@@ -82,7 +103,10 @@
                             <div class="table__content">
                                 <!-- BEGIN TABLE LIST -->
                                 <ul class="table__content--list">
-                                    <li>Contain {{ packages[0].bid_amount }} Bids</li>
+                                    <li>
+                                        Contain
+                                        {{ packages[0].bid_amount }} Bids
+                                    </li>
                                     <li>500 Anylytics Campaings</li>
                                     <li>250,000 crawled Page</li>
                                     <li>Unlimited Updates</li>
@@ -95,12 +119,20 @@
                                 <button class="cssbuttons-io-button">
                                     Get started
                                     <div class="icon">
-                                        <svg height="24" width="24" viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M0 0h24v24H0z" fill="none"></path>
+                                        <svg
+                                            height="24"
+                                            width="24"
+                                            viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                d="M0 0h24v24H0z"
+                                                fill="none"
+                                            ></path>
                                             <path
                                                 d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
-                                                fill="currentColor"></path>
+                                                fill="currentColor"
+                                            ></path>
                                         </svg>
                                     </div>
                                 </button>
@@ -109,13 +141,16 @@
                         </div>
                         <!-- END TABLE -->
                     </div>
-                    <div class="col-md-4 p-md-0">
+                    <div data-index="3" class="price-card col-md-4 p-md-0">
                         <!-- BEGIN TABLE -->
                         <div class="table-default table1 grad3">
                             <!-- BEGIN TABLE HEADER -->
                             <div class="table__header">
                                 <h2 class="table__header--title">Standard</h2>
-                                <p data-price="520" class="table__header--price">
+                                <p
+                                    data-price="520"
+                                    class="table__header--price"
+                                >
                                     <span>$</span> {{ packages[1].price }}
                                 </p>
                             </div>
@@ -123,7 +158,10 @@
                             <div class="table__content">
                                 <!-- BEGIN TABLE LIST -->
                                 <ul class="table__content--list">
-                                    <li>Contain {{ packages[1].bid_amount }} Bids</li>
+                                    <li>
+                                        Contain
+                                        {{ packages[1].bid_amount }} Bids
+                                    </li>
                                     <li>500 Anylytics Campaings</li>
                                     <li>250,000 crawled Page</li>
                                     <li>Unlimited Updates</li>
@@ -136,12 +174,20 @@
                                 <button class="cssbuttons-io-button">
                                     Get started
                                     <div class="icon">
-                                        <svg height="24" width="24" viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M0 0h24v24H0z" fill="none"></path>
+                                        <svg
+                                            height="24"
+                                            width="24"
+                                            viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                d="M0 0h24v24H0z"
+                                                fill="none"
+                                            ></path>
                                             <path
                                                 d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
-                                                fill="currentColor"></path>
+                                                fill="currentColor"
+                                            ></path>
                                         </svg>
                                     </div>
                                 </button>
@@ -158,7 +204,18 @@
 
 <script>
 export default {
-    props:["packages"],
+    props: ["packages"],
+    mounted() {
+        document.querySelectorAll(".price-card").forEach((card) => {
+        card.addEventListener("click", function () {
+            // Remove the 'active' class from all cards
+            document.querySelectorAll(".price-card").forEach((c) => c.classList.remove("active"));
+            
+            // Add the 'active' class to the clicked card
+            this.classList.add("active");
+        });
+    });
+    },
 };
 </script>
 
@@ -199,16 +256,22 @@ export default {
 }
 
 .section-grad {
-    background: transparent -webkit-gradient(linear,
+    background: transparent -webkit-gradient(
+            linear,
             left top,
             left bottom,
             color-stop(42%, #b06ab3),
-            color-stop(0%, transparent)) repeat scroll 0% 0%;
-    background: transparent -webkit-linear-gradient(top,
+            color-stop(0%, transparent)
+        ) repeat scroll 0% 0%;
+    background: transparent -webkit-linear-gradient(
+            top,
             #b06ab3 42%,
-            transparent 0%) repeat scroll 0% 0%;
-    background: transparent -o-linear-gradient(top, #b06ab3 42%, transparent 0%) repeat scroll 0% 0%;
-    background: transparent linear-gradient(180deg, #b06ab3 42%, transparent 0%) repeat scroll 0% 0%;
+            transparent 0%
+        ) repeat scroll 0% 0%;
+    background: transparent -o-linear-gradient(top, #b06ab3 42%, transparent 0%)
+        repeat scroll 0% 0%;
+    background: transparent linear-gradient(180deg, #b06ab3 42%, transparent 0%)
+        repeat scroll 0% 0%;
 }
 
 .section-grad h1 {
@@ -220,9 +283,11 @@ export default {
     // background: -o-linear-gradient(220deg, #e878d4, #b3ceeb);
 
     background: rgb(170, 170, 170);
-    background: linear-gradient(0deg,
-            rgba(170, 170, 170, 0) 64%,
-            var(--color-primary-tint-3) 100%);
+    background: linear-gradient(
+        0deg,
+        rgba(170, 170, 170, 0) 64%,
+        var(--color-primary-tint-3) 100%
+    );
 }
 
 .grad2 {
@@ -230,9 +295,11 @@ export default {
     background: -webkit-linear-gradient(220deg, #ffafbd, #ffc3a0);
     background: -o-linear-gradient(220deg, #ffafbd, #ffc3a0);
     background: linear-gradient(230deg, #ffafbd, #ffc3a0);
-    background: linear-gradient(0deg,
-            rgba(170, 170, 170, 0) 64%,
-            var(--color-primary-tint-6) 100%);
+    background: linear-gradient(
+        0deg,
+        rgba(170, 170, 170, 0) 64%,
+        var(--color-primary-tint-6) 100%
+    );
 }
 
 .grad3 {
@@ -240,9 +307,11 @@ export default {
     background: -webkit-linear-gradient(220deg, #51a8c2, #a3dac4);
     background: -o-linear-gradient(220deg, #51a8c2, #a3dac4);
     background: linear-gradient(230deg, #51a8c2, #a3dac4);
-    background: linear-gradient(0deg,
-            rgba(170, 170, 170, 0) 64%,
-            var(--color-primary-tint-3) 100%);
+    background: linear-gradient(
+        0deg,
+        rgba(170, 170, 170, 0) 64%,
+        var(--color-primary-tint-3) 100%
+    );
 }
 
 .button {
@@ -376,12 +445,14 @@ export default {
 
 .tag {
     background-color: #b72b05;
-    -webkit-clip-path: polygon(100% 0,
-            90% 51%,
-            100% 100%,
-            0% 100%,
-            11% 52%,
-            0% 0%);
+    -webkit-clip-path: polygon(
+        100% 0,
+        90% 51%,
+        100% 100%,
+        0% 100%,
+        11% 52%,
+        0% 0%
+    );
     clip-path: polygon(100% 0, 90% 51%, 100% 100%, 0% 100%, 11% 52%, 0% 0%);
     transform: rotate(-90deg);
     color: #fff;
@@ -405,7 +476,6 @@ export default {
 }
 
 @media only screen and (max-width: 990px) {
-
     .table1.recommended,
     .table2.recommended {
         -webkit-transform: scale(1);
@@ -427,9 +497,6 @@ export default {
         margin-top: 20px;
     }
 }
-
-
-
 
 // get started buttons
 .cssbuttons-io-button {
@@ -455,37 +522,35 @@ export default {
 }
 
 .cssbuttons-io-button .icon {
-  background: white;
-  margin-left: 1em;
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 2.5em;
-  width: 2.2em;
-  border-radius: 7em;
-  box-shadow: 0.1em 0.1em 0.6em 0.2em #7b52b9;
-  right: 0.3em;
-  transition: all 0.3s;
+    background: white;
+    margin-left: 1em;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.5em;
+    width: 2.2em;
+    border-radius: 7em;
+    box-shadow: 0.1em 0.1em 0.6em 0.2em #7b52b9;
+    right: 0.3em;
+    transition: all 0.3s;
 }
 
 .cssbuttons-io-button:hover .icon {
-  width: calc(100% - 0.6em);
+    width: calc(100% - 0.6em);
 }
 
 .cssbuttons-io-button .icon svg {
-  width: 1.5em;
-  transition: transform 0.3s;
-  color: #4f3c71;
+    width: 1.5em;
+    transition: transform 0.3s;
+    color: #4f3c71;
 }
 
 .cssbuttons-io-button:hover .icon svg {
-  transform: translateX(0.1em);
+    transform: translateX(0.1em);
 }
 
 .cssbuttons-io-button:active .icon {
-  transform: scale(0.95);
+    transform: scale(0.95);
 }
-
-
 </style>

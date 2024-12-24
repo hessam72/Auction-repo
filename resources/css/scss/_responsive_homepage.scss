@@ -46,7 +46,7 @@
             width: 100% !important;
         }
     }
-    
+
     .section-container {
         .auction-container {
             overflow-x: scroll;
@@ -71,16 +71,48 @@
         }
         .row {
             width: 100% !important;
+            margin-top: 3rem !important;
+            .price-card {
+                width: 50%;
+                border-radius: 10px !important;
+                transition: transform 0.4s ease, z-index 0.4s ease;
+                cursor: pointer;
+                transform-origin: center center;
+
+                .table-default {
+                    border-radius: 10px !important;
+                }
+                .cssbuttons-io-button {
+                    font-size: 1.15rem !important;
+                }
+            }
+
+            .price-card:hover {
+                transform: scale(1.05);
+                z-index: 10 !important;
+            }
+
+            .price-card.active {
+                z-index: 10 !important;
+                transform: scale(1.2);
+            }
+            .center-p {
+                min-width: 20rem;
+                position: absolute;
+                margin: auto;
+                left: 0;
+                right: 0;
+                top: -6rem;
+            }
         }
     }
-    .footer-container{
-      height: auto!important;
+    .footer-container {
+        height: auto !important;
     }
-    .footer-infos{
-      display: grid
-      ;
-          grid-template-columns: 1fr 1fr;
-          margin-top: 3rem;
-          margin-bottom: 3rem;
+    .footer-infos {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
     }
 }
