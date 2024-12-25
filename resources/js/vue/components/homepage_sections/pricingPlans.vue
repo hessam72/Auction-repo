@@ -6,7 +6,7 @@
         </span>
         <div class="divider"></div>
     </div>
-    <div v-if="packages.length === 3" class="pricing-section section-container">
+    <div v-if="packages.length === 3" class="pricing-section section-container ">
         <div class="buy-header-container">
             <h2 style="display: inline" class="section-title">Buy</h2>
             <h2

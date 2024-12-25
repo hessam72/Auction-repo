@@ -6,7 +6,7 @@
     </span>
     <div class="divider"></div>
   </div>
-  <div class="section-container">
+  <div class="section-container mobile-w-full">
     <h2 class="section-title">Frequently Asked Questions</h2>
     <div class="accordion">
       <div class="accordion-item">

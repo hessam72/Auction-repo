@@ -6,7 +6,7 @@
         </span>
         <div class="divider"></div>
     </div>
-    <div class="section-container">
+    <div class="section-container mobile-w-full">
         <h2 class="section-title">Featured Auctions</h2>
         <div class="auction-container">
             <!-- only four -->

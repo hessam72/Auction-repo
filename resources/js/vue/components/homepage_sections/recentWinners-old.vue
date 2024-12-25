@@ -1,5 +1,5 @@
 <template>
-  <div class="section-container">
+  <div class="section-container mobile-w-full">
     <h2 class="section-title">Recent Winners</h2>
 
     <div class="reviews-container flex gap-2.5">

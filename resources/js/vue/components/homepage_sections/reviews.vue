@@ -1,5 +1,5 @@
 <template>
-  <div id="reviews" class="section-seperator">
+  <div id="reviews" class="section-seperator mobile-w-full">
     <div class="divider"></div>
     <span class="and">
       <ion-icon name="quote"></ion-icon>

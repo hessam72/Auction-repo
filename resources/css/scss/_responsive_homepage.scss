@@ -18,10 +18,18 @@
     body {
         overflow-x: clip;
     }
+    .hero-cta{
+        font-size: 1.2rem !important;
+    }
+    .mobile-w-full{
+        width: 100% !important;
+        padding: 3rem 2rem !important;
+    }
     .hero-container {
         .content {
             margin-bottom: 5rem;
-            height: 52vh;
+            height: 55vh;
+        
         }
 
         .w-6\/12 {

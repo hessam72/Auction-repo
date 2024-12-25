@@ -6,7 +6,7 @@
         </span>
         <div class="divider"></div>
     </div>
-    <div class="section-container">
+    <div class="section-container mobile-w-full">
         <h2 class="section-title">
             Our Latest
             <h2 style="display: inline; color: var(  --color-secondary)">Winners</h2>

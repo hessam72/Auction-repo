@@ -1,0 +1,22 @@
+// for mobile
+@media only screen and (max-width: 800px) {
+    .w-header{
+        height: 40vh !important;
+    }
+    .winners-container {
+        .winners-list-container {
+            .winner {
+                display: flex !important;
+                flex-direction: column !important;
+                .winner-info{
+                    flex-direction: column;
+                }
+                .product{
+                    .product-info{
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}
