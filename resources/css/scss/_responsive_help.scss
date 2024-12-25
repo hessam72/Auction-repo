@@ -1,0 +1,43 @@
+// for mobile
+@media only screen and (max-width: 800px) {
+    .help-container {
+    
+
+        flex-direction: column;
+        .items .subject-title{
+            padding: 1rem 2.5rem !important;
+            width: 90%;
+        }
+        .subjects{
+            width: 100% !important;
+            height: auto !important;
+        }
+        .subjects-headers {
+            margin-top: 2cqb;
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 1rem !important;
+            .items{
+                margin: 0 !important;
+            }
+        }
+    }
+    .main-help{
+width: 100% !important;
+    }
+    .mother-container{
+        .help-container {
+            .sticky{
+                min-width: 100% !important;
+                background: var(--color-secondary-tint-3) !important;
+                top: -1rem !important;
+                left: 0 !important;
+                border-radius: 0 !important;
+                padding-bottom: 2rem !important;
+                .header{
+                    color: #fff;
+                }
+            }
+        }    
+    }
+}

@@ -7,34 +7,50 @@
                 <h2>Subjects</h2>
                 <hr />
             </div>
-            <div class="items flex flex-col justify-center items-center">
-                <a data-scroll="home" href="#home" class="dot  subject-title flex justify-center items-center">
-                    <h3>Who We Are?</h3>
-                    <ion-icon name="bulb"></ion-icon>
-                </a>
+            <div class="subjects-headers">
+                <div class="items flex flex-col justify-center items-center">
+                    <a
+                        data-scroll="home"
+                        href="#home"
+                        class="dot subject-title flex justify-center items-center"
+                    >
+                        <h3>Who We Are?</h3>
+                        <ion-icon name="bulb"></ion-icon>
+                    </a>
+                </div>
+                <div class="items flex flex-col justify-center items-center">
+                    <a
+                        data-scroll="about"
+                        href="#about"
+                        class="dot subject-title flex justify-center items-center"
+                    >
+                        <h3>About</h3>
+                        <ion-icon name="bulb"></ion-icon>
+                    </a>
+                </div>
+                <div class="items flex flex-col justify-center items-center">
+                    <a
+                        data-scroll="services"
+                        href="#services"
+                        class="dot subject-title flex justify-center items-center"
+                    >
+                        <h3>services?</h3>
+                        <ion-icon name="bulb"></ion-icon>
+                    </a>
+                </div>
+                <div class="items flex flex-col justify-center items-center">
+                    <a
+                        data-scroll="about"
+                        href="#contact"
+                        class="dot subject-title flex justify-center items-center"
+                    >
+                        <h3>Contact Us</h3>
+                        <ion-icon name="bulb"></ion-icon>
+                    </a>
+                </div>
             </div>
-            <div class="items flex flex-col justify-center items-center">
-                <a data-scroll="about" href="#about" class="dot subject-title  flex justify-center items-center">
-                    <h3>About</h3>
-                    <ion-icon name="bulb"></ion-icon>
-                </a>
-            </div>
-            <div class="items flex flex-col justify-center items-center">
-                <a data-scroll="services" href="#services" class="dot subject-title flex justify-center items-center">
-                    <h3>services?</h3>
-                    <ion-icon name="bulb"></ion-icon>
-                </a>
-            </div>
-            <div class="items flex flex-col justify-center items-center">
-                <a data-scroll="about" href="#contact" class="dot subject-title  flex justify-center items-center">
-                    <h3>Contact Us</h3>
-                    <ion-icon name="bulb"></ion-icon>
-                </a>
-            </div>
-
-
         </div>
-        <div class="content">
+        <div class="content main-help">
             <div class="header">
                 <h2>Help Center</h2>
                 <hr />
@@ -45,69 +61,93 @@
                     <hr />
                 </div>
                 <div class="description">
-
                     <section id="home" class="accordion">
                         <div class="accordion-item">
-                            <input type="checkbox" class="js_checkbox" id="accordion1" />
-                            <label for="accordion1" class="accordion-item-title"><span class="icon"></span>What is SEO, and
-                                why is it
-                                important for
-                                online businesses?</label>
+                            <input
+                                type="checkbox"
+                                class="js_checkbox"
+                                id="accordion1"
+                            />
+                            <label for="accordion1" class="accordion-item-title"
+                                ><span class="icon"></span>What is SEO, and why
+                                is it important for online businesses?</label
+                            >
                             <div class="accordion-item-desc">
-                                SEO, or Search Engine Optimization, is the practice of optimizing a
-                                website to improve its visibility on search engines like Google. It
-                                involves various techniques to enhance a site's ranking in search
-                                results. SEO is crucial for online businesses as it helps drive
-                                organic traffic, increases visibility, and ultimately leads to higher
-                                conversions.
+                                SEO, or Search Engine Optimization, is the
+                                practice of optimizing a website to improve its
+                                visibility on search engines like Google. It
+                                involves various techniques to enhance a site's
+                                ranking in search results. SEO is crucial for
+                                online businesses as it helps drive organic
+                                traffic, increases visibility, and ultimately
+                                leads to higher conversions.
                             </div>
                         </div>
 
                         <div class="accordion-item">
-                            <input type="checkbox" class="js_checkbox" id="accordion2" />
-                            <label for="accordion2" class="accordion-item-title"><span class="icon"></span>How long does it
-                                take to see
-                                results from
-                                SEO efforts?</label>
+                            <input
+                                type="checkbox"
+                                class="js_checkbox"
+                                id="accordion2"
+                            />
+                            <label for="accordion2" class="accordion-item-title"
+                                ><span class="icon"></span>How long does it take
+                                to see results from SEO efforts?</label
+                            >
                             <div class="accordion-item-desc">
-                                The timeline for seeing results from SEO can vary based on several
-                                factors, such as the competitiveness of keywords, the current state of
-                                the website, and the effectiveness of the SEO strategy. Generally, it
-                                may take several weeks to months before noticeable improvements occur.
-                                However, long-term commitment to SEO is essential for sustained
-                                success.
+                                The timeline for seeing results from SEO can
+                                vary based on several factors, such as the
+                                competitiveness of keywords, the current state
+                                of the website, and the effectiveness of the SEO
+                                strategy. Generally, it may take several weeks
+                                to months before noticeable improvements occur.
+                                However, long-term commitment to SEO is
+                                essential for sustained success.
                             </div>
                         </div>
 
                         <div class="accordion-item">
-                            <input type="checkbox" class="js_checkbox" id="accordion3" />
-                            <label for="accordion3" class="accordion-item-title"><span class="icon"></span>What are the key
-                                components of a
-                                successful
-                                SEO strategy?</label>
+                            <input
+                                type="checkbox"
+                                class="js_checkbox"
+                                id="accordion3"
+                            />
+                            <label for="accordion3" class="accordion-item-title"
+                                ><span class="icon"></span>What are the key
+                                components of a successful SEO strategy?</label
+                            >
                             <div class="accordion-item-desc">
-                                A successful SEO strategy involves various components, including
-                                keyword research, on-page optimization, quality content creation, link
-                                building, technical SEO, and user experience optimization. These
-                                elements work together to improve a website's relevance and authority
-                                in the eyes of search engines.
+                                A successful SEO strategy involves various
+                                components, including keyword research, on-page
+                                optimization, quality content creation, link
+                                building, technical SEO, and user experience
+                                optimization. These elements work together to
+                                improve a website's relevance and authority in
+                                the eyes of search engines.
                             </div>
                         </div>
 
                         <div class="accordion-item">
-                            <input type="checkbox" class="js_checkbox" id="accordion4" />
-                            <label for="accordion4" class="accordion-item-title"><span class="icon"></span>How does mobile
-                                optimization impact
-                                SEO?</label>
+                            <input
+                                type="checkbox"
+                                class="js_checkbox"
+                                id="accordion4"
+                            />
+                            <label for="accordion4" class="accordion-item-title"
+                                ><span class="icon"></span>How does mobile
+                                optimization impact SEO?</label
+                            >
                             <div class="accordion-item-desc">
-                                Mobile optimization is crucial for SEO because search engines
-                                prioritize mobile-friendly websites. With the increasing use of
-                                smartphones, search engines like Google consider mobile responsiveness
-                                as a ranking factor. Websites that provide a seamless experience on
-                                mobile devices are more likely to rank higher in search results.
+                                Mobile optimization is crucial for SEO because
+                                search engines prioritize mobile-friendly
+                                websites. With the increasing use of
+                                smartphones, search engines like Google consider
+                                mobile responsiveness as a ranking factor.
+                                Websites that provide a seamless experience on
+                                mobile devices are more likely to rank higher in
+                                search results.
                             </div>
                         </div>
-
                     </section>
                 </div>
             </div>
@@ -117,55 +157,71 @@
                     <hr />
                 </div>
                 <div class="description">
-
                     <section id="about" class="accordion">
                         <div class="accordion-item">
-                            <input type="checkbox" class="js_checkbox" id="about1" />
-                            <label for="about1" class="accordion-item-title"><span class="icon"></span>What is SEO, and
-                                why is it
-                                important for
-                                online businesses?</label>
+                            <input
+                                type="checkbox"
+                                class="js_checkbox"
+                                id="about1"
+                            />
+                            <label for="about1" class="accordion-item-title"
+                                ><span class="icon"></span>What is SEO, and why
+                                is it important for online businesses?</label
+                            >
                             <div class="accordion-item-desc">
-                                SEO, or Search Engine Optimization, is the practice of optimizing a
-                                website to improve its visibility on search engines like Google. It
-                                involves various techniques to enhance a site's ranking in search
-                                results. SEO is crucial for online businesses as it helps drive
-                                organic traffic, increases visibility, and ultimately leads to higher
-                                conversions.
-                            </div>
-                        </div>
-
-
-
-                        <div class="accordion-item">
-                            <input type="checkbox" class="js_checkbox" id="about2" />
-                            <label for="about2" class="accordion-item-title"><span class="icon"></span>What are the key
-                                components of a
-                                successful
-                                SEO strategy?</label>
-                            <div class="accordion-item-desc">
-                                A successful SEO strategy involves various components, including
-                                keyword research, on-page optimization, quality content creation, link
-                                building, technical SEO, and user experience optimization. These
-                                elements work together to improve a website's relevance and authority
-                                in the eyes of search engines.
+                                SEO, or Search Engine Optimization, is the
+                                practice of optimizing a website to improve its
+                                visibility on search engines like Google. It
+                                involves various techniques to enhance a site's
+                                ranking in search results. SEO is crucial for
+                                online businesses as it helps drive organic
+                                traffic, increases visibility, and ultimately
+                                leads to higher conversions.
                             </div>
                         </div>
 
                         <div class="accordion-item">
-                            <input type="checkbox" class="js_checkbox" id="about3" />
-                            <label for="about3" class="accordion-item-title"><span class="icon"></span>How does mobile
-                                optimization impact
-                                SEO?</label>
+                            <input
+                                type="checkbox"
+                                class="js_checkbox"
+                                id="about2"
+                            />
+                            <label for="about2" class="accordion-item-title"
+                                ><span class="icon"></span>What are the key
+                                components of a successful SEO strategy?</label
+                            >
                             <div class="accordion-item-desc">
-                                Mobile optimization is crucial for SEO because search engines
-                                prioritize mobile-friendly websites. With the increasing use of
-                                smartphones, search engines like Google consider mobile responsiveness
-                                as a ranking factor. Websites that provide a seamless experience on
-                                mobile devices are more likely to rank higher in search results.
+                                A successful SEO strategy involves various
+                                components, including keyword research, on-page
+                                optimization, quality content creation, link
+                                building, technical SEO, and user experience
+                                optimization. These elements work together to
+                                improve a website's relevance and authority in
+                                the eyes of search engines.
                             </div>
                         </div>
 
+                        <div class="accordion-item">
+                            <input
+                                type="checkbox"
+                                class="js_checkbox"
+                                id="about3"
+                            />
+                            <label for="about3" class="accordion-item-title"
+                                ><span class="icon"></span>How does mobile
+                                optimization impact SEO?</label
+                            >
+                            <div class="accordion-item-desc">
+                                Mobile optimization is crucial for SEO because
+                                search engines prioritize mobile-friendly
+                                websites. With the increasing use of
+                                smartphones, search engines like Google consider
+                                mobile responsiveness as a ranking factor.
+                                Websites that provide a seamless experience on
+                                mobile devices are more likely to rank higher in
+                                search results.
+                            </div>
+                        </div>
                     </section>
                 </div>
             </div>
@@ -175,102 +231,135 @@
                     <hr />
                 </div>
                 <div class="description">
-
                     <section id="services" class="accordion">
                         <div class="accordion-item">
-                            <input type="checkbox" class="js_checkbox" id="why1" />
-                            <label for="why1" class="accordion-item-title"><span class="icon"></span>What is SEO, and
-                                why is it
-                                important for
-                                online businesses?</label>
+                            <input
+                                type="checkbox"
+                                class="js_checkbox"
+                                id="why1"
+                            />
+                            <label for="why1" class="accordion-item-title"
+                                ><span class="icon"></span>What is SEO, and why
+                                is it important for online businesses?</label
+                            >
                             <div class="accordion-item-desc">
-                                SEO, or Search Engine Optimization, is the practice of optimizing a
-                                website to improve its visibility on search engines like Google. It
-                                involves various techniques to enhance a site's ranking in search
-                                results. SEO is crucial for online businesses as it helps drive
-                                organic traffic, increases visibility, and ultimately leads to higher
-                                conversions.
+                                SEO, or Search Engine Optimization, is the
+                                practice of optimizing a website to improve its
+                                visibility on search engines like Google. It
+                                involves various techniques to enhance a site's
+                                ranking in search results. SEO is crucial for
+                                online businesses as it helps drive organic
+                                traffic, increases visibility, and ultimately
+                                leads to higher conversions.
                             </div>
                         </div>
 
                         <div class="accordion-item">
-                            <input type="checkbox" class="js_checkbox" id="why2" />
-                            <label for="why2" class="accordion-item-title"><span class="icon"></span>How long does it
-                                take to see
-                                results from
-                                SEO efforts?</label>
+                            <input
+                                type="checkbox"
+                                class="js_checkbox"
+                                id="why2"
+                            />
+                            <label for="why2" class="accordion-item-title"
+                                ><span class="icon"></span>How long does it take
+                                to see results from SEO efforts?</label
+                            >
                             <div class="accordion-item-desc">
-                                The timeline for seeing results from SEO can vary based on several
-                                factors, such as the competitiveness of keywords, the current state of
-                                the website, and the effectiveness of the SEO strategy. Generally, it
-                                may take several weeks to months before noticeable improvements occur.
-                                However, long-term commitment to SEO is essential for sustained
-                                success.
+                                The timeline for seeing results from SEO can
+                                vary based on several factors, such as the
+                                competitiveness of keywords, the current state
+                                of the website, and the effectiveness of the SEO
+                                strategy. Generally, it may take several weeks
+                                to months before noticeable improvements occur.
+                                However, long-term commitment to SEO is
+                                essential for sustained success.
                             </div>
                         </div>
 
                         <div class="accordion-item">
-                            <input type="checkbox" class="js_checkbox" id="why" />
-                            <label for="why" class="accordion-item-title"><span class="icon"></span>What are the key
-                                components of a
-                                successful
-                                SEO strategy?</label>
+                            <input
+                                type="checkbox"
+                                class="js_checkbox"
+                                id="why"
+                            />
+                            <label for="why" class="accordion-item-title"
+                                ><span class="icon"></span>What are the key
+                                components of a successful SEO strategy?</label
+                            >
                             <div class="accordion-item-desc">
-                                A successful SEO strategy involves various components, including
-                                keyword research, on-page optimization, quality content creation, link
-                                building, technical SEO, and user experience optimization. These
-                                elements work together to improve a website's relevance and authority
-                                in the eyes of search engines.
+                                A successful SEO strategy involves various
+                                components, including keyword research, on-page
+                                optimization, quality content creation, link
+                                building, technical SEO, and user experience
+                                optimization. These elements work together to
+                                improve a website's relevance and authority in
+                                the eyes of search engines.
                             </div>
                         </div>
                         <div class="accordion-item">
-                            <input type="checkbox" class="js_checkbox" id="why3" />
-                            <label for="why3" class="accordion-item-title"><span class="icon"></span>What is SEO, and
-                                why is it
-                                important for
-                                online businesses?</label>
+                            <input
+                                type="checkbox"
+                                class="js_checkbox"
+                                id="why3"
+                            />
+                            <label for="why3" class="accordion-item-title"
+                                ><span class="icon"></span>What is SEO, and why
+                                is it important for online businesses?</label
+                            >
                             <div class="accordion-item-desc">
-                                SEO, or Search Engine Optimization, is the practice of optimizing a
-                                website to improve its visibility on search engines like Google. It
-                                involves various techniques to enhance a site's ranking in search
-                                results. SEO is crucial for online businesses as it helps drive
-                                organic traffic, increases visibility, and ultimately leads to higher
-                                conversions.
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <input type="checkbox" class="js_checkbox" id="why4" />
-                            <label for="why4" class="accordion-item-title"><span class="icon"></span>How long does it
-                                take to see
-                                results from
-                                SEO efforts?</label>
-                            <div class="accordion-item-desc">
-                                The timeline for seeing results from SEO can vary based on several
-                                factors, such as the competitiveness of keywords, the current state of
-                                the website, and the effectiveness of the SEO strategy. Generally, it
-                                may take several weeks to months before noticeable improvements occur.
-                                However, long-term commitment to SEO is essential for sustained
-                                success.
+                                SEO, or Search Engine Optimization, is the
+                                practice of optimizing a website to improve its
+                                visibility on search engines like Google. It
+                                involves various techniques to enhance a site's
+                                ranking in search results. SEO is crucial for
+                                online businesses as it helps drive organic
+                                traffic, increases visibility, and ultimately
+                                leads to higher conversions.
                             </div>
                         </div>
 
                         <div class="accordion-item">
-                            <input type="checkbox" class="js_checkbox" id="why5" />
-                            <label for="why5" class="accordion-item-title"><span class="icon"></span>What are the key
-                                components of a
-                                successful
-                                SEO strategy?</label>
+                            <input
+                                type="checkbox"
+                                class="js_checkbox"
+                                id="why4"
+                            />
+                            <label for="why4" class="accordion-item-title"
+                                ><span class="icon"></span>How long does it take
+                                to see results from SEO efforts?</label
+                            >
                             <div class="accordion-item-desc">
-                                A successful SEO strategy involves various components, including
-                                keyword research, on-page optimization, quality content creation, link
-                                building, technical SEO, and user experience optimization. These
-                                elements work together to improve a website's relevance and authority
-                                in the eyes of search engines.
+                                The timeline for seeing results from SEO can
+                                vary based on several factors, such as the
+                                competitiveness of keywords, the current state
+                                of the website, and the effectiveness of the SEO
+                                strategy. Generally, it may take several weeks
+                                to months before noticeable improvements occur.
+                                However, long-term commitment to SEO is
+                                essential for sustained success.
                             </div>
                         </div>
 
-
+                        <div class="accordion-item">
+                            <input
+                                type="checkbox"
+                                class="js_checkbox"
+                                id="why5"
+                            />
+                            <label for="why5" class="accordion-item-title"
+                                ><span class="icon"></span>What are the key
+                                components of a successful SEO strategy?</label
+                            >
+                            <div class="accordion-item-desc">
+                                A successful SEO strategy involves various
+                                components, including keyword research, on-page
+                                optimization, quality content creation, link
+                                building, technical SEO, and user experience
+                                optimization. These elements work together to
+                                improve a website's relevance and authority in
+                                the eyes of search engines.
+                            </div>
+                        </div>
                     </section>
                 </div>
             </div>
@@ -280,102 +369,135 @@
                     <hr />
                 </div>
                 <div class="description">
-
                     <section id="contact" class="accordion">
                         <div class="accordion-item">
-                            <input type="checkbox" class="js_checkbox" id="contact1" />
-                            <label for="contact1" class="accordion-item-title"><span class="icon"></span>What is SEO, and
-                                why is it
-                                important for
-                                online businesses?</label>
+                            <input
+                                type="checkbox"
+                                class="js_checkbox"
+                                id="contact1"
+                            />
+                            <label for="contact1" class="accordion-item-title"
+                                ><span class="icon"></span>What is SEO, and why
+                                is it important for online businesses?</label
+                            >
                             <div class="accordion-item-desc">
-                                SEO, or Search Engine Optimization, is the practice of optimizing a
-                                website to improve its visibility on search engines like Google. It
-                                involves various techniques to enhance a site's ranking in search
-                                results. SEO is crucial for online businesses as it helps drive
-                                organic traffic, increases visibility, and ultimately leads to higher
-                                conversions.
+                                SEO, or Search Engine Optimization, is the
+                                practice of optimizing a website to improve its
+                                visibility on search engines like Google. It
+                                involves various techniques to enhance a site's
+                                ranking in search results. SEO is crucial for
+                                online businesses as it helps drive organic
+                                traffic, increases visibility, and ultimately
+                                leads to higher conversions.
                             </div>
                         </div>
 
                         <div class="accordion-item">
-                            <input type="checkbox" class="js_checkbox" id="contact2" />
-                            <label for="contact2" class="accordion-item-title"><span class="icon"></span>How long does it
-                                take to see
-                                results from
-                                SEO efforts?</label>
+                            <input
+                                type="checkbox"
+                                class="js_checkbox"
+                                id="contact2"
+                            />
+                            <label for="contact2" class="accordion-item-title"
+                                ><span class="icon"></span>How long does it take
+                                to see results from SEO efforts?</label
+                            >
                             <div class="accordion-item-desc">
-                                The timeline for seeing results from SEO can vary based on several
-                                factors, such as the competitiveness of keywords, the current state of
-                                the website, and the effectiveness of the SEO strategy. Generally, it
-                                may take several weeks to months before noticeable improvements occur.
-                                However, long-term commitment to SEO is essential for sustained
-                                success.
+                                The timeline for seeing results from SEO can
+                                vary based on several factors, such as the
+                                competitiveness of keywords, the current state
+                                of the website, and the effectiveness of the SEO
+                                strategy. Generally, it may take several weeks
+                                to months before noticeable improvements occur.
+                                However, long-term commitment to SEO is
+                                essential for sustained success.
                             </div>
                         </div>
 
                         <div class="accordion-item">
-                            <input type="checkbox" class="js_checkbox" id="contact3" />
-                            <label for="contact3" class="accordion-item-title"><span class="icon"></span>What are the key
-                                components of a
-                                successful
-                                SEO strategy?</label>
+                            <input
+                                type="checkbox"
+                                class="js_checkbox"
+                                id="contact3"
+                            />
+                            <label for="contact3" class="accordion-item-title"
+                                ><span class="icon"></span>What are the key
+                                components of a successful SEO strategy?</label
+                            >
                             <div class="accordion-item-desc">
-                                A successful SEO strategy involves various components, including
-                                keyword research, on-page optimization, quality content creation, link
-                                building, technical SEO, and user experience optimization. These
-                                elements work together to improve a website's relevance and authority
-                                in the eyes of search engines.
+                                A successful SEO strategy involves various
+                                components, including keyword research, on-page
+                                optimization, quality content creation, link
+                                building, technical SEO, and user experience
+                                optimization. These elements work together to
+                                improve a website's relevance and authority in
+                                the eyes of search engines.
                             </div>
                         </div>
                         <div class="accordion-item">
-                            <input type="checkbox" class="js_checkbox" id="contact6" />
-                            <label for="contact6" class="accordion-item-title"><span class="icon"></span>What is SEO, and
-                                why is it
-                                important for
-                                online businesses?</label>
+                            <input
+                                type="checkbox"
+                                class="js_checkbox"
+                                id="contact6"
+                            />
+                            <label for="contact6" class="accordion-item-title"
+                                ><span class="icon"></span>What is SEO, and why
+                                is it important for online businesses?</label
+                            >
                             <div class="accordion-item-desc">
-                                SEO, or Search Engine Optimization, is the practice of optimizing a
-                                website to improve its visibility on search engines like Google. It
-                                involves various techniques to enhance a site's ranking in search
-                                results. SEO is crucial for online businesses as it helps drive
-                                organic traffic, increases visibility, and ultimately leads to higher
-                                conversions.
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <input type="checkbox" class="js_checkbox" id="contact4" />
-                            <label for="contact4" class="accordion-item-title"><span class="icon"></span>How long does it
-                                take to see
-                                results from
-                                SEO efforts?</label>
-                            <div class="accordion-item-desc">
-                                The timeline for seeing results from SEO can vary based on several
-                                factors, such as the competitiveness of keywords, the current state of
-                                the website, and the effectiveness of the SEO strategy. Generally, it
-                                may take several weeks to months before noticeable improvements occur.
-                                However, long-term commitment to SEO is essential for sustained
-                                success.
+                                SEO, or Search Engine Optimization, is the
+                                practice of optimizing a website to improve its
+                                visibility on search engines like Google. It
+                                involves various techniques to enhance a site's
+                                ranking in search results. SEO is crucial for
+                                online businesses as it helps drive organic
+                                traffic, increases visibility, and ultimately
+                                leads to higher conversions.
                             </div>
                         </div>
 
                         <div class="accordion-item">
-                            <input type="checkbox" class="js_checkbox" id="contact5" />
-                            <label for="contact5" class="accordion-item-title"><span class="icon"></span>What are the key
-                                components of a
-                                successful
-                                SEO strategy?</label>
+                            <input
+                                type="checkbox"
+                                class="js_checkbox"
+                                id="contact4"
+                            />
+                            <label for="contact4" class="accordion-item-title"
+                                ><span class="icon"></span>How long does it take
+                                to see results from SEO efforts?</label
+                            >
                             <div class="accordion-item-desc">
-                                A successful SEO strategy involves various components, including
-                                keyword research, on-page optimization, quality content creation, link
-                                building, technical SEO, and user experience optimization. These
-                                elements work together to improve a website's relevance and authority
-                                in the eyes of search engines.
+                                The timeline for seeing results from SEO can
+                                vary based on several factors, such as the
+                                competitiveness of keywords, the current state
+                                of the website, and the effectiveness of the SEO
+                                strategy. Generally, it may take several weeks
+                                to months before noticeable improvements occur.
+                                However, long-term commitment to SEO is
+                                essential for sustained success.
                             </div>
                         </div>
 
-
+                        <div class="accordion-item">
+                            <input
+                                type="checkbox"
+                                class="js_checkbox"
+                                id="contact5"
+                            />
+                            <label for="contact5" class="accordion-item-title"
+                                ><span class="icon"></span>What are the key
+                                components of a successful SEO strategy?</label
+                            >
+                            <div class="accordion-item-desc">
+                                A successful SEO strategy involves various
+                                components, including keyword research, on-page
+                                optimization, quality content creation, link
+                                building, technical SEO, and user experience
+                                optimization. These elements work together to
+                                improve a website's relevance and authority in
+                                the eyes of search engines.
+                            </div>
+                        </div>
                     </section>
                 </div>
             </div>
@@ -388,54 +510,47 @@ import breadCrumps from "../../../components/global/breadCrumps.vue";
 
 import { init_sticky_help_subjects } from "@/modules/utilities/sticky.js";
 
-
 export default {
     data() {
         return {
             history: [
                 {
                     name: "Home",
-                    url: "/vue/v1"
+                    url: "/vue/v1",
                 },
-               
             ],
-            current: "Help"
-        }
+            current: "Help",
+        };
     },
     components: {
-
         singleNav,
-        breadCrumps
+        breadCrumps,
     },
     mounted() {
         init_sticky_help_subjects();
         $(function () {
-
-
-            var link = $('a.dot');
-
+            var link = $("a.dot");
 
             // Move to specific section when click on menu link
-            link.on('click', function (e) {
-                link.removeClass('active');
-                var target = $($(this).attr('href'));
-                $('html, body').animate({
-                    scrollTop: target.offset().top - 150
-                }, 600);
-                $(this).addClass('active');
+            link.on("click", function (e) {
+                link.removeClass("active");
+                var target = $($(this).attr("href"));
+                $("html, body").animate(
+                    {
+                        scrollTop: target.offset().top - 150,
+                    },
+                    600
+                );
+                $(this).addClass("active");
                 e.preventDefault();
             });
-
-         
         });
 
-        $('.js_checkbox').click(function(){
-           
-            $('.accordion-item-desc').addClass('hide_it');
-        })
-
+        $(".js_checkbox").click(function () {
+            $(".accordion-item-desc").addClass("hide_it");
+        });
     },
-}
+};
 </script>
 <style lang="scss" scoped>
 .accordion {
@@ -446,10 +561,8 @@ export default {
     min-width: 320px;
     margin: 5px auto;
     padding: 0 50px;
-    transition: all .3 ease;
-
+    transition: all 0.3 ease;
 }
-
 
 .accordion h1 {
     font-size: 32px;
@@ -463,7 +576,7 @@ export default {
     background: #ffffff;
     box-shadow: 0 4px 8px #80808085;
     border-radius: 30px;
-    transition: all .3 ease;
+    transition: all 0.3 ease;
 }
 
 .accordion-item .accordion-item-title {
@@ -479,7 +592,7 @@ export default {
     box-sizing: border-box;
     align-items: center;
     text-align: left;
-    letter-spacing: .4px;
+    letter-spacing: 0.4px;
 }
 
 .accordion-item .accordion-item-desc {
@@ -492,8 +605,8 @@ export default {
     padding: 10px 20px 20px;
     box-sizing: border-box;
     text-align: left;
-    letter-spacing: .4px;
-    transition: all .3 ease;
+    letter-spacing: 0.4px;
+    transition: all 0.3 ease;
 }
 
 .accordion-item input[type="checkbox"] {
@@ -503,21 +616,22 @@ export default {
     opacity: 0;
 }
 
-
-.accordion-item input[type="checkbox"]:checked~.accordion-item-desc {
-    
-    animation: fade-in 1s  ease-in-out ;
+.accordion-item input[type="checkbox"]:checked ~ .accordion-item-desc {
+    animation: fade-in 1s ease-in-out;
     display: block;
 }
-.hide_it{
-    display: none ;
+.hide_it {
+    display: none;
 }
-.accordion-item input[type="checkbox"]:checked~.accordion-item-title .icon:after {
+.accordion-item
+    input[type="checkbox"]:checked
+    ~ .accordion-item-title
+    .icon:after {
     content: "-";
     font-size: 20px;
 }
 
-.accordion-item input[type="checkbox"]~.accordion-item-title .icon:after {
+.accordion-item input[type="checkbox"] ~ .accordion-item-title .icon:after {
     content: "+";
     font-size: 20px;
 }
@@ -539,7 +653,6 @@ export default {
         font-size: 22px;
     }
 }
-
 
 .sticky {
     position: fixed;
@@ -568,18 +681,16 @@ export default {
     }
 
     .subjects {
-
         width: 30%;
         height: 60%;
-        transition: all .5s ease;
+        transition: all 0.5s ease;
         //   transform: translateY(-50%);
-
     }
 
     .content {
         width: 70%;
         border-left: 2px solid #33333391;
-margin-bottom: 7rem;
+        margin-bottom: 7rem;
         .content-index {
             text-align: center;
             margin: 3rem 0;
@@ -597,7 +708,6 @@ margin-bottom: 7rem;
                 h2 {
                     font-size: 1.5rem;
                     font-weight: 600;
-
                 }
 
                 hr {
@@ -606,14 +716,13 @@ margin-bottom: 7rem;
                     background-color: #333;
                     height: 1px;
                     border: none;
-                    margin-top: .7rem;
-
+                    margin-top: 0.7rem;
                 }
             }
 
             .description {
                 p {
-                    letter-spacing: .6px;
+                    letter-spacing: 0.6px;
                     line-height: 3rem;
                     font-size: 1.1rem;
                 }
@@ -658,7 +767,7 @@ margin-bottom: 7rem;
             color: #555;
         }
 
-        transition: all .3s ease;
+        transition: all 0.3s ease;
     }
 
     .active {
@@ -671,5 +780,4 @@ margin-bottom: 7rem;
         }
     }
 }
-
 </style>
