@@ -1,5 +1,5 @@
 <template>
-    <div class="info-container relative flex flex-col">
+    <div class="info-container user-sidebar relative flex flex-col">
         <OnClickOutside @trigger="close('outside')">
             <div class="navigation">
                 <ul>

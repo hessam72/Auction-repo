@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="user-panel-wrapper">
   <single-nav></single-nav>
   <bread-crumps v-bind:history="history" :current="current"></bread-crumps>
   <!-- <menu-section :page_title="page_title"></menu-section> -->

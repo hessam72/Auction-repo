@@ -9,11 +9,13 @@
                 display: flex !important;
                 flex-direction: column !important;
                 .winner-info{
-                    flex-direction: column;
+                    flex-direction: column !important;
+                    width: 100% !important;
                 }
                 .product{
+                    width: 100% !important;
                     .product-info{
-                        text-align: center;
+                        text-align: center !important;
                     }
                 }
             }
