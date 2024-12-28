@@ -136,8 +136,6 @@ class AdminController extends Controller
 
 
 
-
-
         return view('admin.dashboard', compact(
             'last_month_income',
             'yearly_income',

@@ -53,28 +53,20 @@ use Illuminate\Support\Facades\Route;
 */
 // Auth::routes(['broadcasting'=>false]);
 
-Route::middleware('auth')->get('/dashboard', function () {
-    return view('admin.dashboard');
-}); 
-Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+// Route::redirect('/dashboard', '/676fbdd1/dashboard');
 
 
-    // Route::get('/', function () {
-    //     return view('admin.dashboard');
-    // })->name('dashboard');
+Route::prefix('676fbdd1')->name('admin.')->middleware('auth')->group(function () {
 
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    }); 
-    Route::get('/admin', function () {
-        return view('admin.dashboard');
-    });
-    Route::get('/', function () {
-        return view('admin.dashboard');
-    });
+
+    Route::redirect('/', '/admin/dashboard');
+
+    // Route::redirect('/dashboard', '/admin/dashboard');
+
+    Route::redirect('/676fbdd1', '/admin/dashboard');
+
     Route::controller(NotificationController::class)->group(function () {
-            Route::post('/notifications/seen', 'seen_notifications');
-
+        Route::post('/notifications/seen', 'seen_notifications');
     });
 
     Route::controller(AdminController::class)->group(function () {
@@ -111,9 +103,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
 Route::controller(ProductController::class)->group(function () {
 
-    Route::post('/save-rich-text', 'saveRichText');
-    Route::post('/get-rich-text', 'getRichText');
-    Route::get('/edit-products/{product}', 'edit')->name('edit-products');
+    Route::post('/modify/save-rich-text', 'saveRichText');
+    Route::post('/modify/get-rich-text', 'getRichText');
+    Route::get('/modify/edit-products/{product}', 'edit')->name('edit-products');
 });
 
 require __DIR__ . '/auth.php';
@@ -133,63 +125,6 @@ Route::controller(ProductController::class)->group(function () {
 
 
 //vue development Routes
-
-Route::get('/vue/v1/{any?}', function () {
+Route::get('{any?}', function () {
     return view('app');
-})->where('any', '.*');
-
-
-
-
-Route::get('/test', function () {
- $auction = Auction::find(546);
-   
-        $winner_id = $auction->current_winner_id;
-        // edit auction status and final winner
-        $auction->status = 3;
-        $auction->final_winner_id = $winner_id;
-        $auction->save();
-        // return not spent bidbuddy's bid, if any...
-        $bidBuddy = BidBuddy::where('user_id', $winner_id)->where('auction_id', $auction->id)->where('available_bids', '>', 0)->first();
-        if (!empty($bidBuddy)) {
-            User::where('id', $winner_id)->increment('bid_amount', $bidBuddy->available_bids);
-            $bidBuddy->available_bids = 0;
-            $bidBuddy->status = 4; // auction over status for buddy
-            $bidBuddy->save();
-        }
-        // return bid in queue if any 
-        // TODO return bidding in queue
-
-
-
-
-
-        // calculate bids placed to win the auction
-        $bids_placed = BiddingHistory::where('user_id', $winner_id)->where('auction_id', $auction->id)->count();
-        // save in winners table 
-        Winner::create([
-            'user_id' => $winner_id,
-            'product_id' => $auction->product_id,
-            'win_price' => $auction->current_price,
-            'status' => 1,
-            'bids_placed' => $bids_placed
-        ]);
-        // TODO uncomment it 
-        // DB::commit();
-
-        //now create data to push for showing the winner
-
-
-        $winner_alert = [
-            'id' => $auction->id,
-            'bid_price' => $auction->current_price,
-            "current_winner_id" => $winner_id,
-            "current_winner_username" => $auction->user->username,
-            "timer" => $auction->timer,
-            "bidding_queues" => null,
-
-        ];
-    
-    dd('done');
-
-});
+})->where('any', '^(?!admin|products|modify|image|dashboard).*$');

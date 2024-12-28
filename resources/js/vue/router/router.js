@@ -30,65 +30,65 @@ const router = createRouter({
         // public routes
 
         {
-            path: "/vue/v1/success_payment",
+            path: "/success_payment",
             name: "success_payment",
             component: success_payment,
         },
         {
-            path: "/vue/v1/fail_payment",
+            path: "/fail_payment",
             name: "fail_payment",
             component: fail_payment,
         },
         {
-            path: "/vue/v1/partially_paid",
+            path: "/partially_paid",
             name: "partially_paid",
             component: partially_paid,
         },
         {
-            path: "/vue/v1/auctions",
+            path: "/auctions",
             name: "auctions",
             component: AuctionList,
             // meta: { isGuest: true },
         },
         {
-            path: "/vue/v1/auctions_test",
+            path: "/auctions_test",
             name: "all_auctions_test",
             component: all_auctions_test,
             // meta: { isGuest: true },
         },
         {
-            path: "/vue/v1/auction/:id",
+            path: "/auction/:id",
             name: "auction-index",
             component: AuctionIndex,
             // meta: { isGuest: true },
         },
         {
-            path: "/vue/v1/auction_test/:id",
+            path: "/auction_test/:id",
             name: "auction-index_test",
             component: AuctionIndex_test,
             // meta: { isGuest: true },
         },
         {
-            path: "/vue/v1/help",
+            path: "/help",
             name: "help",
             component: help,
             // meta: { isGuest: true },
         },
         {
-            path: "/vue/v1/winners",
+            path: "/winners",
             name: "winners",
             component: winners,
             // meta: { isGuest: true },
         },
         {
-            path: "/vue/v1/",
+            path: "/",
             name: "home",
             component: homePage,
             // meta: { isGuest: true },
         },
 
         {
-            path: "/vue/v1/user",
+            path: "/user",
             name: "user-index",
             component: UserIndex,
             meta: { needUserAuth: true },
@@ -134,7 +134,7 @@ const router = createRouter({
 
         //auth routes
         {
-            path: "/vue/v1/auth",
+            path: "/auth",
             name: "auth",
             component: auth,
             meta: { isGuest: true },

@@ -264,7 +264,7 @@
                 cache: false,
                 async: true,
                 global: false,
-                url: "/get-rich-text",
+                url: "/modify/get-rich-text",
                 data: JSON.stringify(send_data),
                 contentType: "application/json; charset=utf-8",
                 traditional: true,
@@ -337,7 +337,7 @@
                 cache: false,
                 async: true,
                 global: false,
-                url: "/save-rich-text",
+                url: "/modify/save-rich-text",
                 data: JSON.stringify(send_data),
                 // data: {
                 //     content: send_data
@@ -375,7 +375,7 @@
                 cache: false,
                 async: true,
                 global: false,
-                url: "/save-rich-text",
+                url: "/modify/save-rich-text",
                 data: JSON.stringify(send_data),
                 contentType: "application/json; charset=utf-8",
                 traditional: true,
