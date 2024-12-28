@@ -97,7 +97,7 @@ class SpecialOfferController extends Controller
 
         ]);
 
-        return redirect()->to('admin/specialOffers')->with('success', 'ثبت با موفقیت ثبت شد');
+        return redirect()->to('676fbdd1/specialOffers')->with('success', 'ثبت با موفقیت ثبت شد');
 
     }
 

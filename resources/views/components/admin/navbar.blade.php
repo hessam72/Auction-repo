@@ -66,7 +66,7 @@
                         <li class="dropdown-menu-header border-bottom">
                             <div class="dropdown-header d-flex align-items-center py-3">
                                 <h5 class="text-body mb-0 me-auto secondary-font">اعلان‌ها</h5>
-                                <form action="/admin/notifications/seen" method="POST" class="row g-3">
+                                <form action="/676fbdd1/notifications/seen" method="POST" class="row g-3">
 
                                     @csrf
 

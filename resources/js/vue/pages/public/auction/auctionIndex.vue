@@ -6,7 +6,7 @@
             v-bind:history="history"
             :current="current"
         ></bread-crumps>
-        <div class="index-container flex">
+        <div class="index-container auction-index-page flex">
             <div class="main-section">
                 <div class="first-section flex">
                     <div class="gallery-container">

@@ -54,7 +54,7 @@ class AuctionController extends Controller
 
 
         ]);
-        return redirect()->to('admin/auctions')->with('success', 'ثبت حراجی با موفقیت ثبت شد');
+        return redirect()->to('676fbdd1/auctions')->with('success', 'ثبت حراجی با موفقیت ثبت شد');
     }
 
     /**

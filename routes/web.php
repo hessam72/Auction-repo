@@ -59,11 +59,11 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('676fbdd1')->name('admin.')->middleware('auth')->group(function () {
 
 
-    Route::redirect('/', '/admin/dashboard');
+    Route::redirect('/', '/676fbdd1/dashboard');
 
     // Route::redirect('/dashboard', '/admin/dashboard');
 
-    Route::redirect('/676fbdd1', '/admin/dashboard');
+    Route::redirect('/676fbdd1', '/676fbdd1/dashboard');
 
     Route::controller(NotificationController::class)->group(function () {
         Route::post('/notifications/seen', 'seen_notifications');

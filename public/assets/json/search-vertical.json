@@ -2,61 +2,61 @@
     "pages": [{
             "name": "داشبورد",
             "icon": "bx-home-circle",
-            "url": "/admin/dashboard"
+            "url": "/676fbdd1/dashboard"
         },
         {
             "name": "دسته بندی ها",
             "icon": "bx-home-circle",
-            "url": "/admin/categories"
+            "url": "/676fbdd1/categories"
         },
         {
             "name": "جایزه ها",
             "icon": "bx-home-circle",
-            "url": "/admin/rewards"
+            "url": "/676fbdd1/rewards"
         },
         {
             "name": "چالش ها",
             "icon": "bx-home-circle",
-            "url": "/admin/challenges"
+            "url": "/676fbdd1/challenges"
         },
         {
             "name": "محصولات",
             "icon": "bx-home-circle",
-            "url": "/admin/products"
+            "url": "/676fbdd1/products"
         },
         {
             "name": "پکیج های بید",
             "icon": "bx-home-circle",
-            "url": "/admin/bidPackages"
+            "url": "/676fbdd1/bidPackages"
         },
         {
             "name": "پیشنهاد شگفت انگیز",
             "icon": "bx-home-circle",
-            "url": "/admin/specialOffers"
+            "url": "/676fbdd1/specialOffers"
         },
         {
             "name": "شهر و استان",
             "icon": "bx-home-circle",
-            "url": "/admin/states"
+            "url": "/676fbdd1/states"
         },
          {
             "name": "Redeem Codes",
             "icon": "bx-home-circle",
-            "url": "/admin/redeemCodes"
+            "url": "/676fbdd1/redeemCodes"
         }, {
             "name": "پشتیبانی",
             "icon": "bx-home-circle",
-            "url": "/admin/tickets"
+            "url": "/676fbdd1/tickets"
         },
         {
             "name": "مدیریت استان",
             "icon": "bx-home-circle",
-            "url": "/admin/cities"
+            "url": "/676fbdd1/cities"
         },
         {
             "name": "مدیریت شهر",
             "icon": "bx-home-circle",
-            "url": "/admin/states"
+            "url": "/676fbdd1/states"
         }
     ],
     "files": [{

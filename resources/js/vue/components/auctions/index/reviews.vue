@@ -1,12 +1,10 @@
 <template>
     <div class="reviews-container">
         <div class="header flex justify-between items-center">
-            <h2>Reviews ({{ total_count }})</h2>
-            <div class="add-container">
-                <button @click="open_comment_modal" class="load-more">
-                    Add Review
-                </button>
-            </div>
+            <div>
+                            <h2>Reviews ({{ total_count }})</h2>
+
+            </div>  
             <div class="total-score">
                 <star-rating
                     :round-start-rating="false"
@@ -15,6 +13,12 @@
                     :show-rating="false"
                 ></star-rating>
             </div>
+            <div class="add-container">
+                <button @click="open_comment_modal" class="load-more">
+                    Add Review
+                </button>
+            </div>
+          
         </div>
         <div
             v-for="(item, index) in comments"
@@ -471,7 +475,7 @@ export default {
     }
 }
 .add-container {
-    width: 60%;
+    width: 35%;
 }
 .rating-container {
     display: grid;

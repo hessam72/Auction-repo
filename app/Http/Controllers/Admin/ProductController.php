@@ -174,7 +174,7 @@ class ProductController extends Controller
         }
 
 
-        return redirect()->to('admin/products')->with('success', 'ویرایش با موفقیت ثبت شد');
+        return redirect()->to('676fbdd1/products')->with('success', 'ویرایش با موفقیت ثبت شد');
     }
 
     /**

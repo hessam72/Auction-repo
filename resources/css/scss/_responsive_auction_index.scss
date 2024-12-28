@@ -1,0 +1,151 @@
+// for pc
+
+@media (min-width: 1280px) {
+}
+
+//for tablets and landscape mobile
+@media (max-width: 1280px) {
+}
+
+// for mobile
+@media only screen and (max-width: 800px) {
+    .auction-index-page {
+        display: flex;
+        flex-direction: column;
+        .main-section {
+            position: relative;
+            width: 100% !important;
+            .first-section {
+                flex-direction: column !important;
+                .gallery-container {
+                    width: 100% !important;
+                    .header {
+                        padding: 4rem 0 0 0rem !important;
+                    }
+                    .gallery {
+                        left: -2rem;
+                        button {
+                            left: 4rem;
+                            right: 0;
+                            margin: auto;
+                            width: 7rem;
+                        }
+                    }
+                }
+                .kernel-container {
+                    width: 100% !important;
+                    .tags {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        width: 50vw;
+                    }
+                    .kernel {
+                        margin-top: 5.5rem;
+                        .tabel-mask {
+                            width: 100%;
+                            left: -0.04rem;
+                        }
+                        .auction-timer {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            .count-down {
+                                margin-left: 0 !important;
+                                width: 100% !important;
+                            }
+                        }
+                        .btn-container {
+                            flex-direction: column;
+                            gap: 1.5rem;
+                            .bid-now {
+                                width: 100%;
+                            }
+                            div {
+                                .launch-buddy {
+                                    padding: 1.2rem 2rem;
+                                    margin-right: 0.5rem;
+                                }
+                                input {
+                                    border-radius: 13px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .auction-users-container {
+            flex-direction: column;
+            .last-winners {
+                width: 100% !important;
+            }
+            .participaints {
+                width: 100% !important;
+            }
+        }
+        .product-info-container {
+            width: 85% !important;
+        }
+        .reviews-container {
+            .header {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                row-gap: 1.5rem;
+                margin-bottom: 2rem !important;
+                .total-score {
+                    transform: scale(0.75);
+                    margin-left: -4rem;
+                }
+                .add-container {
+                    width: max-content !important;
+                }
+            }
+            .review-container {
+                flex-direction: column;
+                gap: 2rem;
+                .user-info {
+                    width: 100%;
+                    .size {
+                        width: 70%;
+
+                        border-right: none;
+                        border-bottom: 2px solid #999;
+                    }
+                }
+                .content-container {
+                    width: 100% !important;
+                    .ratings {
+                        // display: flex !important;
+                        // flex-direction: column !important;
+                        // grid-template-columns: ;
+                        width: 100% !important;
+                        gap: 0;
+                    }
+                    .vue-star-rating {
+                        transform: scale(0.65);
+                        margin-left: -2rem;
+                    }
+                    .r-item{ 
+                        width:100%;
+                        gap: .4rem;
+                        p {
+                        width: max-content !important;
+                    }}
+                }
+            }
+            
+        }
+        .side-section{
+         
+           flex-direction: row !important;
+           overflow-x: scroll !important;
+           gap: 4rem !important;
+           margin: 3rem !important;
+           width: 86%  !important;
+           margin-bottom: 10rem !important;
+           padding-bottom: 3rem !important;
+       
+        }
+    }
+}
