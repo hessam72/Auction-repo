@@ -26,8 +26,8 @@ class BiddingController extends Controller
         // return $request->auction_id;
         //thease proces should be a transition
         //save in bidding histiory
-         // TODO: change back to use auth user id
-         $user_id=2;
+        // TODO: change back to use auth user id
+        $user_id = $data->user_id;
         try {
             DB::beginTransaction();
             $auction = Auction::find($data->auction_id);
@@ -44,19 +44,19 @@ class BiddingController extends Controller
                 ]);
 
             BiddingHistory::create([
-                "user_id" => 2,
+                "user_id" => $user_id,
                 "auction_id" => $data->auction_id,
                 "category_id" => $auction->product->category->id,
                 "bid_price" => $new_price
             ]);
 
-           
-           
-            $user=User::find($user_id);
+
+
+            $user = User::find($user_id);
             // $user=User::find($data->user_id);
-            $user->bid_amount = $user->bid_amount-1;
+            $user->bid_amount = $user->bid_amount - 1;
             $user->save();
-              
+
 
             // fethcing next bid buddy in quee if any
             $nex_queue = BiddingQueue::where('status', 1)->where('auction_id', $data->auction_id)->oldest()->first();
@@ -64,7 +64,7 @@ class BiddingController extends Controller
 
             // add heighest bidder time for user
             $add_time = 10 - $data->remaining_time;
-            $hb =  HighestBidder::where('user_id', 2)->first();
+            $hb =  HighestBidder::where('user_id', $user_id)->first();
             if ($hb) {
                 $hb->time_spent = $hb->time_spent +  $add_time;
                 $hb->save();
@@ -78,6 +78,7 @@ class BiddingController extends Controller
 
             $data = array(
                 "id" => $data->auction_id,
+                "status" => $auction->status,
                 "bid_price" => $new_price,
                 "current_winner_id" => $user_id,
                 "current_winner_username" => $user->username,
@@ -118,14 +119,13 @@ class BiddingController extends Controller
         // check if user allready  have a buddy on this auction
 
         $exist_bidBuddy = BidBuddy::where('user_id', $request->user_id)
-            ->where('auction_id', $request->auction_id)->where('available_bids','>', 0)->first();
+            ->where('auction_id', $request->auction_id)->where('available_bids', '>', 0)->first();
 
         if ($exist_bidBuddy) {
             return response()->json([
                 'error' => 'you allready have an active Buddy on this auction',
 
             ], 403);
-          
         }
 
         try {
@@ -156,7 +156,7 @@ class BiddingController extends Controller
             DB::rollback();
             return $e;
         }
-      
+
         return $biddingQueue;
     }
     public function storeBidBuddyBid(Request $request)
@@ -172,7 +172,8 @@ class BiddingController extends Controller
 
         try {
             DB::beginTransaction();
-           
+            $bidBuddy = BidBuddy::find($request->bid_buddy_id);
+            $user = $bidBuddy->user;
 
             $auction = Auction::find($request->auction_id);
 
@@ -180,12 +181,12 @@ class BiddingController extends Controller
             Auction::where('id', $request->auction_id)
                 ->update([
                     'current_price' => $new_price,
-                    'current_winner_id' => 2,
+                    'current_winner_id' => $user->id,
                     'timer' => Carbon::now()->addSeconds(10)
                 ]);
 
             BiddingHistory::create([
-                "user_id" => 2,
+                "user_id" => $user->id,
                 "auction_id" => $request->auction_id,
                 "category_id" => $auction->product->category->id,
                 "bid_price" => $new_price
@@ -194,8 +195,6 @@ class BiddingController extends Controller
             BiddingQueue::where('id', $request->bidding_queue_id)->update([
                 'status' => 0,
             ]);
-
-            $bidBuddy = BidBuddy::find($request->bid_buddy_id);
             //check if user still has bids in their bot
             if ($bidBuddy->available_bids > 1) {
                 BiddingQueue::create([
@@ -227,8 +226,10 @@ class BiddingController extends Controller
 
         $data = array(
             "id" => $request->auction_id,
+            "status" => $auction->status,
+            "current_winner_id" => $user->id,
+            "current_winner_username" => $user->username,
             "bid_price" => $new_price,
-            "current_winner_id" => 2,
             "bidding_queues" => $nex_buddy,
             "timer" => Carbon::now()->addSeconds(10)
         );
@@ -237,6 +238,7 @@ class BiddingController extends Controller
         broadcast(new MyEvent($data));
         return response()->json([
             'success' => 'bid submited',
+            'data'=>$data
 
         ]);
     }

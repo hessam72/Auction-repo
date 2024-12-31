@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\TicketController;
 use App\Http\Controllers\Admin\WinnerController;
 use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TestController;
 use App\Http\Resources\TicketResource;
 use App\Http\Resources\UserResource;
 use App\Models\Auction;
@@ -121,10 +122,13 @@ Route::controller(ProductController::class)->group(function () {
 
 
 
+Route::controller(TestController::class)->group(function () {
+    Route::get('/test', 'test');
 
+});
 
 
 //vue development Routes
 Route::get('{any?}', function () {
     return view('app');
-})->where('any', '^(?!admin|products|modify|image|dashboard).*$');
+})->where('any', '^(?!admin|products|modify|image|dashboard|test).*$');

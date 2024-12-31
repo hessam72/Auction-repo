@@ -173,7 +173,7 @@ export default {
             this.setAuctions(data);
 
             // TODO remove this bidding queue
-            // this.setBiddingQueues(queues);
+            this.setBiddingQueues(queues);
         },
         // for user direct bid
         upadteAnAuctionState(item) {

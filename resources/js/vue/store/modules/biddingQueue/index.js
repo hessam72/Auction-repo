@@ -50,12 +50,15 @@ export default {
     //calling mutations
     actions: {
         setBiddingQueues(context, payload) {
+            console.log('=-=-=-=-=-=-=-===-=-setBiddingQueues' , payload)
             context.commit("setBiddingQueues", payload);
         },
         setSingleBiddingQueue(context, payload) {
+            console.log('=-=-=-=-=-=-=-===-=-setSingleBiddingQueue' , payload)
             context.commit("setSingleBiddingQueue", payload);
         },
         addBiddingQueue(context, payload) {
+            console.log('=-=-=-=-=-=-=-===-=-addBiddingQueue' , payload)
             context.commit("addBiddingQueue", payload);
         },
     },

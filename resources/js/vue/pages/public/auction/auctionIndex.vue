@@ -571,6 +571,8 @@ export default {
                 remaining_time: this.remaining_seccounds,
                 user_id: this.user.id,
             };
+            alert(this.user.id);
+            console.log("body", body);
 
             axios
                 .post(this.baseUrl + this.bidUrl, body, {
@@ -578,6 +580,10 @@ export default {
                 })
                 .then((response) => {
                     console.log(response.data);
+                    setTimeout(() => {
+                        console.log("checking store auction....");
+                        console.log(this.findAuctionInStore(this.auction.id));
+                    }, 1000);
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -616,7 +622,6 @@ export default {
         // TODO make end auction login in single file for all components
 
         endAuction(id) {
-            return;
             let bidding_queue = this.findBiddingQueue(id);
             console.log(id);
 
@@ -636,7 +641,12 @@ export default {
                 alert("your bot is done");
                 return;
             }
-
+            console.log("body pf buddy");
+            console.log(
+                bidding_queue.bid_buddy_id,
+                bidding_queue.auction_id,
+                bidding_queue.id
+            );
             axios
                 .post(this.baseUrl + this.submitbBidFromBuddyUrl, {
                     bid_buddy_id: bidding_queue.bid_buddy_id,
@@ -644,7 +654,12 @@ export default {
                     bidding_queue_id: bidding_queue.id,
                 })
                 .then((response) => {
-                    console.log(response.data);
+                    console.log('-----');
+                    console.log(response);
+                    console.log("checking store auction....");
+                        console.log(this.findAuctionInStore(this.auction.id));
+                        this.addBiddingQueue(response.data.data.bidding_queues);
+
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -691,6 +706,7 @@ export default {
         this.disconnect();
     },
     mounted() {
+        console.log(this.findAuctionInStore(212));
         // this.connect(); //connect to Pusher
         // Elastic Slider (c) 2014 // Taron Mehrabyan // Ruben Sargsyan
         init_elastic_slider();
