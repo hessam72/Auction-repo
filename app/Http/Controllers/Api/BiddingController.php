@@ -159,6 +159,10 @@ class BiddingController extends Controller
 
         return $biddingQueue;
     }
+
+
+
+    
     public function storeBidBuddyBid(Request $request)
     {
         //validate params:

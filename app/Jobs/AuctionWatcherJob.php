@@ -1,56 +1,63 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Jobs;
 
+use App\Events\WinAlertEvent;
+use App\Models\BiddingHistory;
+use App\Models\Winner;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
 use App\Events\AutoBiddingEvent;
 use App\Events\TestEvent;
-use App\Events\WinAlertEvent;
 use App\Models\Auction;
 use App\Models\BidBuddy;
-use App\Models\BiddingHistory;
 use App\Models\BiddingQueue;
 use App\Models\User;
-use App\Models\Winner;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
-
-class ManagingBidBudiesCommand extends Command
+class AuctionWatcherJob implements ShouldQueue
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'app:managing-bid-budies-command';
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
-     * The console command description.
-     *
-     * @var string
+     * Create a new job instance.
      */
-    protected $description = 'checking all live auctions and running bid buddies queues on them if exist ';
+    public function __construct()
+    {
+        //
+    }
 
     /**
-     * Execute the console command.
+     * Execute the job.
      */
-    // TODO sometimes bidbuddy wont work after counter reaches zero and needs new manual bidding to restart
     public function handle()
     {
+        echo "Task is running at " . now() . "\n"; // Logs to console
 
         //fetch auctions that are live 
         $liveAuctions = Auction::where('status', 100)->orderBy('timer', 'DESC')->get();
+        
+        if(count($liveAuctions)===0){
+            return;
+        }
+
+        echo "allowed to run"; // Logs to console
 
         $excuted_bids = [];
         //check if they have bid in queue
         foreach ($liveAuctions as $auction) {
             //check to see if next buddy in queue is from different user than latest auction bidder
+           
 
             if (count($auction->uniqe_bid_buddies) === 0) {
                 //  there is no new bidder other than current winner 
                 // save auction as ended with final winner
-                $this->info('there is a winner');
-                $this->info($auction->id);
+                // $this->info('there is a winner');
+                // $this->info($auction->id);
                 $this->saveWinner($auction);
                 continue; // no need for calculating new bids anymore
             }
@@ -58,13 +65,14 @@ class ManagingBidBudiesCommand extends Command
 
             if ($next_bid) {
                 //has bid to run
-
                 $new_winner_id = $next_bid->bid_buddy->user_id;
 
                 //check timer
                 $now = Carbon::now()->subSeconds(3);
                 $next_3_sec = Carbon::now()->addSeconds(4);
-                if ($auction->timer->between($now, $next_3_sec)) {
+                if ($auction->timer->between($now, $next_3_sec) || $auction->timer < Carbon::now()) {
+                    
+
                     // submit bid ...
                     $new_price = $auction->current_price + 1;
                     // $new_timer = Carbon::create($auction->timer)->addSeconds(10);
@@ -125,8 +133,7 @@ class ManagingBidBudiesCommand extends Command
             }
         }
 
-        // dd($excuted_bids);
-
+       
         //if there was any new bid submitted then broadcast it
         if (count($excuted_bids) > 0) {
             broadcast(new AutoBiddingEvent($excuted_bids));
@@ -151,7 +158,6 @@ class ManagingBidBudiesCommand extends Command
                 $bidBuddy->save();
             }
             // return bid in queue if any 
-            // TODO return bidding in queue
 
 
             // calculate bids placed to win the auction
@@ -164,7 +170,6 @@ class ManagingBidBudiesCommand extends Command
                 'status' => 1,
                 'bids_placed' => $bids_placed
             ]);
-        //   TODO UNCOMMENT IT AND BROADCAST
             DB::commit();
 
             //now create data to push for showing the winner
@@ -186,7 +191,7 @@ class ManagingBidBudiesCommand extends Command
             DB::rollback();
         }
         if (!empty($winner_alert)) {
-            $this->info('sending winner alert');
+            // $this->info('sending winner alert');
             broadcast(new WinAlertEvent($winner_alert));
         }
     }

@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\Console\Commands\DispatchAuctionWatcher;
+use App\Jobs\AuctionWatcherJob;
 use App\Models\BidBuddy;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -12,28 +14,48 @@ class Kernel extends ConsoleKernel
     /**
      * Define the application's command schedule.
      */
-    protected function schedule(Schedule $schedule): void
+    protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->everyMinute()->appendOutputTo("scheduler-output.log");
-        //auction main thread
-        $schedule->command('app:managing-bid-budies-command')
-            ->runInBackground()
-            ->everyTwoSeconds()
-            ->withoutOverlapping()
-            ->appendOutputTo("scheduler-output.log");
+        // currentlly not using watcher for auctionwatcherjob and running it directlly
+        dispatch(new DispatchAuctionWatcher());
 
-        //  is for buddy
+        
 
-        // $schedule->command('app:check-monthly-challenges-command')
-        // ->runInBackground()
-        // ->everyTenMinutes()
-        // ->appendOutputTo("scheduler-output.log");
-        // check for highest bidder level and challenges progress every hour
+        //  echo "first ";
+        // // Schedule a task to run every minute
+        // $schedule->call(function () {
+        //     $this->runEverySevenSeconds();
+        // })->everyTenSeconds(); // Scheduler runs every minute
+    }
 
+    private function runEverySevenSeconds()
+    {
+        echo "runEverySevenSeconds ask";
+        $start = now();
+        while (now()->diffInSeconds($start) < 60) {
+            if (now()->diffInSeconds($start) % 7 === 0) { // Every 7 seconds
+                echo "every 7 sec ask";
+                $this->checkConditionAndDispatch();
+            }
+            sleep(1); // Wait 1 second before checking again
+        }
+    }
 
+    private function checkConditionAndDispatch()
+    {
+        // Your condition here
+        if ($this->someCondition()) {  
+            
+            echo "Condition met: DispatchTaskJob dispatched at " . now() . "\n";
 
-        // $schedule->call('App\Http\Controllers\firstController@index')
-        //      ->everyMinute()->name('firstController_cronjob')->withoutOverlapping();
+            dispatch(new DispatchAuctionWatcher());
+        }
+    }
+
+    private function someCondition()
+    {
+        // Replace this with your actual condition
+        return rand(0, 1) === 1; // Random true/false for demonstration
     }
 
     /**

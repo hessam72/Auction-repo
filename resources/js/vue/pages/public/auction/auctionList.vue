@@ -249,41 +249,42 @@ export default {
                 .finally(() => {});
         },
         endAuction(id) {
-            let bidding_queue = this.findBiddingQueue(id);
-            console.log(bidding_queue);
+            return // this logic handeling on backend
+            // let bidding_queue = this.findBiddingQueue(id);
+            // console.log(bidding_queue);
 
-            // check to see if there is bid buddy
-            if (bidding_queue != null) {
-                console.log("running bid");
-                this.runBidBudies(bidding_queue, id);
-            } else {
-                console.log("we have a winner");
-            }
+            // // check to see if there is bid buddy
+            // if (bidding_queue != null) {
+            //     console.log("running bid");
+            //     this.runBidBudies(bidding_queue, id);
+            // } else {
+            //     console.log("we have a winner");
+            // }
         },
-        runBidBudies(bidding_queue, auction_id) {
-            if (!bidding_queue)
-                bidding_queue = this.findBiddingQueue(auction_id);
-            if (bidding_queue.is_empthy) {
-                alert("your bot is done");
-                return;
-            }
+        // runBidBudies(bidding_queue, auction_id) {
+        //     if (!bidding_queue)
+        //         bidding_queue = this.findBiddingQueue(auction_id);
+        //     if (bidding_queue.is_empthy) {
+        //         alert("your bot is done");
+        //         return;
+        //     }
 
-            axios
-                .post(this.baseUrl + this.submitbBidFromBuddyUrl, {
-                    bid_buddy_id: bidding_queue.bid_buddy_id,
-                    auction_id: bidding_queue.auction_id,
-                    bidding_queue_id: bidding_queue.id,
-                })
-                .then((response) => {
-                    console.log(response.data);
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
-                .finally(function () {
-                    // always executed
-                });
-        },
+        //     axios
+        //         .post(this.baseUrl + this.submitbBidFromBuddyUrl, {
+        //             bid_buddy_id: bidding_queue.bid_buddy_id,
+        //             auction_id: bidding_queue.auction_id,
+        //             bidding_queue_id: bidding_queue.id,
+        //         })
+        //         .then((response) => {
+        //             console.log(response.data);
+        //         })
+        //         .catch(function (error) {
+        //             console.log(error);
+        //         })
+        //         .finally(function () {
+        //             // always executed
+        //         });
+        // },
     },
     created() {
         this.fetchAuctions();

@@ -622,52 +622,53 @@ export default {
         // TODO make end auction login in single file for all components
 
         endAuction(id) {
-            let bidding_queue = this.findBiddingQueue(id);
-            console.log(id);
+            return //this logic is handeling on backend
+            // let bidding_queue = this.findBiddingQueue(id);
+            // console.log(id);
 
-            // check to see if there is bid buddy
-            if (bidding_queue != null) {
-                console.log("running bid");
-                this.runBidBudies(bidding_queue, id);
-            } else {
-                console.log("we have a winner");
-            }
+            // // check to see if there is bid buddy
+            // if (bidding_queue != null) {
+            //     console.log("running bid");
+            //     this.runBidBudies(bidding_queue, id);
+            // } else {
+            //     console.log("we have a winner");
+            // }
         },
-        runBidBudies(bidding_queue, auction_id) {
-            if (!bidding_queue)
-                bidding_queue = this.findBiddingQueue(auction_id);
+        // runBidBudies(bidding_queue, auction_id) {
+        //     if (!bidding_queue)
+        //         bidding_queue = this.findBiddingQueue(auction_id);
 
-            if (bidding_queue.is_empthy) {
-                alert("your bot is done");
-                return;
-            }
-            console.log("body pf buddy");
-            console.log(
-                bidding_queue.bid_buddy_id,
-                bidding_queue.auction_id,
-                bidding_queue.id
-            );
-            axios
-                .post(this.baseUrl + this.submitbBidFromBuddyUrl, {
-                    bid_buddy_id: bidding_queue.bid_buddy_id,
-                    auction_id: bidding_queue.auction_id,
-                    bidding_queue_id: bidding_queue.id,
-                })
-                .then((response) => {
-                    console.log('-----');
-                    console.log(response);
-                    console.log("checking store auction....");
-                        console.log(this.findAuctionInStore(this.auction.id));
-                        this.addBiddingQueue(response.data.data.bidding_queues);
+        //     if (bidding_queue.is_empthy) {
+        //         alert("your bot is done");
+        //         return;
+        //     }
+        //     console.log("body pf buddy");
+        //     console.log(
+        //         bidding_queue.bid_buddy_id,
+        //         bidding_queue.auction_id,
+        //         bidding_queue.id
+        //     );
+        //     axios
+        //         .post(this.baseUrl + this.submitbBidFromBuddyUrl, {
+        //             bid_buddy_id: bidding_queue.bid_buddy_id,
+        //             auction_id: bidding_queue.auction_id,
+        //             bidding_queue_id: bidding_queue.id,
+        //         })
+        //         .then((response) => {
+        //             console.log('-----');
+        //             console.log(response);
+        //             console.log("checking store auction....");
+        //                 console.log(this.findAuctionInStore(this.auction.id));
+        //                 this.addBiddingQueue(response.data.data.bidding_queues);
 
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
-                .finally(function () {
-                    // always executed
-                });
-        },
+        //         })
+        //         .catch(function (error) {
+        //             console.log(error);
+        //         })
+        //         .finally(function () {
+        //             // always executed
+        //         });
+        // },
         submitBiBuddy() {
             if (this.user.id === undefined || this.user.id === null) {
                 this.toast.error("You must be loged in to Activate BidBuddy");
@@ -697,10 +698,7 @@ export default {
                     // always executed
                 });
         },
-        //     live_countDown_ended(id){
-        //       console.log('emitting from auction index:' + id)
-        //       this.emitter.emit("live_timer_end", id);
-        //    }
+      
     },
     beforeDestroy() {
         this.disconnect();
