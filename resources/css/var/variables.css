@@ -17,9 +17,11 @@ $bp-largest: 75em; // 1200px
 $bp-large: 62.5em; // 1000px
 $bp-medium: 50em; // 800px;
 $bp-small: 37.5em; // 600px; */
+
+
 :root {
-  --color-primary: #251646;
-  --color-secondary: #1e618b;
+  --color-primary: rgb(37, 22, 70);
+  --color-secondary: rgb(30, 97, 139);
   /* --color-secondary: #5572A9; */
 /* primary layers */
   --color-primary-shade-1: #130928;
