@@ -5,7 +5,7 @@ import homePage from "../pages/public/homePage/index.vue";
 import AuctionList from "../pages/public/auction/auctionList.vue";
 import all_auctions_test from "../pages/public/auction/all.vue";
 import help from "../pages/public/help/index.vue";
-import AuctionIndex from "../pages/public/auction/AuctionIndex.vue";
+import AuctionIndex from "../pages/public/auction/auctionIndex.vue";
 import AuctionIndex_test from "../pages/public/auction/index.vue";
 import winners from "../pages/public/winners/index.vue";
 import UserIndex from "../pages/user/index.vue";
