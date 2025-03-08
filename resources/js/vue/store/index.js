@@ -26,7 +26,8 @@ const store = createStore({
     state() {
         return {
             //data
-            baseUrl: "http://localhost:8000/api/",
+            baseUrl: "http://http://84.200.154.112/api/",
+            // baseUrl: "http://localhost:8000/api/",
             nowPayUrl: "https://api.nowpayments.io/v1/",
             nowPayKey: "GW4J958-SERM1JD-QHCBDTB-4VJ6Z8N",
         };
