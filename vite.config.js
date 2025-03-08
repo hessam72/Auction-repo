@@ -25,10 +25,12 @@ export default defineConfig({
           
         }),
         laravel({
-            input: [
-                'resources/css/scss/main.scss',
-                'resources/js/app.js',
-            ],
+            input: ["resources/css/app.css", "resources/js/app.js"],
+
+            // input: [
+            //     'resources/css/scss/main.scss',
+            //     'resources/js/app.js',
+            // ],
             refresh: true,
         }),
     ],
