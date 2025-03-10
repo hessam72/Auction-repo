@@ -14,6 +14,14 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     use Upload;
+
+public function test_api(){
+    $u=User::all();
+    return $u;
+}
+
+
+
     public function index(Request $request)
     {
 

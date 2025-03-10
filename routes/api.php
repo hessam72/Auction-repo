@@ -169,3 +169,8 @@ Route::controller(BiddersController::class)->prefix('/bidders')->group(function 
 
     Route::post('/auction', 'biddersInAuction');
 });
+Route::controller(UserController::class)->prefix('/test')->group(function () {
+
+
+    Route::get('/', 'test_api');
+});
