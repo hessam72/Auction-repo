@@ -16,7 +16,7 @@ class UserController extends Controller
     use Upload;
 
 public function test_api(){
-    return 'hello';
+    
     $u=User::all();
     return $u;
 }
