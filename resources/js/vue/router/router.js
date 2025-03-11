@@ -155,7 +155,7 @@ router.beforeEach(function (to, from, next) {
     };
     axios({
         method: "post",
-        url: "http://84.200.154.112/api/save_visit",
+        url: "https://dealioners.com/api/save_visit",
         data: body,
     })
         .then((response) => {

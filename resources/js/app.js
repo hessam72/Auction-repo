@@ -37,7 +37,7 @@ app.config.globalProperties.emitter = emitter;
 
 axios.defaults.withCredentials = true;
 
-axios.defaults.baseURL = 'http://84.200.154.112/api/';
+axios.defaults.baseURL = 'https://dealioners.com/api/';
 
 app.use(router);
 app.use(Countdown);
