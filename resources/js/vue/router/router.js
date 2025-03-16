@@ -155,6 +155,7 @@ router.beforeEach(function (to, from, next) {
     };
     axios({
         method: "post",
+        // url: "http://localhost:8000/api/save_visit",
         url: "https://dealioners.com/api/save_visit",
         data: body,
     })

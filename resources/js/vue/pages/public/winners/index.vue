@@ -35,8 +35,9 @@
                             <img
                                 class="rounded-full"
                                 :src="'/storage/' + item.user.profile_pic"
-                                onerror="this.src='/storage/images/user_profiles/blank.png'"   
                             />
+                            <!-- onerror="this.src='/storage/images/user_profiles/blank.png'"    -->
+
                             <p>{{ item.user.username }}</p>
                         </div>
                         <div

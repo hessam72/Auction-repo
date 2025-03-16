@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\Auction;
+use App\Models\Challenge;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -17,6 +20,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
+       
         return view('auth.login');
     }
 
@@ -25,14 +29,30 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        
+        $credentials = $request->validated();
+
         
         $request->authenticate();
-       
+        $remember = $request->filled('remember');
 
-        $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        // Attempt to authenticate the user with the provided credentials and "remember me" option
+        if (Auth::attempt($credentials, $remember)) {
+
+            // Regenerate the session to prevent session fixation attacks
+            $request->session()->regenerate();
+
+          
+
+            // Redirect the user to their intended destination
+            return redirect()->intended(RouteServiceProvider::HOME);
+        }
+
+        // If authentication fails, redirect back with an error message
+        return back()->withErrors([
+            'message' => 'کاربری یافت نشد',
+        ]);
+
     }
 
     /**

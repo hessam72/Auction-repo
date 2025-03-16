@@ -23,7 +23,7 @@
 
             <ul class="navbar-nav flex-row align-items-center ms-auto">
                 <!-- Language -->
-                <li class="nav-item dropdown-language dropdown me-2 me-xl-0">
+                {{-- <li class="nav-item dropdown-language dropdown me-2 me-xl-0">
                     <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                         <i class="fi fi-ir fis rounded-circle fs-3 me-1"></i>
                     </a>
@@ -42,7 +42,7 @@
                         </li>
 
                     </ul>
-                </li>
+                </li> --}}
                 <!--/ Language -->
 
                 <!-- Style Switcher -->
