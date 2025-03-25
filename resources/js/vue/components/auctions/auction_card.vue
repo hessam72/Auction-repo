@@ -141,9 +141,12 @@
                 >
                     Auction Ended
                 </button>
-                <button class="btn-secoundary">
+                <router-link class="btn-secoundary" to="/user/buy_it_now">
+                     <button>
                     Buy it Now for ${{ buy_now_price }}
                 </button>
+                </router-link>
+               
             </div>
         </div>
     </div>
@@ -335,6 +338,8 @@ export default {
     border-bottom: 1px solid;
     width: 70%;
     margin: auto;
+    text-align: center;
+    text-decoration: none;
 }
 
 .btn-primary {

@@ -1,7 +1,6 @@
 <template>
-    <div id="hero-section" class=" relative">
+    <div id="hero-section" class="relative">
         <div id="head-line" class="hero-container flex w-full relative">
-
             <div class="content w-full px-20 flex flex-col gap-7 py-14 z-20">
                 <div class="w-6/12">
                     <h1 class="header text-5xl text-slate-200">
@@ -21,55 +20,77 @@
                             Start Bidding
                         </button> -->
                         <button class="cssbuttons-io hero-cta">
-                            <span>
-                                <!-- <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0 0h24v24H0z" fill="none"></path>
-      <path
-        d="M24 12l-5.657 5.657-1.414-1.414L21.172 12l-4.243-4.243 1.414-1.414L24 12zM2.828 12l4.243 4.243-1.414 1.414L0 12l5.657-5.657L7.07 7.757 2.828 12zm6.96 9H7.66l6.552-18h2.128L9.788 21z"
-        fill="currentColor"
-      ></path>
-    </svg> -->
-                                Start Bidding</span>
+                            <span><router-link to="/auctions"> Start Bidding</router-link></span>
                         </button>
 
                         <button
-                            class="seccoundary transition ease-in-out bg-sky-200 hover:bg-sky-400 px-3 py-1.5 rounded text-slate-900 rounded-full">
+                            class="seccoundary transition ease-in-out bg-sky-200 hover:bg-sky-400 px-3 py-1.5 rounded text-slate-900 rounded-full"
+                        >
+                        <router-link to="/help"> 
                             Learn more
+                            </router-link>
                         </button>
                     </div>
                 </div>
             </div>
         </div>
-        <svg class="editorial" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-            viewBox="0 24 150 28 " preserveAspectRatio="none">
+        <svg
+            class="editorial"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 24 150 28 "
+            preserveAspectRatio="none"
+        >
             <defs>
-                <path id="gentle-wave" d="M-160 44c30 0 
+                <path
+                    id="gentle-wave"
+                    d="M-160 44c30 0 
     58-18 88-18s
     58 18 88 18 
     58-18 88-18 
     58 18 88 18
-    v44h-352z" />
+    v44h-352z"
+                />
                 <linearGradient id="grad1" x1="0%" x2="100%" y1="0%" y2="0%">
                     <stop offset="10%" stop-color="rgb(178 195 219)" />
                     <stop offset="80%" stop-color="rgb(232 232 232)" />
                 </linearGradient>
                 <linearGradient id="grad2" x1="0%" x2="100%" y1="0%" y2="0%">
-                    <stop offset="10%" stop-color="var(--color-secondary-tint-2)" />
+                    <stop
+                        offset="10%"
+                        stop-color="var(--color-secondary-tint-2)"
+                    />
                     <stop offset="80%" stop-color="rgb(232, 232, 232) " />
                 </linearGradient>
-                background: linear-gradient(90deg, var(--color-secondary-tint-2), rgb(232, 232, 232) 41%);
+                background: linear-gradient(90deg,
+                var(--color-secondary-tint-2), rgb(232, 232, 232) 41%);
             </defs>
             <g class="parallax1">
-                <use xlink:href="#gentle-wave" x="50" y="3" fill="rgb(41, 24, 76)" />
+                <use
+                    xlink:href="#gentle-wave"
+                    x="50"
+                    y="3"
+                    fill="rgb(41, 24, 76)"
+                />
             </g>
             <g class="parallax2">
-                <use xlink:href="#gentle-wave" x="50" y="0" fill="rgb(77, 115, 173) " />
+                <use
+                    xlink:href="#gentle-wave"
+                    x="50"
+                    y="0"
+                    fill="rgb(77, 115, 173) "
+                />
             </g>
             <g class="parallax3">
                 <use xlink:href="#gentle-wave" x="50" y="9" fill="#3461c1" />
             </g>
             <g class="parallax4">
-                <use xlink:href="#gentle-wave" x="50" y="6" fill="url(#grad2)" />
+                <use
+                    xlink:href="#gentle-wave"
+                    x="50"
+                    y="6"
+                    fill="url(#grad2)"
+                />
                 />
             </g>
         </svg>
@@ -82,7 +103,6 @@
             </a>
         </div>
     </div>
-
 </template>
 
 <script>
@@ -110,9 +130,9 @@ export default {
     }),
     mounted() {
         //Smooth Scrolling Using Navigation Menu
-        $('#scroll_down_link').on("click", function (e) {
-            $('#scroll-down-animation').removeClass('fade-in');
-            $('#scroll-down-animation').addClass('fade-out');
+        $("#scroll_down_link").on("click", function (e) {
+            $("#scroll-down-animation").removeClass("fade-in");
+            $("#scroll-down-animation").addClass("fade-out");
             $("html,body").animate(
                 {
                     scrollTop: $($(this).attr("href")).offset().top - 100,
@@ -124,14 +144,12 @@ export default {
         // apear scrolldown icon on top
         //On Scroll Functionality
         $(window).scroll(() => {
-
             var windowTop = $(window).scrollTop();
             if (windowTop < 100) {
                 //on top
-                $('#scroll-down-animation').removeClass('fade-out');
-                $('#scroll-down-animation').addClass('fade-in-slow');
+                $("#scroll-down-animation").removeClass("fade-out");
+                $("#scroll-down-animation").addClass("fade-in-slow");
             }
-
         });
     },
     components: { VueperSlides, VueperSlide },
@@ -156,9 +174,11 @@ export default {
 .content {
     background: rgb(41, 24, 76);
     // background: linear-gradient(90deg, rgba(41,24,76,1) 7%, rgba(77,115,173,0.14607841427586654) 100%);   height: 100%;
-    background: linear-gradient(90deg,
-            var(--color-primary),
-            var(--color-secondary));
+    background: linear-gradient(
+        90deg,
+        var(--color-primary),
+        var(--color-secondary)
+    );
     padding-top: 4rem;
     margin-bottom: 4rem;
 }
@@ -181,11 +201,15 @@ export default {
     max-height: 60px;
     margin: 0;
     z-index: 99;
-    bottom: .5rem;
+    bottom: 0.5rem;
     position: absolute;
     left: 0px;
     float: left;
-    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    background: linear-gradient(
+        90deg,
+        var(--color-primary),
+        var(--color-secondary)
+    );
 }
 
 .cta {
@@ -203,32 +227,28 @@ export default {
     padding: 0.6rem 1.5rem;
 }
 
-.parallax1>use {
-
+.parallax1 > use {
     // animation: move-forever1 10s linear infinite;
     &:nth-child(1) {
         animation-delay: -2s;
     }
 }
 
-.parallax2>use {
-
+.parallax2 > use {
     // animation: move-forever2 8s linear infinite;
     &:nth-child(1) {
         animation-delay: -2s;
     }
 }
 
-.parallax3>use {
-
+.parallax3 > use {
     // animation: move-forever3 6s linear infinite;
     &:nth-child(1) {
         animation-delay: -2s;
     }
 }
 
-.parallax4>use {
-
+.parallax4 > use {
     // animation: move-forever4 4s linear infinite;
     &:nth-child(1) {
         animation-delay: -2s;
@@ -275,10 +295,7 @@ export default {
     }
 }
 
-
-
-
-// cta 
+// cta
 .cssbuttons-io {
     position: relative;
     font-family: inherit;
@@ -292,7 +309,6 @@ export default {
     color: ghostwhite;
     overflow: hidden;
     padding: 0.5rem 1.7rem;
-
 }
 
 .cssbuttons-io svg {
@@ -339,8 +355,6 @@ export default {
 
 //scroll btn
 
-
-
 #scroll-down-animation {
     position: absolute;
     bottom: -1rem;
@@ -349,9 +363,6 @@ export default {
     z-index: 99;
     cursor: pointer;
     // transition: all .3;
-
-
-
 }
 
 .fade-in {
@@ -363,12 +374,12 @@ export default {
 }
 
 .fade-out {
-    animation: fade-out 0.7s cubic-bezier(0.85, 0, 0.15, 1) .5s 1 normal both;
+    animation: fade-out 0.7s cubic-bezier(0.85, 0, 0.15, 1) 0.5s 1 normal both;
 }
 
 #scroll-header {
     color: #fff;
-    font-family: 'Roboto', 'Arial', sans-serif;
+    font-family: "Roboto", "Arial", sans-serif;
     font-weight: 200;
     font-size: 16px;
 }
@@ -381,7 +392,6 @@ export default {
     height: 70px;
     width: 35px;
     position: relative;
-
 }
 
 .move {

@@ -3,8 +3,6 @@
         <nav-bar-section :is_single_nav="true"></nav-bar-section>
         <hero-section :special_offer></hero-section>
         <main-section
-     
-
             :test_auctions="test_auctions"
             :is_loading_more="inline_loading"
             @loadMore="fetchAuctions"
@@ -79,11 +77,9 @@ export default {
                 .listen(".win-event", (e) => {
                     // listening for bidbuddy submit bid
                     console.log("winner");
-                    console.log(e);  
-                    
-                    vm.upadteAnAuctionState(e.data);
+                    console.log(e);
 
-                   
+                    vm.upadteAnAuctionState(e.data);
                 });
         },
         disconnect() {
@@ -119,10 +115,9 @@ export default {
                     }
                     // console.log(JSON.parse(  JSON.stringify(this.auctions)));
                     this.saveAuctions();
-
                 })
                 .catch((error) => {
-                    console.log(error)
+                    console.log(error);
                     // throw error.response.data.message;
                 })
                 .finally(() => {
@@ -213,7 +208,8 @@ export default {
                     console.log(response);
                     this.auctions = response.data.data;
                     this.test_auctions = this.auctions;
-
+console.log('path ',this.$route.path)
+                 
                     this.saveAuctions();
                 })
                 .catch((error) => {
@@ -249,7 +245,7 @@ export default {
                 .finally(() => {});
         },
         endAuction(id) {
-            return // this logic handeling on backend
+            return; // this logic handeling on backend
             // let bidding_queue = this.findBiddingQueue(id);
             // console.log(bidding_queue);
 

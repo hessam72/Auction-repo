@@ -29,15 +29,15 @@ export function generatePaymentLink(
         price_currency: "usd",
         order_id: order_id, // random generated id for tracking paymennt from provider
         order_description: description,
-        ipn_callback_url: "http://localhost:8000/vue/v1/?order_id="+order_id+"redirect=" + redirect_path,
+        ipn_callback_url: "http://localhost:8000/?order_id="+order_id+"redirect=" + redirect_path,
         success_url:
-            "http://localhost:8000/vue/v1/success_payment?order_id="+order_id+"&redirect=" +
+            "http://localhost:8000/success_payment?order_id="+order_id+"&redirect=" +
             redirect_path,
         cancel_url:
-            "http://localhost:8000/vue/v1/fail_payment?order_id="+order_id+"redirect=" +
+            "http://localhost:8000/fail_payment?order_id="+order_id+"redirect=" +
             redirect_path,
         partially_paid_url:
-            "http://localhost:8000/vue/v1/partially_paid?order_id="+order_id+"redirect=" +
+            "http://localhost:8000/partially_paid?order_id="+order_id+"redirect=" +
             redirect_path,
         is_fixed_rate: true,
         is_fee_paid_by_user: true,

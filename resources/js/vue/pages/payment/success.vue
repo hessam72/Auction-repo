@@ -160,7 +160,7 @@ export default {
                 });
         },
         redirect() {
-            this.$router.push(this.$route.query.redirect || "/vue/v1/");
+            this.$router.push(this.$route.query.redirect || "/");
         },
     },
     computed: {

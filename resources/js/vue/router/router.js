@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
+import NProgress from 'nprogress';
+
 import store from "../store/index.js";
 
 import homePage from "../pages/public/homePage/index.vue";
@@ -149,24 +151,28 @@ const router = createRouter({
 
 router.beforeEach(function (to, from, next) {
     // save visitor
+    NProgress.start();
 
-    const body = {
-        url: to.fullPath,
-    };
-    axios({
-        method: "post",
-        // url: "http://localhost:8000/api/save_visit",
-        url: "https://dealioners.com/api/save_visit",
-        data: body,
-    })
-        .then((response) => {
-            //    console.log(response)
+    try {
+        const body = {
+            url: to.fullPath,
+        };
+        axios({
+            method: "post",
+            url: "http://localhost:8000/api/save_visit",
+            // url: "https://dealioners.com/api/save_visit",
+            data: body,
         })
-        .catch((error) => {
-            console.log(error);
-        });
-
-
+            .then((response) => {
+                //    console.log(response)
+            })
+            .catch((error) => {
+                console.log("errorrecft");
+                console.log(error);
+            });
+    } catch (err) {
+        console.log(err);
+    }
 
     // document.title = translatePageName(to.name);
 
@@ -195,5 +201,7 @@ router.beforeEach(function (to, from, next) {
 
     next();
 });
-
+router.afterEach(() => {
+    NProgress.done();
+  });
 export default router;

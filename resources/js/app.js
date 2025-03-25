@@ -22,11 +22,13 @@ import jQuery from 'jquery';
 import Toast from "vue-toastification";
 // Import the CSS or use your own!
 import "vue-toastification/dist/index.css";
-
+import NProgress from 'nprogress';
+import 'nprogress/nprogress.css';
 const options = {
     // You can set your default options here
 };
 
+NProgress.configure({ showSpinner: false });
 
 var $ = jQuery;
 window.$ = $;
@@ -37,7 +39,8 @@ app.config.globalProperties.emitter = emitter;
 
 axios.defaults.withCredentials = true;
 
-axios.defaults.baseURL = 'https://dealioners.com/api/';
+axios.defaults.baseURL = 'http://localhost:8000/api/';
+// axios.defaults.baseURL = 'https://dealioners.com/api/';
 
 app.use(router);
 app.use(Countdown);

@@ -6,7 +6,7 @@
         </span>
         <div class="divider"></div>
     </div>
-    <div v-if="packages.length === 3" class="pricing-section section-container ">
+    <div v-if="packages.length === 3" class="pricing-section section-container">
         <div class="buy-header-container">
             <h2 style="display: inline" class="section-title">Buy</h2>
             <h2
@@ -15,6 +15,7 @@
             >
                 Bid
             </h2>
+
             <h2 class="section-title" style="display: inline">& Start Today</h2>
         </div>
         <section class="section">
@@ -53,26 +54,28 @@
                             <!-- BEGIN TABLE FOOTER -->
                             <div class="table__footer">
                                 <!-- <a href="#" class="button">Get Started</a> -->
-                                <button class="cssbuttons-io-button">
-                                    Get started
-                                    <div class="icon">
-                                        <svg
-                                            height="24"
-                                            width="24"
-                                            viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path
-                                                d="M0 0h24v24H0z"
-                                                fill="none"
-                                            ></path>
-                                            <path
-                                                d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
-                                                fill="currentColor"
-                                            ></path>
-                                        </svg>
-                                    </div>
-                                </button>
+                                <router-link to="/user/bid_packages">
+                                    <button class="cssbuttons-io-button">
+                                        Get started
+                                        <div class="icon">
+                                            <svg
+                                                height="24"
+                                                width="24"
+                                                viewBox="0 0 24 24"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <path
+                                                    d="M0 0h24v24H0z"
+                                                    fill="none"
+                                                ></path>
+                                                <path
+                                                    d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                                    fill="currentColor"
+                                                ></path>
+                                            </svg>
+                                        </div>
+                                    </button>
+                                </router-link>
                             </div>
                             <!-- END TABLE FOOTER -->
                         </div>
@@ -80,7 +83,10 @@
                     </div>
                     <!-- main -->
                     <!-- first package is most expensive and main one -->
-                    <div data-index="2" class="center-p price-card col-md-4 p-md-0">
+                    <div
+                        data-index="2"
+                        class="center-p price-card col-md-4 p-md-0"
+                    >
                         <!-- BEGIN TABLE -->
                         <div
                             style="position: relative"
@@ -116,26 +122,28 @@
                             </div>
                             <!-- BEGIN TABLE FOOTER -->
                             <div class="table__footer">
-                                <button class="cssbuttons-io-button">
-                                    Get started
-                                    <div class="icon">
-                                        <svg
-                                            height="24"
-                                            width="24"
-                                            viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path
-                                                d="M0 0h24v24H0z"
-                                                fill="none"
-                                            ></path>
-                                            <path
-                                                d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
-                                                fill="currentColor"
-                                            ></path>
-                                        </svg>
-                                    </div>
-                                </button>
+                                <router-link to="/user/bid_packages">
+                                    <button class="cssbuttons-io-button">
+                                        Get started
+                                        <div class="icon">
+                                            <svg
+                                                height="24"
+                                                width="24"
+                                                viewBox="0 0 24 24"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <path
+                                                    d="M0 0h24v24H0z"
+                                                    fill="none"
+                                                ></path>
+                                                <path
+                                                    d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                                    fill="currentColor"
+                                                ></path>
+                                            </svg>
+                                        </div>
+                                    </button>
+                                </router-link>
                             </div>
                             <!-- END TABLE FOOTER -->
                         </div>
@@ -171,26 +179,28 @@
                             </div>
                             <!-- BEGIN TABLE FOOTER -->
                             <div class="table__footer">
-                                <button class="cssbuttons-io-button">
-                                    Get started
-                                    <div class="icon">
-                                        <svg
-                                            height="24"
-                                            width="24"
-                                            viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path
-                                                d="M0 0h24v24H0z"
-                                                fill="none"
-                                            ></path>
-                                            <path
-                                                d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
-                                                fill="currentColor"
-                                            ></path>
-                                        </svg>
-                                    </div>
-                                </button>
+                                <router-link to="/user/bid_packages">
+                                    <button class="cssbuttons-io-button">
+                                        Get started
+                                        <div class="icon">
+                                            <svg
+                                                height="24"
+                                                width="24"
+                                                viewBox="0 0 24 24"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <path
+                                                    d="M0 0h24v24H0z"
+                                                    fill="none"
+                                                ></path>
+                                                <path
+                                                    d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                                                    fill="currentColor"
+                                                ></path>
+                                            </svg>
+                                        </div>
+                                    </button>
+                                </router-link>
                             </div>
                             <!-- END TABLE FOOTER -->
                         </div>
@@ -207,14 +217,16 @@ export default {
     props: ["packages"],
     mounted() {
         document.querySelectorAll(".price-card").forEach((card) => {
-        card.addEventListener("click", function () {
-            // Remove the 'active' class from all cards
-            document.querySelectorAll(".price-card").forEach((c) => c.classList.remove("active"));
-            
-            // Add the 'active' class to the clicked card
-            this.classList.add("active");
+            card.addEventListener("click", function () {
+                // Remove the 'active' class from all cards
+                document
+                    .querySelectorAll(".price-card")
+                    .forEach((c) => c.classList.remove("active"));
+
+                // Add the 'active' class to the clicked card
+                this.classList.add("active");
+            });
         });
-    });
     },
 };
 </script>

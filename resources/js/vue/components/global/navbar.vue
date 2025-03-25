@@ -86,6 +86,8 @@
                 <div class="relative hidden sm:ml-6 sm:block">
                     <label for="Search" class="sr-only"> Search </label>
                     <input
+                        @keyup.enter="search"
+                        v-model="search_input"
                         type="text"
                         id="Search"
                         placeholder="Search for..."
@@ -96,6 +98,7 @@
                         class="search-label absolute inset-y-0 end-0 grid w-10 place-content-center"
                     >
                         <button
+                            @click="search"
                             type="button"
                             class="text-gray-600 hover:text-gray-700"
                         >
@@ -154,7 +157,8 @@
                             leave-from-class="transform opacity-100 scale-100"
                             leave-to-class="transform opacity-0 scale-95"
                         >
-                            <MenuItems v-if="tickets.length > 0"
+                            <MenuItems
+                                v-if="tickets.length > 0"
                                 class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                             >
                                 <MenuItem
@@ -210,7 +214,8 @@
                             leave-from-class="transform opacity-100 scale-100"
                             leave-to-class="transform opacity-0 scale-95"
                         >
-                            <MenuItems v-if="notifications.length >0"
+                            <MenuItems
+                                v-if="notifications.length > 0"
                                 class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                             >
                                 <MenuItem
@@ -240,9 +245,9 @@
                                 <img
                                     class="h-8 w-8 rounded-full"
                                     :src="'/storage/' + user.profile_pic"
-                                    onerror="this.src='/storage/images/user_profiles/blank.png'"
                                     alt=""
                                 />
+                                <!-- onerror="this.src='/storage/images/user_profiles/blank.png'" -->
                             </MenuButton>
                         </div>
                         <transition
@@ -356,6 +361,8 @@ export default {
     },
     data() {
         return {
+            search_input: null,
+
             logoutUrl: "auth/logout",
             email: null,
             password: null,
@@ -426,7 +433,7 @@ export default {
         ...mapGetters(["baseUrl", "UserAuthToken", "user"]),
     },
     methods: {
-        ...mapActions(["logoutUser"]),
+        ...mapActions(["logoutUser", "clearUser"]),
         sticky_navbar() {
             //only sticky on home page
             if (this.$route.name != "home") return;
@@ -464,6 +471,8 @@ export default {
                 headers: config,
             })
                 .then((response) => {
+                    console.log("99999999999");
+
                     this.notifications = response.data.notifications;
                     this.tickets = response.data.tickets;
                     this.notify_count = this.notifications.length;
@@ -471,13 +480,19 @@ export default {
                     console.log(this.notifications, this.tickets);
                 })
                 .catch((error) => {
-                    console.log("error");
-                    console.log(error);
+                    console.log("error starts");
+                    this.notifications = [];
+                    this.tickets = [];
+                    this.notify_count = 0;
+                    if (error.response.status === 401) {
+                        // token expired
+                        this.logout();
+                    }
                 })
                 .finally(() => {});
         },
         seenNotifications() {
-            if(this.notify_count == 0){
+            if (this.notify_count == 0) {
                 return;
             }
             let config = {
@@ -497,7 +512,6 @@ export default {
                     setTimeout(() => {
                         this.notify_count = 0;
                     }, 3000);
-                    
                 })
                 .catch((error) => {
                     console.log("error");
@@ -511,16 +525,29 @@ export default {
                 .then((response) => {
                     console.log("logout response");
                     console.log(response);
+
                     this.logoutUser();
+                    this.clearUser();
+                    console.log("after logoutuser:: ", this.UserAuthToken);
+
                     this.$router.push({ name: "home" });
+                    console.log("after router push");
                 })
                 .catch(function (error) {
-                    console.log("error");
+                    console.log("logout error");
                     console.log(error);
                 })
                 .finally(function () {
                     // always executed
                 });
+        },
+        search() {
+            if (this.$route.path !== "/auctions") {
+                setTimeout(() => {
+                    this.emitter.emit("search-auctions", this.search_input);
+                }, 1000);
+                this.$router.replace("/auctions");
+            }
         },
     },
     components: {

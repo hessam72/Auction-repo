@@ -108,8 +108,9 @@
                                                         auction.id
                                                     ).avatar
                                                 "
-                                                onerror="this.src='/storage/images/user_profiles/blank.png'"
                                             />
+                                            <!-- onerror="this.src='/storage/images/user_profiles/blank.png'" -->
+
                                         </div>
                                     </div>
                                     <div class="winner-info">
@@ -389,11 +390,11 @@ export default {
             history: [
                 {
                     name: "Home",
-                    url: "/vue/v1",
+                    url: "/",
                 },
                 {
                     name: "Auctions",
-                    url: "/vue/v1/auctions",
+                    url: "/auctions",
                 },
             ],
             updateBookmarkUrl: "bookmark/toggle",

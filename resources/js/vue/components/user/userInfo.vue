@@ -106,8 +106,9 @@
                     <img
                         class="user_img"
                         :src="'/storage/' + user.profile_pic"
-                        onerror="this.src='/storage/images/user_profiles/blank.png'"
                     />
+                    <!-- onerror="this.src='/storage/images/user_profiles/blank.png'" -->
+
                 </div>
             </div>
             <hr class="pic-hr" />

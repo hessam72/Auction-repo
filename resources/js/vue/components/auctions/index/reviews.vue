@@ -32,8 +32,9 @@
                             <img
                                 class="user_img"
                                 :src="'/storage/' + item.user.profile_pic"
-                                onerror="this.src='/storage/images/user_profiles/blank.png'"
-                            />
+                            />       
+                                                     <!-- onerror="this.src='/storage/images/user_profiles/blank.png'" -->
+
                         </div>
                     </div>
                     <div class="winner-info">

@@ -29,6 +29,6 @@ class VisitorController extends Controller
         return response()->json([
             'success' => 'visit saved',
 
-        ], 201);
+        ], 200);
     }
 }

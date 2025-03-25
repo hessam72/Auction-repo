@@ -516,7 +516,7 @@ export default {
             history: [
                 {
                     name: "Home",
-                    url: "/vue/v1",
+                    url: "/",
                 },
             ],
             current: "Help",

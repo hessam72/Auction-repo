@@ -32,11 +32,11 @@ export default {
       history: [
         {
           name: "Home",
-          url: "/vue/v1"
+          url: "/"
         }, 
         {
           name: "User",
-          url: "/vue/v1/user"
+          url: "/user"
         },
 
       ],

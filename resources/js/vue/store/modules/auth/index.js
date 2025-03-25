@@ -19,7 +19,7 @@ export default {
         loginUser(context, payload) {
             context.commit("setUserAuthToken", payload);
         },
-        logoutUser(context) {
+        logoutUser(context ) {
             sessionStorage.clear();
             context.commit("setUserAuthToken", null);
 
