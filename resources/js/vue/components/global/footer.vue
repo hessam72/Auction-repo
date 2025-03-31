@@ -97,6 +97,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.footer-infos{
+  position: relative;
+}
 .footer-main{
   margin-top:-4rem;
 }

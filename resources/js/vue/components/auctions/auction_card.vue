@@ -285,15 +285,20 @@ export default {
 }
 .auction-img {
     width: 100%;
+    background: #fff;
 
     img {
         height: 13rem;
         padding: 1rem;
-    background: #fff;
+        width: auto;
+        margin: auto;
+        border-radius: 20px;
+        overflow: hidden;
     }
 }
 
 .item-container {
+    max-width: 25rem;
     margin-bottom: 3rem;
     border-radius: 30px;
     // box-shadow: 0 2px 14px #3a3a3a8c;

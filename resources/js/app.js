@@ -24,6 +24,21 @@ import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
+
+
+// Vuetify
+import 'vuetify/styles'
+import { createVuetify } from 'vuetify'
+import * as components from 'vuetify/components'
+import * as directives from 'vuetify/directives'
+
+
+const vuetify = createVuetify({
+    components,
+    directives,
+  })
+
+
 const options = {
     // You can set your default options here
 };
@@ -41,6 +56,7 @@ axios.defaults.withCredentials = true;
 
 axios.defaults.baseURL = 'http://localhost:8000/api/';
 // axios.defaults.baseURL = 'https://dealioners.com/api/';
+app.use(vuetify);
 
 app.use(router);
 app.use(Countdown);
@@ -48,7 +64,6 @@ app.use(Toast, options);
 
 router.app = app;
 app.use(store);
-router.app = app
 
 app.component(VueCountdown.name, VueCountdown);
 app.component("loading", loading);

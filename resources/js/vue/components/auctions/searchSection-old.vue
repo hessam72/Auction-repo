@@ -1,34 +1,23 @@
 <template>
-    <OnClickOutside
-        @trigger="
-            () => {
-                 drawer = false;
-                search_checkbox=true
-            }
-        "
-    >
-        <div class="search-sec-container">
-            <v-btn @click="drawer = !drawer" prepend-icon="$vuetify">
-                Filters
-            </v-btn> 
-            <v-btn @click="clearFilters()" prepend-icon="$vuetify">
-                clear Filters
-            </v-btn>
-            <v-app class="slider-wrp">
-                <!-- Navigation Drawer acting as the Slider -->
-                <v-navigation-drawer
-                    class="sidenav-6"
-                    v-model="drawer"
-                    :temporary="true"
-                    :width="drawerWidth"
-                    fixed
-                    left
+    <OnClickOutside @trigger="close('outside')">
+        <div id="menu" class="search-section-container temp-sticky">
+            <div class="filter-container">
+                <nav
+                    id="sidenav-6"
+                    class="fixed left-0 top-0 z-[1035] h-screen w-60 -translate-x-full overflow-hidden bg-white shadow-[0_4px_12px_0_rgba(0,0,0,0.07),_0_2px_4px_rgba(0,0,0,0.05)] data-[te-sidenav-hidden='false']:translate-x-0 dark:bg-zinc-800"
+                    data-te-sidenav-init
+                    data-te-sidenav-hidden="false"
+                    data-te-sidenav-accordion="true"
                 >
-                    <ul class="relative m-0 list-none px-[0.2rem]">
+                    <ul
+                        class="relative m-0 list-none px-[0.2rem]"
+                        data-te-sidenav-menu-ref
+                    >
                         <li class="relative">
                             <a
                                 style="color: #fff"
                                 class="filter-header flex h-12 cursor-pointer items-center truncate rounded-[5px] px-6 py-4 text-[0.875rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
+                                data-te-sidenav-link-ref
                             >
                                 <span
                                     class="mr-4 [&>svg]:h-4 [&>svg]:w-4 [&>svg]:text-gray-400 dark:[&>svg]:text-gray-300"
@@ -39,7 +28,12 @@
                             </a>
                         </li>
                     </ul>
-                    <ul class="relative m-0 list-none px-[0.2rem]">
+                    <hr class="my-4" />
+
+                    <ul
+                        class="relative m-0 list-none px-[0.2rem]"
+                        data-te-sidenav-menu-ref
+                    >
                         <li class="relative">
                             <div
                                 class="filter_item category flex flex-col justify-start"
@@ -49,7 +43,7 @@
                                     <p>Category</p>
                                 </div>
                                 <div class="select-container">
-                                    <div class="main" style="width: 100%;">
+                                    <div class="main">
                                         <!-- <select v-model="category_id" name="">
                                             <option
                                                 @click="selectCat(item.id)"
@@ -82,49 +76,36 @@
                             >
                                 <div class="filter-item-header">
                                     <ion-icon name="cash"></ion-icon>
-                                    <p>Price range</p>
+                                    <p>Price range not working on touch</p>
                                 </div>
-                                <v-range-slider
-                                    v-model="priceRange"
-                                    :min="minPrice"
-                                    :max="maxPrice"
-                                    :step="step"
-                                    thumb-label
-                                    color="primary"
-                                    track-color="grey"
-                                    thumb-color="secondary"
-                                >
-                                    <template v-slot:prepend>
-                                        <v-text-field
-                                        
-                                            v-model="priceRange[0]"
-                                            density="compact"
-                                            style="color:black; width: 70px"
-                                            type="number"
-                                            variant="outlined"
-                                            hide-details
-                                            single-line
-                                        ></v-text-field>
-                                    </template>
-                                    <template v-slot:append>
-                                        <v-text-field
-                                        
-                                            v-model="priceRange[1]"
-                                            density="compact"
-                                            style="color:black; width: 70px"
-                                            type="number"
-                                            variant="outlined"
-                                            hide-details
-                                            single-line
-                                        ></v-text-field>
-                                    </template>
-                                </v-range-slider>
+                                <span class="multi-range">
+                                    <input
+                                        type="range"
+                                        min="0"
+                                        max="10000"
+                                        v-model="min"
+                                        id="lower"
+                                    />
+                                    <input
+                                        type="range"
+                                        min="0"
+                                        max="10000"
+                                        v-model="max"
+                                        id="upper"
+                                    />
+                                </span>
+                                <div class="range-label">
+                                    <p>${{ min }}</p>
+                                    <p>${{ max }}</p>
+                                </div>
                             </div>
                         </li>
                     </ul>
-
                     <hr class="my-4" />
-                    <ul class="relative m-0 list-none px-[0.2rem]">
+                    <ul
+                        class="relative m-0 list-none px-[0.2rem]"
+                        data-te-sidenav-menu-ref
+                    >
                         <li class="relative">
                             <div
                                 class="filter_item flex flex-col justify-start"
@@ -139,15 +120,53 @@
                         </li>
                     </ul>
 
-                    <template v-slot:append>
-                        <div class="pa-2">
-                            <v-btn block @click="filterAuctions()">
-                                Apply Filters
-                            </v-btn>
-                        </div>
-                    </template>
-                </v-navigation-drawer>
-            </v-app>
+                    <ul
+                        class="filter-btn-container relative m-0 list-none px-[0.2rem]"
+                        data-te-sidenav-menu-ref
+                    >
+                        <button @click="filterAuctions()" class="filter-btn">
+                            Apply Filters
+                        </button>
+                    </ul>
+                </nav>
+                <!-- Sidenav -->
+
+                <!-- new btn -->
+                <button
+                    class="filter-btn"
+                    data-te-sidenav-toggle-ref
+                    data-te-target="#sidenav-6"
+                    aria-controls="#sidenav-6"
+                    aria-haspopup="true"
+                >
+                    <span class="filter-icon">
+                        <svg viewBox="0 0 175 80" width="40" height="40">
+                            <rect
+                                width="80"
+                                height="15"
+                                fill="#333"
+                                rx="10"
+                            ></rect>
+                            <rect
+                                y="30"
+                                width="80"
+                                height="15"
+                                fill="#333"
+                                rx="10"
+                            ></rect>
+                            <rect
+                                y="60"
+                                width="80"
+                                height="15"
+                                fill="#333"
+                                rx="10"
+                            ></rect>
+                        </svg>
+                    </span>
+                    <span class="filter-text">Filter</span>
+                </button>
+            </div>
+
             <div class="s-container">
                 <!--  -->
                 <input
@@ -197,13 +216,17 @@ onMounted(() => {
     // close();
     //select dropdown jquery
     // init_dropdown();
+
     // sticky filters
-    // init_sticky_nav();
-    // // close nav on click outside
-    // // initTE({ Select });
-    // initTE({ Sidenav });
-    // // price range selector
-    // init_range_selector();
+    init_sticky_nav();
+
+    // close nav on click outside
+
+    // initTE({ Select });
+    initTE({ Sidenav });
+
+    // price range selector
+    init_range_selector();
 });
 </script>
 
@@ -225,12 +248,6 @@ export default {
             catUrl: "categories/all",
             selected_cat: {},
             search_checkbox: true,
-            drawer: false,
-            drawerWidth: 350, // Adjust the width as needed
-            minPrice: 0,
-            maxPrice: 1000,
-            step: 10,
-            priceRange: [200, 800],
         };
     },
     computed: {
@@ -238,31 +255,22 @@ export default {
     },
     mounted() {},
     methods: {
-        search_checkbox_toggle() {
+        search_checkbox_toggle(){
             // false means user click on search icon when input is expanded
-            if (!this.search_checkbox && this.search_input != null) {
+            if(!this.search_checkbox && this.search_input != null){
                 // search should excute
                 this.search();
                 // stop search from minimizing
+
             }
-            //   $('#checkbox').toggleClass('ckeckbox_checked');
-            //   $('#mainbox').toggleClass('mainbox_checked');
-            //   $('#iconContainer').toggleClass('iconContainer_checked');
-            //   $('#search_input').toggleClass('search_input_checked');
-        },
-        clearFilters(){
-            this.min= 1;
-            this.max= 10000;
-            this.search_input= null;
-            this.category_id= null;
-            this.sortBy= null;
-            this.cats= [];
-          
-            this.selected_cat= {};
-            this.search();
-            this.filterAuctions()
+        //   $('#checkbox').toggleClass('ckeckbox_checked');
+        //   $('#mainbox').toggleClass('mainbox_checked');
+        //   $('#iconContainer').toggleClass('iconContainer_checked');
+        //   $('#search_input').toggleClass('search_input_checked');
+           
         },
         selectCat(val) {
+            alert("fffff");
             console.log(val);
         },
         setSortBy(val) {
@@ -280,19 +288,28 @@ export default {
                 max: Number(this.max),
             };
             this.emitter.emit("filter-auctions", data);
-            this.drawer = false;
         },
+        close() {
+            if (this.$route.name != "auctions") return;
 
+            document.getElementById("sidenav-6").style.transform =
+                "translateX(-100%)";
+        },
+        open_filters() {
+            // document.getElementById('backdrop').style.display = "block";
+        },
         fetchCategories() {
             var url = this.baseUrl + this.catUrl;
             axios
                 .get(url)
                 .then((response) => {
+                   
                     this.cats = response.data.data;
                     this.cats.unshift({
-                        id: 0,
-                        title: "All",
+                        id:0,
+                        title:'All'
                     });
+                   
                 })
                 .catch((error) => {
                     throw error;
@@ -318,11 +335,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.slider-wrp {
-    position: absolute;
-    z-index: 9999999999;
-}
-
 * {
     transition: all 0.3s ease;
 }
@@ -349,7 +361,7 @@ export default {
     padding: 0.3rem 0.45rem;
 }
 
-// for manually managing toggle
+// for manually managing toggle 
 // .checkbox:focus {
 //     border: none;
 //     outline: none;
@@ -367,6 +379,9 @@ export default {
 // .iconContainer_checked{
 //     padding-right: 8px !important;
 // }
+
+
+
 
 .checkbox:checked {
     right: 10px;
@@ -588,21 +603,10 @@ input[type="range"]::-webkit-slider-thumb::before {
     transform: translateX(-100%);
 }
 
-.sidenav-6 {
-    // height: 40rem !important;
-    // top: 21.2rem;
-    // overflow: scroll;
-    padding: 0 0.5rem;
-    box-shadow: rgb(0, 0, 0) 0px 1px 7px;
-    border-right: 4px solid #806cb2;
-    background-color: var(--color-primary);
-    backdrop-filter: blur(2px);
-}
-
 .filter_item {
     gap: 1rem;
     font-size: 1.3rem;
-    color: #ccd2e5;
+    color: #eee;
     padding: 0 1rem;
 }
 
@@ -621,13 +625,13 @@ input[type="range"]::-webkit-slider-thumb::before {
     height: 3px;
 }
 
-.search-sec-container {
+.search-section-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
     padding-right: 3.5rem;
-    // backdrop-filter: blur(9px);
+    backdrop-filter: blur(9px);
     box-shadow: 0 2px 10px;
     background-color: var(--color-primary-tint-6);
 }
