@@ -35,7 +35,7 @@ export default {
             is_loading: false,
             inline_loading: false,
             skip: 0,
-            take: 3,
+            take: 10,
             test_val: 0,
         };
     },

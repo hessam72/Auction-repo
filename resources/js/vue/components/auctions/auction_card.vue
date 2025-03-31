@@ -17,7 +17,7 @@
                 name="bookmark"
             ></ion-icon>
         </div>
-        <div class="rounded-t-3xl overflow-hidden">
+        <div class="rounded-t-3xl overflow-hidden crd-shadow">
             <div class="auction-img">
                 <p class="card-title">{{ title }}</p>
                 <img
@@ -48,6 +48,13 @@
                 >
                     <p class="starting_time">{{ start_time }}</p>
                     <p class="current-winner">Bid during last 9 seconds.</p>
+                </div> 
+                 <div
+                    v-else-if="status === 0"
+                    class="header flex flex-col gap-1"
+                >
+                    <p class="starting_time">{{ start_time }}</p>
+                    <p class="current-winner">Auction is de-active</p>
                 </div>
                 <div
                     v-else-if="status === 3"
@@ -72,7 +79,23 @@
                         </div>
                     </vue-countdown>
                 </div>
-                <div v-if="status === 3" class="auction-timer">
+                
+                <div v-if="status === 0" class="auction-timer">
+                    <div class="count-down">
+                        <div style="padding: .7rem 1rem;" class="number">
+                            <ion-icon class="trophy" name="ban-outline"></ion-icon>
+                        </div>
+                        <div class="seperator">:</div>
+                        <div  style="padding: .7rem 1rem;"class="number">
+                            <ion-icon class="trophy" name="ban-outline"></ion-icon>
+                        </div>
+                        <div class="seperator">:</div>
+                        <div style="padding: .7rem 1rem;" class="number">
+                            <ion-icon class="trophy" name="ban-outline"></ion-icon>
+                        </div>
+                    </div>
+                </div>
+                 <div v-if="status === 3" class="auction-timer">
                     <div class="count-down">
                         <div style="padding: .7rem 1rem;" class="number">
                             <ion-icon class="trophy" name="trophy"></ion-icon>
@@ -140,6 +163,12 @@
                     class="w-full startingsoon-btn"
                 >
                     Auction Ended
+                </button>
+                  <button
+                    v-else-if="status === 0"
+                    class="w-full startingsoon-btn"
+                >
+                    Currently unavailable
                 </button>
                 <router-link class="btn-secoundary" to="/user/buy_it_now">
                      <button>
@@ -250,6 +279,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.crd-shadow{
+    box-shadow: 0 2px 14px rgba(58, 58, 58, 0.5490196078);
+    border-radius: 40px;
+}
 .auction-img {
     width: 100%;
 
@@ -263,7 +296,7 @@ export default {
 .item-container {
     margin-bottom: 3rem;
     border-radius: 30px;
-    box-shadow: 0 2px 14px #3a3a3a8c;
+    // box-shadow: 0 2px 14px #3a3a3a8c;
 
     .content {
         border-bottom-right-radius: 30px;
