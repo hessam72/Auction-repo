@@ -25,17 +25,27 @@ import "vue-toastification/dist/index.css";
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 
-
 // Vuetify
 import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
+import { aliases, mdi } from 'vuetify/iconsets/mdi'
+// import { fa } from 'vuetify/iconsets/fa' // FontAwesome
+// import '@fortawesome/fontawesome-free/css/all.css'
 
+import '@mdi/font/css/materialdesignicons.css'
 
 const vuetify = createVuetify({
     components,
     directives,
+    icons: {
+      defaultSet: 'mdi', // Set MDI as the default icon set
+      aliases,
+      sets: {
+          mdi
+      },
+  },
   })
 
 

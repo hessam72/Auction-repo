@@ -1,5 +1,5 @@
 <template>
-    <div class="item-container  auction-card-wrapper relative">
+    <div class="item-container auction-card-wrapper relative">
         <div v-if="no_new_bidders" class="no-new-bidders">no new bidders</div>
         <div @click="toggleBookmark()" class="bookmark-container">
             <ion-icon
@@ -48,8 +48,8 @@
                 >
                     <p class="starting_time">{{ start_time }}</p>
                     <p class="current-winner">Bid during last 9 seconds.</p>
-                </div> 
-                 <div
+                </div>
+                <div
                     v-else-if="status === 0"
                     class="header flex flex-col gap-1"
                 >
@@ -79,33 +79,42 @@
                         </div>
                     </vue-countdown>
                 </div>
-                
+
                 <div v-if="status === 0" class="auction-timer">
                     <div class="count-down">
-                        <div style="padding: .7rem 1rem;" class="number">
-                            <ion-icon class="trophy" name="ban-outline"></ion-icon>
+                        <div style="padding: 0.7rem 1rem" class="number">
+                            <ion-icon
+                                class="trophy"
+                                name="ban-outline"
+                            ></ion-icon>
                         </div>
                         <div class="seperator">:</div>
-                        <div  style="padding: .7rem 1rem;"class="number">
-                            <ion-icon class="trophy" name="ban-outline"></ion-icon>
+                        <div style="padding: 0.7rem 1rem" class="number">
+                            <ion-icon
+                                class="trophy"
+                                name="ban-outline"
+                            ></ion-icon>
                         </div>
                         <div class="seperator">:</div>
-                        <div style="padding: .7rem 1rem;" class="number">
-                            <ion-icon class="trophy" name="ban-outline"></ion-icon>
+                        <div style="padding: 0.7rem 1rem" class="number">
+                            <ion-icon
+                                class="trophy"
+                                name="ban-outline"
+                            ></ion-icon>
                         </div>
                     </div>
                 </div>
-                 <div v-if="status === 3" class="auction-timer">
+                <div v-if="status === 3" class="auction-timer">
                     <div class="count-down">
-                        <div style="padding: .7rem 1rem;" class="number">
+                        <div style="padding: 0.7rem 1rem" class="number">
                             <ion-icon class="trophy" name="trophy"></ion-icon>
                         </div>
                         <div class="seperator">:</div>
-                        <div  style="padding: .7rem 1rem;"class="number">
+                        <div style="padding: 0.7rem 1rem" class="number">
                             <ion-icon class="trophy" name="trophy"></ion-icon>
                         </div>
                         <div class="seperator">:</div>
-                        <div style="padding: .7rem 1rem;" class="number">
+                        <div style="padding: 0.7rem 1rem" class="number">
                             <ion-icon class="trophy" name="trophy"></ion-icon>
                         </div>
                     </div>
@@ -157,25 +166,22 @@
                     class="w-full startingsoon-btn"
                 >
                     Starting Soon {{ status }}
-                </button> 
+                </button>
                 <button
                     v-else-if="status === 3"
                     class="w-full startingsoon-btn"
                 >
                     Auction Ended
                 </button>
-                  <button
+                <button
                     v-else-if="status === 0"
                     class="w-full startingsoon-btn"
                 >
                     Currently unavailable
                 </button>
                 <router-link class="btn-secoundary" to="/user/buy_it_now">
-                     <button>
-                    Buy it Now for ${{ buy_now_price }}
-                </button>
+                    <button>Buy it Now for ${{ buy_now_price }}</button>
                 </router-link>
-               
             </div>
         </div>
     </div>
@@ -188,7 +194,15 @@ import {
     translateAuctionStatus,
     convertDateToMilliSeconds,
 } from "@/modules/utilities.js";
+import { useToast } from "vue-toastification";
+
 export default {
+    setup() {
+        // Get toast interface
+        const toast = useToast();
+
+        return { toast };
+    },
     data() {
         return {
             updateBookmarkUrl: "bookmark/toggle",
@@ -197,7 +211,7 @@ export default {
         };
     },
     computed: {
-        ...mapGetters(["baseUrl", "UserAuthToken"]),
+        ...mapGetters(["baseUrl", "UserAuthToken","user"]),
     },
     mounted() {
         this.current_bookmark_status = this.is_bookmarked;
@@ -208,9 +222,14 @@ export default {
         convertDateToMilliSeconds,
 
         toggleBookmark() {
+            if (this.user?.id === undefined || this.user?.id === null || !this.UserAuthToken)  {
+                this.toast.error("You must be loged in to Bookmark an Auction");
+                return;
+            }
             let config = {
                 Authorization: this.UserAuthToken,
             };
+
             const body = {
                 auction_id: this.auction_id,
             };
@@ -279,7 +298,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.crd-shadow{
+.crd-shadow {
     box-shadow: 0 2px 14px rgba(58, 58, 58, 0.5490196078);
     border-radius: 40px;
 }
@@ -328,7 +347,8 @@ export default {
     .icon-bg {
         position: absolute;
         color: var(--color-primary-tint-1);
-        right: 0;
+        right: 0.5rem;
+        top: 0.5rem;
         cursor: pointer;
         z-index: 11;
     }
@@ -340,7 +360,7 @@ export default {
         right: 0;
     }
 }
-.trophy{
+.trophy {
     font-size: 1.7rem;
     color: gold;
 }

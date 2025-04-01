@@ -2,15 +2,16 @@
     <OnClickOutside
         @trigger="
             () => {
-                 drawer = false;
-                search_checkbox=true
+                drawer = false;
+                search_checkbox = true;
             }
         "
     >
         <div class="search-sec-container">
-            <v-btn @click="drawer = !drawer" prepend-icon="$vuetify">
-                Filters
-            </v-btn> 
+          
+            <v-btn @click="drawer = !drawer" prepend-icon="mdi-filter-variant">
+                            Filters
+            </v-btn>
             <v-btn @click="clearFilters()" prepend-icon="$vuetify">
                 clear Filters
             </v-btn>
@@ -49,7 +50,7 @@
                                     <p>Category</p>
                                 </div>
                                 <div class="select-container">
-                                    <div class="main" style="width: 100%;">
+                                    <div class="main" style="width: 100%">
                                         <!-- <select v-model="category_id" name="">
                                             <option
                                                 @click="selectCat(item.id)"
@@ -96,10 +97,9 @@
                                 >
                                     <template v-slot:prepend>
                                         <v-text-field
-                                        
                                             v-model="priceRange[0]"
                                             density="compact"
-                                            style="color:black; width: 70px"
+                                            style="color: black; width: 70px"
                                             type="number"
                                             variant="outlined"
                                             hide-details
@@ -108,10 +108,9 @@
                                     </template>
                                     <template v-slot:append>
                                         <v-text-field
-                                        
                                             v-model="priceRange[1]"
                                             density="compact"
-                                            style="color:black; width: 70px"
+                                            style="color: black; width: 70px"
                                             type="number"
                                             variant="outlined"
                                             hide-details
@@ -151,7 +150,7 @@
             <div class="s-container">
                 <!--  -->
                 <input
-                  @click="search_checkbox_toggle"
+                    @click="search_checkbox_toggle"
                     v-model="search_checkbox"
                     checked=""
                     class="checkbox"
@@ -186,6 +185,7 @@
 </template>
 
 <script setup>
+
 import { onMounted } from "vue";
 import { Select, initTE } from "tw-elements";
 import { Sidenav } from "tw-elements";
@@ -250,17 +250,15 @@ export default {
             //   $('#iconContainer').toggleClass('iconContainer_checked');
             //   $('#search_input').toggleClass('search_input_checked');
         },
-        clearFilters(){
-            this.min= 1;
-            this.max= 10000;
-            this.search_input= null;
-            this.category_id= null;
-            this.sortBy= null;
-            this.cats= [];
-          
-            this.selected_cat= {};
+        clearFilters() {
+            this.min = 1;
+            this.max = 10000;
+            this.search_input = null;
+            this.category_id = null;
+            this.sortBy = null;
+            this.selected_cat = {};
             this.search();
-            this.filterAuctions()
+            this.filterAuctions();
         },
         selectCat(val) {
             console.log(val);

@@ -108,7 +108,7 @@ export default {
 <style lang="scss" scoped>
 .main-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
     // grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 2rem;
     padding: 1rem 5rem;
