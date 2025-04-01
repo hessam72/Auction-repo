@@ -3,7 +3,7 @@
     .user-panel-wrapper {
         .main-section {
             .main-content {
-                width: 100%;
+                width: 80%;
             }
         }
         .header-container {
@@ -72,9 +72,14 @@
                 flex-direction: row !important;
             }
             li {
-                max-width: 30%;
+                width: 100%;
+
                 justify-content: space-around;
                 margin-right: 2rem;
+                button{
+                    width: 100%;
+                    margin-bottom: 1rem;
+                }
             }
         }
         .support-main-container {

@@ -115,13 +115,14 @@
         aria-labelledby="offcanvasRightLabel"
         data-te-offcanvas-init
     >
-        <!-- <OnClickOutside class="msg-container" @trigger="closeDetails"> -->
+
+        <div class="msg-wrapp" @click="closeDetails">&nbsp; </div>
         <ticket-chats
             @close="closeDetails"
             @storeMsg="store_ticket"
             :tickets="ticket_details"
         ></ticket-chats>
-        <!-- </OnClickOutside> -->
+       
     </div>
 
     <!-- create ticket dialog -->
@@ -280,7 +281,8 @@
                                                                 $event
                                                             )
                                                         "
-                                                        class="relative m-0 block w-full min-w-0 flex-auto cursor-pointer rounded border border-solid border-secondary-500 bg-transparent bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-surface transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:me-3 file:cursor-pointer file:overflow-hidden file:rounded-none file:border-0 file:border-e file:border-solid file:border-inherit file:bg-transparent file:px-3 file:py-[0.32rem] file:text-surface focus:border-primary focus:text-gray-700 focus:shadow-inset focus:outline-none dark:border-white/70 dark:text-white file:dark:text-white"
+                                                        style="color: #444 !important;"
+                                                        class="relative m-0 block w-full min-w-0 flex-auto cursor-pointer rounded border border-solid border-secondary-500 bg-transparent bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-surface transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:me-3 file:cursor-pointer file:overflow-hidden file:rounded-none file:border-0 file:border-e file:border-solid file:border-inherit file:bg-transparent file:px-3 file:py-[0.32rem]  focus:border-primary focus:text-gray-700 focus:shadow-inset focus:outline-none dark:border-white/70 dark:text-white file:dark:text-white"
                                                         type="file"
                                                         id="formFile"
                                                     />
@@ -291,14 +293,14 @@
                                 </div>
                             </div>
                             <div
-                                class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6"
+                                class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse justify-between sm:px-6"
                             >
                                 <button
                                     @click="
                                         store_ticket(), (create_modal = false)
                                     "
                                     type="button"
-                                    class="inline-flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-violet-500 sm:ml-3 sm:w-auto"
+                                    class="mt-3 inline-flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-violet-500 sm:ml-3 sm:w-auto"
                                 >
                                     Submit
                                 </button>
@@ -541,6 +543,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.msg-wrapp{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
 .admin_msg {
     direction: rtl !important;
 }
@@ -621,13 +629,14 @@ export default {
     border-radius: 10px;
     color: #333;
     width: 100%;
-    height: 95%;
+    height: 100%;
     overflow-y: scroll;
     transition: all 0.6s cubic-bezier(0.82, -0.41, 0, 1.43);
     background: none;
     backdrop-filter: blur(7px);
     display: flex;
     align-items: flex-end;
+    background: none !important;
 }
 
 .ticket-header {

@@ -294,13 +294,14 @@ export default {
     // color: var(--color-secondary);
 }
 .info-container {
-    width: 25%;
+    // min-width: 40%;
     padding: 2rem 0;
     border-right: 3px solid #846cbc;
     background-color: var(--color-primary);
-    padding-left: 3rem;
+    padding-left: 4rem;
     color: #fff;
     min-height: 45rem;
+    padding-right: 2rem;
 }
 
 .size {

@@ -90,7 +90,8 @@ export default {
 <style lang="scss" scoped>
 .bookmarks-container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+
     row-gap: 4rem;
     column-gap: 3rem;
     padding: 3rem 5rem;

@@ -37,6 +37,23 @@ import { aliases, mdi } from 'vuetify/iconsets/mdi'
 import '@mdi/font/css/materialdesignicons.css'
 
 const vuetify = createVuetify({
+    theme: {
+        defaultTheme: 'myCustomTheme', // Set default theme
+        themes: {
+          myCustomTheme: {
+            dark: true, // Set to true for dark mode
+            colors: {
+              primary: '#1976D2', // Change primary color
+              secondary: '#424242',
+              accent: '#82B1FF',
+              error: '#FF5252',
+              info: '#2196F3',
+              success: '#4CAF50',
+              warning: '#FB8C00',
+            },
+          },
+        },
+      },
     components,
     directives,
     icons: {

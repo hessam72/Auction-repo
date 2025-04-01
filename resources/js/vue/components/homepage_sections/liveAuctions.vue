@@ -41,13 +41,14 @@
 
 <script>
 import AuctionCard from "../auctions/auction_card.vue";
-import {check_bookmark_status} from "@/modules/utilities/auctionUtils.js"
+import { check_bookmark_status } from "@/modules/utilities/auctionUtils.js";
 import { mapGetters } from "vuex";
 export default {
     props: ["auctions"],
-    methods:{
+    methods: {
         check_bookmark_status,
-    }, computed: {
+    },
+    computed: {
         ...mapGetters(["user"]),
     },
     components: {
@@ -71,5 +72,13 @@ export default {
     display: flex;
     gap: 3rem;
     justify-content: space-between;
+}
+
+@media (min-width: 900px) {
+
+.auction-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+}
 }
 </style>

@@ -629,7 +629,7 @@ export default {
     padding: 3rem 2rem;
 }
 #advanced-search-input {
-    background-color: #fff;
+    background-color: #fff !important;
     border-radius: 50px;
     overflow: clip;
     box-shadow: 0 3px 5px #999;
