@@ -83,24 +83,24 @@
                 <div v-if="status === 0" class="auction-timer">
                     <div class="count-down">
                         <div style="padding: 0.7rem 1rem" class="number">
-                            <ion-icon
-                                class="trophy"
-                                name="ban-outline"
-                            ></ion-icon>
+                            <v-icon
+                                class="de-active-icon"
+                                icon="mdi-cancel"
+                            ></v-icon>
                         </div>
                         <div class="seperator">:</div>
                         <div style="padding: 0.7rem 1rem" class="number">
-                            <ion-icon
-                                class="trophy"
-                                name="ban-outline"
-                            ></ion-icon>
+                            <v-icon
+                                class="de-active-icon"
+                                icon="mdi-cancel"
+                            ></v-icon>
                         </div>
                         <div class="seperator">:</div>
                         <div style="padding: 0.7rem 1rem" class="number">
-                            <ion-icon
-                                class="trophy"
-                                name="ban-outline"
-                            ></ion-icon>
+                            <v-icon
+                                class="de-active-icon"
+                                icon="mdi-cancel"
+                            ></v-icon>
                         </div>
                     </div>
                 </div>
@@ -211,7 +211,7 @@ export default {
         };
     },
     computed: {
-        ...mapGetters(["baseUrl", "UserAuthToken","user"]),
+        ...mapGetters(["baseUrl", "UserAuthToken", "user"]),
     },
     mounted() {
         this.current_bookmark_status = this.is_bookmarked;
@@ -222,7 +222,11 @@ export default {
         convertDateToMilliSeconds,
 
         toggleBookmark() {
-            if (this.user?.id === undefined || this.user?.id === null || !this.UserAuthToken)  {
+            if (
+                this.user?.id === undefined ||
+                this.user?.id === null ||
+                !this.UserAuthToken
+            ) {
                 this.toast.error("You must be loged in to Bookmark an Auction");
                 return;
             }
@@ -363,6 +367,10 @@ export default {
 .trophy {
     font-size: 1.7rem;
     color: gold;
+}
+.de-active-icon {
+    font-size: 1.7rem;
+    color: rgb(255, 38, 0);
 }
 .no-new-bidders {
     position: absolute;

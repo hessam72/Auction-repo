@@ -8,13 +8,11 @@
         "
     >
         <div class="search-sec-container">
-          
             <v-btn @click="drawer = !drawer" prepend-icon="mdi-filter-variant">
-                            Filters
+                Filters
+             
             </v-btn>
-            <v-btn @click="clearFilters()" prepend-icon="$vuetify">
-                clear Filters
-            </v-btn>
+          
             <v-app class="slider-wrp">
                 <!-- Navigation Drawer acting as the Slider -->
                 <v-navigation-drawer
@@ -185,7 +183,6 @@
 </template>
 
 <script setup>
-
 import { onMounted } from "vue";
 import { Select, initTE } from "tw-elements";
 import { Sidenav } from "tw-elements";
@@ -214,6 +211,7 @@ import Multiselect from "vue-multiselect";
 
 import radioBtn from "../utilities/radio_btn.vue";
 export default {
+       
     data() {
         return {
             min: 1,
@@ -236,7 +234,11 @@ export default {
     computed: {
         ...mapGetters(["baseUrl"]),
     },
-    mounted() {},
+    mounted() {
+        this.emitter.on("clearFilters", () => {
+            this.clearFilters()
+        });
+    },
     methods: {
         search_checkbox_toggle() {
             // false means user click on search icon when input is expanded
@@ -311,6 +313,12 @@ export default {
 
     created() {
         this.fetchCategories();
+    },
+    watch: {
+        clear_filters(val) {
+            alert("changed");
+            this.clearFilters();
+        },
     },
 };
 </script>

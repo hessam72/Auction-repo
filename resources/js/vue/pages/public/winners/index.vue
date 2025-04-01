@@ -415,7 +415,7 @@ export default {
 }
 
 .winner-info {
-    width: 40%;
+    width: auto;
 
     .user {
         p {

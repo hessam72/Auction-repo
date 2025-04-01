@@ -1,6 +1,6 @@
 <template>
     <div>
-        <search-section></search-section>
+        <search-section ></search-section>
         <div class="main-container list-a-wrapper">
             <!-- <div v-show="show_backdrop" class="backdrop">.</div> -->
             <auction-card
@@ -23,6 +23,9 @@
                 :is_bookmarked="check_bookmark_status(item.bookmarks, user)"
                 :status="findAuctionInStore(item.id).status"
             />
+            <div v-if="test_auctions.length == 0">
+                <emptyState />
+            </div>
             <!-- :current_winner_username="item.current_winner.username"
                 :live_price="item.current_price" :timer="item.timer"-->
         </div>
@@ -49,6 +52,8 @@ import "v3-infinite-loading/lib/style.css"; //required if you're not going to ov
 import AuctionCard from "./auction_card.vue";
 import { check_bookmark_status } from "@/modules/utilities/auctionUtils.js";
 import searchSection from "./searchSection.vue";
+import emptyState from "../utilities/emptySearch.vue";
+
 // import auctions from "../../store/modules/auctions";
 import { mapGetters } from "vuex";
 export default {
@@ -64,6 +69,7 @@ export default {
     },
     data() {
         return {
+         
             show_more: false,
             show_more2: false,
             auctions_test: [],
@@ -94,14 +100,13 @@ export default {
     components: {
         searchSection,
         AuctionCard,
+        emptyState,
     },
     mounted() {
         //        console.log(JSON.parse(JSON.stringify(
         // this.auctions)))
     },
-    created() {
-      
-    },
+    created() {},
 };
 </script>
 
