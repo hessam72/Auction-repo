@@ -5,12 +5,10 @@
         <div class="beer-slider">
             <div
                 class="pat1"
-                data-beer-src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/wild-sea.png"
             ></div>
             <div class="beer-reveal">
                 <div
                     class="pat2"
-                    data-beer-src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/wild-sea-grayscale.png"
                 ></div>
             </div>
         </div>
@@ -49,7 +47,7 @@ header {
 }
 .pat1 {
     // background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/wild-sea.png);
-    background-image: url(http://localhost:8000/storage/images/befor&after/b&a.png);
+    background-image: url('/assets/img/befor&after/b&a.png');
     filter: grayscale(1);
     background-position: top;
     background-repeat: no-repeat;
@@ -57,7 +55,7 @@ header {
 }
 .pat2 {
     // background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/wild-sea-grayscale.png);
-    background-image: url(http://localhost:8000/storage/images/befor&after/b&a2.png);
+    background-image: url('/assets/img/befor&after/b&a2.png');
     background-position: top;
     background-repeat: no-repeat;
     background-size: cover;
