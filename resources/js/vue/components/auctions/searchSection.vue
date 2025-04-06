@@ -316,7 +316,7 @@ export default {
     },
     watch: {
         clear_filters(val) {
-            alert("changed");
+            // alert("changed");
             this.clearFilters();
         },
     },

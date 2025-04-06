@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\DispatchAuctionStarter;
 use App\Console\Commands\DispatchAuctionWatcher;
 use App\Jobs\AuctionWatcherJob;
 use App\Models\BidBuddy;
@@ -18,8 +19,16 @@ class Kernel extends ConsoleKernel
     {
         // currentlly not using watcher for auctionwatcherjob and running it directlly
         dispatch(new DispatchAuctionWatcher());
+        // dispatch(new DispatchAuctionStarter());
+        // Run every minute (or choose your preferred frequency)
+        // $schedule->job(new DispatchAuctionWatcher)
+        //     ->everySecond()
+        //     ->withoutOverlapping();
 
-        
+        // $schedule->job(new DispatchAuctionStarter)
+        //     ->everyMinute()
+        //     ->withoutOverlapping();
+
 
         //  echo "first ";
         // // Schedule a task to run every minute
@@ -44,8 +53,8 @@ class Kernel extends ConsoleKernel
     private function checkConditionAndDispatch()
     {
         // Your condition here
-        if ($this->someCondition()) {  
-            
+        if ($this->someCondition()) {
+
             echo "Condition met: DispatchTaskJob dispatched at " . now() . "\n";
 
             dispatch(new DispatchAuctionWatcher());

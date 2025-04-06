@@ -110,7 +110,6 @@
                                                 "
                                             />
                                             <!-- onerror="this.src='/storage/images/user_profiles/blank.png'" -->
-
                                         </div>
                                     </div>
                                     <div class="winner-info">
@@ -324,7 +323,7 @@
                                 v-if="
                                     findAuctionInStore(auction.id).status == 100
                                 "
-                                class="btn-container flex justify-between items-center"
+                                class="btn-container flex flex-col justify-between items-center"
                             >
                                 <button
                                     v-if="!disable_bidding"
@@ -334,10 +333,10 @@
                                     Bid
                                 </button>
 
-                                <div class="flex">
+                                <div class="bibudy-wrap flex flex-col-reverse">
                                     <button
                                         @click="submitBiBuddy()"
-                                        class="launch-buddy"
+                                        class="launch-buddy w-full"
                                     >
                                         Lunch Buddy
                                     </button>
@@ -572,7 +571,7 @@ export default {
                 remaining_time: this.remaining_seccounds,
                 user_id: this.user.id,
             };
-            alert(this.user.id);
+
             console.log("body", body);
 
             axios
@@ -623,7 +622,7 @@ export default {
         // TODO make end auction login in single file for all components
 
         endAuction(id) {
-            return //this logic is handeling on backend
+            return; //this logic is handeling on backend
             // let bidding_queue = this.findBiddingQueue(id);
             // console.log(id);
 
@@ -699,7 +698,6 @@ export default {
                     // always executed
                 });
         },
-      
     },
     beforeDestroy() {
         this.disconnect();
@@ -761,6 +759,13 @@ export default {
 .index-container {
     min-height: 70vh;
     width: 100%;
+}
+.bibudy-wrap {
+    width: 100%;
+    gap: 0.5rem;
+    input {
+        border-radius: 10px;
+    }
 }
 
 .main-section {
@@ -1036,8 +1041,9 @@ export default {
 
     .auction-timer {
         .count-down {
-            margin-left: 20%;
-
+            // margin-left: 20%;
+            margin: auto;
+            justify-content: center;
             .number {
                 background-color: #77141f;
                 box-shadow: inset 0px 5px 9px 0px #f00;
@@ -1048,7 +1054,9 @@ export default {
 
 .btn-container {
     margin: 2rem 0;
-
+    width: 100%;
+    gap: 1rem;
+    flex-direction: column-reverse;
     button {
         padding: 1.2rem 3rem;
         background-color: #372065;
@@ -1057,6 +1065,7 @@ export default {
         font-size: 1.3rem;
         font-weight: 500;
         transition: all 0.5s ease;
+        width: 100%;
     }
 
     button:hover {

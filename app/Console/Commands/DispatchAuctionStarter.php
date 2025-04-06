@@ -6,7 +6,7 @@ use App\Jobs\AuctionStarterJob;
 use App\Jobs\AuctionWatcherJob;
 use Illuminate\Console\Command;
 
-class DispatchAuctionWatcher extends Command
+class DispatchAuctionStarter extends Command
 {
     /**
      * The name and signature of the console command.
@@ -30,8 +30,7 @@ class DispatchAuctionWatcher extends Command
         set_time_limit(0); // Prevent timeout
 
         while (true) {
-            dispatch(new AuctionWatcherJob())->delay(now()->addSecond());
-          
+            dispatch(new AuctionStarterJob())->delay(now()->addSecond());
             sleep(1); // Wait 1 second before dispatching again
         }
     }
