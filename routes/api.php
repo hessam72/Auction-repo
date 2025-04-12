@@ -117,6 +117,7 @@ Route::middleware('jwt.auth')->group(function () {
     }); 
      Route::controller(BuyItNowOfferController::class)->prefix('/buy_offers')->group(function () {
         Route::post('/user/all', 'all');
+        Route::post('/handle_buy_it_now', 'handleBuyNow');
     }); 
      Route::controller(TicketController::class)->prefix('/tickets')->group(function () {
         Route::post('/user/all', 'user_tickets');

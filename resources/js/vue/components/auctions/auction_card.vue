@@ -1,5 +1,6 @@
 <template>
     <div class="item-container auction-card-wrapper relative">
+        
         <div v-if="no_new_bidders" class="no-new-bidders">no new bidders</div>
         <div @click="toggleBookmark()" class="bookmark-container">
             <ion-icon
@@ -179,9 +180,9 @@
                 >
                     Currently unavailable
                 </button>
-                <router-link class="btn-secoundary" to="/user/buy_it_now">
+                <div @click="handleBuyItNow()" class="btn-secoundary" >
                     <button>Buy it Now for ${{ buy_now_price }}</button>
-                </router-link>
+                </div >
             </div>
         </div>
     </div>
@@ -206,6 +207,7 @@ export default {
     data() {
         return {
             updateBookmarkUrl: "bookmark/toggle",
+            BuyNowkUrl: "buy_offers/handle_buy_it_now",
             temp_bookmark: false,
             current_bookmark_status: false,
         };
@@ -221,7 +223,52 @@ export default {
         translateAuctionStatus,
         convertDateToMilliSeconds,
 
+        handleBuyItNow() {
+
+            if (
+                this.user?.id === undefined ||
+                this.user?.id === null ||
+                !this.UserAuthToken
+            ) {
+                this.toast.error("You must be loged in to Buy This Product");
+                return;
+            }
+            let config = {
+                Authorization: this.UserAuthToken,
+            };
+
+            const body = {
+                auction_id: this.auction_id,
+            };
+
+            axios({
+                method: "post",
+                url: this.baseUrl + this.BuyNowkUrl,
+                data: body,
+                headers: config,
+            })
+                // .get(this.baseUrl + this.userUrl, body , config)
+                .then((response) => {
+                    console.log(response);
+                    this.$router.push('/user/buy_it_now');
+
+                })
+                .catch((error) => {
+                    console.log("error");
+                    console.log(error);
+                })
+                .finally(() => {});
+        },
+
+
+
+
+
+
+
+
         toggleBookmark() {
+         
             if (
                 this.user?.id === undefined ||
                 this.user?.id === null ||

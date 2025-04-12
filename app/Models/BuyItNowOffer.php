@@ -37,6 +37,7 @@ class BuyItNowOffer extends Model
 
 	protected $fillable = [
 		'product_id',
+		'user_id',
 		'spent_bids',
 		'time_limit',
 		'status'
