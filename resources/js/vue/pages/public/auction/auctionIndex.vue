@@ -15,7 +15,9 @@
                             <h3>
                                 {{ product.short_desc }}
                             </h3>
-                            <p>buy it now for ${{ product.price }}</p>
+                            <p class="by_now" @click="handleBuyItNow">
+                                buy it now for ${{ product.price }}
+                            </p>
                         </div>
                         <div class="gallery">
                             <div class="slider">
@@ -396,6 +398,8 @@ export default {
                     url: "/auctions",
                 },
             ],
+            BuyNowkUrl: "buy_offers/handle_buy_it_now",
+
             updateBookmarkUrl: "bookmark/toggle",
             current: "Index",
             fetchUrl: "auctions/index",
@@ -480,6 +484,41 @@ export default {
             return this.findAuction(id);
         },
 
+        handleBuyItNow() {
+            if (
+                this.user?.id === undefined ||
+                this.user?.id === null ||
+                !this.UserAuthToken
+            ) {
+                this.toast.error("You must be loged in to Buy This Product");
+                return;
+            }
+            let config = {
+                Authorization: this.UserAuthToken,
+            };
+
+            const body = {
+                auction_id: this.$route.params.id,
+            };
+
+            axios({
+                method: "post",
+                url: this.baseUrl + this.BuyNowkUrl,
+                data: body,
+                headers: config,
+            })
+                // .get(this.baseUrl + this.userUrl, body , config)
+                .then((response) => {
+                    console.log(response);
+                    this.$router.push("/user/buy_it_now");
+                })
+                .catch((error) => {
+                    console.log("error");
+                    console.log(error);
+                })
+                .finally(() => {});
+        },
+
         generateRichText(data) {
             var d = JSON.parse(data);
 
@@ -543,8 +582,7 @@ export default {
                         current_winner_id: this.auction.current_winner_id,
                         current_winner_username:
                             this.auction.current_winner.username,
-                        avatar:
-                            this.auction.current_winner.profile_pic,
+                        avatar: this.auction.current_winner.profile_pic,
                         current_price: this.auction.current_price,
                         timer: this.auction.timer,
                         status: this.auction.status,
@@ -1114,5 +1152,9 @@ export default {
 .trophy {
     font-size: 1.7rem;
     color: gold;
+}
+.by_now{
+    cursor: pointer;
+    text-decoration: underline;
 }
 </style>
