@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\City;
 use App\Models\State;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CityController extends Controller
 {
@@ -77,7 +78,17 @@ class CityController extends Controller
      */
     public function destroy(City $city)
     {
-        $city->delete();
-        return redirect()->back()->with('success','حذف با موفقیت ثبت شد');
+        try {
+            DB::beginTransaction();
+
+
+            $city->delete();
+
+            DB::commit();
+            return redirect()->back()->with('success', 'حذف آیتم با موفقیت ثبت شد');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 }

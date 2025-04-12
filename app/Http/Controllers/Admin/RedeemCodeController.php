@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\RedeemCode;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RedeemCodeController extends Controller
 {
@@ -102,7 +103,17 @@ class RedeemCodeController extends Controller
      */
     public function destroy(RedeemCode $redeemCode)
     {
-        $redeemCode->delete();
-        return redirect()->back()->with('success', 'حذف با موفقیت ثبت شد');
+        try {
+            DB::beginTransaction();
+
+
+            $redeemCode->delete();
+
+            DB::commit();
+            return redirect()->back()->with('success', 'حذف آیتم با موفقیت ثبت شد');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 }

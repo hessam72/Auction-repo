@@ -62,6 +62,7 @@ class Challenge extends Model
 	{
 		static::deleting(function (Challenge $challenge) { // before delete() method call this
 			UserChallenge::where('challenge_id' , $challenge->id)->delete();
+			
 		});
 	}
 

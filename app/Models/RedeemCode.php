@@ -48,6 +48,11 @@ class RedeemCode extends Model
 		'used_count',
 		'description',
 	];
+	protected static function booted () {
+        static::deleting(function(RedeemCode $code) { // before delete() method call this
+			UserRedeemCode::where('redeem_code_id' , $code->id)->delete();
+        });
+    }
 
 	public function users()
 	{

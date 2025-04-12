@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\State;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StateController extends Controller
 {
@@ -14,7 +15,7 @@ class StateController extends Controller
     public function index()
     {
         $states = State::latest()->get();
-        
+
         return view('admin.states.index', compact('states'));
     }
 
@@ -33,19 +34,19 @@ class StateController extends Controller
     {
         $request->validate([
             'name' => 'required'
-            
+
         ]);
         State::create([
             'name' => $request->name
-            
+
         ]);
-        return redirect()->back()->with('success','ثبت با موفقیت ثبت شد');
+        return redirect()->back()->with('success', 'ثبت با موفقیت ثبت شد');
     }
 
     /**
      * Display the specified resource.
      */
-   
+
 
     /**
      * Update the specified resource in storage.
@@ -54,12 +55,12 @@ class StateController extends Controller
     {
         $request->validate([
             'name' => 'required'
-            
+
         ]);
-        $state->name=$request->name;
+        $state->name = $request->name;
         $state->save();
-       
-        return redirect()->back()->with('success','ویرایش با موفقیت ثبت شد');
+
+        return redirect()->back()->with('success', 'ویرایش با موفقیت ثبت شد');
     }
 
     /**
@@ -67,7 +68,17 @@ class StateController extends Controller
      */
     public function destroy(State $state)
     {
-        $state->delete();
-       return redirect()->back()->with('success','حذف با موفقیت ثبت شد');
+        try {
+            DB::beginTransaction();
+
+
+            $state->delete();
+
+            DB::commit();
+            return redirect()->back()->with('success', 'حذف آیتم با موفقیت ثبت شد');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 }

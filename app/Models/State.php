@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -36,6 +37,10 @@ class State extends Model
 
 	protected static function booted () {
         static::deleting(function(State $state) { // before delete() method call this
+			if(count($state->user_shiped_products)){
+				throw new Exception("Can not delete State with Shiped product");
+
+			}
 			$state->cities()->delete();
              
         });

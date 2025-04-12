@@ -42,7 +42,9 @@ class Reward extends Model
 	];
 	protected static function booted () {
         static::deleting(function(Reward $reward) { // before delete() method call this
-			$reward->challenges()->delete();
+			foreach($reward->challenges as $challenge){
+				$challenge->delete();
+			}
              
         });
     }

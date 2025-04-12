@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
@@ -38,6 +39,22 @@ class City extends Model
 		'state_id',
 		'name'
 	];
+
+
+	protected static function booted()
+	{
+		static::deleting(function (City $city) { // before delete() method call this
+
+			if(count($city->user_shiped_products)){
+				throw new Exception("Can not delete City with Shiped product");
+
+			}
+		});
+	}
+
+
+
+
 
 	public function state()
 	{

@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Traits\Upload;
 use App\Models\SpecialOffer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SpecialOfferController extends Controller
 {
@@ -156,7 +157,17 @@ class SpecialOfferController extends Controller
      */
     public function destroy(SpecialOffer $specialOffer)
     {
-        $specialOffer->delete();
-        return redirect()->back()->with('success', 'حذف با موفقیت ثبت شد');
+        try {
+            DB::beginTransaction();
+
+
+            $specialOffer->delete();
+
+            DB::commit();
+            return redirect()->back()->with('success', 'حذف آیتم با موفقیت ثبت شد');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 }

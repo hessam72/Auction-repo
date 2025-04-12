@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Reward;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RewardController extends Controller
 {
@@ -81,7 +82,18 @@ class RewardController extends Controller
      */
     public function destroy(Reward $reward)
     {
-        $reward->delete();
-        return redirect()->back()->with('success', 'حذف با موفقیت ثبت شد');
+
+        try {
+            DB::beginTransaction();
+
+
+            $reward->delete();
+
+            DB::commit();
+            return redirect()->back()->with('success', 'حذف آیتم با موفقیت ثبت شد');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 }

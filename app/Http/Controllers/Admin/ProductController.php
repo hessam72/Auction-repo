@@ -9,7 +9,7 @@ use App\Models\ProductGallery;
 use App\Models\Temprary;
 use Illuminate\Http\Request;
 use App\Traits\Upload;
-
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -182,7 +182,17 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        $product->delete();
-        return redirect()->back()->with('success', 'حذف با موفقیت ثبت شد');
+        try {
+            DB::beginTransaction();
+
+
+            $product->delete();
+
+            DB::commit();
+            return redirect()->back()->with('success', 'حذف آیتم با موفقیت ثبت شد');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 }

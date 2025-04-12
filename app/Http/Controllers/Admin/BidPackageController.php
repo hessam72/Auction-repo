@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\BidPackage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BidPackageController extends Controller
 {
@@ -81,7 +82,17 @@ class BidPackageController extends Controller
      */
      public function destroy(BidPackage $bidPackage)
     {
-        $bidPackage->delete();
-        return redirect()->back()->with('success', 'حذف با موفقیت ثبت شد');
+        try {
+            DB::beginTransaction();
+
+
+            $bidPackage->delete();
+
+            DB::commit();
+            return redirect()->back()->with('success', 'حذف آیتم با موفقیت ثبت شد');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 }
