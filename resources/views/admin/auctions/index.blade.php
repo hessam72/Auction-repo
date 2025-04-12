@@ -29,6 +29,15 @@
                         </span></span>
                 </button>
             </div>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             {{-- item lists --}}
             <div class="card-datatable table-responsive " style="padding: 0 3rem;">
 
@@ -115,9 +124,11 @@
 
 
                                                             <div class="col-12 col-md-6">
-                                                                <label class="form-label" for="first-name">No Jumper Limit</label>
+                                                                <label class="form-label" for="first-name">No Jumper
+                                                                    Limit</label>
                                                                 <input name="no_jumper_limit" type="number" id="first-name"
-                                                                    class="form-control" value="{{$auction->no_jumper_limit}}"
+                                                                    class="form-control"
+                                                                    value="{{ $auction->no_jumper_limit }}"
                                                                     placeholder="قیمتی که پس از آن کاربر جدید اجازه ورود به حراجی را ندارد"
                                                                     required>
                                                             </div>
@@ -125,20 +136,26 @@
 
 
                                                             <div class="col-12 col-md-6">
-                                                                <label class="form-label" for="last-name">حداقل قیمت حراجی</label>
-                                                                <input type="number" value="{{$auction->min_price}}" name="min_price" id="last-name" class="form-control"
-                                                                    placeholder="حداثل قیمتی که امکان پایان حراجی وجود دارد" required>
+                                                                <label class="form-label" for="last-name">حداقل قیمت
+                                                                    حراجی</label>
+                                                                <input type="number" value="{{ $auction->min_price }}"
+                                                                    name="min_price" id="last-name" class="form-control"
+                                                                    placeholder="حداثل قیمتی که امکان پایان حراجی وجود دارد"
+                                                                    required>
                                                             </div>
 
                                                             <div class="col-12 col-md-6">
-                                                            
-                                                                <label class="form-label" for="country">تاریخ و ساعت شروع حراجی</label>
-                                                                <input type="text" value="{{$auction->start_time}}" class="form-control" id="datePickerTime" name="start_time"
-                                                                    placeholder="تاریخ شروع حراجی" required>
-                                                            
+
+                                                                <label class="form-label" for="country">تاریخ و ساعت شروع
+                                                                    حراجی</label>
+                                                                <input type="text" value="{{ $auction->start_time }}"
+                                                                    class="form-control" id="datePickerTime"
+                                                                    name="start_time" placeholder="تاریخ شروع حراجی"
+                                                                    required>
+
                                                             </div>
                                                             <div class="col-12 col-md-6">
-                                                            
+
                                                             </div>
 
 
@@ -210,7 +227,7 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                         <div class="text-center mb-4 mt-0 mt-md-n2">
-                                                            <h3 class="secondary-font">حذف کد</h3>
+                                                            <h3 class="secondary-font">حذف حراجی</h3>
 
                                                             {{-- <p>با حذف چالش، حراجی های مرتبط نیز حذف خواهند شد. --}}
                                                             </p>

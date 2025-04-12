@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Auction;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AuctionController extends Controller
 {
@@ -36,7 +37,7 @@ class AuctionController extends Controller
      */
     public function store(Request $request)
     {
-      
+
         $request->validate([
             "product_id" => "required",
             "no_jumper_limit" => "required",
@@ -106,7 +107,23 @@ class AuctionController extends Controller
      */
     public function destroy(Auction $auction)
     {
-        $auction->delete();
-        return redirect()->back()->with('success', 'حذف با موفقیت ثبت شد');
+        try {
+            DB::beginTransaction();
+            if (($auction->status == 1 || $auction->status == 0) && !$auction->final_winner_id) {
+
+                $auction->delete();
+                return redirect()->back()->with('success', 'حذف با موفقیت ثبت شد');
+            } else {
+                return redirect()->back()->with('error', 'حراجی آغاز شده و غیرقابل حذف میباشد');
+
+            }
+            DB::commit();
+        } catch (\Exception $e) {
+
+            DB::rollback();
+            return redirect()->back()->with('error', $e->getMessage());
+
+        }
     }
 }
+

@@ -8,6 +8,7 @@ namespace App\Models;
 
 use App\Observers\AuctionObserver;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -73,17 +74,33 @@ class Auction extends Model
 	protected static function booted()
 	{
 		//  submit discount to the item 
-		static::created(function (Auction $auction) {
-		});
+		static::created(function (Auction $auction) {});
 		static::updating(function (Auction $auction) {
 			//check to see if the aauction is running auction or not
 			// $auction->isRunning();
 		});
 		static::deleting(function (Auction $auction) {
-			//check to see if the aauction is running auction or not
-			// check if auction has winner with unshipedd product or not
-			// $auction->isRunning();
-			// $auction->hasUnshipedProduct();
+			if (($auction->status != 1 && $auction->status != 0) || $auction->final_winner_id) {
+				throw new Exception("You are not authorized to delete this auction.");
+			}
+
+
+
+
+			// try {
+				// auction is not runned yet and can be delete
+				foreach($auction->bid_buddies as $buddy){
+					$buddy->delete();
+				}
+				dd('after buddy');
+				$auction->bidding_queues()->delete(); // delete related bidding queues
+				$auction->bidding_histories()->delete(); // delete related bidding queues
+				$auction->bookmarks()->delete(); // delete related bidding queues
+			// } catch (\Exception $e) {
+
+			// 	throw new Exception($e->getMessage());
+
+			// }
 		});
 	}
 

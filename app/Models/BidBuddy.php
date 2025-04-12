@@ -12,9 +12,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 use App\Observers\BidBuddyObserver;
-
+use Exception;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
- 
+
 
 /**
  * Class BidBuddy
@@ -35,7 +35,7 @@ use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 #[ObservedBy([BidBuddyObserver::class])]
 class BidBuddy extends Model
 {
-use HasFactory;
+	use HasFactory;
 	protected $table = 'bid_buddies';
 	public $timestamps = false;
 
@@ -53,6 +53,23 @@ use HasFactory;
 		'status'
 	];
 
+
+	protected static function booted()
+	{
+
+		static::deleting(function (BidBuddy $buddy) {
+			//check to see if the aauction is running auction or not
+			// auction is not runned yet and can be delete
+
+
+			if ($buddy->status == 1) {
+			
+				$buddy->user->bid_amount = $buddy->available_bids;
+				$buddy->user->save();
+			}
+			dd('after');
+		});
+	}
 	public function auction()
 	{
 		return $this->belongsTo(Auction::class);
