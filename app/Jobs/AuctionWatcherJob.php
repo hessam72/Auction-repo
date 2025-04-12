@@ -19,6 +19,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+
 class AuctionWatcherJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
@@ -40,8 +41,8 @@ class AuctionWatcherJob implements ShouldQueue
 
         //fetch auctions that are live 
         $liveAuctions = Auction::where('status', 100)->orderBy('timer', 'DESC')->get();
-        
-        if(count($liveAuctions)===0){
+
+        if (count($liveAuctions) === 0) {
             return;
         }
 
@@ -51,7 +52,7 @@ class AuctionWatcherJob implements ShouldQueue
         //check if they have bid in queue
         foreach ($liveAuctions as $auction) {
             //check to see if next buddy in queue is from different user than latest auction bidder
-           
+
 
             if (count($auction->uniqe_bid_buddies) === 0) {
                 //  there is no new bidder other than current winner 
@@ -59,7 +60,9 @@ class AuctionWatcherJob implements ShouldQueue
                 // $this->info('there is a winner');
                 // $this->info($auction->id);
                 $this->saveWinner($auction);
+
                 continue; // no need for calculating new bids anymore
+
             }
             $next_bid = $auction->next_bidding_queue;
 
@@ -68,10 +71,10 @@ class AuctionWatcherJob implements ShouldQueue
                 $new_winner_id = $next_bid->bid_buddy->user_id;
 
                 //check timer
-                $now = Carbon::now()->subSeconds(3);
-                $next_3_sec = Carbon::now()->addSeconds(4);
+                $now = Carbon::now()->subSeconds(1);
+                $next_3_sec = Carbon::now()->addSeconds(2);
                 if ($auction->timer->between($now, $next_3_sec) || $auction->timer < Carbon::now()) {
-                    
+
 
                     // submit bid ...
                     $new_price = $auction->current_price + 1;
@@ -133,7 +136,7 @@ class AuctionWatcherJob implements ShouldQueue
             }
         }
 
-       
+
         //if there was any new bid submitted then broadcast it
         if (count($excuted_bids) > 0) {
             broadcast(new AutoBiddingEvent($excuted_bids));
@@ -183,7 +186,7 @@ class AuctionWatcherJob implements ShouldQueue
                 "avatar" => $auction->user->profile_pic,
                 "timer" => $auction->timer,
                 "bidding_queues" => null,
-                "status"=>3// end auction status
+                "status" => 3 // end auction status
 
 
             ];

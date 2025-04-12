@@ -82,6 +82,8 @@ class BiddingController extends Controller
                 "bid_price" => $new_price,
                 "current_winner_id" => $user_id,
                 "current_winner_username" => $user->username,
+                "avatar" => $user->profile_pic,
+
                 "bidding_queues" => $nex_queue,
                 "timer" => Carbon::now()->addSeconds(10)
             );
@@ -233,6 +235,8 @@ class BiddingController extends Controller
             "status" => $auction->status,
             "current_winner_id" => $user->id,
             "current_winner_username" => $user->username,
+            "avatar" => $user->profile_pic,
+
             "bid_price" => $new_price,
             "bidding_queues" => $nex_buddy,
             "timer" => Carbon::now()->addSeconds(10)

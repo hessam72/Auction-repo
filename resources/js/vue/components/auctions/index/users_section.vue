@@ -205,7 +205,7 @@ props:["participaints" , "winners"],
           .user_img {
             width: 6rem;
             border-radius: 200px;
-            height: 6rem;
+            height: auto;
             filter: grayscale(100%);
             box-shadow: 0 3px 5px rgb(115 114 114);
             color: white;

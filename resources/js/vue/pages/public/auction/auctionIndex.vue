@@ -543,6 +543,8 @@ export default {
                         current_winner_id: this.auction.current_winner_id,
                         current_winner_username:
                             this.auction.current_winner.username,
+                        avatar:
+                            this.auction.current_winner.profile_pic,
                         current_price: this.auction.current_price,
                         timer: this.auction.timer,
                         status: this.auction.status,
@@ -1001,7 +1003,7 @@ export default {
         .user_img {
             width: 9rem;
             border-radius: 200px;
-            height: 9rem;
+            height: auto;
             filter: grayscale(100%);
             box-shadow: 0 3px 5px rgb(115 114 114);
             color: white;
