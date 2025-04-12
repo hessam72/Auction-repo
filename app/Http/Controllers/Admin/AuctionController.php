@@ -85,6 +85,7 @@ class AuctionController extends Controller
             "start_time" => "required|date|after:today",
 
         ]);
+        
 
 
         $auction->no_jumper_limit = $request->no_jumper_limit;
@@ -112,12 +113,13 @@ class AuctionController extends Controller
             if (($auction->status == 1 || $auction->status == 0) && !$auction->final_winner_id) {
 
                 $auction->delete();
-                return redirect()->back()->with('success', 'حذف با موفقیت ثبت شد');
             } else {
                 return redirect()->back()->with('error', 'حراجی آغاز شده و غیرقابل حذف میباشد');
 
             }
-            DB::commit();
+            DB::commit();     
+                       return redirect()->back()->with('success', 'حذف با موفقیت ثبت شد');
+
         } catch (\Exception $e) {
 
             DB::rollback();

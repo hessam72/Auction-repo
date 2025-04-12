@@ -60,14 +60,11 @@ class BidBuddy extends Model
 		static::deleting(function (BidBuddy $buddy) {
 			//check to see if the aauction is running auction or not
 			// auction is not runned yet and can be delete
-
-
 			if ($buddy->status == 1) {
-			
 				$buddy->user->bid_amount = $buddy->available_bids;
 				$buddy->user->save();
 			}
-			dd('after');
+			BiddingQueue::where('bid_buddy_id' , $buddy->id)->delete();
 		});
 	}
 	public function auction()

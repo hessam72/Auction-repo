@@ -84,23 +84,16 @@ class Auction extends Model
 				throw new Exception("You are not authorized to delete this auction.");
 			}
 
-
-
-
-			// try {
 				// auction is not runned yet and can be delete
 				foreach($auction->bid_buddies as $buddy){
 					$buddy->delete();
 				}
-				dd('after buddy');
+			
 				$auction->bidding_queues()->delete(); // delete related bidding queues
+
 				$auction->bidding_histories()->delete(); // delete related bidding queues
 				$auction->bookmarks()->delete(); // delete related bidding queues
-			// } catch (\Exception $e) {
-
-			// 	throw new Exception($e->getMessage());
-
-			// }
+		
 		});
 	}
 
