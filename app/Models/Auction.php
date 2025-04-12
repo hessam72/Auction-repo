@@ -80,20 +80,25 @@ class Auction extends Model
 			// $auction->isRunning();
 		});
 		static::deleting(function (Auction $auction) {
+		
 			if (($auction->status != 1 && $auction->status != 0) || $auction->final_winner_id) {
 				throw new Exception("You are not authorized to delete this auction.");
 			}
+			if(count($auction->winners)){
+				throw new Exception("Can not delete auction with winners");
 
-				// auction is not runned yet and can be delete
-				foreach($auction->bid_buddies as $buddy){
-					$buddy->delete();
-				}
-			
-				$auction->bidding_queues()->delete(); // delete related bidding queues
+			}
 
-				$auction->bidding_histories()->delete(); // delete related bidding queues
-				$auction->bookmarks()->delete(); // delete related bidding queues
-		
+			// auction is not runned yet and can be delete
+			foreach ($auction->bid_buddies as $buddy) {
+				$buddy->delete();
+			}
+
+			$auction->bidding_queues()->delete(); // delete related bidding queues
+
+			$auction->bidding_histories()->delete(); // delete related bidding queues
+			$auction->bookmarks()->delete(); // delete related bidding queues
+
 		});
 	}
 
@@ -162,7 +167,7 @@ class Auction extends Model
 
 	public function winners()
 	{
-		return $this->hasMany(Winner::class);
+		return $this->hasMany(UserAuctionWin::class);
 	}
 	public static function scopeSearch($query, $searchString)
 	{

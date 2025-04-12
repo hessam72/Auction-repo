@@ -58,6 +58,16 @@ class Challenge extends Model
 		'level'
 	];
 
+	protected static function booted()
+	{
+		static::deleting(function (Challenge $challenge) { // before delete() method call this
+			UserChallenge::where('challenge_id' , $challenge->id)->delete();
+		});
+	}
+
+
+
+
 	public function category()
 	{
 		return $this->belongsTo(Category::class);

@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -63,15 +64,23 @@ class Product extends Model
 	protected static function booted()
 	{
 		static::deleting(function (Product $product) { // before delete() method call this
+			if (count($product->winners) ){
+				throw new Exception("Can not delete Product with winners");
+			}
+
+
 			// delete relared auctions - buy it offers - comments - product gallery
-			$product->auctions()->delete();
+			foreach ($product->auctions as $auction) {
+				$auction->delete();
+			}
+
 			$product->buy_it_now_offers()->delete();
 			$product->comments()->delete();
 			$product->product_galleries()->delete();
+			SpecialOffer::where('type', 2)->where('item_id', $product->id)->delete();
+			UserShipedProduct::where('product_id', $product->id)->delete();
 		});
-		static::updating(function ($user) {
-          
-        });
+		static::updating(function ($user) {});
 	}
 
 
@@ -100,7 +109,10 @@ class Product extends Model
 	{
 		return $this->hasMany(ProductGallery::class);
 	}
-
+	public function winners()
+	{
+		return $this->hasMany(Winner::class);
+	}
 	public function users()
 	{
 		return $this->belongsToMany(User::class, 'user_shiped_products')
@@ -111,8 +123,8 @@ class Product extends Model
 	public static function scopeFilterByCategory($query, $category_id)
 	{
 		return $query
-			->where('category_id', '=', $category_id)->with(['auctions'=>function($query){
-				$query->select('id','product_id');
+			->where('category_id', '=', $category_id)->with(['auctions' => function ($query) {
+				$query->select('id', 'product_id');
 			}]);
 	}
 }

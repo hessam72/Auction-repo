@@ -34,13 +34,18 @@ class Category extends Model
 		'title',
 		'description'
 	];
-	protected static function booted () {
-        static::deleting(function(Category $category) { // before delete() method call this
-             $category->challenges()->delete();
-             $category->products()->delete();
-             
-        });
-    }
+	protected static function booted()
+	{
+		static::deleting(function (Category $category) { // before delete() method call this
+			foreach ($category->challenges as $item) {
+				$item->delete();
+			}
+			foreach ($category->products as $item) {
+				$item->delete();
+			}
+			BiddingHistory::where('category_id' , $category->id)->delete();
+		});
+	}
 
 	public function challenges()
 	{

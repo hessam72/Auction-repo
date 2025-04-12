@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -54,9 +55,7 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
-    {
-    }
+    public function edit(Category $category) {}
 
     /**
      * Update the specified resource in storage.
@@ -78,7 +77,19 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        $category->delete();
-        return redirect()->back()->with('success', 'حذف با موفقیت ثبت شد');
+
+
+        try {
+            DB::beginTransaction();
+
+
+            $category->delete();
+
+            DB::commit();
+            return redirect()->back()->with('success', 'حذف آیتم با موفقیت ثبت شد');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 }
