@@ -9,7 +9,7 @@
                 :key="index"
                 :auction_id="item.id"
                 :start_time="item.start_time"
-                :timer="findAuctionInStore(item.id).timer"
+                :timer="findAuctionInStore(item.id)?.timer"
                 :buy_now_price="item.product.price"
                 :current_winner_id="
                     findAuctionInStore(item.id).current_winner_id

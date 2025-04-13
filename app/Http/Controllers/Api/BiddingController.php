@@ -11,6 +11,7 @@ use App\Models\BiddingQueue;
 use App\Models\HighestBidder;
 use App\Models\User;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -38,7 +39,7 @@ class BiddingController extends Controller
             Auction::where('id', $data->auction_id)
                 ->update([
                     'current_price' => $new_price,
-                    // 'current_winner_id' => $data->user_id,
+                
                     'current_winner_id' => $user_id,
                     'timer' => Carbon::now()->addSeconds(10)
                 ]);
@@ -54,6 +55,10 @@ class BiddingController extends Controller
 
             $user = User::find($user_id);
             // $user=User::find($data->user_id);
+            if($user->bid_amount<1){
+                throw new Exception('Insufficient Bid Amount' , 402);
+
+            }
             $user->bid_amount = $user->bid_amount - 1;
             $user->save();
 
@@ -97,7 +102,9 @@ class BiddingController extends Controller
             ]);
         } catch (\Exception $e) {
             DB::rollback();
-            return $e;
+            throw new Exception($e->getMessage());
+
+            
         }
     }
     public function storeBidBuddy(Request $request)

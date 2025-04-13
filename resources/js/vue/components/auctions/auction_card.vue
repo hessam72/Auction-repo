@@ -4,19 +4,23 @@
         <div v-if="no_new_bidders" class="no-new-bidders">no new bidders</div>
         <div @click="toggleBookmark()" class="bookmark-container">
             <ion-icon
-                v-if="!temp_bookmark"
-                :class="[is_bookmarked ? 'bookmarked' : '', 'icon-bg']"
+              v-if="current_bookmark_status"
+                :class="'bookmarked icon-bg'"
+                name="bookmark"
+            ></ion-icon><ion-icon
+              v-else
+                :class="'icon-bg'"
                 name="bookmark"
             ></ion-icon>
             <!-- templrary bookmark before refetching from database -->
-            <ion-icon
+            <!-- <ion-icon
                 v-else
                 :class="[
                     current_bookmark_status ? 'bookmarked' : '',
                     'icon-bg',
                 ]"
                 name="bookmark"
-            ></ion-icon>
+            ></ion-icon> -->
         </div>
         <div class="rounded-t-3xl overflow-hidden crd-shadow">
             <div class="auction-img">
@@ -39,6 +43,7 @@
                     <p :key="live_price" class="mycolor live-price">
                         ${{ live_price }}
                     </p>
+
                     <p :key="live_price" class="mycolor current-winner">
                         {{ current_winner_username }}
                     </p>
@@ -293,7 +298,7 @@ export default {
             })
                 // .get(this.baseUrl + this.userUrl, body , config)
                 .then((response) => {
-                    console.log(this.is_bookmarked);
+                    console.log('bookmrk res: ' , response);
                     this.temp_bookmark = true;
                     this.current_bookmark_status =
                         !this.current_bookmark_status;
@@ -385,6 +390,8 @@ export default {
 }
 .mycolor {
     animation: flash_change 1s;
+    transform-origin: center;
+
 }
 
 .bookmark-container {

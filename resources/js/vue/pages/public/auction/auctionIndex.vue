@@ -97,6 +97,7 @@
                                             .current_price
                                     }}
                                 </h2>
+                                
                             </div>
                             <div class="current-winner-section">
                                 <div class="size">
@@ -327,21 +328,44 @@
                                 "
                                 class="btn-container flex flex-col justify-between items-center"
                             >
-                                <button
+                                <v-btn
+                                    v-if="!disable_bidding"
+                                    @click="submitBid()"
+                                    class="bid-now"
+                                    :loading="BiddingLoading"
+                                    :disabled="BiddingLoading"
+                                >
+                                    <span v-if="!BiddingLoading">Bid</span>
+                                </v-btn>
+
+                                <!-- <button
                                     v-if="!disable_bidding"
                                     @click="submitBid()"
                                     class="bid-now"
                                 >
                                     Bid
-                                </button>
+                                </button> -->
 
                                 <div class="bibudy-wrap flex flex-col-reverse">
-                                    <button
+                                    <!-- <button
                                         @click="submitBiBuddy()"
                                         class="launch-buddy w-full"
                                     >
                                         Lunch Buddy
-                                    </button>
+                                    </button> -->
+                                    <v-btn
+                                        @click="submitBiBuddy()"
+                                        class="launch-buddy w-full"
+                                        :loading="BiddingLoading"
+                                        :disabled="BiddingLoading"
+                                    >
+                                        <span
+                                            style="letter-spacing: 0.4px"
+                                            v-if="!BiddingLoading"
+                                        >
+                                            Lunch Buddy</span
+                                        >
+                                    </v-btn>
                                     <input
                                         type="number"
                                         v-model="bidBodyCount"
@@ -379,6 +403,7 @@ import "@vueup/vue-quill/dist/vue-quill.snow.css";
 import { useToast } from "vue-toastification";
 import { convertDateToMilliSeconds } from "@/modules/utilities.js";
 import { now } from "@vueuse/core";
+import { error } from "jquery";
 export default {
     setup() {
         // Get toast interface
@@ -406,6 +431,7 @@ export default {
             auction: null,
             temp_current_winner_id: null, // for detecting changes in state for current auction
             product: null,
+            BiddingLoading: false,
             bidBodyCount: 0,
             current_winner: null,
             side_auctions: [],
@@ -602,10 +628,16 @@ export default {
         submitBid() {
             // sending user bid
             // validate so only auth users can submit bids
+           
             if (this.user.id === undefined || this.user.id === null) {
                 this.toast.error("You must be loged in to Bid");
                 return;
-            }
+            }  
+            //  if (!this.user.bid_amount) {
+            //     this.toast.warning("Buy Bid to Participaint");
+            //     return;
+            // }
+            this.BiddingLoading = true;
             const body = {
                 auction_id: this.auction.id,
                 remaining_time: this.remaining_seccounds,
@@ -619,16 +651,21 @@ export default {
                     Accept: "application/json",
                 })
                 .then((response) => {
-                    console.log(response.data);
+                  
                     setTimeout(() => {
                         console.log("checking store auction....");
                         console.log(this.findAuctionInStore(this.auction.id));
                     }, 1000);
                 })
-                .catch(function (error) {
-                    console.log(error);
+                .catch( (error)=> {
+                    console.log('error biding');
+                    console.log();
+                    this.toast.error(error.response.data.message);
+
                 })
                 .finally(() => {
+                    this.BiddingLoading = false;
+
                     // always executed
                 });
         },
@@ -718,6 +755,12 @@ export default {
                 this.toast.error("Insufficient Number Of Bids");
                 return;
             }
+            if (!this.user.bid_amount) {
+                this.toast.warning("Buy Bid to Participaint");
+                return;
+            }
+            this.BiddingLoading = true;
+
             axios
                 .post(this.baseUrl + this.CreateBuddyUrl, {
                     count: this.bidBodyCount - 1, // first bid will be excuted as direct bid and after that with buddy
@@ -729,13 +772,14 @@ export default {
                     this.bidBodyCount = 0;
                     // after submitting buddy run one bid for user as direct bid to start bidding process
                     this.submitBid();
+                    this.toast.success("BidBuddy Set for The Auction");
                 })
                 .catch((error) => {
                     console.log(error);
                     this.toast.error(error.response.data.error);
                 })
                 .finally(() => {
-                    // always executed
+                    this.BiddingLoading = false;
                 });
         },
     },
@@ -760,6 +804,8 @@ export default {
     watch: {
         //for updating bidding history
         storedAuctions(new_val) {
+         
+
             // check to see if current auction is updated?
             var new_current_auction = new_val.find(
                 (x) => x.id === this.auction.id
@@ -813,6 +859,7 @@ export default {
 }
 .mycolor {
     animation: flash_change 1s;
+    transform-origin: center;
 }
 .first-section {
     margin-bottom: 3rem;
@@ -1106,12 +1153,16 @@ export default {
         font-weight: 500;
         transition: all 0.5s ease;
         width: 100%;
+        height: 3.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     button:hover {
         transform: scale(0.95);
         box-shadow: 0 8px 15px #997add;
-        border-radius: 35px;
+        border-radius: 20px;
     }
 }
 
@@ -1153,7 +1204,7 @@ export default {
     font-size: 1.7rem;
     color: gold;
 }
-.by_now{
+.by_now {
     cursor: pointer;
     text-decoration: underline;
 }
