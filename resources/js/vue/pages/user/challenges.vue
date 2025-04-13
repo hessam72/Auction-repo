@@ -1,7 +1,7 @@
 <template>
     <page-title :title="'Challenges'"></page-title>
 
-    <div class="challenges">
+    <div v-if="challenges.length" class="challenges">
         <div v-for="(item, index) in challenges" :key="index" class="flip-card">
             <div class="flip-card-inner">
                 <div class="flip-card-front relative">
@@ -14,9 +14,7 @@
                         Win {{ item.number_to_win }} Auction
                     </p>
                     <p>in</p>
-                    <p class="cat-label">
-                       {{ item.category_name }} category
-                    </p>
+                    <p class="cat-label">{{ item.category_name }} category</p>
                     <div class="challenge-prize">
                         <div id="content">
                             <aside class="ribbon">
@@ -121,9 +119,13 @@
             </div>
         </div>
     </div>
-    <!-- <inline-loading :is_loading_more></inline-loading>
+    <emptyState
+        :img="'/assets/img/illustrations/empty-1.png'"
+        :header="'Ops!'"
+        :text="'No Available Challange Found'"
+        v-else
+    />
 
-    <InfiniteLoading @infinite="loadData" /> -->
     <loading :is_loading="is_loading"></loading>
 </template>
 
@@ -137,6 +139,7 @@ import {
 import { mapGetters, mapActions } from "vuex";
 import InfiniteLoading from "v3-infinite-loading";
 import "v3-infinite-loading/lib/style.css";
+import emptyState from "../../components/utilities/emptyState.vue";
 export default {
     data() {
         return {
@@ -192,11 +195,11 @@ export default {
         },
     },
     created() {
-      
         this.fetchData();
     },
     components: {
         InfiniteLoading,
+        emptyState,
     },
 };
 </script>

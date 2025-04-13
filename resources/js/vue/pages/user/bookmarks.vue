@@ -1,8 +1,8 @@
 <template>
     <page-title :title="'Bookmarks'"></page-title>
-    <div class="bookmarks-container">
+    <div v-if="bookmarks.length" class="bookmarks-container">
         <auction-card
-        @refreshData="fetchData"
+            @refreshData="fetchData"
             v-for="(item, index) in this.bookmarks"
             :key="index"
             :auction_id="item.auction.id"
@@ -13,13 +13,17 @@
             :live_price="item.auction.current_price"
             :title="item.auction.product.title"
             :image="item.auction.product.galleries[0]"
-            :is_bookmarked="
-                check_bookmark_status(item.auction.bookmarks, user)
-            "
+            :is_bookmarked="check_bookmark_status(item.auction.bookmarks, user)"
             :status="item.auction.status"
         >
         </auction-card>
     </div>
+    <emptyState
+        :img="'/assets/img/illustrations/empty-2.png'"
+        :header="'Ops!'"
+        :text="'No Bookmark found...'"
+        v-else
+    />
     <inline-loading :is_loading_more></inline-loading>
     <InfiniteLoading @infinite="loadData" />
 </template>
@@ -31,6 +35,8 @@ import "v3-infinite-loading/lib/style.css"; //required if you're not going to ov
 </script>
 
 <script>
+import emptyState from "../../components/utilities/emptyState.vue";
+
 import { check_bookmark_status } from "@/modules/utilities/auctionUtils.js";
 import { mapGetters, mapActions } from "vuex";
 import AuctionCard from "../../components/auctions/auction_card.vue";
@@ -83,6 +89,7 @@ export default {
     },
     components: {
         AuctionCard,
+        emptyState,
     },
 };
 </script>

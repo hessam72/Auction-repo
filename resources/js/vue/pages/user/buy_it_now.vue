@@ -1,7 +1,7 @@
 <template>
     <page-title :title="'Buy Now Offers'"></page-title>
 
-    <div class="b-main-container">
+    <div  class="b-main-container">
         <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com -->
         <div class="mb-3">
             <div class="relative mb-4 flex w-full flex-wrap items-stretch">
@@ -39,6 +39,12 @@
         </div>
         <div id="buy_now_table"></div>
     </div>
+    <!-- <emptyState
+        :img="'/assets/img/illustrations/empty-2.png'"
+        :header="'Ops!'"
+        :text="'No Bookmark found...'"
+        v-else
+    /> -->
     <!-- shipping modal -->
     <TransitionRoot as="template" :show="create_modal">
         <Dialog as="div" class="relative z-10" @close="open = false">
@@ -223,6 +229,8 @@
     <loading :is_loading="is_loading"></loading>
 </template>
 <script>
+import emptyState from "../../components/utilities/emptyState.vue";
+
 import { Datatable } from "tw-elements";
 import { mapGetters, mapActions } from "vuex";
 import VueMultiselect from "vue-multiselect";
@@ -280,6 +288,7 @@ export default {
     },
     components: {
         Dialog,
+        emptyState,
         DialogPanel,
         DialogTitle,
         TransitionChild,
@@ -420,7 +429,7 @@ export default {
             let body = {
                 amount: pay_data.price_amount,
                 order_id: pay_data.order_id,
-                item_type: 2, // user shipped product id 
+                item_type: 2, // user shipped product id
                 // item_id: this.current_offer.id,
                 payment_description: pay_data.order_description,
                 payment_id: pay_data.id,
@@ -443,7 +452,6 @@ export default {
                     console.log("error create transac");
                     console.log(error);
                     this.is_loading = false;
-
                 })
                 .finally(() => {});
         },
@@ -473,20 +481,19 @@ export default {
                 headers: config,
             })
                 .then((response) => {
-                    const id =this.current_payment.id
+                    const id = this.current_payment.id;
                     this.clearData();
                     //for updating offers...
                     this.fetchData();
-       
 
                     // then redirect to pay
-                    window.location.href ="https://nowpayments.io/payment/?iid=" +id;
+                    window.location.href =
+                        "https://nowpayments.io/payment/?iid=" + id;
 
                     // window.open(
                     //     "https://nowpayments.io/payment/?iid=" +id
-                            
+
                     // );
-                   
                 })
                 .catch((error) => {
                     console.log(error);
