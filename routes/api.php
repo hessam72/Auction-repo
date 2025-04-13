@@ -49,6 +49,8 @@ Route::controller(ApiController::class)->prefix('/auth')->group(function () {
     Route::post('/login', 'login');
     Route::post('/register', 'register');
     Route::post('/logout', 'logout');
+    Route::post('/sendCode', 'sendCode');
+    Route::post('/changePassword', 'changePassword');
 });
 
 

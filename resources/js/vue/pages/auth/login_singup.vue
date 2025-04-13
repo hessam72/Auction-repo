@@ -3,7 +3,12 @@
     <div class="auth-container">
         <div class="forms-container">
             <div class="signin-signup">
-                <form @submit.prevent="login()" class="sign-in-form">
+                <!-- default login -->
+                <form
+                    v-if="resetForm == 0"
+                    @submit.prevent="login()"
+                    class="sign-in-form"
+                >
                     <h2 class="title">Sign in</h2>
                     <div class="input-field">
                         <ion-icon class="icon" name="person"></ion-icon>
@@ -22,8 +27,64 @@
                             placeholder="Password"
                         />
                     </div>
+                    <p @click="resetForm = true">Forgot Password?</p>
                     <input type="submit" value="Login" class="btn solid" />
                 </form>
+
+                <!-- reset pass enter email -->
+                <form v-if="resetForm == 1" @submit.prevent="sendResetCode()" class="sign-in-form">
+                    <h2 class="title">Enter Your Email</h2>
+                    <div class="input-field">
+                        <ion-icon class="icon" name="at"></ion-icon>
+                        <input
+                            v-model="login_email"
+                            type="email"
+                            placeholder="Email"
+                            required
+                        />
+                    </div>
+                    <input  type="submit" value="Send Code" class="btn solid" />
+                    <p @click="resetForm = 0">Back to Login</p>
+                </form>
+
+                <!-- reset pass confirm code and new pass -->
+                <form @submit.prevent="changePassword()" v-if="resetForm == 2" class="sign-in-form">
+                    <h2 class="title">Choose New Password</h2>
+                    <div class="input-field">
+                        <ion-icon class="icon" name="at"></ion-icon>
+                        <input
+                            v-model="login_email"
+                            type="email"
+                            placeholder="Email"
+                            required
+                        />
+                    </div>
+                    <div class="input-field">
+                        <ion-icon class="icon" name="key"></ion-icon>
+                        <input
+                            v-model="new_password"
+                            type="text"
+                            placeholder="New Password"
+                            required
+                        />
+                    </div>
+                    <div class="input-field">
+                        <ion-icon class="icon" name="at"></ion-icon>
+                        <input
+                            v-model="code"
+                            type="number"
+                            placeholder="Confirmation Code"
+                            required
+                        />
+                    </div>
+                    <input
+                        type="submit"
+                        value="Update Password"
+                        class="btn solid"
+                    />
+                    <p @click="resetForm = 0">Back to Login</p>
+                </form>
+
                 <form @submit.prevent="register()" class="sign-up-form">
                     <h2 class="title">Sign up</h2>
                     <div class="input-field">
@@ -127,8 +188,13 @@ export default {
         return {
             loginUrl: "auth/login",
             registerUrl: "auth/register",
+            sendCodeUrl: "auth/sendCode",
+            changePassUrl: "auth/changePassword",
             username: null,
+            resetForm: 0,
             login_email: null,
+            new_password: null,
+            code: null,
             login_password: null,
             register_email: null,
             register_password: null,
@@ -152,6 +218,7 @@ export default {
                 email: this.login_email,
                 password: this.login_password,
             };
+            console.log('body',body)
 
             axios
                 .post(this.baseUrl + this.loginUrl, body)
@@ -164,6 +231,59 @@ export default {
                 .catch(function (error) {
                     console.log("error");
                     console.log(error);
+                })
+                .finally(function () {
+                    // always executed
+                });
+        },
+
+        sendResetCode() {
+        
+
+            const body = {
+                email: this.login_email,
+            };
+
+            axios
+                .post(this.baseUrl + this.sendCodeUrl, body)
+                .then((response) => {
+                    console.log(response)
+                    this.toast.success(response.data.data);
+
+                    this.resetForm = 2;
+                })
+                .catch( (error) =>{
+                    console.log("error");
+                    console.log(error);
+                    this.toast.error('Something went wrong');
+
+                })
+                .finally(function () {
+                    // always executed
+                });
+        },
+
+        changePassword() {
+
+            const body = {
+                email: this.login_email,
+                new_password: this.new_password,
+                code: this.code,
+            };
+
+            axios
+                .post(this.baseUrl + this.changePassUrl, body)
+                .then((response) => {
+                    console.log(response)
+                    this.toast.success(response.data.data);
+
+                    this.resetForm = 0;
+                })
+                .catch( (error)=> {
+                    console.log("error");
+                    console.log(error);
+                    this.toast.error(error.response.data.data);
+
                 })
                 .finally(function () {
                     // always executed

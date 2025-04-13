@@ -41,6 +41,7 @@ class HighestBidderLevel extends Model
 		'bid_reward'
 	];
 
+
 	public function highest_bidders()
 	{
 		return $this->hasMany(HighestBidder::class, 'current_level_id');
