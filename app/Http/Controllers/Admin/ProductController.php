@@ -67,16 +67,31 @@ class ProductController extends Controller
             "inventory" => $request->product_inventory,
             "description" => $temp_desc->val
         ]);
-        if ($request->has('product_imgs')) {
-            if ($request->product_imgs[0]['file']) {
-                foreach ($request->product_imgs as $image) {
-                    $path = $this->UploadFile($image['file'], 'images/product_images'); //use the method in the trait
-                    ProductGallery::create([
-                        'image' => $path,
-                        'product_id' => $product->id
-                    ]);
-                }
+        if ($request->has('files')) {
+            // if ($request->files) {
+            //     foreach ($request->product_imgs as $image) {
+            //         $path = $this->UploadFile($image['file'], 'images/product_images'); //use the method in the trait
+            //         ProductGallery::create([
+            //             'image' => $path,
+            //             'product_id' => $product->id
+            //         ]);
+            //     }
+            // }
+
+            foreach ($request->file('files') as $file) {
+
+                $sampleUploadedPath[] = $this->UploadFile($file, 'images/product_images', 'public');
             }
+
+            $query = [];
+            foreach ($sampleUploadedPath as $file) {
+
+                $query[] = [
+                    'product_id' => $product->id,
+                    'image' => $file
+                ];
+            }
+            DB::table('product_galleries')->insert($query);
         }
 
         return redirect()->back()->with('success', 'ثبت با موفقیت ثبت شد');
@@ -155,23 +170,44 @@ class ProductController extends Controller
 
 
         //managing images
-        if ($request->has('product_imgs')) {
-            if ($request->product_imgs[0]['file']) {
-                //delete old images
-               
-                $product->product_galleries()->each(function($pg) {
-                    $pg->delete(); 
-                });
-                // store new images
-                foreach ($request->product_imgs as $image) {
-                    $path = $this->UploadFile($image['file'], 'images/product_images'); //use the method in the trait
-                    ProductGallery::create([
-                        'image' => $path,
-                        'product_id' => $product->id
-                    ]);
-                }
+        // if ($request->has('product_imgs')) {
+        //     if ($request->product_imgs[0]['file']) {
+        //         //delete old images
+
+        //         $product->product_galleries()->each(function ($pg) {
+        //             $pg->delete();
+        //         });
+        //         // store new images
+        //         foreach ($request->product_imgs as $image) {
+        //             $path = $this->UploadFile($image['file'], 'images/product_images'); //use the method in the trait
+        //             ProductGallery::create([
+        //                 'image' => $path,
+        //                 'product_id' => $product->id
+        //             ]);
+        //         }
+        //     }
+        // }
+        if ($request->has('files')) {
+            $product->product_galleries()->each(function ($pg) {
+                $pg->delete();
+            });
+
+            foreach ($request->file('files') as $file) {
+
+                $sampleUploadedPath[] = $this->UploadFile($file, 'images/product_images', 'public');
             }
+
+            $query = [];
+            foreach ($sampleUploadedPath as $file) {
+
+                $query[] = [
+                    'product_id' => $product->id,
+                    'image' => $file
+                ];
+            }
+            DB::table('product_galleries')->insert($query);
         }
+
 
 
         return redirect()->to('676fbdd1/products')->with('success', 'ویرایش با موفقیت ثبت شد');

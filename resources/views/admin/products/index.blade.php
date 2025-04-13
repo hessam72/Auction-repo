@@ -1,7 +1,7 @@
 @extends('admin.app')
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
-       
+
 
 
         <div class="modal fade" id="createmodal" tabindex="-1" aria-hidden="true">
@@ -18,7 +18,7 @@
                             action="{{ route('admin.products.store') }}" enctype="multipart/form-data">
                             @csrf
 
-                           
+
                             <div class="col-12 col-md-6">
                                 <label class="form-label" for="modalEditUserFirstName">نام
                                     محصول</label>
@@ -70,8 +70,8 @@
                                 <input type="number" id="modalEditTaxID" name="price"
                                     class="form-control modal-edit-tax-id" placeholder="قیمت به دلار">
                             </div>
-                          
-                           
+
+
 
                             <div class="col-12 col-md-6">
                                 <label class="form-label" for="modalEditTaxID">
@@ -81,36 +81,33 @@
                             </div>
 
 
-                             {{-- multi image uploader --}}
-                             <div class="col-12 ">
-                                <div data-repeater-list="product_imgs">
-                                    <div data-repeater-item>
-                                        <div class="input-group">
-                                            <label class="input-group-text" for="form-repeater-1-1">تصویر محصول</label>
-                                            <input name="file" type="file" class="form-control" id="form-repeater-1-1">
-                                        </div>
+                            {{-- multi image uploader --}}
+                            <div class="col-12 ">
+                                <div class="col-12 ">
 
-
-                                        <div class="mb-3 col-lg-12 col-xl-2 col-12 d-flex align-items-center mb-0">
-                                            <button type="button" class="btn btn-label-danger mt-4" data-repeater-delete>
-                                                <i class="bx bx-x me-1"></i>
-                                                <span class="align-middle">حذف</span>
-                                            </button>
+                                    {{-- <span >در صورت نیاز، تصاویر جدید محصول را آپلود کنید</span> --}}
+                                    <div >
+                                        <div >
+    
+                                            <div class="input-group">
+                                                <label class="input-group-text">تصویر محصول</label>
+                                              
+                                                <input type="file" name="files[]" class="form-control new-file-input"
+                                                    multiple accept="image/*">
+                                            </div>
+    
+    
                                         </div>
+                                        <hr>
+    
                                     </div>
-                                    <hr>
-
+    
                                 </div>
-                                <div class="mb-0">
-                                    <button type="button" class="btn btn-primary" data-repeater-create>
-                                        <i class="bx bx-plus me-1"></i>
-                                        <span class="align-middle">افزودن</span>
-                                    </button>
-                                </div>
+                                
 
                             </div>
 
-{{-- full editor --}}
+                            {{-- full editor --}}
                             <div class="col-12">
 
                                 <div class="card">
@@ -125,7 +122,7 @@
                                     </div>
                                 </div>
                             </div>
-                           
+
 
                             {{-- temprary saving place for rich text --}}
                             <input type="text" id="temp_id" name="temp_id" value="" hidden>
@@ -277,5 +274,4 @@
             </div>
         </div>
     </div>
-
 @endsection

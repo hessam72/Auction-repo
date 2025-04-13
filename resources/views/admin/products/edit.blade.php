@@ -1,6 +1,5 @@
 @extends('admin.app')
 @section('content')
-
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="py-3 breadcrumb-wrapper mb-4">
             <span class="text-muted fw-light">فرم‌ها /</span> طرح‌های افقی
@@ -57,7 +56,7 @@
                     <div class="card-header d-flex align-items-center justify-content-between">
                         <h5 class="mb-0">پایه با آیکن</h5>
                         <small class="text-muted float-end primary-font">گروه ورودی ادغام شده</small>
-                        
+
                         @include('components.admin.flash_messages')
 
                     </div>
@@ -149,7 +148,7 @@
                                         مشاهده تصاویر فعلی محصول
                                     </button>
                                 @else
-                                <p>محصول فعلی فاقد تصویر میباشد</p>
+                                    <p>محصول فعلی فاقد تصویر میباشد</p>
                                 @endif
 
                             </div>
@@ -158,31 +157,20 @@
                             <div class="col-12 ">
 
                                 {{-- <span >در صورت نیاز، تصاویر جدید محصول را آپلود کنید</span> --}}
-                                <div data-repeater-list="product_imgs">
-                                    <div data-repeater-item>
+                                <div >
+                                    <div >
 
                                         <div class="input-group">
-                                            <label class="input-group-text" for="form-repeater-1-1">تصویر محصول</label>
-                                            <input name="file" type="file" class="form-control"
-                                                id="form-repeater-1-1">
+                                            <label class="input-group-text">تصویر محصول</label>
+                                          
+                                            <input type="file" name="files[]" class="form-control new-file-input"
+                                                multiple accept="image/*">
                                         </div>
 
 
-                                        <div class="mb-3 col-lg-12 col-xl-2 col-12 d-flex align-items-center mb-0">
-                                            <button type="button" class="btn btn-label-danger mt-4" data-repeater-delete>
-                                                <i class="bx bx-x me-1"></i>
-                                                <span class="align-middle">حذف</span>
-                                            </button>
-                                        </div>
                                     </div>
                                     <hr>
 
-                                </div>
-                                <div class="mb-0">
-                                    <button type="button" class="btn btn-primary" data-repeater-create>
-                                        <i class="bx bx-plus me-1"></i>
-                                        <span class="align-middle">افزودن</span>
-                                    </button>
                                 </div>
 
                             </div>
@@ -233,12 +221,4 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
-
-
-
     @endsection

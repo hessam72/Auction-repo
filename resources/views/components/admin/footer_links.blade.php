@@ -420,33 +420,33 @@
 
     // dashboard analitics
     var monthly_income_string = $('#chart_value_monthly_income').val();
-    var monthly_income = monthly_income_string.split(",").map(Number);
+    var monthly_income = monthly_income_string?.split(",")?.map(Number);
 
     var monthly_singups_string = $('#chart_value_monthly_singups').val();
-    var monthly_singups = monthly_singups_string.split(",").map(Number);
+    var monthly_singups = monthly_singups_string?.split(",")?.map(Number);
 
     var monthly_auctions_string = $('#chart_value_monthly_auctions').val();
-    var monthly_auctions = monthly_auctions_string.split(",").map(Number);
+    var monthly_auctions = monthly_auctions_string?.split(",")?.map(Number);
 
     var monthly_products_string = $('#chart_value_monthly_products').val();
-    var monthly_products = monthly_products_string.split(",").map(Number);
+    var monthly_products = monthly_products_string?.split(",")?.map(Number);
 
     var monthly_products_sales_string = $('#chart_value_monthly_products_sales').val();
-    var monthly_products_sales = monthly_products_sales_string.split(",").map(Number);
+    var monthly_products_sales = monthly_products_sales_string?.split(",")?.map(Number);
 
     var monthly_packages_sales_string = $('#chart_value_monthly_packages_sales').val();
-    var monthly_packages_sales = monthly_packages_sales_string.split(",").map(Number);
+    var monthly_packages_sales = monthly_packages_sales_string?.split(",")?.map(Number);
 
 
 
     var past_year_monthly_visits_string = $('#chart_value_past_year_monthly_visits').val();
-    var past_year_monthly_visits = past_year_monthly_visits_string.split(",").map(Number);
+    var past_year_monthly_visits = past_year_monthly_visits_string?.split(",")?.map(Number);
 
     var past_month_all_visits_string = $('#chart_value_past_month_all_visits').val();
-    var past_month_all_visits = past_month_all_visits_string.split(",").map(Number);
+    var past_month_all_visits = past_month_all_visits_string?.split(",")?.map(Number);
 
     var past_month_uniqe_visits_string = $('#chart_value_past_month_uniqe_visits').val();
-    var past_month_uniqe_visits = past_month_uniqe_visits_string.split(",").map(Number);
+    var past_month_uniqe_visits = past_month_uniqe_visits_string?.split(",")?.map(Number);
 
 
 

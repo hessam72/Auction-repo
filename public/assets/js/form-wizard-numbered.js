@@ -28,10 +28,10 @@ $(function() {
 (function() {
     // Numbered Wizard
     // --------------------------------------------------------------------
-    const wizardNumbered = document.querySelector('.wizard-numbered'),
-        wizardNumberedBtnNextList = [].slice.call(wizardNumbered.querySelectorAll('.btn-next')),
-        wizardNumberedBtnPrevList = [].slice.call(wizardNumbered.querySelectorAll('.btn-prev')),
-        wizardNumberedBtnSubmit = wizardNumbered.querySelector('.btn-submit');
+    const wizardNumbered = document?.querySelector('.wizard-numbered'),
+        wizardNumberedBtnNextList = []?.slice?.call(wizardNumbered?.querySelectorAll('.btn-next')),
+        wizardNumberedBtnPrevList = []?.slice?.call(wizardNumbered?.querySelectorAll('.btn-prev')),
+        wizardNumberedBtnSubmit = wizardNumbered?.querySelector('.btn-submit');
 
     if (typeof wizardNumbered !== undefined && wizardNumbered !== null) {
         const numberedStepper = new Stepper(wizardNumbered, {

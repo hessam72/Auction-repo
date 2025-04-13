@@ -97,7 +97,6 @@
                                             .current_price
                                     }}
                                 </h2>
-                                
                             </div>
                             <div class="current-winner-section">
                                 <div class="size">
@@ -628,11 +627,11 @@ export default {
         submitBid() {
             // sending user bid
             // validate so only auth users can submit bids
-           
+
             if (this.user.id === undefined || this.user.id === null) {
                 this.toast.error("You must be loged in to Bid");
                 return;
-            }  
+            }
             //  if (!this.user.bid_amount) {
             //     this.toast.warning("Buy Bid to Participaint");
             //     return;
@@ -651,17 +650,15 @@ export default {
                     Accept: "application/json",
                 })
                 .then((response) => {
-                  
                     setTimeout(() => {
                         console.log("checking store auction....");
                         console.log(this.findAuctionInStore(this.auction.id));
                     }, 1000);
                 })
-                .catch( (error)=> {
-                    console.log('error biding');
+                .catch((error) => {
+                    console.log("error biding");
                     console.log();
                     this.toast.error(error.response.data.message);
-
                 })
                 .finally(() => {
                     this.BiddingLoading = false;
@@ -804,8 +801,6 @@ export default {
     watch: {
         //for updating bidding history
         storedAuctions(new_val) {
-         
-
             // check to see if current auction is updated?
             var new_current_auction = new_val.find(
                 (x) => x.id === this.auction.id
@@ -894,7 +889,16 @@ export default {
         width: auto;
         position: relative;
         margin-top: -4rem;
-
+        .slide {
+            max-width: 30vw;
+            max-height: 40vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img {
+                height: auto;
+            }
+        }
         button {
             position: absolute;
             padding: 0.5rem 2rem;

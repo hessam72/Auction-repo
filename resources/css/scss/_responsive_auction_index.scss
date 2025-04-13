@@ -24,6 +24,10 @@
                     }
                     .gallery {
                         left: -2rem;
+                        .slide {
+                            max-width: 100vw;
+                            max-height: 100vh;
+                        }
                         button {
                             left: 4rem;
                             right: 0;
