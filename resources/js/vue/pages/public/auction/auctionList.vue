@@ -208,8 +208,8 @@ export default {
                     console.log(response);
                     this.auctions = response.data.data;
                     this.test_auctions = this.auctions;
-console.log('path ',this.$route.path)
-                 
+                    console.log("path ", this.$route.path);
+
                     this.saveAuctions();
                 })
                 .catch((error) => {

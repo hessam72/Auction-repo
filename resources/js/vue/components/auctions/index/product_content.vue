@@ -2,8 +2,8 @@
      <!-- <QuillEditor v-model="text" theme="snow" /> -->
     <div class="product-info-container flex flex-col">
         <div class="product-header flex items-center justify-between">
-            <h2>{{ product.title }}</h2>
-            <h2>${{ product.price }}</h2>
+            <h2>{{ product?.title }}</h2>
+            <h2>${{ product?.price }}</h2>
         </div>
         <div class="product-content">
             <QuillEditor  :content="generateRichText(product.description)" :readOnly="true"  contentType="delta" theme="" />

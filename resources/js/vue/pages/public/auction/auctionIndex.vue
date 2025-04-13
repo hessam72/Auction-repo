@@ -11,21 +11,21 @@
                 <div class="first-section flex">
                     <div class="gallery-container">
                         <div class="header flex flex-col">
-                            <h2>{{ product.title }}</h2>
+                            <h2>{{ product?.title }}</h2>
                             <h3>
-                                {{ product.short_desc }}
+                                {{ product?.short_desc }}
                             </h3>
                             <p class="by_now" @click="handleBuyItNow">
-                                buy it now for ${{ product.price }}
+                                buy it now for ${{ product?.price }}
                             </p>
                         </div>
                         <div class="gallery">
                             <div class="slider">
                                 <div
-                                    v-for="(item, index) in product.galleries"
+                                    v-for="(item, index) in product?.galleries"
                                     class="slide"
                                 >
-                                    <img :src="'/storage/' + item.image" />
+                                    <img :src="'/storage/' + item?.image" />
                                     <!-- <p>rutrum tellus a tempus :)</p> -->
                                 </div>
                             </div>
@@ -40,7 +40,7 @@
                                 @click="toggleBookmark()"
                                 v-if="
                                     check_bookmark_status(
-                                        auction.bookmarks,
+                                        auction?.bookmarks,
                                         user
                                     )
                                 "
@@ -66,7 +66,7 @@
                             <div class="icon-container">
                                 <ion-icon name="lock"></ion-icon>
                                 <p>
-                                    ${{ auction.no_jumper_limit }} No Jumper
+                                    ${{ auction?.no_jumper_limit }} No Jumper
                                     Limit
                                 </p>
                             </div>
@@ -77,7 +77,7 @@
                             >
                                 <h2
                                     v-if="
-                                        findAuctionInStore(auction.id).status ==
+                                        findAuctionInStore(auction?.id)?.status ==
                                         100
                                     "
                                 >
@@ -87,14 +87,14 @@
                                 <!-- <h2 class="price">${{ auction.current_price }}</h2> -->
                                 <h2
                                     :key="
-                                        findAuctionInStore(auction.id)
-                                            .current_price
+                                        findAuctionInStore(auction?.id)
+                                            ?.current_price
                                     "
                                     class="price mycolor"
                                 >
                                     ${{
-                                        findAuctionInStore(auction.id)
-                                            .current_price
+                                        findAuctionInStore(auction?.id)
+                                            ?.current_price
                                     }}
                                 </h2>
                             </div>
@@ -107,8 +107,8 @@
                                                 :src="
                                                     '/storage/' +
                                                     findAuctionInStore(
-                                                        auction.id
-                                                    ).avatar
+                                                        auction?.id
+                                                    )?.avatar
                                                 "
                                             />
                                             <!-- onerror="this.src='/storage/images/user_profiles/blank.png'" -->
@@ -118,20 +118,20 @@
                                         <!-- <h3>{{ current_winner.username }}</h3> -->
                                         <h3
                                             :key="
-                                                findAuctionInStore(auction.id)
-                                                    .current_winner_username
+                                                findAuctionInStore(auction?.id)
+                                                    ?.current_winner_username
                                             "
                                             class="mycolor"
                                         >
                                             {{
-                                                findAuctionInStore(auction.id)
-                                                    .current_winner_username
+                                                findAuctionInStore(auction?.id)
+                                                    ?.current_winner_username
                                             }}
                                         </h3>
                                         <h4
                                             v-if="
-                                                findAuctionInStore(auction.id)
-                                                    .status == 100
+                                                findAuctionInStore(auction?.id)
+                                                    ?.status == 100
                                             "
                                         >
                                             Current Heighest bidder
@@ -140,7 +140,7 @@
 
                                         <h4 class="user_location">
                                             <ion-icon name="pin"></ion-icon>
-                                            {{ current_winner.city.name }}
+                                            {{ current_winner?.city?.name }}
                                         </h4>
                                     </div>
                                 </div>
@@ -227,7 +227,7 @@
                             <div class="timer-section">
                                 <h3
                                     v-if="
-                                        findAuctionInStore(auction.id).status ==
+                                        findAuctionInStore(auction?.id)?.status ==
                                         100
                                     "
                                 >
@@ -235,17 +235,17 @@
                                 </h3>
                                 <div
                                     v-if="
-                                        findAuctionInStore(auction.id).status ==
+                                        findAuctionInStore(auction?.id)?.status ==
                                         100
                                     "
                                     class="auction-timer"
                                 >
                                     <vue-countdown
-                                        @end="endAuction(auction.id)"
+                                        @end="endAuction(auction?.id)"
                                         :time="
                                             convertDateToMilliSeconds(
-                                                findAuctionInStore(auction.id)
-                                                    .timer
+                                                findAuctionInStore(auction?.id)
+                                                    ?.timer
                                             )
                                         "
                                         v-slot="{ hours, minutes, seconds }"
@@ -269,7 +269,7 @@
                                 </div>
                                 <div
                                     v-else-if="
-                                        findAuctionInStore(auction.id).status ==
+                                        findAuctionInStore(auction?.id)?.status ==
                                         3
                                     "
                                     class="auction-timer"
@@ -323,7 +323,7 @@
                             </div>
                             <div
                                 v-if="
-                                    findAuctionInStore(auction.id).status == 100
+                                    findAuctionInStore(auction?.id)?.status == 100
                                 "
                                 class="btn-container flex flex-col justify-between items-center"
                             >
@@ -378,7 +378,7 @@
                 <!-- users -->
                 <users-section :participaints :winners></users-section>
                 <product-content :product></product-content>
-                <reviews-section :product_id="product.id"></reviews-section>
+                <reviews-section :product_id="product?.id"></reviews-section>
             </div>
             <side-section :auctions="side_auctions"></side-section>
         </div>
@@ -492,14 +492,37 @@ export default {
         ]),
         connect() {
             let vm = this;
+            // window.Echo.channel("my-channel")
+            //     .listen(".my-event", (e) => {
+            //         // vm.updateAuction(e.data);
+            //         console.log("new auction data");
+            //         console.log(e);
+            //     })
+            //     .listen(".test-event", (e) => {
+            //         return;
+            //     });
+
             window.Echo.channel("my-channel")
                 .listen(".my-event", (e) => {
-                    // vm.updateAuction(e.data);
-                    console.log("new auction data");
-                    console.log(e);
+                    // listening for user direct submit bid
+                    vm.upadteAnAuctionState(e.data);
+
+                    console.log('my-channel' , e);
                 })
-                .listen(".test-event", (e) => {
-                    return;
+                .listen(".auto-bidding-event", (e) => {
+                    // listening for bidbuddy submit bid
+                    console.log("auto bidding is running");
+                    // loop for updating every incomming bid budy's bid
+                    for (let i = 0; i < e.data.length; i++) {
+                        vm.upadteAnAuctionState(e.data[i]);
+                    }
+                })
+                .listen(".win-event", (e) => {
+                    // listening for bidbuddy submit bid
+                    console.log("winner");
+                    console.log(e);
+
+                    vm.upadteAnAuctionState(e.data);
                 });
         },
         disconnect() {
@@ -508,7 +531,23 @@ export default {
         findAuctionInStore(id) {
             return this.findAuction(id);
         },
+        upadteAnAuctionState(item) {
+        
 
+            this.setSingleAuction(item);
+            var next_queue = item.bidding_queues;
+            if (item.bidding_queues === null) {
+                next_queue = {
+                    auction_id: item.id,
+                    is_empthy: true,
+                };
+            }
+            // this.setSingleBiddingQueue(next_queue);
+
+            // firing emit to all auction indexes
+
+            // this.emitter.emit("update-live-auction", item);
+        },
         handleBuyItNow() {
             if (
                 this.user?.id === undefined ||
@@ -748,10 +787,10 @@ export default {
                 this.toast.error("You must be loged in to Activate BidBuddy");
                 return;
             }
-            if (this.bidBodyCount <= 1) {
-                this.toast.error("Insufficient Number Of Bids");
-                return;
-            }
+            // if (this.bidBodyCount <= 1) {
+            //     this.toast.error("Insufficient Number Of Bids");
+            //     return;
+            // }
             if (!this.user.bid_amount) {
                 this.toast.warning("Buy Bid to Participaint");
                 return;
@@ -785,7 +824,7 @@ export default {
     },
     mounted() {
         console.log(this.findAuctionInStore(212));
-        // this.connect(); //connect to Pusher
+        this.connect(); //connect to Pusher
         // Elastic Slider (c) 2014 // Taron Mehrabyan // Ruben Sargsyan
         init_elastic_slider();
 

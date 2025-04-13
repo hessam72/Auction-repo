@@ -9,12 +9,12 @@
 }
 @keyframes flash_change {
   0% {
-    text-shadow: 0 0 0px yellow;
+    text-shadow: 0 0 5px #ffd000;
     transform: scale(1);
   }
   50% {
-    text-shadow: 0 0 10px yellow;
-    transform: scale(1.1);
+    text-shadow: 0 5px 20px #ffd000;
+    transform: scale(1.15);
   }
   100% {
     text-shadow: 0 0 0px transparent;
