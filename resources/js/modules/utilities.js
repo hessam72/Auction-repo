@@ -9,6 +9,7 @@ export function translateAuctionStatus(value) {
 }
 
 export function convertDateToMilliSeconds(time) {
+ 
     // var date = new Date("11/21/1987 16:00:00"); // some mock date
     var date = new Date(time)
     var milliseconds = date.getTime();

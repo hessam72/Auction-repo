@@ -38,12 +38,7 @@
                         <div class="tags flex">
                             <div
                                 @click="toggleBookmark()"
-                                v-if="
-                                    check_bookmark_status(
-                                        auction?.bookmarks,
-                                        user
-                                    )
-                                "
+                                v-if="bookmarkStatus"
                                 class="icon-container"
                             >
                                 <ion-icon
@@ -77,8 +72,8 @@
                             >
                                 <h2
                                     v-if="
-                                        findAuctionInStore(auction?.id)?.status ==
-                                        100
+                                        findAuctionInStore(auction?.id)
+                                            ?.status == 100
                                     "
                                 >
                                     Current Bid
@@ -93,8 +88,10 @@
                                     class="price mycolor"
                                 >
                                     ${{
-                                        splitPrice(findAuctionInStore(auction?.id)
-                                            ?.current_price)
+                                        splitPrice(
+                                            findAuctionInStore(auction?.id)
+                                                ?.current_price
+                                        )
                                     }}
                                 </h2>
                             </div>
@@ -198,7 +195,9 @@
                                                                 class="whitespace-nowrap"
                                                             >
                                                                 ${{
-                                                                    splitPrice(item.bid_price)
+                                                                    splitPrice(
+                                                                        item.bid_price
+                                                                    )
                                                                 }}
                                                             </td>
                                                             <td
@@ -227,16 +226,16 @@
                             <div class="timer-section">
                                 <h3
                                     v-if="
-                                        findAuctionInStore(auction?.id)?.status ==
-                                        100
+                                        findAuctionInStore(auction?.id)
+                                            ?.status == 100
                                     "
                                 >
                                     Time Left
                                 </h3>
                                 <div
                                     v-if="
-                                        findAuctionInStore(auction?.id)?.status ==
-                                        100
+                                        findAuctionInStore(auction?.id)
+                                            ?.status == 100
                                     "
                                     class="auction-timer"
                                 >
@@ -269,8 +268,8 @@
                                 </div>
                                 <div
                                     v-else-if="
-                                        findAuctionInStore(auction?.id)?.status ==
-                                        3
+                                        findAuctionInStore(auction?.id)
+                                            ?.status == 3
                                     "
                                     class="auction-timer"
                                 >
@@ -323,7 +322,8 @@
                             </div>
                             <div
                                 v-if="
-                                    findAuctionInStore(auction?.id)?.status == 100
+                                    findAuctionInStore(auction?.id)?.status ==
+                                    100
                                 "
                                 class="btn-container flex flex-col justify-between items-center"
                             >
@@ -377,7 +377,7 @@
                 </div>
                 <!-- users -->
                 <users-section :participaints :winners></users-section>
-                <product-content  :product></product-content>
+                <product-content :product></product-content>
                 <reviews-section :product_id="product?.id"></reviews-section>
             </div>
             <side-section :auctions="side_auctions"></side-section>
@@ -441,6 +441,7 @@ export default {
             winners: [],
             // comments: [],
             is_loading: false,
+            bookmarkStatus: false,
             text: null,
             richText: {
                 ops: [
@@ -510,7 +511,7 @@ export default {
                     // listening for user direct submit bid
                     vm.upadteAnAuctionState(e.data);
 
-                    console.log('my-channel' , e);
+                    console.log("my-channel", e);
                 })
                 .listen(".auto-bidding-event", (e) => {
                     // listening for bidbuddy submit bid
@@ -524,24 +525,40 @@ export default {
                     // listening for bidbuddy submit bid
                     console.log("winner");
                     console.log(e);
-                    vm.fireWinAlert(e)
+                    vm.fireWinAlert(e);
                     vm.upadteAnAuctionState(e.data);
                 });
         },
         disconnect() {
             window.Echo.leave("my-channel");
         },
-        fireWinAlert(e){
-            this.toast.success("We Have a Winner");
-            this.toast.info(`User ${e.data.current_winner_username} Has Won this Auction! Congratulations!`);
 
+        handleBookmarkStatus(localToggle = 0) {
+            if (localToggle == 0) {
+                // calculate from check_bookmark_status
+                this.bookmarkStatus = this.check_bookmark_status(
+                    this.auction?.bookmarks,
+                    this.user
+                );
+            } else if (localToggle == 1) {
+                // update from local value to true
+                this.bookmarkStatus = true;
+            } else if (localToggle == 2) {
+                // update from local value to false
+                this.bookmarkStatus = false;
+            }
+        },
+
+        fireWinAlert(e) {
+            this.toast.success("We Have a Winner");
+            this.toast.info(
+                `User ${e.data.current_winner_username} Has Won this Auction! Congratulations!`
+            );
         },
         findAuctionInStore(id) {
             return this.findAuction(id);
         },
         upadteAnAuctionState(item) {
-        
-
             this.setSingleAuction(item);
             var next_queue = item.bidding_queues;
             if (item.bidding_queues === null) {
@@ -637,7 +654,7 @@ export default {
                 data: body,
             })
                 .then((response) => {
-                    console.log('fetch auch res: ' , response)
+                    console.log("fetch auch res: ", response);
                     this.auction = response.data.auction;
                     this.product = this.auction.product;
 
@@ -660,9 +677,10 @@ export default {
                         timer: this.auction.timer,
                         status: this.auction.status,
                     };
-                    console.log('addBiddingQueue' , this.auction.bidding_queues)
+                    console.log("addBiddingQueue", this.auction.bidding_queues);
                     this.addBiddingQueue(this.auction.bidding_queues);
                     this.addAuction(store_data);
+                    this.handleBookmarkStatus();
                 })
                 .catch((error) => {
                     console.log("error fetch");
@@ -732,7 +750,15 @@ export default {
             })
                 // .get(this.baseUrl + this.userUrl, body , config)
                 .then((response) => {
-                    console.log('book red' , response);
+                    console.log("book red", response.data);
+                    let res;
+                    if ((res = response?.data?.success)) {
+                        if (res == "bookmark deleted") {
+                            this.handleBookmarkStatus(2);
+                        } else if (res == "bookmark created") {
+                            this.handleBookmarkStatus(1);
+                        }
+                    }
                     // this.fetchData();
                 })
                 .catch((error) => {
