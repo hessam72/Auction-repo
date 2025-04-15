@@ -38,8 +38,8 @@
             </div>
 
             <div class="slider-img">
-              <img
-                src="https://alcs-slider.netlify.app/images/image-tanya.jpg"
+              <img 
+                :src="'/assets/img/avatars/image-tanya.jpg'"
                 alt="Author Image"
               />
             </div>
@@ -61,7 +61,7 @@
 
             <div class="slider-img">
               <img
-                src="https://alcs-slider.netlify.app/images/image-john.jpg"
+                :src="'/assets/img/avatars/image-john.jpg'"
                 alt="Author Image"
               />
             </div></div

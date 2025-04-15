@@ -33,7 +33,7 @@
                                     data-price="120"
                                     class="table__header--price"
                                 >
-                                    <span>$</span> {{ packages[2].price }}
+                                    <span>$</span> {{ splitPrice(packages[2].price) }}
                                 </p>
                             </div>
                             <!-- END TABLE HEADER -->
@@ -102,7 +102,7 @@
                                     data-price="250"
                                     class="table__header--price"
                                 >
-                                    <span>$</span> {{ packages[0].price }}
+                                    <span>$</span> {{ splitPrice(packages[0].price) }}
                                 </p>
                             </div>
                             <!-- END TABLE HEADER -->
@@ -159,7 +159,7 @@
                                     data-price="520"
                                     class="table__header--price"
                                 >
-                                    <span>$</span> {{ packages[1].price }}
+                                    <span>$</span> {{ splitPrice(packages[1].price) }}
                                 </p>
                             </div>
                             <!-- END TABLE HEADER -->
@@ -213,8 +213,13 @@
 </template>
 
 <script>
+import { splitPrice } from "@/modules/utilities.js";
+
 export default {
     props: ["packages"],
+    methods:{
+        splitPrice
+    },
     mounted() {
         document.querySelectorAll(".price-card").forEach((card) => {
             card.addEventListener("click", function () {
@@ -412,8 +417,11 @@ export default {
 }
 
 .table1 .table__header--price {
+   
     font-size: 46px;
     font-weight: 700;
+    text-shadow: 1px 5px 8px #664c97;
+    color: #444;
 }
 
 .table1 .table__header--price span {

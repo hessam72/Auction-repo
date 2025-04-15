@@ -41,7 +41,7 @@
             <div class="content flex flex-col gap-2.5 py-5 px-7">
                 <div v-if="status === 100" class="header flex flex-col gap-1">
                     <p :key="live_price" class="mycolor live-price">
-                        ${{ live_price }}
+                        ${{ splitPrice(live_price) }}
                     </p>
 
                     <p :key="live_price" class="mycolor current-winner">
@@ -186,7 +186,7 @@
                     Currently unavailable
                 </button>
                 <div @click="handleBuyItNow()" class="btn-secoundary" >
-                    <button>Buy it Now for ${{ buy_now_price }}</button>
+                    <button>Buy it Now for ${{ splitPrice(buy_now_price) }}</button>
                 </div >
             </div>
         </div>
@@ -196,6 +196,8 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import { param } from "jquery";
+import { splitPrice } from "@/modules/utilities.js";
+
 import {
     translateAuctionStatus,
     convertDateToMilliSeconds,
@@ -227,6 +229,7 @@ export default {
     methods: {
         translateAuctionStatus,
         convertDateToMilliSeconds,
+        splitPrice,
 
         handleBuyItNow() {
 

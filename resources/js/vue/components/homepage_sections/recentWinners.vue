@@ -21,7 +21,7 @@
                         />
                     </div>
                     <div class="contentBx">
-                        <h2>{{ item.product.title }}</h2><h3 class="o-price">Original Price: ${{ item.product.price }}</h3>
+                        <h2>{{ item.product.title }}</h2><h3 class="o-price">Original Price: ${{ splitPrice(item.product.price) }}</h3>
 
                         <div class="size">
                            
@@ -34,9 +34,9 @@
                                 </div>
                             </div>
                             <div class="winner-info">
-                                <h3>Winner: {{ item.user.username }}</h3>
-                               <h3>Total Bids Placed: {{item.bids_placed}}</h3>
-                                <h3>Win Price: ${{ item.win_price }}</h3>
+                                <h3><h3>Winner:</h3> {{ item.user.username }}</h3>
+                               <h3><h3>Total Bids Placed:</h3> {{item.bids_placed}}</h3>
+                                <h3><h3>Win Price:</h3> ${{ item.win_price }}</h3>
                             </div>
                         </div>
                         <!-- <div class="color">
@@ -59,9 +59,13 @@
 </template>
 
 <script>
+import { splitPrice } from "@/modules/utilities.js";
+
 export default {
     props:['winners'],
-    
+    methods:{
+        splitPrice
+    },
 };
 </script>
 
@@ -141,7 +145,8 @@ export default {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) rotate(-25deg);
-    width: 270px;
+    height: 100%;
+    width: auto;
 }
 
 .container .card .contentBx {
@@ -193,7 +198,7 @@ export default {
 .winner-info {
     text-align: left;
     padding-left: 0.7rem;
-    line-height: 2;
+    // line-height: 1;
 }
 
 .container .card:hover .contentBx .color {
@@ -207,9 +212,13 @@ export default {
   color: var(--color-primary-tint-5);
     text-transform: uppercase;
     margin-right: 10px;
-    letter-spacing: 1.6px;
+    letter-spacing: .6px;
     font-size: .9rem;
     font-weight: 600;
+    h3{
+        color: #000;
+        display: contents;
+    }
 }
 
 .container .card .contentBx .size span {

@@ -16,7 +16,7 @@
                                 {{ product?.short_desc }}
                             </h3>
                             <p class="by_now" @click="handleBuyItNow">
-                                buy it now for ${{ product?.price }}
+                                buy it now for ${{ splitPrice(product?.price) }}
                             </p>
                         </div>
                         <div class="gallery">
@@ -93,8 +93,8 @@
                                     class="price mycolor"
                                 >
                                     ${{
-                                        findAuctionInStore(auction?.id)
-                                            ?.current_price
+                                        splitPrice(findAuctionInStore(auction?.id)
+                                            ?.current_price)
                                     }}
                                 </h2>
                             </div>
@@ -198,7 +198,7 @@
                                                                 class="whitespace-nowrap"
                                                             >
                                                                 ${{
-                                                                    item.bid_price
+                                                                    splitPrice(item.bid_price)
                                                                 }}
                                                             </td>
                                                             <td
@@ -387,6 +387,8 @@
     </div>
 </template>
 <script>
+import { splitPrice } from "@/modules/utilities.js";
+
 import singleNav from "../../../components/global/singleNav.vue";
 import usersSection from "../../../components/auctions/index/users_section.vue";
 import productContent from "../../../components/auctions/index/product_content.vue";
@@ -481,6 +483,7 @@ export default {
         QuillEditor,
     },
     methods: {
+        splitPrice,
         check_bookmark_status,
         convertDateToMilliSeconds,
 

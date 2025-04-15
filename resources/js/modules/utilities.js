@@ -35,13 +35,55 @@ export function dayOfWeek(number) {
     if (number === 6) return "شنبه";
 }
 
-export function splitPrice(number) {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-}
 
 export function validatePhone(number) {
     var regex = new RegExp("^(\\+98|0)?9\\d{9}$");
     var result = regex.test(number);
     return result;
+}
+
+
+export function toTitleCase(str) {
+    return str.replace(/\w\S*/g, (txt) => {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
+}
+export function splitPrice(number) {
+    if (number) return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    else return 0;
+}
+export function formatDate(input) {
+    const date = new Date(input);
+    const year = new Intl.DateTimeFormat("en", { year: "numeric" }).format(
+        date
+    );
+    const month = new Intl.DateTimeFormat("en", { month: "short" }).format(
+        date
+    );
+    const day = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(date);
+    const hour = new Intl.DateTimeFormat("en", { hour: "numeric" }).format(
+        date
+    );
+    const minute = new Intl.DateTimeFormat("en", { minute: "2-digit" }).format(
+        date
+    );
+
+    return { year, month, day, hour, minute };
+}
+export function formatCreatedAt(input) {
+    const date = new Date(input);
+    const year = new Intl.DateTimeFormat("en", { year: "numeric" }).format(
+        date
+    );
+    const month = new Intl.DateTimeFormat("en", { month: "short" }).format(
+        date
+    );
+    const day = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(date);
+    // const hour = new Intl.DateTimeFormat('en', { hour: 'short' }).format(date)
+    const minute = new Intl.DateTimeFormat("en", { minute: "2-digit" }).format(
+        date
+    );
+
+    return `${day}-${month}-${year} | ${date.getHours()}:${date.getMinutes()}`;
 }
