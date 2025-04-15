@@ -36,7 +36,9 @@
         </div>
         <div class="profile-container">
             <div class="section-head">
-                <h2 v-if="!user.birth_date && !user.bio && !user.profile_pic">Complete Your Profile</h2>
+                <h2 v-if="!user.birth_date && !user.bio && !user.profile_pic">
+                    Complete Your Profile
+                </h2>
                 <h2 v-else>Edit Profile</h2>
                 <hr class="header-hr" />
             </div>
@@ -73,13 +75,23 @@
                     <label>State</label>
                     <div class="selectbox-container">
                         <VueMultiselect
+                            v-if="user?.city?.state"
                             @select="setCityOptions"
                             label="name"
                             placeholder="Select Your State"
                             v-model="user.city.state"
                             :options="states"
                         >
-                        </VueMultiselect>
+                        </VueMultiselect> 
+                        <!-- <VueMultiselect
+                            v-else
+                            @select="setCityOptions"
+                            label="name"
+                            placeholder="Select Your State"
+                            v-model="null"
+                            :options="states"
+                        >
+                        </VueMultiselect> -->
                     </div>
                 </div>
                 <div class="edit-row under_line">
@@ -167,7 +179,7 @@ export default {
         VueMultiselect,
     },
     methods: {
-        ...mapActions(["loginUser", "setUser" , "logoutUser"]),
+        ...mapActions(["loginUser", "setUser", "logoutUser"]),
         convertSecondsToTime,
         fetchData() {
             this.is_loading = true;
@@ -203,15 +215,16 @@ export default {
                     // this.selected_state = this.user.city.state;
                 })
                 .catch((error) => {
-                   
-                    this.toast.error(error.response.data.message );
-                    if(error.response.status == 419 || error.response.status == 401 ){
-                    
-                         this.logoutUser();
-                    this.setUser({});
-                    this.$router.push({ name: "auth" });
+                    this.toast.error(error.response.data.message);
+                    if (
+                        error.response.status == 419 ||
+                        error.response.status == 401
+                    ) {
+                        this.logoutUser();
+                        this.setUser({});
+                        this.$router.push({ name: "auth" });
                     }
-                   
+
                     console.log("error**************");
                     console.log(error);
                 })
@@ -291,7 +304,6 @@ export default {
         },
     },
     created() {
-      
         this.fetchData();
         this.fetchGeo();
     },

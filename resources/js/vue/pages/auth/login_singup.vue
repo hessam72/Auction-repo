@@ -228,7 +228,9 @@ export default {
                     this.setUser(response.data.user);
                     this.redirect();
                 })
-                .catch(function (error) {
+                .catch( (error) =>{
+                    this.toast.error('Invalid Credentials');
+
                     console.log("error");
                     console.log(error);
                 })

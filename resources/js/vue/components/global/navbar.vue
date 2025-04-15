@@ -182,7 +182,7 @@
                     <Menu v-if="UserAuthToken" as="div" class="relative ml-3">
                         <div>
                             <MenuButton
-                                class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                                class="mx-hg-popup relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                             >
                                 <span class="absolute -inset-1.5" />
                                 <span class="sr-only"
@@ -216,7 +216,7 @@
                         >
                             <MenuItems
                                 v-if="notifications.length > 0"
-                                class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                                class="mx-hg-popup absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                             >
                                 <MenuItem
                                     v-for="(item, index) in notifications"
@@ -617,6 +617,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.mx-hg-popup{
+    // max-height: 20rem;
+    // overflow: auto;
+}
 #Search {
     border-radius: 40px;
     width: 20rem;
