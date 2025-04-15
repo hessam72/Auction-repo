@@ -1,35 +1,38 @@
 <template>
-     <!-- <QuillEditor v-model="text" theme="snow" /> -->
+    <!-- <QuillEditor v-model="text" theme="snow" /> -->
     <div class="product-info-container flex flex-col">
         <div class="product-header flex items-center justify-between">
             <h2>{{ product?.title }}</h2>
             <h2>${{ splitPrice(product?.price) }}</h2>
         </div>
         <div class="product-content">
-            <QuillEditor  :content="generateRichText(product.description)" :readOnly="true"  contentType="delta" theme="" />
-            <!-- <p>{{ generateRichText(product.description) }}</p> -->
+            <QuillEditor
+                :content="generateRichText(product?.description)"
+                :readOnly="true"
+                contentType="delta"
+                theme=""
+            />
         </div>
     </div>
 </template>
 <script>
 import { splitPrice } from "@/modules/utilities.js";
 
-import { QuillEditor } from '@vueup/vue-quill'
-import '@vueup/vue-quill/dist/vue-quill.snow.css';
+import { QuillEditor } from "@vueup/vue-quill";
+import "@vueup/vue-quill/dist/vue-quill.snow.css";
 export default {
-    props: ["product" , "text"],
+    props: ["product", "text"],
     mounted() {
         // this.generateRichText(this.product.description)
     },
     data() {
         return {
-            richTexh:{},
-        }
+            richTexh: {},
+        };
     },
     methods: {
         splitPrice,
         generateRichText(data) {
-            
             var d = JSON.parse(data);
 
             var contents = [];
@@ -63,9 +66,20 @@ export default {
             return contents;
         },
     },
-    components:{
-        QuillEditor
-    }
+    components: {
+        QuillEditor,
+    },
+    // watch: {
+    //     product: {
+    //         handler(newVal) {
+    //             if (newVal && newVal.description) {
+    //                 this.richTexh = this.generateRichText(newVal.description);
+    //             }
+    //         },
+    //         immediate: true, // run immediately on mount
+    //         deep: true, // in case product is a nested object
+    //     },
+    // },
 };
 </script>
 <style scoped lang="scss">

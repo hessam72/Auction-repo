@@ -36,7 +36,7 @@ export default {
                 state.BiddingQueues = x;
             } else {
                 var index = state.BiddingQueues.findIndex(
-                    (obj) => obj.auction_id === data.auction_id
+                    (obj) => obj?.auction_id === data?.auction_id
                 );
                 if (state.BiddingQueues[index]) {
                     state.BiddingQueues[index] = data;

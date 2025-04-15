@@ -377,7 +377,7 @@
                 </div>
                 <!-- users -->
                 <users-section :participaints :winners></users-section>
-                <product-content :product></product-content>
+                <product-content  :product></product-content>
                 <reviews-section :product_id="product?.id"></reviews-section>
             </div>
             <side-section :auctions="side_auctions"></side-section>
@@ -632,6 +632,7 @@ export default {
                 data: body,
             })
                 .then((response) => {
+                    console.log('fetch auch res: ' , response)
                     this.auction = response.data.auction;
                     this.product = this.auction.product;
 
@@ -654,11 +655,12 @@ export default {
                         timer: this.auction.timer,
                         status: this.auction.status,
                     };
+                    console.log('addBiddingQueue' , this.auction.bidding_queues)
                     this.addBiddingQueue(this.auction.bidding_queues);
                     this.addAuction(store_data);
                 })
                 .catch((error) => {
-                    console.log("error");
+                    console.log("error fetch");
                     console.log(error);
                 })
                 .finally(() => {
@@ -725,11 +727,11 @@ export default {
             })
                 // .get(this.baseUrl + this.userUrl, body , config)
                 .then((response) => {
-                    console.log(response);
-                    this.fetchData();
+                    console.log('book red' , response);
+                    // this.fetchData();
                 })
                 .catch((error) => {
-                    console.log("error");
+                    console.log("error book");
                     console.log(error);
                 })
                 .finally(() => {});
@@ -826,7 +828,6 @@ export default {
         this.disconnect();
     },
     mounted() {
-        console.log(this.findAuctionInStore(212));
         this.connect(); //connect to Pusher
         // Elastic Slider (c) 2014 // Taron Mehrabyan // Ruben Sargsyan
         init_elastic_slider();
