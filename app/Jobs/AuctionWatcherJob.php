@@ -72,7 +72,7 @@ class AuctionWatcherJob implements ShouldQueue
 
                 //check timer
                 $now = Carbon::now()->subSeconds(1);
-                $next_3_sec = Carbon::now()->addSeconds(2);
+                $next_3_sec = Carbon::now()->addSeconds(1);
                 if ($auction->timer->between($now, $next_3_sec) || $auction->timer < Carbon::now()) {
 
 

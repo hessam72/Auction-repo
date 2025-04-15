@@ -524,12 +524,17 @@ export default {
                     // listening for bidbuddy submit bid
                     console.log("winner");
                     console.log(e);
-
+                    vm.fireWinAlert(e)
                     vm.upadteAnAuctionState(e.data);
                 });
         },
         disconnect() {
             window.Echo.leave("my-channel");
+        },
+        fireWinAlert(e){
+            this.toast.success("We Have a Winner");
+            this.toast.info(`User ${e.data.current_winner_username} Has Won this Auction! Congratulations!`);
+
         },
         findAuctionInStore(id) {
             return this.findAuction(id);

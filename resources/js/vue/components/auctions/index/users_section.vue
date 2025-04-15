@@ -44,7 +44,7 @@
                 <div class="winner-info">
                   <h3>{{ item.user.username }}</h3>
                   <h4>Current Heighest bidder</h4>
-                  <h4><ion-icon name="pin"></ion-icon> {{ item.user.city.name }}</h4>
+                  <h4><ion-icon name="pin"></ion-icon> {{ item?.user?.city?.name }}</h4>
                 </div>
               </div>
             </tr>

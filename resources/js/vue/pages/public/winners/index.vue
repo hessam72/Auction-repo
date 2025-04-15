@@ -95,7 +95,7 @@ export default {
             winners: [],
             localUrl: "winners/all",
             is_loading: false,
-         
+
             skip: 0,
             take: 3,
         };
@@ -376,6 +376,7 @@ export default {
     gap: 5rem;
     margin-top: 5rem;
     margin-bottom: 3rem;
+   
 }
 
 .winner {
@@ -399,6 +400,14 @@ export default {
         margin-right: 1rem;
         -webkit-filter: drop-shadow(5px 5px 5px #2f1d55);
         filter: drop-shadow(5px 5px 5px #2f1d55);
+       
+        img {
+            max-width: 100%;
+            height: auto;
+            max-height: 15rem;
+            width: auto;
+        }
+  
     }
 
     .product-info {
@@ -427,7 +436,7 @@ export default {
             box-shadow: 0 2px 10px #666;
             border: 1px solid #eee;
             width: 10rem;
-    height: 10rem;
+            height: auto;
         }
     }
 
