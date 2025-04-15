@@ -2,9 +2,8 @@
     <div class="reviews-container">
         <div class="header flex justify-between items-center">
             <div>
-                            <h2>Reviews ({{ total_count }})</h2>
-
-            </div>  
+                <h2>Reviews ({{ total_count }})</h2>
+            </div>
             <div class="total-score">
                 <star-rating
                     :round-start-rating="false"
@@ -18,7 +17,6 @@
                     Add Review
                 </button>
             </div>
-          
         </div>
         <div
             v-for="(item, index) in comments"
@@ -32,9 +30,8 @@
                             <img
                                 class="user_img"
                                 :src="'/storage/' + item.user.profile_pic"
-                            />       
-                                                     <!-- onerror="this.src='/storage/images/user_profiles/blank.png'" -->
-
+                            />
+                            <!-- onerror="this.src='/storage/images/user_profiles/blank.png'" -->
                         </div>
                     </div>
                     <div class="winner-info">
@@ -177,56 +174,47 @@
                                             class="text-base font-semibold leading-6 text-gray-900"
                                             >Submit Your Comment
                                         </DialogTitle>
-                                        <div
-                                            class="relative mb-3 w-full mt-3"
-                                            data-te-input-wrapper-init
-                                        >
+                                        <div class="relative mb-3 w-full mt-3">
                                             <input
                                                 v-model="title"
                                                 type="text"
-                                                class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                                                id="exampleFormControlInputText"
-                                                placeholder="Example label"
+                                                id="titleInput"
+                                                placeholder=" "
+                                                class="peer block w-full rounded border border-gray-300 bg-transparent px-3 pt-5 pb-1.5 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
                                             />
                                             <label
-                                                style="
-                                                    z-index: 1;
-                                                    background: #fff;
-                                                "
-                                                for="exampleFormControlInputText"
-                                                class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-                                                >Title
+                                                for="titleInput"
+                                                class="absolute left-3 top-1 text-sm text-gray-500 transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-1 peer-focus:text-sm peer-focus:text-blue-600"
+                                            >
+                                                Title
                                             </label>
                                         </div>
                                         <div class="mt-6 w-full">
-                                            <div
-                                                class="relative mb-3"
-                                                data-te-input-wrapper-init
-                                            >
-                                                <textarea
-                                                    v-model="content"
-                                                    class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                                                    id="exampleFormControlTextarea1"
-                                                    rows="4"
-                                                    placeholder="Your message"
-                                                    required
-                                                ></textarea>
-                                                <label
-                                                    style="
-                                                        z-index: 1;
-                                                        background: #fff;
-                                                    "
-                                                    for="exampleFormControlTextarea1"
-                                                    class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-                                                    >Content
-                                                </label>
+                                            <div class="relative mb-3">
+                                                <div
+                                                    class="relative w-full mt-3"
+                                                >
+                                                    <textarea
+                                                        v-model="content"
+                                                        id="contentTextarea"
+                                                        placeholder=" "
+                                                        rows="4"
+                                                        required
+                                                        class="peer block w-full rounded border border-gray-300 bg-transparent px-3 pt-5 pb-1.5 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
+                                                    ></textarea>
+                                                    <label
+                                                        for="contentTextarea"
+                                                        class="absolute left-3 top-1 text-sm text-gray-500 transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-1 peer-focus:text-sm peer-focus:text-blue-600"
+                                                    >
+                                                        Content
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="mt-6 w-full">
                                             <!-- <h3>Ratings</h3>
                                             <hr /> -->
-                                       
-                                        
+
                                             <div class="rating-container">
                                                 <div class="flex items-center">
                                                     <p>worth of money</p>
@@ -235,11 +223,12 @@
                                                         :round-start-rating="
                                                             false
                                                         "
-                                                        
                                                         v-model:rating="
                                                             comment_worth_of_money
                                                         "
-                                                        v-model="comment_worth_of_money"
+                                                        v-model="
+                                                            comment_worth_of_money
+                                                        "
                                                         :show-rating="false"
                                                     ></star-rating>
                                                 </div>
@@ -293,7 +282,7 @@
                                 <button
                                     @click="submitComment()"
                                     type="button"
-                                    class="inline-flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-violet-500 sm:ml-3 sm:w-auto"
+                                    class="sbt-btn inline-flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-violet-500 sm:ml-3 sm:w-auto"
                                 >
                                     Submit
                                 </button>
@@ -341,6 +330,7 @@ export default {
             total_count: 0,
             avg_total_score: 0,
             title: null,
+            isFocused: false,
             content: null,
             comment_quality: 0,
             comment_worth_of_money: 0,
@@ -369,20 +359,19 @@ export default {
             this.comment_modal = false;
             this.title = null;
             this.content = null;
-            this.comment_quality =0;
-                this.comment_worth_of_money =0;
-                this.comment_suggest_it =0;
-                this.comment_packaging =0;
+            this.comment_quality = 0;
+            this.comment_worth_of_money = 0;
+            this.comment_suggest_it = 0;
+            this.comment_packaging = 0;
         },
         open_comment_modal() {
-            if(!this.UserAuthToken){
+            if (!this.UserAuthToken) {
                 this.toast.info("Sing in to Add Your Review");
                 return;
             }
             this.comment_modal = true;
         },
         submitComment() {
-           
             if (
                 !this.title ||
                 !this.content ||
@@ -406,7 +395,7 @@ export default {
                 comment_suggest_it: this.comment_suggest_it,
                 comment_packaging: this.comment_packaging,
             };
-           
+
             axios({
                 method: "post",
                 url: this.baseUrl + this.storeCommentUrl,
@@ -414,10 +403,10 @@ export default {
                 headers: config,
             })
                 .then((response) => {
-                   console.log(response.data)
+                    console.log(response.data);
                     this.toast.success(response.data.success);
                     this.fetchData();
-                    this.closeModal()
+                    this.closeModal();
                 })
                 .catch((error) => {
                     console.log(error);
@@ -483,8 +472,10 @@ export default {
     grid-template-columns: 1fr 1fr;
     row-gap: 0.5rem;
     margin-top: 1.3rem;
+    column-gap: 2rem;
     div {
-        gap: 1rem;
+        // gap: 1rem;
+        justify-content: space-between;
         align-items: center;
     }
 }
@@ -638,7 +629,13 @@ button {
     font-size: 15px;
     transition: all 0.5s ease;
 }
-
+.sbt-btn{
+    background-color: rgb(3, 157, 3);
+    display: flex
+;
+    align-items: center;
+    padding: .3rem 1.5rem !important;
+}
 button:hover {
     letter-spacing: 3px;
     background-color: hsl(261deg 80% 48%);

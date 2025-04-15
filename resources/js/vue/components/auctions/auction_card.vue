@@ -1,17 +1,13 @@
 <template>
     <div class="item-container auction-card-wrapper relative">
-        
         <div v-if="no_new_bidders" class="no-new-bidders">no new bidders</div>
         <div @click="toggleBookmark()" class="bookmark-container">
             <ion-icon
-              v-if="current_bookmark_status"
+                v-if="current_bookmark_status"
                 :class="'bookmarked icon-bg'"
                 name="bookmark"
-            ></ion-icon><ion-icon
-              v-else
-                :class="'icon-bg'"
-                name="bookmark"
-            ></ion-icon>
+            ></ion-icon
+            ><ion-icon v-else :class="'icon-bg'" name="bookmark"></ion-icon>
             <!-- templrary bookmark before refetching from database -->
             <!-- <ion-icon
                 v-else
@@ -185,9 +181,11 @@
                 >
                     Currently unavailable
                 </button>
-                <div @click="handleBuyItNow()" class="btn-secoundary" >
-                    <button>Buy it Now for ${{ splitPrice(buy_now_price) }}</button>
-                </div >
+                <div @click="handleBuyItNow()" class="btn-secoundary">
+                    <button>
+                        Buy it Now for ${{ splitPrice(buy_now_price) }}
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -232,7 +230,6 @@ export default {
         splitPrice,
 
         handleBuyItNow() {
-
             if (
                 this.user?.id === undefined ||
                 this.user?.id === null ||
@@ -258,8 +255,7 @@ export default {
                 // .get(this.baseUrl + this.userUrl, body , config)
                 .then((response) => {
                     console.log(response);
-                    this.$router.push('/user/buy_it_now');
-
+                    this.$router.push("/user/buy_it_now");
                 })
                 .catch((error) => {
                     console.log("error");
@@ -268,15 +264,7 @@ export default {
                 .finally(() => {});
         },
 
-
-
-
-
-
-
-
         toggleBookmark() {
-         
             if (
                 this.user?.id === undefined ||
                 this.user?.id === null ||
@@ -301,7 +289,7 @@ export default {
             })
                 // .get(this.baseUrl + this.userUrl, body , config)
                 .then((response) => {
-                    console.log('bookmrk res: ' , response);
+                    console.log("bookmrk res: ", response);
                     this.temp_bookmark = true;
                     this.current_bookmark_status =
                         !this.current_bookmark_status;
@@ -394,7 +382,6 @@ export default {
 .mycolor {
     animation: flash_change 1s;
     transform-origin: center;
-
 }
 
 .bookmark-container {
@@ -488,15 +475,15 @@ export default {
 
 .auction-timer {
     margin: auto;
-
+width: 100%;
     .count-down {
         display: flex;
-        gap: 0.1rem;
         text-align: center;
         padding: 0.6rem 1rem;
-        // border: 1px solid;
-        width: 85%;
+        width: 100%;
         margin: auto;
+        justify-content: center;
+        align-items: center;
 
         .number {
             border-radius: 9px;
