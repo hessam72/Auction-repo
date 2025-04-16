@@ -225,6 +225,7 @@ export default {
     color: #fff;
     background-color: var(--color-primary);
     padding: 0.6rem 1.5rem;
+    border-radius: 20px !important;
 }
 
 .parallax1 > use {

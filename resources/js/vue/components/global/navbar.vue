@@ -32,17 +32,20 @@
                 </div>
                 <div
                     class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start"
+                    style="align-items: center !important"
                 >
                     <div class="flex flex-shrink-0 items-center">
                         <router-link
+                            class="logo-link"
                             style="background-color: rgba(255, 255, 255, 0)"
                             :to="{ name: 'home' }"
                         >
                             <img
-                                class="h-8 w-auto"
-                                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                                alt="Your Company"
+                                class="logo-img"
+                                :src="'/logo-light.png'"
+                                alt="Dealioners"
                             />
+                            <p>ealioners</p>
                         </router-link>
                     </div>
                     <div class="hidden sm:ml-6 sm:block">
@@ -617,7 +620,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.mx-hg-popup{
+.logo-img {
+    filter: drop-shadow(-4px 2px 4px #1f5f8a);
+    width: 6rem !important;
+    height: auto;
+}
+.logo-link {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    p {
+        text-transform: uppercase;
+        position: relative;
+        left: -1.3rem;
+        font-size: 1.7rem;
+        color: var(--color-secondary);
+        text-shadow: 0px 8px 10px var(--color-secondary);
+    }
+}
+.mx-hg-popup {
     // max-height: 20rem;
     // overflow: auto;
 }
@@ -664,6 +686,13 @@ export default {
 .router-link-exact-active {
     color: #fff;
     background-color: #4e11ad;
+}
+
+@media (max-width: 650px) {
+    .logo-link {
+        position: absolute;
+        left: 8vw;
+    }
 }
 </style>
 <!-- // sticky nav -->
