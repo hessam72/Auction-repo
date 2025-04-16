@@ -21,7 +21,7 @@ class SpecialOfferController extends Controller
         // $categories = Category::orderBy('title')->get();
         $specialOffers = SpecialOffer::latest()->get();
 
-        return view('admin.SpecialOffers.index', compact(['specialOffers']));
+        return view('admin.specialOffers.index', compact(['specialOffers']));
     }
 
     /**
@@ -31,7 +31,7 @@ class SpecialOfferController extends Controller
     {
         $products = Product::orderBy('title')->get();
         $bidPakcages = BidPackage::orderBy('bid_amount')->get();
-        return view('admin.SpecialOffers.create',  compact(['products', 'bidPakcages']));
+        return view('admin.specialOffers.create',  compact(['products', 'bidPakcages']));
     }
 
     /**
