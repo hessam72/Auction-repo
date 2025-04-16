@@ -325,7 +325,6 @@ export default {
             })
                 .then((response) => {
                     this.offers = response.data.data;
-
                     this.mergedOffers = this.formatData();
                     this.finalOffers = this.arrangeData(this.mergedOffers);
 

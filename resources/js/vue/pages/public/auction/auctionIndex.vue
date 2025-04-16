@@ -861,7 +861,10 @@ export default {
     mounted() {
         this.connect(); //connect to Pusher
         // Elastic Slider (c) 2014 // Taron Mehrabyan // Ruben Sargsyan
-        init_elastic_slider();
+        setTimeout(() => {
+                    init_elastic_slider();
+
+        }, 1000);
 
         // listening to event after pusher on auction list recieved new data
         // this.emitter.on("update-live-auction", (value) => {

@@ -5,9 +5,9 @@
             <h2>{{ product?.title }}</h2>
             <h2>${{ splitPrice(product?.price) }}</h2>
         </div>
-        <div class="product-content">
+        <div v-if="ready" class="product-content">
             <QuillEditor
-                :content="generateRichText(product?.description)"
+                :content="generateRichText(product?.description ?? '')"
                 :readOnly="true"
                 contentType="delta"
                 theme=""
@@ -22,12 +22,11 @@ import { QuillEditor } from "@vueup/vue-quill";
 import "@vueup/vue-quill/dist/vue-quill.snow.css";
 export default {
     props: ["product", "text"],
-    mounted() {
-        // this.generateRichText(this.product.description)
-    },
+
     data() {
         return {
             richTexh: {},
+            ready: false,
         };
     },
     methods: {
@@ -65,6 +64,44 @@ export default {
             console.log(contents);
             return contents;
         },
+        // generateRichText(data) {
+        //     console.log("generateRichText:", data);
+        //     let d;
+
+        //     try {
+        //         d = data ? JSON.parse(data) : { ops: [{ insert: "\n" }] };
+        //     } catch (e) {
+        //         console.warn("Invalid JSON input for rich text:", e);
+        //         d = { ops: [{ insert: "\n" }] };
+        //     }
+
+        //     const contents = [];
+
+        //     if (Array.isArray(d.ops)) {
+        //         for (const op of d.ops) {
+        //             const insert = op.insert === null ? "\n" : op.insert;
+        //             const entry = { insert };
+
+        //             if (op.attributes !== undefined) {
+        //                 entry.attributes = op.attributes;
+        //             }
+
+        //             contents.push(entry);
+        //         }
+        //     } else {
+        //         // If d.ops is not an array, default to a single newline
+        //         contents.push({ insert: "\n" });
+        //     }
+
+        //     console.log("contents:", contents);
+        //     return contents;
+        // },
+    },
+    mounted() {
+        setTimeout(() => {
+            this.ready = true;
+        }, 1000);
+        // this.generateRichText(this.product.description)
     },
     components: {
         QuillEditor,

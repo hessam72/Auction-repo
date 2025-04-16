@@ -62,26 +62,25 @@ export function convertDBTimeToTime(time) {
     var convertedDate = hh + ":" + mm + ":" + ss;
     return convertedDate;
 }
-export function  merge(source, target = {}, ...parents) {
+export function merge(source, target = {}, ...parents) {
+    if (source == null || typeof source !== 'object') return target;
+  
     for (let [key, value] of Object.entries(source)) {
-        const path = (parents || []).concat(key);
-        if (typeof value === "object") {
-            merge(value, target, ...path);
-            continue;
-        }
-        target[path.join(".")] = value;
+      const path = (parents || []).concat(key);
+      if (value !== null && typeof value === 'object') {
+        merge(value, target, ...path);
+      } else {
+        target[path.join('.')] = value;
+      }
     }
     return target;
-};
-export function  arrangeData(data){
-    var arr=[];
-    data.forEach( (item, index) =>{
-      arr.push(merge(item))
-    });
-    
+  }
   
-    return arr;
-  };
+  export function arrangeData(data) {
+    return data
+      .filter(item => item && typeof item === 'object')
+      .map(item => merge(item));
+  }
 
   export function calDaysPassed(date){
     const date1 = new Date(date);

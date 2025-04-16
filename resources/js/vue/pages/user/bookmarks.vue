@@ -3,7 +3,7 @@
     <div v-if="bookmarks.length" class="bookmarks-container">
         <auction-card
             @refreshData="fetchData"
-            v-for="(item, index) in this.bookmarks"
+            v-for="(item, index) in bookmarks"
             :key="index"
             :auction_id="item.auction.id"
             :start_time="item.auction.start_time"
@@ -13,7 +13,7 @@
             :live_price="item.auction.current_price"
             :title="item.auction.product.title"
             :image="item.auction.product.galleries[0]"
-            :is_bookmarked="check_bookmark_status(item.auction.bookmarks, user)"
+            :is_bookmarked="check_bookmark_status(item?.auction?.bookmarks, user)"
             :status="item.auction.status"
         >
         </auction-card>
