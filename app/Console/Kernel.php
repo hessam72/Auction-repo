@@ -46,7 +46,7 @@ class Kernel extends ConsoleKernel
                 echo "every 7 sec ask";
                 $this->checkConditionAndDispatch();
             }
-            sleep(1); // Wait 1 second before checking again
+            sleep(2); // Wait 1 second before checking again
         }
     }
 

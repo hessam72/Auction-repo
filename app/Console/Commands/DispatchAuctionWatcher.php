@@ -30,9 +30,9 @@ class DispatchAuctionWatcher extends Command
         set_time_limit(0); // Prevent timeout
 
         while (true) {
-            dispatch(new AuctionWatcherJob())->delay(now()->addSecond());
+            dispatch(new AuctionWatcherJob())->delay(now()->addSeconds(2));
           
-            sleep(1); // Wait 1 second before dispatching again
+            sleep(2); // Wait 1 second before dispatching again
         }
     }
 }
