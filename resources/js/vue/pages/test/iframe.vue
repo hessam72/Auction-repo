@@ -1,8 +1,10 @@
 <template>
     <div class="iframe-container">
       <h1>Embedded Page</h1>
+      <!-- src="http://194.33.127.20:3011/" -->
+
       <iframe
-        src="http://194.33.127.20:3011/"
+        src="https://omidcity.com/"
         width="100%"
         height="800"
         style="border: none;"
