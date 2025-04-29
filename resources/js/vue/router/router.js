@@ -20,7 +20,7 @@ import profile from "../pages/user/profile.vue";
 import bidPackages from "../pages/user/bid_packages.vue";
 
 import auth from "../pages/auth/login_singup.vue";
-
+import iframeComponent from "../pages/test/iframe.vue"
 import success_payment from "../pages/payment/success.vue";
 import fail_payment from "../pages/payment/fail.vue";
 import partially_paid from "../pages/payment/partially_paid.vue";
@@ -35,6 +35,10 @@ const router = createRouter({
             path: "/success_payment",
             name: "success_payment",
             component: success_payment,
+        },{
+            path: "/iframe_01",
+            name: "iframe",
+            component: iframeComponent,
         },
         {
             path: "/fail_payment",
